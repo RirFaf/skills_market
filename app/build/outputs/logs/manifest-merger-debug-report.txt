@@ -1,0 +1,321 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+MERGED from [com.google.accompanist:accompanist-systemuicontroller:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bf1f24581fcc579382733ea286e648b6\transformed\accompanist-systemuicontroller-0.28.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.accompanist:accompanist-permissions:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\384d21a8273cae450399019b68b366ed\transformed\accompanist-permissions-0.28.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.accompanist:accompanist-placeholder:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fa7338475ef50d42c241703458a10dd9\transformed\accompanist-placeholder-0.28.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.accompanist:accompanist-navigation-animation:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5332bbf379bde788f3a8ee9b61540660\transformed\accompanist-navigation-animation-0.28.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.accompanist:accompanist-navigation-material:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\730240e3671e08bdfa45241d5166306a\transformed\accompanist-navigation-material-0.28.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.navigation:navigation-compose:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a4700d60d09a0f56e32027d5b00decfa\transformed\navigation-compose-2.5.0-rc02\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-compose:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bfaff0a3758bdc880c410b2508504dca\transformed\activity-compose-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a40cd6943466a8e792d511dba0079f83\transformed\material-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9fcc9f5a2de3ffe33ecd81b7090d5af2\transformed\material-ripple-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2150dc9fbbfe2eafff0ad9fa548a97ec\transformed\foundation-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.animation:animation:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9ce254b26e9b60ad7ec023cd5498241f\transformed\animation-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2a6955baa1c689d27f8c1e3ed840da44\transformed\ui-tooling-data-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c35d8793906d021bfa4a9f9bc259661d\transformed\material-icons-core-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a5bb5f1c382b78e6d33c162e6ac9f94\transformed\foundation-layout-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.animation:animation-core:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\eed46c8f5beb18dee1b4b39d7b2a1b9f\transformed\animation-core-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1085bf0a6bb7992c7d884dfbdfc630e4\transformed\lifecycle-viewmodel-compose-2.5.0-rc01\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.ui:ui:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1c8c39b0ed7e4cbd05fd6f9bf10c3fee\transformed\ui-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a7babe32ce2dae7118e706f52b0e8ef2\transformed\activity-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ab19df0e29783869ef469a049bf4c06e\transformed\navigation-runtime-ktx-2.5.0-rc02\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-runtime:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\25f27a87a9e374493b49da6e7360e94d\transformed\navigation-runtime-2.5.0-rc02\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\7d94b416c4b36564bc235d4c49719dbd\transformed\activity-ktx-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\34d602c5ddd24c6d710e90bc8571be07\transformed\navigation-common-ktx-2.5.0-rc02\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\628bbc631738a51797a99921e4e87fbc\transformed\navigation-common-2.5.0-rc02\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1a1d3db503736a55eb3c732a22df4ab0\transformed\lifecycle-runtime-ktx-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.ui:ui-tooling-preview:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\30d6f8dbf132d354d2599e1a62d14d93\transformed\ui-tooling-preview-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-text:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\f1524b19acb0cbc75c133379aae2ef06\transformed\ui-text-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5889cfc202c18ca7afc3f817ddeebdf3\transformed\runtime-saveable-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-graphics:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bcdee3f3e64c23f41098cebf81b14dca\transformed\ui-graphics-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-unit:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\82901c589339bd87a7aa55c5d95e90e6\transformed\ui-unit-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-geometry:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\6d7fa9f58ce0fa680a3d1a84b702af59\transformed\ui-geometry-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\650d0d3c7eeecae2d95d54ec6268ebcd\transformed\runtime-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e1933df48aa4c0afbefde80446c3c79d\transformed\lifecycle-viewmodel-ktx-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22da308be13dd9231061e2f40ccc68f3\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9095ca463a6d0a79f0208279699826be\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\92eb68e6a006c0c595c7f8025b6cf13e\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9879a1c4725597433dfcfd6665cace06\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\af5f660f287745dbbc765c1351c39172\transformed\core-ktx-1.9.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b175d91cb308b3730321934355cb6c58\transformed\savedstate-ktx-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\76926566bda0bff668b94ce0f25bea84\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b8fb2f5b56ac349037f32f0c28160ffb\transformed\savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\19a66ee81bd7a9781b827ab0d615ad1b\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:17:1-50:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\63cf51efaa59b9a578f6ea765bd78480\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\36363811e607a36abbabdf58aba6da94\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1f5ac801f43fc4295ead3c074cf07546\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.ui:ui-util:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ec0483ce0b88166b1498c1be9d4cb5f7\transformed\ui-util-1.3.3\AndroidManifest.xml:17:1-22:12
+MERGED from [io.github.aakira:napier-android-debug:1.4.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a57f0a225b1a76b47101b75b262f092d\transformed\napier-debug\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2fb31cb159953c59b32be195cc8b4e1e\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+	package
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:5:5-25:19
+MERGED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:24:5-48:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:24:5-48:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\63cf51efaa59b9a578f6ea765bd78480\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\63cf51efaa59b9a578f6ea765bd78480\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:11:9-35
+	android:label
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:10:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:8:9-54
+	tools:targetApi
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-29
+	android:icon
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:9:9-43
+	android:allowBackup
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:12:9-51
+	android:dataExtractionRules
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:9-65
+activity#android.skills_market.MainActivity
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:14:9-24:20
+	android:label
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-45
+	android:exported
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-36
+	android:theme
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:18:13-55
+	android:name
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:13-62
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:19:13-23:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:22:17-77
+	android:name
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:22:27-74
+uses-sdk
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+MERGED from [com.google.accompanist:accompanist-systemuicontroller:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bf1f24581fcc579382733ea286e648b6\transformed\accompanist-systemuicontroller-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-systemuicontroller:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bf1f24581fcc579382733ea286e648b6\transformed\accompanist-systemuicontroller-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-permissions:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\384d21a8273cae450399019b68b366ed\transformed\accompanist-permissions-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-permissions:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\384d21a8273cae450399019b68b366ed\transformed\accompanist-permissions-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-placeholder:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fa7338475ef50d42c241703458a10dd9\transformed\accompanist-placeholder-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-placeholder:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fa7338475ef50d42c241703458a10dd9\transformed\accompanist-placeholder-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-navigation-animation:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5332bbf379bde788f3a8ee9b61540660\transformed\accompanist-navigation-animation-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-navigation-animation:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5332bbf379bde788f3a8ee9b61540660\transformed\accompanist-navigation-animation-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-navigation-material:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\730240e3671e08bdfa45241d5166306a\transformed\accompanist-navigation-material-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.accompanist:accompanist-navigation-material:0.28.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\730240e3671e08bdfa45241d5166306a\transformed\accompanist-navigation-material-0.28.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-compose:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a4700d60d09a0f56e32027d5b00decfa\transformed\navigation-compose-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-compose:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a4700d60d09a0f56e32027d5b00decfa\transformed\navigation-compose-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-compose:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bfaff0a3758bdc880c410b2508504dca\transformed\activity-compose-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bfaff0a3758bdc880c410b2508504dca\transformed\activity-compose-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a40cd6943466a8e792d511dba0079f83\transformed\material-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a40cd6943466a8e792d511dba0079f83\transformed\material-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9fcc9f5a2de3ffe33ecd81b7090d5af2\transformed\material-ripple-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9fcc9f5a2de3ffe33ecd81b7090d5af2\transformed\material-ripple-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2150dc9fbbfe2eafff0ad9fa548a97ec\transformed\foundation-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2150dc9fbbfe2eafff0ad9fa548a97ec\transformed\foundation-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.animation:animation:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9ce254b26e9b60ad7ec023cd5498241f\transformed\animation-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.animation:animation:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9ce254b26e9b60ad7ec023cd5498241f\transformed\animation-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2a6955baa1c689d27f8c1e3ed840da44\transformed\ui-tooling-data-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2a6955baa1c689d27f8c1e3ed840da44\transformed\ui-tooling-data-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c35d8793906d021bfa4a9f9bc259661d\transformed\material-icons-core-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c35d8793906d021bfa4a9f9bc259661d\transformed\material-icons-core-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a5bb5f1c382b78e6d33c162e6ac9f94\transformed\foundation-layout-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a5bb5f1c382b78e6d33c162e6ac9f94\transformed\foundation-layout-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.animation:animation-core:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\eed46c8f5beb18dee1b4b39d7b2a1b9f\transformed\animation-core-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.animation:animation-core:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\eed46c8f5beb18dee1b4b39d7b2a1b9f\transformed\animation-core-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1085bf0a6bb7992c7d884dfbdfc630e4\transformed\lifecycle-viewmodel-compose-2.5.0-rc01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1085bf0a6bb7992c7d884dfbdfc630e4\transformed\lifecycle-viewmodel-compose-2.5.0-rc01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.ui:ui:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1c8c39b0ed7e4cbd05fd6f9bf10c3fee\transformed\ui-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1c8c39b0ed7e4cbd05fd6f9bf10c3fee\transformed\ui-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a7babe32ce2dae7118e706f52b0e8ef2\transformed\activity-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a7babe32ce2dae7118e706f52b0e8ef2\transformed\activity-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ab19df0e29783869ef469a049bf4c06e\transformed\navigation-runtime-ktx-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ab19df0e29783869ef469a049bf4c06e\transformed\navigation-runtime-ktx-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\25f27a87a9e374493b49da6e7360e94d\transformed\navigation-runtime-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\25f27a87a9e374493b49da6e7360e94d\transformed\navigation-runtime-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\7d94b416c4b36564bc235d4c49719dbd\transformed\activity-ktx-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.6.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\7d94b416c4b36564bc235d4c49719dbd\transformed\activity-ktx-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\34d602c5ddd24c6d710e90bc8571be07\transformed\navigation-common-ktx-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common-ktx:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\34d602c5ddd24c6d710e90bc8571be07\transformed\navigation-common-ktx-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\628bbc631738a51797a99921e4e87fbc\transformed\navigation-common-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.5.0-rc02] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\628bbc631738a51797a99921e4e87fbc\transformed\navigation-common-2.5.0-rc02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1a1d3db503736a55eb3c732a22df4ab0\transformed\lifecycle-runtime-ktx-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1a1d3db503736a55eb3c732a22df4ab0\transformed\lifecycle-runtime-ktx-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.ui:ui-tooling-preview:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\30d6f8dbf132d354d2599e1a62d14d93\transformed\ui-tooling-preview-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\30d6f8dbf132d354d2599e1a62d14d93\transformed\ui-tooling-preview-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-text:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\f1524b19acb0cbc75c133379aae2ef06\transformed\ui-text-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-text:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\f1524b19acb0cbc75c133379aae2ef06\transformed\ui-text-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5889cfc202c18ca7afc3f817ddeebdf3\transformed\runtime-saveable-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5889cfc202c18ca7afc3f817ddeebdf3\transformed\runtime-saveable-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bcdee3f3e64c23f41098cebf81b14dca\transformed\ui-graphics-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bcdee3f3e64c23f41098cebf81b14dca\transformed\ui-graphics-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-unit:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\82901c589339bd87a7aa55c5d95e90e6\transformed\ui-unit-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-unit:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\82901c589339bd87a7aa55c5d95e90e6\transformed\ui-unit-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-geometry:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\6d7fa9f58ce0fa680a3d1a84b702af59\transformed\ui-geometry-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-geometry:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\6d7fa9f58ce0fa680a3d1a84b702af59\transformed\ui-geometry-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\650d0d3c7eeecae2d95d54ec6268ebcd\transformed\runtime-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\650d0d3c7eeecae2d95d54ec6268ebcd\transformed\runtime-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e1933df48aa4c0afbefde80446c3c79d\transformed\lifecycle-viewmodel-ktx-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e1933df48aa4c0afbefde80446c3c79d\transformed\lifecycle-viewmodel-ktx-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22da308be13dd9231061e2f40ccc68f3\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22da308be13dd9231061e2f40ccc68f3\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9095ca463a6d0a79f0208279699826be\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9095ca463a6d0a79f0208279699826be\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\92eb68e6a006c0c595c7f8025b6cf13e\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\92eb68e6a006c0c595c7f8025b6cf13e\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9879a1c4725597433dfcfd6665cace06\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9879a1c4725597433dfcfd6665cace06\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\af5f660f287745dbbc765c1351c39172\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\af5f660f287745dbbc765c1351c39172\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b175d91cb308b3730321934355cb6c58\transformed\savedstate-ktx-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b175d91cb308b3730321934355cb6c58\transformed\savedstate-ktx-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\76926566bda0bff668b94ce0f25bea84\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\76926566bda0bff668b94ce0f25bea84\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b8fb2f5b56ac349037f32f0c28160ffb\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b8fb2f5b56ac349037f32f0c28160ffb\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\19a66ee81bd7a9781b827ab0d615ad1b\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\19a66ee81bd7a9781b827ab0d615ad1b\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:21:5-22:38
+MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:21:5-22:38
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\63cf51efaa59b9a578f6ea765bd78480\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\63cf51efaa59b9a578f6ea765bd78480\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\36363811e607a36abbabdf58aba6da94\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\36363811e607a36abbabdf58aba6da94\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1f5ac801f43fc4295ead3c074cf07546\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\1f5ac801f43fc4295ead3c074cf07546\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.ui:ui-util:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ec0483ce0b88166b1498c1be9d4cb5f7\transformed\ui-util-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-util:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\ec0483ce0b88166b1498c1be9d4cb5f7\transformed\ui-util-1.3.3\AndroidManifest.xml:20:5-44
+MERGED from [io.github.aakira:napier-android-debug:1.4.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a57f0a225b1a76b47101b75b262f092d\transformed\napier-debug\AndroidManifest.xml:7:5-9:41
+MERGED from [io.github.aakira:napier-android-debug:1.4.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\a57f0a225b1a76b47101b75b262f092d\transformed\napier-debug\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2fb31cb159953c59b32be195cc8b4e1e\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\2fb31cb159953c59b32be195cc8b4e1e\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\5d3307621739bf5eba7e020d32feb046\transformed\ui-tooling-1.3.3\AndroidManifest.xml:24:13-71
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.3.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\296034fb079b0e9179c343f9de572e89\transformed\ui-test-manifest-1.3.3\AndroidManifest.xml:24:13-63
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+permission#com.example.skills_market.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+uses-permission#com.example.skills_market.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\c3e69babb64c62de588e9ea3842e939a\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:25:9-33:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b4b9c4b74bc0c7520178909032bb4c70\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:29:13-31
+	android:authorities
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:27:13-68
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:26:13-67
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:30:13-32:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:32:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:31:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:35:9-47:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:38:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:40:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:37:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:36:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:41:13-43:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:42:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:42:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:44:13-46:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:45:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\0a6b5b495426ae159969d7c51bf87af6\transformed\profileinstaller-1.2.0\AndroidManifest.xml:45:25-82
