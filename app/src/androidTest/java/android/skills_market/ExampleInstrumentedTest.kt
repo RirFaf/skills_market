@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("android.skills_market", appContext.packageName)
+        assertEquals("android.compose", appContext.packageName)
     }
 }
