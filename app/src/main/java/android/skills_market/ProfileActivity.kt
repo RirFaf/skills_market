@@ -175,7 +175,7 @@ class MainActivity : ComponentActivity() {
             modifier = Modifier
                 .padding(start = 14.dp, top = 14.dp)
                 .fillMaxWidth(),
-            elevation = 0.dp
+                 elevation = 0.dp
         ) {
 
             Column() {
@@ -188,16 +188,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun responsesRow() {
-        LazyRow(
-            modifier = Modifier.fillMaxWidth()
-        ) {
 
-        }
+
 
     }
-}
+
 
 
 
