@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.skills_market.app-mergeDebugResources-45:/values-v16/values-v16.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-39:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\c3e69babb64c62de588e9ea3842e939a\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\2a40c978216a6213b76dded601643925\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

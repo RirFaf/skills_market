@@ -13,7 +13,14 @@
         android:theme="@style/Theme.Skills_market"
         tools:targetApi="31">
         <activity
-            android:name=".ui.theme.MainActivity"
+            android:name=".RegisterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="android.skills_market.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

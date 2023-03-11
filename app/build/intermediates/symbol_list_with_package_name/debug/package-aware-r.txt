@@ -1,12 +1,5 @@
-com.example.skills_market
-attr action
+android.skills_market
 attr alpha
-attr argType
-attr data
-attr dataPattern
-attr destination
-attr enterAnim
-attr exitAnim
 attr font
 attr fontProviderAuthority
 attr fontProviderCerts
@@ -18,36 +11,22 @@ attr fontProviderSystemFontFamily
 attr fontStyle
 attr fontVariationSettings
 attr fontWeight
-attr graph
 attr lStar
-attr launchSingleTop
-attr mimeType
-attr navGraph
 attr nestedScrollViewStyle
-attr nullable
-attr popEnterAnim
-attr popExitAnim
-attr popUpTo
-attr popUpToInclusive
-attr popUpToSaveState
 attr queryPatterns
-attr restoreState
-attr route
 attr shortcutMatchRequired
-attr startDestination
-attr targetPackage
 attr ttcIndex
-attr uri
-color BackgroundGrey
+color accent_blue
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
 color black
-color grey_200
-color grey_500
-color grey_700
-color grey_900
 color notification_action_color_filter
 color notification_icon_bg_color
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
 color vector_tint_color
 color vector_tint_theme_color
 color white
@@ -73,8 +52,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+drawable baseline_logo_dev_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable logo
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -142,7 +123,6 @@ id is_pooling_container_tag
 id italic
 id line1
 id line3
-id nav_controller_view_tag
 id normal
 id notification_background
 id notification_main_column
@@ -212,19 +192,11 @@ style TextAppearance_Compat_Notification_Title
 style Theme_Skills_market
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
-styleable ActivityNavigator android_name action data dataPattern targetPackage
 styleable Capability queryPatterns shortcutMatchRequired
 styleable ColorStateListItem android_color android_alpha android_lStar alpha lStar
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
-styleable NavAction android_id destination enterAnim exitAnim launchSingleTop popEnterAnim popExitAnim popUpTo popUpToInclusive popUpToSaveState restoreState
-styleable NavArgument android_name android_defaultValue argType nullable
-styleable NavDeepLink android_autoVerify action mimeType uri
-styleable NavGraphNavigator startDestination
-styleable NavHost navGraph
-styleable NavInclude graph
-styleable Navigator android_label android_id route
 xml backup_rules
 xml data_extraction_rules

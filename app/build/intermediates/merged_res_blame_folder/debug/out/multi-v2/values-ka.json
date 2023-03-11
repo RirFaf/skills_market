@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.skills_market.app-mergeDebugResources-45:/values-ka/values-ka.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-39:/values-ka/values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\c3e69babb64c62de588e9ea3842e939a\\transformed\\core-1.9.0\\res\\values-ka\\values-ka.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1324",
-                        "endColumns": "100",
-                        "endOffsets": "1420"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\1c8c39b0ed7e4cbd05fd6f9bf10c3fee\\transformed\\ui-1.3.3\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\5925eaba981e270670346e138f35ab67\\transformed\\ui-1.3.3\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "105,201,287,386,489,579,659,755,845,932,1003,1072,1161,1252,1425,1495",
                         "endColumns": "95,85,98,102,89,79,95,89,86,70,68,88,90,71,69,120",
                         "endOffsets": "196,282,381,484,574,654,750,840,927,998,1067,1156,1247,1319,1490,1611"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\2a40c978216a6213b76dded601643925\\transformed\\core-1.9.0\\res\\values-ka\\values-ka.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1324",
+                        "endColumns": "100",
+                        "endOffsets": "1420"
                     }
                 }
             ]
