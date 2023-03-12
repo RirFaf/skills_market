@@ -45,8 +45,8 @@
 28-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
 29        <activity
 29-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-21:20
-30            android:name="android.skills_market.RegisterActivity"
-30-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-45
+30            android:name="android.skills_market.StudentRegisterActivity"
+30-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-52
 31            android:exported="false" >
 31-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-37
 32            <meta-data

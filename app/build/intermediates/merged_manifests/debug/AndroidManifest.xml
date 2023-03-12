@@ -27,7 +27,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.Skills_market" >
         <activity
-            android:name="android.skills_market.RegisterActivity"
+            android:name="android.skills_market.StudentRegisterActivity"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"

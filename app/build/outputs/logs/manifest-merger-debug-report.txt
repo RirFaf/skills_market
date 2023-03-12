@@ -97,12 +97,12 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradl
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
 	android:dataExtractionRules
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:9-65
-activity#android.skills_market.RegisterActivity
+activity#android.skills_market.StudentRegisterActivity
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-21:20
 	android:exported
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-37
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-45
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-52
 meta-data#android.app.lib_name
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:18:13-20:36
 	android:value
