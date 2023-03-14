@@ -9,6 +9,7 @@ color teal_200
 color teal_700
 color white
 drawable baseline_logo_dev_24
+drawable baseline_search_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo

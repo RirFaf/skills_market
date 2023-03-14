@@ -1,15 +1,14 @@
 package android.skills_market
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.skills_market.ui.theme.ButtonColor
+import android.skills_market.ui.theme.WhiteFontColor
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +18,7 @@ class EmployerRegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            LoadUI()
         }
     }
 }
@@ -73,9 +72,10 @@ private fun LoadUI() {
             }
         )
         Button(
-            onClick = { /*TODO: Проверка наличия логина в бд и валидация имён*/ }
+            onClick = { /*TODO: Проверка наличия логина в бд и валидация имён*/ },
+            colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
         ) {
-            Text(text = "Готово")
+            Text(text = "Готово", color = WhiteFontColor)
         }
 
     }
