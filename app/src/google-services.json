@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "736296091920",
+    "project_id": "skillsmarket-1dc70",
+    "storage_bucket": "skillsmarket-1dc70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736296091920:android:118957a2849588fcd72595",
+        "android_client_info": {
+          "package_name": "android.skills_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736296091920-hs269rerhaeebm1bfvlhmlc6jgm5j3oj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAycOUDWsfjw2qoU5MdFnvgCp_fpicys-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736296091920-hs269rerhaeebm1bfvlhmlc6jgm5j3oj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

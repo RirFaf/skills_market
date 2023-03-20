@@ -2,6 +2,9 @@ android.skills_market
 attr action
 attr alpha
 attr argType
+attr buttonSize
+attr circleCrop
+attr colorScheme
 attr coordinatorLayoutStyle
 attr data
 attr dataPattern
@@ -20,6 +23,8 @@ attr fontStyle
 attr fontVariationSettings
 attr fontWeight
 attr graph
+attr imageAspectRatio
+attr imageAspectRatioAdjust
 attr keylines
 attr lStar
 attr launchSingleTop
@@ -41,6 +46,7 @@ attr popUpToSaveState
 attr queryPatterns
 attr restoreState
 attr route
+attr scopeUris
 attr shortcutMatchRequired
 attr startDestination
 attr statusBarBackground
@@ -51,6 +57,17 @@ color accent_blue
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
 color black
+color common_google_signin_btn_text_dark
+color common_google_signin_btn_text_dark_default
+color common_google_signin_btn_text_dark_disabled
+color common_google_signin_btn_text_dark_focused
+color common_google_signin_btn_text_dark_pressed
+color common_google_signin_btn_text_light
+color common_google_signin_btn_text_light_default
+color common_google_signin_btn_text_light_disabled
+color common_google_signin_btn_text_light_focused
+color common_google_signin_btn_text_light_pressed
+color common_google_signin_btn_tint
 color notification_action_color_filter
 color notification_icon_bg_color
 color purple_200
@@ -85,6 +102,29 @@ dimen notification_top_pad
 dimen notification_top_pad_large_text
 drawable baseline_logo_dev_24
 drawable baseline_search_24
+drawable baseline_visibility_24
+drawable baseline_visibility_off_24
+drawable common_full_open_on_phone
+drawable common_google_signin_btn_icon_dark
+drawable common_google_signin_btn_icon_dark_focused
+drawable common_google_signin_btn_icon_dark_normal
+drawable common_google_signin_btn_icon_dark_normal_background
+drawable common_google_signin_btn_icon_disabled
+drawable common_google_signin_btn_icon_light
+drawable common_google_signin_btn_icon_light_focused
+drawable common_google_signin_btn_icon_light_normal
+drawable common_google_signin_btn_icon_light_normal_background
+drawable common_google_signin_btn_text_dark
+drawable common_google_signin_btn_text_dark_focused
+drawable common_google_signin_btn_text_dark_normal
+drawable common_google_signin_btn_text_dark_normal_background
+drawable common_google_signin_btn_text_disabled
+drawable common_google_signin_btn_text_light
+drawable common_google_signin_btn_text_light_focused
+drawable common_google_signin_btn_text_light_normal
+drawable common_google_signin_btn_text_light_normal_background
+drawable googleg_disabled_color_18
+drawable googleg_standard_color_18
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo
@@ -138,9 +178,12 @@ id action_divider
 id action_image
 id action_text
 id actions
+id adjust_height
+id adjust_width
 id all
 id androidx_compose_ui_view_composition_context
 id async
+id auto
 id blocking
 id bottom
 id center
@@ -151,6 +194,7 @@ id clip_horizontal
 id clip_vertical
 id compose_view_saveable_id_tag
 id consume_window_insets_tag
+id dark
 id dialog_button
 id end
 id fill
@@ -160,11 +204,13 @@ id forever
 id hide_in_inspector_tag
 id icon
 id icon_group
+id icon_only
 id info
 id inspection_slot_table_set
 id is_pooling_container_tag
 id italic
 id left
+id light
 id line1
 id line3
 id nav_controller_view_tag
@@ -177,6 +223,7 @@ id pooling_container_listener_holder_tag
 id right
 id right_icon
 id right_side
+id standard
 id start
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -200,6 +247,7 @@ id view_tree_lifecycle_owner
 id view_tree_on_back_pressed_dispatcher_owner
 id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
+id wide
 id wrapped_composition_tag
 integer google_play_services_version
 integer status_bar_notification_info_maxnum
@@ -215,22 +263,67 @@ mipmap ic_launcher_round
 raw firebase_common_keep
 string androidx_startup
 string app_name
+string city
 string close_drawer
 string close_sheet
+string common_google_play_services_enable_button
+string common_google_play_services_enable_text
+string common_google_play_services_enable_title
+string common_google_play_services_install_button
+string common_google_play_services_install_text
+string common_google_play_services_install_title
+string common_google_play_services_notification_channel_name
+string common_google_play_services_notification_ticker
 string common_google_play_services_unknown_issue
+string common_google_play_services_unsupported_text
+string common_google_play_services_update_button
+string common_google_play_services_update_text
+string common_google_play_services_update_title
+string common_google_play_services_updating_text
+string common_google_play_services_wear_update_text
+string common_open_on_phone
+string common_signin_button_text
+string common_signin_button_text_long
+string company_name
+string course_num
 string default_error_message
 string default_popup_window_title
+string default_web_client_id
+string done
 string dropdown_menu
+string email
+string employer
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
+string help
+string hide_password
 string in_progress
 string indeterminate
+string login
+string logo_description
+string name
 string navigation_menu
 string not_selected
 string off
 string on
+string password
+string patronymic
+string phone_number
+string project_id
 string range_end
 string range_start
+string registration
+string search
+string search_description
 string selected
+string show_password
+string speciality
 string status_bar_notification_info_overflow
+string student
+string surname
 string tab
 string template_percent
 style DialogWindowTheme
@@ -254,6 +347,7 @@ styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchSt
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
+styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
 styleable NavAction android_id destination enterAnim exitAnim launchSingleTop popEnterAnim popExitAnim popUpTo popUpToInclusive popUpToSaveState restoreState
 styleable NavArgument android_name android_defaultValue argType nullable
 styleable NavDeepLink android_autoVerify action mimeType uri
@@ -261,5 +355,6 @@ styleable NavGraphNavigator startDestination
 styleable NavHost navGraph
 styleable NavInclude graph
 styleable Navigator android_label android_id route
+styleable SignInButton buttonSize colorScheme scopeUris
 xml backup_rules
 xml data_extraction_rules
