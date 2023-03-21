@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun RegistrationTextField(@StringRes placeholder: Int, lastField: Boolean) {
+fun RegistrationTextField(@StringRes placeholder: Int, lastField: Boolean):String {
     val keyboardController = LocalSoftwareKeyboardController.current
     var text by remember { mutableStateOf("") }
     TextField(
@@ -40,4 +40,5 @@ fun RegistrationTextField(@StringRes placeholder: Int, lastField: Boolean) {
             }),
     )
     Spacer(modifier = Modifier.padding(4.dp))
+    return text
 }

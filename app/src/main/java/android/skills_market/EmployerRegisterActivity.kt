@@ -1,10 +1,13 @@
 package android.skills_market
 
+import android.content.Intent
 import android.os.Bundle
 import android.skills_market.custom_composables.RegistrationTextField
 import android.skills_market.db_functions.SMFirebase
+import android.skills_market.db_functions.isEmailValid
 import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.WhiteFontColor
+import android.skills_market.users_dataclasses.Employer
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -17,8 +20,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import java.util.*
 
 class EmployerRegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +36,8 @@ class EmployerRegisterActivity : ComponentActivity() {
 
 @Composable
 private fun LoadUI() {
+    val localContext = LocalContext.current
+    val database = SMFirebase()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,15 +47,57 @@ private fun LoadUI() {
         Text(
             text = stringResource(id = R.string.registration)
         )
-        RegistrationTextField(placeholder = R.string.surname, lastField = false)
-        RegistrationTextField(placeholder = R.string.name, lastField = false)
-        RegistrationTextField(placeholder = R.string.patronymic, lastField = false)
-        RegistrationTextField(placeholder = R.string.company_name, lastField = false)
-        RegistrationTextField(placeholder = R.string.city, lastField = false)
-        RegistrationTextField(placeholder = R.string.email, lastField = false)
-        RegistrationTextField(placeholder = R.string.phone_number, lastField = true)
+        val surname = RegistrationTextField(
+            placeholder = R.string.surname,
+            lastField = false
+        ).lowercase()
+            .replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+        val name = RegistrationTextField(
+            placeholder = R.string.name,
+            lastField = false
+        ).lowercase()
+            .replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+        val patronymic = RegistrationTextField(
+            placeholder = R.string.patronymic,
+            lastField = false
+        ).lowercase()
+            .replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+        val companyName =
+            RegistrationTextField(placeholder = R.string.company_name, lastField = false)
+        val city = RegistrationTextField(
+            placeholder = R.string.city,
+            lastField = false
+        ).lowercase()
+            .replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+        val email =
+            RegistrationTextField(placeholder = R.string.email, lastField = false).lowercase()
+        val phone = RegistrationTextField(placeholder = R.string.phone_number, lastField = true)
+            .replace("+7", "8")
         Button(
-            onClick = { /*TODO: Проверка наличия логина в бд и валидация имён*/ },
+            onClick = {
+                if (isEmailValid(email) && phone.length == 11) {
+                    localContext.startActivity(
+                        Intent(
+                            localContext,
+                            SearchActivity::class.java
+                        )
+                    )
+                    database.addEmployer(
+                        Employer(surname, name, patronymic, companyName, city, email, phone)
+                    )
+                }
+//                else {
+//                    TODO("Имплементировать валиидацию полей")
+//                }
+            },
             colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
         ) {
             Text(text = stringResource(id = R.string.done), color = WhiteFontColor)

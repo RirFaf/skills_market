@@ -16,6 +16,7 @@
     <string name="done">Готово</string>
     <string name="email">Электронная почта</string>
     <string name="employer">Работодатель</string>
+    <string name="firebase_database_url" translatable="false">https://skillsmarket-1dc70-default-rtdb.europe-west1.firebasedatabase.app</string>
     <string name="gcm_defaultSenderId" translatable="false">736296091920</string>
     <string name="google_api_key" translatable="false">AIzaSyAycOUDWsfjw2qoU5MdFnvgCp_fpicys-c</string>
     <string name="google_app_id" translatable="false">1:736296091920:android:118957a2849588fcd72595</string>
