@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "android.skills_market.app-mergeDebugResources-52:/values-hi/values-hi.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-53:/values-hi/values-hi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\0601ad11e39c3233c601152d8c7e90b8\\transformed\\play-services-basement-18.1.0\\res\\values-hi\\values.xml",
@@ -47,11 +47,28 @@
                         "endOffsets": "195,278,371,469,558,636,733,822,907,975,1044,1125,1210,1283,1349,1469"
                     },
                     "to": {
-                        "startLines": "2,3,22,23,24,25,26,27,28,29,30,31,32,33,35,36",
+                        "startLines": "2,3,23,24,25,29,30,31,32,33,34,35,36,37,39,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,200,2514,2607,2705,2794,2872,2969,3058,3143,3211,3280,3361,3446,3620,3686",
+                        "startOffsets": "105,200,2620,2713,2811,3217,3295,3392,3481,3566,3634,3703,3784,3869,4043,4109",
                         "endColumns": "94,82,92,97,88,77,96,88,84,67,68,80,84,72,65,119",
-                        "endOffsets": "195,278,2602,2700,2789,2867,2964,3053,3138,3206,3275,3356,3441,3514,3681,3801"
+                        "endOffsets": "195,278,2708,2806,2895,3290,3387,3476,3561,3629,3698,3779,3864,3937,4104,4224"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\deca89309b33659bda64cb63fd116358\\transformed\\browser-1.4.0\\res\\values-hi\\values-hi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,161,263,375",
+                        "endColumns": "105,101,111,102",
+                        "endOffsets": "156,258,370,473"
+                    },
+                    "to": {
+                        "startLines": "22,26,27,28",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2514,2900,3002,3114",
+                        "endColumns": "105,101,111,102",
+                        "endOffsets": "2615,2997,3109,3212"
                     }
                 },
                 {
@@ -64,11 +81,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "34",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "3519",
+                        "startOffsets": "3942",
                         "endColumns": "100",
-                        "endOffsets": "3615"
+                        "endOffsets": "4038"
                     }
                 }
             ]

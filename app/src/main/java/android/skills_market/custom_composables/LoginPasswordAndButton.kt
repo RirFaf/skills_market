@@ -97,7 +97,8 @@ fun LoginPasswordAndButton(localContext: Context) {
             /*TODO: иплементировать вход через бд*/
             database.loginUser(
                 localContext = localContext,
-                login
+                login,
+                password
             )
         },
         modifier = Modifier

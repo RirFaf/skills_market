@@ -7,5 +7,6 @@ data class Student(
     val city: String,
     val course: String,
     val email: String,
+    val password: String,
     val phone: String
 )

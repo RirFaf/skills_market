@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "android.skills_market.app-mergeDebugResources-52:/values-my/values-my.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-53:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\a59945d937cb8c943e169f4a60f93dbf\\transformed\\play-services-base-18.0.1\\res\\values-my\\values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "194,282,386,490,573,657,756,845,927,993,1060,1147,1233,1308,1374,1500"
                     },
                     "to": {
-                        "startLines": "2,3,22,23,24,25,26,27,28,29,30,31,32,33,35,36",
+                        "startLines": "2,3,23,24,25,29,30,31,32,33,34,35,36,37,39,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,199,2641,2745,2849,2932,3016,3115,3204,3286,3352,3419,3506,3592,3768,3834",
+                        "startOffsets": "105,199,2750,2854,2958,3369,3453,3552,3641,3723,3789,3856,3943,4029,4205,4271",
                         "endColumns": "93,87,103,103,82,83,98,88,81,65,66,86,85,74,65,125",
-                        "endOffsets": "194,282,2740,2844,2927,3011,3110,3199,3281,3347,3414,3501,3587,3662,3829,3955"
+                        "endOffsets": "194,282,2849,2953,3036,3448,3547,3636,3718,3784,3851,3938,4024,4099,4266,4392"
                     }
                 },
                 {
@@ -55,6 +55,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\deca89309b33659bda64cb63fd116358\\transformed\\browser-1.4.0\\res\\values-my\\values-my.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,164,270,385",
+                        "endColumns": "108,105,114,106",
+                        "endOffsets": "159,265,380,487"
+                    },
+                    "to": {
+                        "startLines": "22,26,27,28",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2641,3041,3147,3262",
+                        "endColumns": "108,105,114,106",
+                        "endOffsets": "2745,3142,3257,3364"
+                    }
+                },
+                {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\394436085baf9589308783009f5b4323\\transformed\\core-1.9.0\\res\\values-my\\values-my.xml",
                     "from": {
                         "startLines": "2",
@@ -64,11 +81,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "34",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "3667",
+                        "startOffsets": "4104",
                         "endColumns": "100",
-                        "endOffsets": "3763"
+                        "endOffsets": "4200"
                     }
                 }
             ]

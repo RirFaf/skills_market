@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "android.skills_market.app-mergeDebugResources-52:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-53:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\394436085baf9589308783009f5b4323\\transformed\\core-1.9.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
@@ -13,11 +13,28 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "34",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "3645",
+                        "startOffsets": "4075",
                         "endColumns": "100",
-                        "endOffsets": "3741"
+                        "endOffsets": "4171"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\deca89309b33659bda64cb63fd116358\\transformed\\browser-1.4.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,171,270,382",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "166,265,377,480"
+                    },
+                    "to": {
+                        "startLines": "22,26,27,28",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2617,3015,3114,3226",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "2728,3109,3221,3324"
                     }
                 },
                 {
@@ -47,11 +64,11 @@
                         "endOffsets": "195,278,375,474,560,639,736,827,914,986,1055,1140,1230,1306,1378,1500"
                     },
                     "to": {
-                        "startLines": "2,3,22,23,24,25,26,27,28,29,30,31,32,33,35,36",
+                        "startLines": "2,3,23,24,25,29,30,31,32,33,34,35,36,37,39,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,200,2617,2714,2813,2899,2978,3075,3166,3253,3325,3394,3479,3569,3746,3818",
+                        "startOffsets": "105,200,2733,2830,2929,3329,3408,3505,3596,3683,3755,3824,3909,3999,4176,4248",
                         "endColumns": "94,82,96,98,85,78,96,90,86,71,68,84,89,75,71,121",
-                        "endOffsets": "195,278,2709,2808,2894,2973,3070,3161,3248,3320,3389,3474,3564,3640,3813,3935"
+                        "endOffsets": "195,278,2825,2924,3010,3403,3500,3591,3678,3750,3819,3904,3994,4070,4243,4365"
                     }
                 },
                 {

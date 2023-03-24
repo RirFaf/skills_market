@@ -7,33 +7,21 @@ import android.skills_market.db_functions.SMFirebase
 import android.skills_market.db_functions.isEmailValid
 import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.WhiteFontColor
-import android.skills_market.users_dataclasses.Employer
 import android.skills_market.users_dataclasses.Student
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.unit.dp
 import java.util.*
 
 class StudentRegisterActivity : ComponentActivity() {
@@ -87,7 +75,10 @@ private fun LoadUI() {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             }
         val course = RegistrationTextField(placeholder = R.string.course_num, lastField = false)
-        val email = RegistrationTextField(placeholder = R.string.email, lastField = false).lowercase()
+        val email =
+            RegistrationTextField(placeholder = R.string.email, lastField = false).lowercase()
+        val password =
+            RegistrationTextField(placeholder = R.string.password, lastField = false)
         val phone = RegistrationTextField(placeholder = R.string.phone_number, lastField = true)
             .replace("+7", "8")
         Button(
@@ -99,8 +90,8 @@ private fun LoadUI() {
                             SearchActivity::class.java
                         )
                     )
-                    database.addStudent(
-                        Student(surname, name, patronymic, city, course, email, phone)
+                    database.addUser(
+                        Student(surname, name, patronymic, city, course, email,password, phone)
                     )
                 }
 //                else {

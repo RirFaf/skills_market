@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.skills_market.custom_composables.LoginPasswordAndButton
+import android.skills_market.db_functions.SMFirebase
 import android.skills_market.db_functions.isEmailValid
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.ButtonColor
@@ -38,6 +39,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -49,15 +52,20 @@ LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LoadUI()
+            LoadUI(this)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val database = SMFirebase()
+//        database.authentication(this)
     }
 }
 
 @Composable
-private fun LoadUI() {
+private fun LoadUI(localContext: Context) {
     var openDialog by remember { mutableStateOf(false) }
-    val localContext = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -157,4 +165,5 @@ private fun LoadPopUp(openDialog: Boolean, localContext: Context) {
         }
     }
 }
+
 

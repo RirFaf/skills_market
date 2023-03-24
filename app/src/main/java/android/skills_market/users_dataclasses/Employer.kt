@@ -7,5 +7,6 @@ data class Employer(
     val companyName: String,
     val city: String,
     val email: String,
+    val password: String,
     val phone: String
 )
