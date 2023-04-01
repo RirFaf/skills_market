@@ -12,5 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Compose"
+rootProject.name = "skills_market"
 include ':app'
+
