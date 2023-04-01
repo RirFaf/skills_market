@@ -7,7 +7,7 @@ import android.skills_market.db_functions.SMFirebase
 import android.skills_market.db_functions.isEmailValid
 import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.WhiteFontColor
-import android.skills_market.users_dataclasses.Employer
+import android.skills_market.dataclasses.Employer
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background

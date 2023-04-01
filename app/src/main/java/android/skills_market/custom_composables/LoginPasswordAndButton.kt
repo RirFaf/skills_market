@@ -5,7 +5,6 @@ import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.WhiteFontColor
-import android.skills_market.users_dataclasses.Student
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +13,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.R
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
