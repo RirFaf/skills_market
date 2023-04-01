@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_baseline_logo_dev_24.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable/baseline_logo_dev_24.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_logo.jpg.flat",
+        "source": "android.skills_market.app-main-57:/drawable/logo.jpg"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_baseline_visibility_off_24.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable/baseline_visibility_off_24.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_ic_launcher_background.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/xml_backup_rules.xml.flat",
+        "source": "android.skills_market.app-main-57:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_baseline_search_24.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable/baseline_search_24.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable_baseline_visibility_24.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable/baseline_visibility_24.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "android.skills_market.app-main-57:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "android.skills_market.app-main-57:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-55:/xml_data_extraction_rules.xml.flat",
+        "source": "android.skills_market.app-main-57:/xml/data_extraction_rules.xml"
+    }
+]
