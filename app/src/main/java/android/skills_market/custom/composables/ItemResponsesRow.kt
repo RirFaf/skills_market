@@ -1,5 +1,6 @@
 package android.skills_market.custom.composables
 import android.skills_market.dataclasses.ResponsesModel
+import android.skills_market.ui.theme.Backgroundwhite
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -32,7 +33,7 @@ fun ItemResponsesRow(item: ResponsesModel) {
 
         Column() {
 
-            Box() {
+            Box(modifier = Modifier.background(color= Backgroundwhite))  {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     val borderWidth = 2.dp
                     Image(
@@ -58,27 +59,31 @@ fun ItemResponsesRow(item: ResponsesModel) {
 
 
 
-            Row(modifier = Modifier.padding(horizontal = 10.dp)) {
+            Row(modifier = Modifier.padding(start = 10.dp,end=10.dp,bottom=10.dp)) {
                 Button(
                     onClick = { /*TODO*/ },
+                    modifier = Modifier.width((114.dp))
+                        .height(36.dp),
 
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
                     shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.fillMaxWidth(0.5f)
+
 
                 ) {
-                    Text(text = "Принять", color = Color.White)
+                    Text(text = "Принять", color = Color.White, fontSize = 14.sp)
                 }
+                Spacer(modifier = Modifier.padding(10.dp))
                 Button(
                     onClick = { /*TODO*/ },
+                    modifier = Modifier.width((114.dp))
+                                        .height(36.dp)   ,
 
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
                     shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.padding(horizontal= 30.dp).
-                    fillMaxWidth(0.5f)
+
 
                 ) {
-                    Text(text = "Отклонить", color = Color.White)
+                    Text(text = "Отклонить", color = Color.White, fontSize = 14.sp)
                 }
             }
         }
