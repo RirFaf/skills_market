@@ -1,12 +1,14 @@
 package android.skills_market.custom.composables
-import android.skills_market.ui.theme.gray
+import android.skills_market.ui.theme.CardBackgroundGray
 import android.skills_market.dataclasses.ResumeModel
+import android.skills_market.ui.theme.CardBackgroundGray
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,7 +25,7 @@ fun ItemResume(item:ResumeModel){
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
-            backgroundColor = gray
+            backgroundColor = CardBackgroundGray
         ){
             Column(
                 modifier = Modifier
