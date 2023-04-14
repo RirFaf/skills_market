@@ -1,9 +1,9 @@
 package android.skills_market.custom_composables
 
-import android.skills_market.SearchActivity
+import android.skills_market.EmployerSearchActivity
+import android.skills_market.StudentSearchActivity
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.TabBackgroundColor
-import android.skills_market.ui.theme.WhiteFontColor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,16 +11,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
@@ -102,9 +95,10 @@ fun Tabs(pagerState: PagerState) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabsContent(pagerState: PagerState) {
-    HorizontalPager(state = pagerState) {
-        page -> when(page) {
-            0->SearchActivity()
+    HorizontalPager(state = pagerState) { page ->
+        when (page) {
+//            0 -> EmployerSearchActivity()
+//            1 -> StudentSearchActivity()
         }
     }
 }

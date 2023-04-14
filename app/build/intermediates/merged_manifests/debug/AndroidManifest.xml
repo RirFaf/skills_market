@@ -40,7 +40,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.SearchActivity"
+            android:name="android.skills_market.EmployerSearchActivity"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"

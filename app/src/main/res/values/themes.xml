@@ -1,6 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Skills_market" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/accent_blue</item>
-    </style>
-</resources>

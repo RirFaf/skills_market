@@ -34,6 +34,9 @@ fun LoginPasswordAndButton(localContext: Context) {
     // Creating a variable to store toggle state
     var passwordVisible by remember { mutableStateOf(false) }
     // Create a Text Field for giving password input
+    var employerVersion by remember {
+        mutableStateOf(false)
+    }
     TextField(
         value = login,
         onValueChange = { login = it },
@@ -90,6 +93,10 @@ fun LoginPasswordAndButton(localContext: Context) {
         }
     )
     Spacer(modifier = Modifier.padding(4.dp))
+    EmployerVersionRow(
+        employerVersion = employerVersion,
+        onEmployerVersionChanged = { employerVersion = it })
+    Spacer(modifier = Modifier.padding(4.dp))
     Button(
         onClick = {
             /*TODO: иплементировать вход через бд*/
@@ -104,6 +111,9 @@ fun LoginPasswordAndButton(localContext: Context) {
             .height(60.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
     ) {
-        Text(text = stringResource(id = android.skills_market.R.string.login), color = WhiteFontColor)
+        Text(
+            text = stringResource(id = android.skills_market.R.string.login),
+            color = WhiteFontColor
+        )
     }
 }

@@ -86,7 +86,7 @@ private fun LoadUI() {
                     localContext.startActivity(
                         Intent(
                             localContext,
-                            SearchActivity::class.java
+                            EmployerSearchActivity::class.java
                         )
                     )
                     database.addUser(

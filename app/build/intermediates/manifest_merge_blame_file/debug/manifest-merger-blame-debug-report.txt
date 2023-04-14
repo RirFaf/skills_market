@@ -74,8 +74,8 @@
 41        </activity>
 42        <activity
 42-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:22:9-28:20
-43            android:name="android.skills_market.SearchActivity"
-43-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:13-43
+43            android:name="android.skills_market.EmployerSearchActivity"
+43-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:13-51
 44            android:exported="false" >
 44-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-37
 45            <meta-data
