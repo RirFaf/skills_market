@@ -2,7 +2,6 @@ package android.skills_market
 
 import android.skills_market.custom.composables.ItemResponsesRow
 import android.skills_market.dataclasses.ResponsesModel
-import android.skills_market.ui.theme.gray
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -31,17 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column {
-                Cap()
-                ListItem(name = "Роман Королёв", number = "+79541024498")
-                profButton("Моё Резюме")
-                nonClickable("Место Учёбы")
-                studPlace(heading = "Университет", content = "Казанский Федеральный Университет")
-                studPlace(heading = "Институт", content = "ИВМиИТ")
-                studPlace(heading = "Факультет", content = "Прикладная информатика")
-                responsesRow()
-
-            }
+            studProfile()
 
         }
     }
@@ -138,7 +127,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Preview
+    
     @Composable
     private fun profButton(context: String) {
         Card(
@@ -219,6 +208,21 @@ class MainActivity : ComponentActivity() {
 
         }
 
+    }
+    @Preview
+    @Composable
+    fun studProfile(){
+        Column {
+            Cap()
+            ListItem(name = "Роман Королёв", number = "+79541024498")
+            profButton("Моё Резюме")
+            nonClickable("Место Учёбы")
+            studPlace(heading = "Университет", content = "Казанский Федеральный Университет")
+            studPlace(heading = "Институт", content = "ИВМиИТ")
+            studPlace(heading = "Факультет", content = "Прикладная информатика")
+            responsesRow()
+
+        }
     }
 }
 

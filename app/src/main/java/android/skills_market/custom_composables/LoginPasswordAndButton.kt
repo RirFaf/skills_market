@@ -4,17 +4,19 @@ import android.content.Context
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.ButtonColor
+import android.skills_market.ui.theme.JustWhite
 import android.skills_market.ui.theme.WhiteFontColor
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -40,7 +42,10 @@ fun LoginPasswordAndButton(localContext: Context) {
     TextField(
         value = login,
         onValueChange = { login = it },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Color.Transparent)
+            .border(3.dp, Color.Black, RoundedCornerShape(4.dp)),
         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
         singleLine = true,
         placeholder = {
@@ -50,12 +55,21 @@ fun LoginPasswordAndButton(localContext: Context) {
             autoCorrect = false,
             imeAction = ImeAction.Next
         ),
-    )
+
+
+        )
     Spacer(modifier = Modifier.padding(4.dp))
+
+
+    Box( modifier = Modifier
+        .fillMaxWidth()
+        .background(Color.White)
+        .border(3.dp, Color.Black, RoundedCornerShape(4.dp))){
     TextField(
         value = password,
         onValueChange = { password = it },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
         singleLine = true,
         placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
@@ -91,11 +105,7 @@ fun LoginPasswordAndButton(localContext: Context) {
                 Icon(painter = painterResource(id = image), description, tint = AccentBlue)
             }
         }
-    )
-    Spacer(modifier = Modifier.padding(4.dp))
-    EmployerVersionRow(
-        employerVersion = employerVersion,
-        onEmployerVersionChanged = { employerVersion = it })
+    )}
     Spacer(modifier = Modifier.padding(4.dp))
     Button(
         onClick = {

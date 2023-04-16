@@ -1,7 +1,6 @@
 package android.skills_market.custom.composables
 import android.skills_market.ui.theme.CardBackgroundGray
 import android.skills_market.dataclasses.ResumeModel
-import android.skills_market.ui.theme.CardBackgroundGray
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card

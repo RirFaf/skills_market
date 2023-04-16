@@ -3,13 +3,16 @@ package android.skills_market
 import android.content.Context
 import android.os.Bundle
 import android.skills_market.custom_composables.LoginPasswordAndButton
-import android.skills_market.custom_composables.ClickableTextAndPopUp
+import android.skills_market.custom_composables.ClickableText
+import android.skills_market.custom_composables.initClickabletext
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.theme.AccentBlue
+import android.skills_market.ui.theme.Black
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 class
@@ -35,6 +39,7 @@ LoginActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 private fun LoadUI(localContext: Context) {
     Column(
@@ -48,9 +53,12 @@ private fun LoadUI(localContext: Context) {
         Icon(
             painter = painterResource(id = R.drawable.baseline_logo_dev_24),
             contentDescription = stringResource(id = R.string.logo_description),
-            tint = AccentBlue
+            tint = Black
         )
         LoginPasswordAndButton(localContext = localContext)
-        ClickableTextAndPopUp(localContext)
+        Spacer(Modifier.height(4.dp))
+        initClickabletext()
+
+
     }
 }

@@ -16,7 +16,5 @@ class ChatActivity : ComponentActivity() {
 
 @Composable
 private fun LoadUI() {
-    Column() {
 
-    }
 }

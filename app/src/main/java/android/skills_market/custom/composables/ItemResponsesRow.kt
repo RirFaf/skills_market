@@ -1,6 +1,5 @@
 package android.skills_market.custom.composables
 import android.skills_market.dataclasses.ResponsesModel
-import android.skills_market.ui.theme.Backgroundwhite
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -33,7 +32,7 @@ fun ItemResponsesRow(item: ResponsesModel) {
 
         Column() {
 
-            Box(modifier = Modifier.background(color= Backgroundwhite))  {
+            Box(modifier = Modifier.background(color= Color.White))  {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     val borderWidth = 2.dp
                     Image(
