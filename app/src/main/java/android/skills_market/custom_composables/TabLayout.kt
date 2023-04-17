@@ -1,6 +1,5 @@
 package android.skills_market.custom_composables
 
-import android.skills_market.EmployerSearchActivity
 import android.skills_market.StudentSearchActivity
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.TabBackgroundColor
@@ -97,7 +96,6 @@ fun Tabs(pagerState: PagerState) {
 fun TabsContent(pagerState: PagerState) {
     HorizontalPager(state = pagerState) { page ->
         when (page) {
-//            0 -> EmployerSearchActivity()
 //            1 -> StudentSearchActivity()
         }
     }

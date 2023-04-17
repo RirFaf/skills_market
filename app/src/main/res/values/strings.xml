@@ -21,6 +21,4 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="course_num">Курс</string>
-
-
 </resources>

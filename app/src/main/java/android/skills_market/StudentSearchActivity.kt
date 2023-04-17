@@ -1,12 +1,11 @@
 package android.skills_market
 
 import android.os.Bundle
-import android.skills_market.custom_composables.ResumeCard
 import android.skills_market.custom_composables.SearchBar
 import android.skills_market.custom_composables.TabLayout
 import android.skills_market.custom_composables.VacancyCard
-import android.skills_market.dataclasses.Resume
-import android.skills_market.dataclasses.Vacancy
+import android.skills_market.dataclasses.ResumeModel
+import android.skills_market.dataclasses.VacancyModel
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -45,11 +44,11 @@ private fun LoadUI() {
             ) {
                 itemsIndexed(
                     listOf(
-                        Vacancy("fkanjjfjhhh", "JunDev", "Money", "130000", "Kazan", "AkBars"),
-                        Vacancy("segbgsfbbgh", "SenDev", "Experience", "260000", "Arsk", "AkBars"),
-                        Vacancy("syjdhgtnurj", "TeamLead", "Time", "1000000", "Moscow", "Yandex"),
-                        Vacancy("iohnkhjbety", "Janitor", "Job", "13000", "Kazan", "Taif"),
-                        Vacancy("ryyjfbxrjmh", "HR", "Work", "70000", "St.Petersburg", "Mail.ru"),
+                        VacancyModel(R.drawable.apple, "JunDev", "AkBars"),
+                        VacancyModel(R.drawable.bell, "SenDev", "AkBars"),
+                        VacancyModel(R.drawable.logo, "TeamLead", "Yandex"),
+                        VacancyModel(R.drawable.twitter, "Janitor", "Taif"),
+                        VacancyModel(R.drawable.worker, "HR", "Mail.ru"),
                         )
                 ) { _, item ->
                     VacancyCard(vacancy = item)

@@ -2,10 +2,9 @@ package android.skills_market.db_functions
 
 import android.content.Context
 import android.content.Intent
-import android.skills_market.EmployerSearchActivity
 import android.skills_market.StudentSearchActivity
-import android.skills_market.dataclasses.Employer
-import android.skills_market.dataclasses.Student
+import android.skills_market.dataclasses.EmployerModel
+import android.skills_market.dataclasses.StudentModel
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
@@ -18,7 +17,7 @@ import java.util.regex.Pattern
 class SMFirebase() {
     private val database = Firebase.database
 
-    fun addUser(user: Student) {
+    fun addUser(user: StudentModel) {
         val rootRef = database.getReference("Employer")
         val auth = Firebase.auth
         val eventListener: ValueEventListener = object : ValueEventListener {
@@ -45,35 +44,6 @@ class SMFirebase() {
                 }
             }
     }
-
-    fun addUser(user: Employer) {
-        val rootRef = database.getReference("Employer")
-        val auth = Firebase.auth
-        val eventListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d("MyTag", "OK")
-                rootRef.push().setValue(user)
-                Log.d("MyTag", "Data added")
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.d("ErrorTag", databaseError.message) //Don't ignore errors!
-            }
-        }
-        auth.createUserWithEmailAndPassword(user.email, user.password)
-            .addOnCompleteListener()
-            { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TagLog", "createUserWithEmail:success")
-                    rootRef.addListenerForSingleValueEvent(eventListener)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TagLog", "createUserWithEmail:failure", task.exception)
-                }
-            }
-    }
-
     fun loginUser(
         localContext: Context,
         email: String,
@@ -87,7 +57,7 @@ class SMFirebase() {
                     localContext.startActivity(
                         Intent(
                             localContext,
-                            EmployerSearchActivity::class.java
+                            StudentSearchActivity::class.java
                         )
                     )
                 } else {
@@ -108,7 +78,7 @@ class SMFirebase() {
             localContext.startActivity(
                 Intent(
                     localContext,
-                    EmployerSearchActivity::class.java
+                    StudentSearchActivity::class.java
                 )
             )
         }

@@ -1,17 +1,3 @@
-.gradle/buildOutputCleanup/buildOutputCleanup.lock
-
-.gradle/buildOutputCleanup/cache.properties
-
-.idea/compiler.xml
-
-.idea/gradle.xml
-
-.idea/inspectionProfiles/Project_Default.xml
-
-.idea/misc.xml
-
-.idea/vcs.xml
-
 app/src/main/AndroidManifest.xml
 
 app/src/main/java/android/skills_market/ui/theme/Shape.kt
@@ -30,6 +16,39 @@ app/src/main/res/values/themes.xml
 
 gradle/wrapper/gradle-wrapper.properties
 
+#built application files
+*.apk
+*.ap_
+*.aab
+                           
+# files for the dex VM
+*.dex
+                            
+# Java class files
+*.class
+                            
+# generated files
+bin/
+gen/
+                            
+# Local configuration file (sdk path, etc)
 local.properties
-
-settings.gradle
+                        
+# Windows thumbnail db
+Thumbs.db
+                
+# OSX files
+.DS_Store
+                            
+# Android Studio
+*.iml
+.idea
+.gradle
+build/
+.navigation
+captures/
+output.json 
+    
+#NDK
+obj/
+.externalNativeBuild

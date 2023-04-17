@@ -7,7 +7,7 @@ import android.skills_market.db_functions.SMFirebase
 import android.skills_market.db_functions.isEmailValid
 import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.WhiteFontColor
-import android.skills_market.dataclasses.Student
+import android.skills_market.dataclasses.StudentModel
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -91,7 +91,7 @@ private fun LoadUI() {
                         )
                     )
                     database.addUser(
-                        Student(surname, name, patronymic, city, course, email,password, phone)
+                        StudentModel(surname, name, patronymic, city, course, email,password, phone)
                     )
                 }
 //                else {

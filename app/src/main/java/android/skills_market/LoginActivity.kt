@@ -3,7 +3,7 @@ package android.skills_market
 import android.content.Context
 import android.os.Bundle
 import android.skills_market.custom_composables.LoginPasswordAndButton
-import android.skills_market.custom_composables.ClickableTextAndPopUp
+import android.skills_market.custom_composables.ClickableHelpAndRegText
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.theme.AccentBlue
 import androidx.activity.ComponentActivity
@@ -51,6 +51,6 @@ private fun LoadUI(localContext: Context) {
             tint = AccentBlue
         )
         LoginPasswordAndButton(localContext = localContext)
-        ClickableTextAndPopUp(localContext)
+        ClickableHelpAndRegText(localContext)
     }
 }

@@ -93,10 +93,6 @@ fun LoginPasswordAndButton(localContext: Context) {
         }
     )
     Spacer(modifier = Modifier.padding(4.dp))
-    EmployerVersionRow(
-        employerVersion = employerVersion,
-        onEmployerVersionChanged = { employerVersion = it })
-    Spacer(modifier = Modifier.padding(4.dp))
     Button(
         onClick = {
             /*TODO: иплементировать вход через бд*/

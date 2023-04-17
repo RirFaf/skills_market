@@ -1,7 +1,7 @@
 package android.skills_market.custom_composables
 
 import android.icu.text.CaseMap.Title
-import android.skills_market.dataclasses.Vacancy
+import android.skills_market.dataclasses.VacancyModel
 import android.skills_market.ui.theme.CardBackgroundGray
 import android.skills_market.ui.theme.Teal200
 import androidx.compose.foundation.background
@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun VacancyCard(vacancy: Vacancy) {
+fun VacancyCard(vacancy: VacancyModel) {
     Column(
         Modifier
             .fillMaxWidth()
@@ -31,20 +31,6 @@ fun VacancyCard(vacancy: Vacancy) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Gray)
-        )
-        Spacer(modifier = Modifier.padding(2.dp))
-        Text(
-            text = vacancy.salary,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(CardBackgroundGray)
-        )
-        Spacer(modifier = Modifier.padding(2.dp))
-        Text(
-            text = vacancy.city,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Blue)
         )
         Spacer(modifier = Modifier.padding(2.dp))
         Text(
