@@ -35,8 +35,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-// Как сделать так, чтобы card в которую я засунул шапку менялась независимо от контента в нём
-
     @Composable
 
     private fun Cap() {
