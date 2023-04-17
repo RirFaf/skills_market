@@ -43,7 +43,7 @@ Thumbs.db
 # Android Studio
 *.iml
 .idea
-.gradle
+.gradle/
 build/
 .navigation
 captures/
