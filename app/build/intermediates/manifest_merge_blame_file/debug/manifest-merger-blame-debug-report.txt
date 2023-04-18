@@ -61,8 +61,8 @@
 34-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
 35        <activity
 35-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-21:20
-36            android:name="android.skills_market.ProfileActivity"
-36-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-65
+36            android:name="android.skills_market.LoginActivity"
+36-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-63
 37            android:exported="true" >
 37-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-36
 38            <meta-data
@@ -113,8 +113,8 @@
 62        </activity>
 63        <activity
 63-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:43:9-55:20
-64            android:name="android.skills_market.LoginActivity"
-64-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:44:13-63
+64            android:name="android.skills_market.ProfileActivity"
+64-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:44:13-65
 65            android:exported="true" >
 65-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:45:13-36
 66            <intent-filter>
