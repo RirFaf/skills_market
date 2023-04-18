@@ -20,21 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.StudentRegisterActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.EmployerRegisterActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ResumeActivity"
+            android:name="android.skills_market.ProfileActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -47,20 +33,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name="android.skills_market.EmployerSearchActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ResponseActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+
         <activity
             android:name="android.skills_market.StudentSearchActivity"
             android:exported="true">
@@ -69,7 +43,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.ProfileActivity"
+            android:name="android.skills_market.StudentRegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
