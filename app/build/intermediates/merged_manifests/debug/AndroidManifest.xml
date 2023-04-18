@@ -33,7 +33,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.Skills_market" >
         <activity
-            android:name="android.skills_market.LoginActivity"
+            android:name="android.skills_market.ProfileActivity"
             android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -47,35 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.EmployerRegisterActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ResumeActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name="android.skills_market.ChatActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.EmployerSearchActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ResponseActivity"
             android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -89,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.ProfileActivity"
+            android:name="android.skills_market.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
