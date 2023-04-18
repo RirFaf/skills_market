@@ -12,7 +12,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -22,6 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.util.*
 
 class StudentRegisterActivity : ComponentActivity() {
@@ -44,8 +51,16 @@ private fun LoadUI() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = R.string.registration)
+            text = stringResource(id = R.string.registration),
+            style = TextStyle(
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif
+            )
+
         )
+        Spacer(Modifier.height(3.dp))
         val surname = RegistrationTextField(
             placeholder = R.string.surname,
             lastField = false
@@ -87,11 +102,20 @@ private fun LoadUI() {
                     localContext.startActivity(
                         Intent(
                             localContext,
-                            EmployerSearchActivity::class.java
+                            StudentSearchActivity::class.java
                         )
                     )
                     database.addUser(
-                        StudentModel(surname, name, patronymic, city, course, email,password, phone)
+                        StudentModel(
+                            surname,
+                            name,
+                            patronymic,
+                            city,
+                            course,
+                            email,
+                            password,
+                            phone
+                        )
                     )
                 }
 //                else {
