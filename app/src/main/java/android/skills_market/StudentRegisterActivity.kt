@@ -13,7 +13,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
@@ -24,6 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.util.*
 
 class StudentRegisterActivity : ComponentActivity() {
@@ -39,18 +46,15 @@ class StudentRegisterActivity : ComponentActivity() {
 private fun LoadUI() {
     val localContext = LocalContext.current
     val database = SMFirebase()
-    Scaffold(
-        topBar = { RegistrationTopBar() }
-    ) { modifier ->
+    Scaffold(topBar = { RegistrationTopBar() }) { modifier ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(id = R.string.registration)
-            )
+
+            Spacer(Modifier.height(3.dp))
             val surname = RegistrationTextField(
                 placeholder = R.string.surname,
                 lastField = false
