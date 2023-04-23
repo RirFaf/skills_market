@@ -1,6 +1,6 @@
 package android.skills_market.custom_composables
 
-import android.skills_market.dataclasses.VacancyModel
+import android.skills_market.dataclasses.ResponseModel
 import android.skills_market.ui.theme.CardBackgroundGray
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ResponseCard(item: VacancyModel) {
+fun ResponseCard(response: ResponseModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,26 +30,24 @@ fun ResponseCard(item: VacancyModel) {
         elevation = 0.dp
     ) {
         Column(modifier = Modifier.background(color = CardBackgroundGray)) {
-            Box(modifier = Modifier) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    val borderWidth = 2.dp
-                    Image(
-                        painter = painterResource(id = item.imageId),
-                        contentDescription = "employer",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .padding(10.dp)
-                            .size(70.dp)
-                            .clip(CircleShape)
-                            .border(
-                                borderWidth, color = Color.Black,
-                                CircleShape
-                            )
-                    )
-                    Column(modifier = Modifier.padding(5.dp)) {
-                        Text(text = item.companyName, fontSize = 25.sp)
-                        Text(text = item.title, fontSize = 15.sp)
-                    }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val borderWidth = 2.dp
+                Image(
+                    painter = painterResource(id = response.imageId),
+                    contentDescription = "employer",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .size(70.dp)
+                        .clip(CircleShape)
+                        .border(
+                            borderWidth, color = Color.Black,
+                            CircleShape
+                        )
+                )
+                Column(modifier = Modifier.padding(5.dp)) {
+                    Text(text = response.companyName, fontSize = 25.sp)
+                    Text(text = response.title, fontSize = 15.sp)
                 }
             }
 
@@ -76,7 +74,7 @@ fun ResponseCard(item: VacancyModel) {
 
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
                     shape = RoundedCornerShape(20.dp),
-                    ) {
+                ) {
                     Text(text = "Отклонить", color = Color.White, fontSize = 14.sp)
                 }
             }

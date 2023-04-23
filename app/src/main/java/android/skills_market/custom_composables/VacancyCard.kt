@@ -1,52 +1,75 @@
 package android.skills_market.custom_composables
 
-import android.icu.text.CaseMap.Title
 import android.skills_market.dataclasses.VacancyModel
+import android.skills_market.ui.theme.ButtonColor
 import android.skills_market.ui.theme.CardBackgroundGray
-import android.skills_market.ui.theme.Teal200
+import android.skills_market.ui.theme.WhiteFontColor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun VacancyCard(vacancy: VacancyModel) {
-    Column(
-        Modifier
+    Card(
+        modifier = Modifier
+            .background(Color.Transparent)
             .fillMaxWidth()
-            .background(Color.Red)
+            .padding(vertical = 8.dp, horizontal = 14.dp),
+        shape = RoundedCornerShape(4.dp),
+        elevation = 0.dp
     ) {
-        Text(
-            text = vacancy.title,
-            modifier = Modifier
+        Column(
+            Modifier
+                .background(CardBackgroundGray)
                 .fillMaxWidth()
-                .background(Color.Gray)
-        )
-        Spacer(modifier = Modifier.padding(2.dp))
-        Text(
-            text = vacancy.companyName,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-        )
-        Spacer(modifier = Modifier.padding(2.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            modifier = Modifier
-                .fillMaxWidth(0.8F)
-                .align(CenterHorizontally)
+                .padding(vertical = 16.dp, horizontal = 14.dp)
         ) {
-            Text(text = "Откликнуться")
+            Text(
+                text = vacancy.title,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                fontSize = 18.sp
+            )
+            Spacer(modifier = Modifier.padding(4.dp))
+            Text(
+                text = vacancy.salary.toString(),
+                modifier = Modifier
+                    .fillMaxWidth(),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.padding(2.dp))
+            Text(
+                text = vacancy.companyName,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                fontSize = 14.sp
+            )
+            Spacer(modifier = Modifier.padding(4.dp))
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(CenterHorizontally),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
+            ) {
+                Text(
+                    text = "Откликнуться",
+                    color = WhiteFontColor
+                )
+            }
         }
     }
 }

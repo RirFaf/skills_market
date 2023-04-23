@@ -33,35 +33,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.Skills_market" >
         <activity
-            android:name="android.skills_market.LoginActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.StudentRegisterActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ChatActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.StudentSearchActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="android.skills_market.ProfileActivity"
+            android:name="android.skills_market.navigation.activities.AppActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
