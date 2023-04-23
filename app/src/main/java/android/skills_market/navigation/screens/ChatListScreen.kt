@@ -10,8 +10,7 @@ import androidx.navigation.NavController
 @Composable
 fun ChatListScreen(navController: NavController) {
     Scaffold(
-        topBar = {},
-        bottomBar = { NavigationBar() }
+
     ) { modifier ->
         Column(modifier = Modifier) {
 

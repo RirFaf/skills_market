@@ -21,8 +21,7 @@ import androidx.navigation.NavController
 @Composable
 fun ProfileScreen(navController: NavController) {
     Scaffold(
-        topBar = { ProfileTopBar() },
-        bottomBar = { NavigationBar() }
+        topBar = { ProfileTopBar() }
     ) { modifier ->
         Column(modifier = Modifier) {
             StudentInfo(name = "Роман Королёв", number = "+79541024498")

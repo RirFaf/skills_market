@@ -30,7 +30,9 @@ import java.util.*
 fun RegisterScreen(navController: NavController) {
     val localContext = LocalContext.current
     val database = SMFirebase()
-    Scaffold(topBar = { RegistrationTopBar() }) { modifier ->
+    Scaffold(
+        topBar = { RegistrationTopBar() }
+    ) { modifier ->
         Column(
             modifier = Modifier
                 .fillMaxSize()

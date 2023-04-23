@@ -21,8 +21,7 @@ import androidx.navigation.NavController
 @Composable
 fun SearchScreen(navController: NavController) {
     Scaffold(
-        topBar = { SearchBar() },
-        bottomBar = { NavigationBar() },
+        topBar = { SearchBar() }
     ) { modifier ->
         Surface(modifier = Modifier) {
             Column(

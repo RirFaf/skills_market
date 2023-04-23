@@ -31,13 +31,16 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RegistrationTopBar() {
-    Box(modifier=Modifier,
-         contentAlignment= Alignment.Center
+    Box(
+        modifier = Modifier,
+        contentAlignment = Alignment.Center
     ) {
 
 
-       Row(modifier=Modifier.fillMaxWidth(),
-           horizontalArrangement = Arrangement.Start) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
                 contentDescription = "Back Icon",
@@ -55,19 +58,22 @@ fun RegistrationTopBar() {
             )
         }
         Spacer(modifier = Modifier.padding(20.dp))
-        Row(modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center){
-        Text(
-            text = stringResource(id = R.string.registration),
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                color = Color.Black,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif
-            )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = stringResource(id = R.string.registration),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif
+                )
 
-        )}
+            )
+        }
     }
 
 }

@@ -15,7 +15,6 @@ import java.util.regex.Pattern
 
 class SMFirebase() {
     private val database = Firebase.database
-
     fun addUser(
         localContext: Context,
         navController: NavController,
@@ -83,14 +82,13 @@ class SMFirebase() {
             }
     }
 
-    fun authentication(navController: NavController) {
+    fun isAuthenticated(): Boolean {
         val auth = Firebase.auth
         val currentUser = auth.currentUser
-        if (currentUser != null) {
-            /*TODO переход на активити если пользователь уже авторизован*/
-            navController.navigate(Screen.SearchScreen.route)
-        }
+        return currentUser != null
     }
+
+//   TODO: fun logout()
 
     fun isEmailValid(email: String): Boolean {
         val EMAIL_ADDRESS_PATTERN = Pattern.compile(

@@ -11,7 +11,6 @@ import androidx.navigation.NavController
 fun ResponsesListScreen(navController: NavController) {
     Scaffold(
 //        topBar =,
-        bottomBar = { NavigationBar() }
     ) { modifier ->
         Column(modifier = Modifier) {
 

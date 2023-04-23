@@ -107,7 +107,12 @@ int dimen notification_top_pad 0x7f030016
 int dimen notification_top_pad_large_text 0x7f030017
 int drawable apple 0x7f040001
 int drawable baseline_arrow_back_ios_24 0x7f040002
+int drawable baseline_chat_bubble_outline_24 0x7f040033
+int drawable baseline_email_24 0x7f040034
+int drawable baseline_favorite_border_24 0x7f040035
+int drawable baseline_handshake_24 0x7f040036
 int drawable baseline_logo_dev_24 0x7f040003
+int drawable baseline_person_outline_24 0x7f040037
 int drawable baseline_search_24 0x7f040004
 int drawable baseline_visibility_24 0x7f040005
 int drawable baseline_visibility_off_24 0x7f040006
