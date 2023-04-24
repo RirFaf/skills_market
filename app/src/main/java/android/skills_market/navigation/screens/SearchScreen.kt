@@ -22,8 +22,8 @@ import androidx.navigation.NavController
 fun SearchScreen(navController: NavController) {
     Scaffold(
         topBar = { SearchBar() }
-    ) { modifier ->
-        Surface(modifier = Modifier) {
+    ) { innerPadding ->
+        Surface(modifier = Modifier.padding(innerPadding)) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()

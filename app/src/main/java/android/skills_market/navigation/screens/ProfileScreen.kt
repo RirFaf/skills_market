@@ -1,5 +1,6 @@
 package android.skills_market.navigation.screens
 
+import android.content.Context
 import android.skills_market.custom_composables.NavigationBar
 import android.skills_market.custom_composables.ProfileTopBar
 import android.skills_market.custom_composables.StudentInfo
@@ -19,11 +20,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun ProfileScreen(navController: NavController) {
+fun ProfileScreen(navController: NavController, localContext: Context) {
     Scaffold(
-        topBar = { ProfileTopBar() }
-    ) { modifier ->
-        Column(modifier = Modifier) {
+        topBar = { ProfileTopBar(localContext = localContext) }
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
             StudentInfo(name = "Роман Королёв", number = "+79541024498")
             ResumeButton()
             Row(

@@ -23,7 +23,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun NavigationBar(navController: NavController) {
     val list = listOf(
@@ -34,8 +33,7 @@ fun NavigationBar(navController: NavController) {
         Screen.ProfileScreen,
     )
     BottomNavigation(
-        backgroundColor = TabBackgroundColor,
-        contentColor = Color.Red
+        backgroundColor = TabBackgroundColor
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -60,9 +58,18 @@ fun NavigationBar(navController: NavController) {
                 alwaysShowLabel = true,
                 selected = currentRoute == list.route,
                 onClick = {
-                    navController.navigate(list.route)
+                    navController.navigate(list.route) {
+                        navController.graph.startDestinationRoute?.let { route ->
+                            popUpTo(route) {
+                                saveState = true
+                            }
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
         }
     }
 }
+

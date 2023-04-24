@@ -36,28 +36,36 @@
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_favorite_border_24.xml.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_favorite_border_24.xml"
     },
     {
-        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_chat_bubble_outline_24.xml.flat",
-        "source": "android.skills_market.app-main-56:/drawable/baseline_chat_bubble_outline_24.xml"
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_handshake_24.xml.flat",
-        "source": "android.skills_market.app-main-56:/drawable/baseline_handshake_24.xml"
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_handshake_24.xml.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_handshake_24.xml"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_tool.png.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\tool.png"
     },
     {
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_chat_bubble_outline_24.xml.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_chat_bubble_outline_24.xml"
+    },
+    {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_email_24.xml.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_email_24.xml"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_bell.png.flat",
@@ -80,16 +88,20 @@
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_person_outline_24.xml.flat",
+        "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_person_outline_24.xml"
+    },
+    {
+        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_menu_24.xml.flat",
+        "source": "android.skills_market.app-main-56:/drawable/baseline_menu_24.xml"
+    },
+    {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_logo_dev_24.xml.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_logo_dev_24.xml"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_baseline_visibility_off_24.xml.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\baseline_visibility_off_24.xml"
-    },
-    {
-        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_favorite_border_24.xml.flat",
-        "source": "android.skills_market.app-main-56:/drawable/baseline_favorite_border_24.xml"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_apple.png.flat",
@@ -120,10 +132,6 @@
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_person_outline_24.xml.flat",
-        "source": "android.skills_market.app-main-56:/drawable/baseline_person_outline_24.xml"
-    },
-    {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
@@ -134,10 +142,6 @@
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_student_3.png.flat",
         "source": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-main-56:\\drawable\\student_3.png"
-    },
-    {
-        "merged": "android.skills_market.app-merged_res-54:/drawable_baseline_email_24.xml.flat",
-        "source": "android.skills_market.app-main-56:/drawable/baseline_email_24.xml"
     },
     {
         "merged": "C:\\Users\\HP_Pavilion\\.gradle\\daemon\\8.0\\android.skills_market.app-merged_res-54:\\drawable_logo.jpg.flat",

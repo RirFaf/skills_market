@@ -1,11 +1,13 @@
 package android.skills_market.db_functions
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.skills_market.dataclasses.StudentModel
-import android.skills_market.navigation.common_classes.Screen
+import android.skills_market.navigation.activities.AppActivity
+import android.skills_market.navigation.activities.LogRegActivity
 import android.util.Log
 import android.widget.Toast
-import androidx.navigation.NavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -17,7 +19,6 @@ class SMFirebase() {
     private val database = Firebase.database
     fun addUser(
         localContext: Context,
-        navController: NavController,
         user: StudentModel
     ) {
         val rootRef = database.getReference("Student")
@@ -39,7 +40,13 @@ class SMFirebase() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TagLog", "createUserWithEmail:success")
                         rootRef.addListenerForSingleValueEvent(eventListener)
-                        navController.navigate(Screen.SearchScreen.route)
+                        (localContext as Activity).finish()
+                        localContext.startActivity(
+                            Intent(
+                                localContext,
+                                AppActivity::class.java
+                            )
+                        )
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(
@@ -62,16 +69,22 @@ class SMFirebase() {
 
     fun loginUser(
         localContext: Context,
-        navController: NavController,
         login: String,
         password: String
     ) {
         val auth = Firebase.auth
+        Log.d("MyTag", auth.currentUser.toString())
         auth.signInWithEmailAndPassword(login, password)
             .addOnCompleteListener()
             { task ->
                 if (task.isSuccessful) {
-                    navController.navigate(Screen.SearchScreen.route)
+                    (localContext as Activity).finish()
+                    localContext.startActivity(
+                        Intent(
+                            localContext,
+                            AppActivity::class.java
+                        )
+                    )
                 } else {
                     Toast.makeText(localContext, "Login failed", Toast.LENGTH_SHORT).show()
                 }
@@ -82,13 +95,31 @@ class SMFirebase() {
             }
     }
 
-    fun isAuthenticated(): Boolean {
+    fun logoutUser(localContext: Context) {
         val auth = Firebase.auth
-        val currentUser = auth.currentUser
-        return currentUser != null
+        auth.signOut()
+        (localContext as Activity).finish()
+        localContext.startActivity(
+            Intent(
+                localContext,
+                LogRegActivity::class.java
+            )
+        )
     }
 
-//   TODO: fun logout()
+    fun authentication(localContext: Context) {
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            (localContext as Activity).finish()
+            localContext.startActivity(
+                Intent(
+                    localContext,
+                    AppActivity::class.java
+                )
+            )
+        }
+    }
 
     fun isEmailValid(email: String): Boolean {
         val EMAIL_ADDRESS_PATTERN = Pattern.compile(

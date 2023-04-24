@@ -15,6 +15,7 @@ drawable baseline_email_24
 drawable baseline_favorite_border_24
 drawable baseline_handshake_24
 drawable baseline_logo_dev_24
+drawable baseline_menu_24
 drawable baseline_person_outline_24
 drawable baseline_search_24
 drawable baseline_visibility_24
@@ -27,7 +28,6 @@ drawable student_1
 drawable student_2
 drawable student_3
 drawable student_4
-drawable tool
 drawable twitter
 drawable worker
 mipmap ic_launcher

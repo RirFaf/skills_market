@@ -15,14 +15,8 @@ import androidx.navigation.compose.composable
 
 @Composable
 fun NavigationGraph(localContext: Context, navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.LoginScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.SearchScreen.route) {
 
-        composable(route = Screen.LoginScreen.route){
-            LoginScreen(navController = navController, localContext = localContext)
-        }
-        composable(route = Screen.RegisterScreen.route){
-            RegisterScreen(navController = navController)
-        }
         composable(route = Screen.SearchScreen.route){
             SearchScreen(navController = navController)
         }
@@ -36,7 +30,7 @@ fun NavigationGraph(localContext: Context, navController: NavHostController) {
             ResponsesListScreen(navController = navController)
         }
         composable(route = Screen.ProfileScreen.route){
-            ProfileScreen(navController = navController)
+            ProfileScreen(navController = navController, localContext = localContext)
         }
     }
 }

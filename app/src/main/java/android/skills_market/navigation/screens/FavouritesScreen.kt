@@ -21,28 +21,27 @@ import androidx.navigation.NavController
 @Composable
 fun FavouritesScreen(navController: NavController) {
     Scaffold(
-        topBar = { SearchBar() }
-    ) { modifier ->
-        Surface(modifier = Modifier) {
-            Column(
+        topBar = { SearchBar() },
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
             ) {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    itemsIndexed(
-                        listOf(
-                            VacancyModel("SenDev", 10000, "AkBars"),
-                            VacancyModel("TeamLead", 10000, "Yandex"),
-                        )
-                    ) { _, item ->
-                        VacancyCard(vacancy = item)
-                    }
+                itemsIndexed(
+                    listOf(
+                        VacancyModel("SenDev", 10000, "AkBars"),
+                        VacancyModel("TeamLead", 10000, "Yandex"),
+                    )
+                ) { _, item ->
+                    VacancyCard(vacancy = item)
                 }
-                Spacer(modifier = Modifier.padding(40.dp))
             }
+            Spacer(modifier = Modifier.padding(40.dp))
         }
     }
 }

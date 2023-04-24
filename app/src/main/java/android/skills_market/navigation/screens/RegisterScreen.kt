@@ -1,5 +1,6 @@
 package android.skills_market.navigation.screens
 
+import android.content.Context
 import android.skills_market.R
 import android.skills_market.custom_composables.RegistrationTextField
 import android.skills_market.custom_composables.RegistrationTopBar
@@ -27,8 +28,7 @@ import androidx.navigation.NavController
 import java.util.*
 
 @Composable
-fun RegisterScreen(navController: NavController) {
-    val localContext = LocalContext.current
+fun RegisterScreen(navController: NavController, localContext: Context) {
     val database = SMFirebase()
     Scaffold(
         topBar = { RegistrationTopBar() }
@@ -79,7 +79,6 @@ fun RegisterScreen(navController: NavController) {
                 onClick = {
                     database.addUser(
                         localContext = localContext,
-                        navController = navController,
                         StudentModel(
                             surname, name, patronymic, city, course, email, password, phone
                         )

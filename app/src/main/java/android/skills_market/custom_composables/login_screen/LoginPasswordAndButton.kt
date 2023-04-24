@@ -77,7 +77,6 @@ fun LoginPasswordAndButton(localContext: Context, navController: NavController) 
                 keyboardController?.hide()
                 database.loginUser(
                     localContext = localContext,
-                    navController = navController,
                     login = login,
                     password = password
                 )
@@ -108,7 +107,6 @@ fun LoginPasswordAndButton(localContext: Context, navController: NavController) 
             /*TODO: иплементировать вход через бд*/
             database.loginUser(
                 localContext = localContext,
-                navController = navController,
                 login = login,
                 password = password
             )

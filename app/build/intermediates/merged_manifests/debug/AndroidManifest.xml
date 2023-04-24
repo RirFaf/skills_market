@@ -35,6 +35,13 @@
         <activity
             android:name="android.skills_market.navigation.activities.AppActivity"
             android:exported="true" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="android.skills_market.navigation.activities.LogRegActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
