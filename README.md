@@ -4,7 +4,7 @@
 В этой ветке отслеживается разработка студенческого приложения "Биржа талантов".
 
 Используемые фреймворки/библиотеки:
--Jetpack Compose
--Navigation Compose
--Google Accompanist
--Google Firebase
+-Jetpack Compose;
+-Navigation Compose;
+-Google Accompanist;
+-Google Firebase;
