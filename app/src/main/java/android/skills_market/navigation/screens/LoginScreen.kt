@@ -21,8 +21,6 @@ import androidx.navigation.NavController
 
 @Composable
 fun LoginScreen(navController: NavController, localContext: Context) {
-    val database = SMFirebase()
-    database.authentication(localContext)
     Column(
         modifier = Modifier
             .fillMaxSize()

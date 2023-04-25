@@ -118,6 +118,14 @@ class SMFirebase() {
                     AppActivity::class.java
                 )
             )
+        } else {
+            (localContext as Activity).finish()
+            localContext.startActivity(
+                Intent(
+                    localContext,
+                    LogRegActivity::class.java
+                )
+            )
         }
     }
 
