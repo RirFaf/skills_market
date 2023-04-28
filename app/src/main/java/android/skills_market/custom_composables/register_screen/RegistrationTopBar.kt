@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun RegistrationTopBar() {
     Box(
-        modifier = Modifier,
+
+        modifier = Modifier.
+        background(color = Color.Black),
         contentAlignment = Alignment.Center
     ) {
 
@@ -44,13 +46,13 @@ fun RegistrationTopBar() {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
                 contentDescription = "Back Icon",
-                tint = Color.Black
+                tint = Color.White
             )
 
             Text(
                 text = "Назад",
                 style = TextStyle(
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif
@@ -66,7 +68,7 @@ fun RegistrationTopBar() {
                 text = stringResource(id = R.string.registration),
                 textAlign = TextAlign.Center,
                 style = TextStyle(
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif

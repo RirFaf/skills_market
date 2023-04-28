@@ -50,7 +50,7 @@ class LoadingActivity : ComponentActivity() {
             ) {
                 // Change the logo
                 Image(
-                    painter = painterResource(id = R.drawable.logo),
+                    painter = painterResource(id = R.drawable.bell),
                     contentDescription = "Logo",
                     modifier = Modifier.scale(scale.value)
                 )

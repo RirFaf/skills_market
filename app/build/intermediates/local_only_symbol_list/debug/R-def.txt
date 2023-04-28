@@ -23,7 +23,6 @@ drawable baseline_visibility_off_24
 drawable bell
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-drawable logo
 drawable student_1
 drawable student_2
 drawable student_3
