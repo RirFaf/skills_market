@@ -21,7 +21,7 @@ class AppActivity : ComponentActivity() {
                 }
             ) { innerPadding ->
                 Column(modifier = Modifier.padding(innerPadding)) {
-                    NavigationGraph(localContext = this@AppActivity, navController = navController)
+                    NavigationGraph(navController = navController)
                 }
             }
         }

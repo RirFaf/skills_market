@@ -1,9 +1,8 @@
 package android.skills_market.custom_composables
 
 import android.skills_market.dataclasses.VacancyModel
-import android.skills_market.ui.theme.ButtonColor
-import android.skills_market.ui.theme.CardBackgroundGray
-import android.skills_market.ui.theme.WhiteFontColor
+import android.skills_market.ui.theme.Gray300
+import android.skills_market.ui.theme.Gray150
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,7 +30,7 @@ fun VacancyCard(vacancy: VacancyModel) {
     ) {
         Column(
             Modifier
-                .background(CardBackgroundGray)
+                .background(Gray150)
                 .fillMaxWidth()
                 .padding(vertical = 16.dp, horizontal = 14.dp)
         ) {
@@ -63,11 +62,11 @@ fun VacancyCard(vacancy: VacancyModel) {
                     .fillMaxWidth()
                     .align(CenterHorizontally),
                 shape = RoundedCornerShape(20.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
+                colors = ButtonDefaults.buttonColors(backgroundColor = Gray300)
             ) {
                 Text(
                     text = "Откликнуться",
-                    color = WhiteFontColor
+                    color = Gray150
                 )
             }
         }

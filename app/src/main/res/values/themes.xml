@@ -1,6 +1,6 @@
 <resources>
 
     <style name="Theme.Skills_market" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/accent_blue</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 </resources>

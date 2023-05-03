@@ -39,6 +39,8 @@ class SMFirebase() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TagLog", "createUserWithEmail:success")
+                        val userId = auth.currentUser!!.uid
+                        rootRef.child(userId).setValue(user)
                         rootRef.addListenerForSingleValueEvent(eventListener)
                         (localContext as Activity).finish()
                         localContext.startActivity(
@@ -48,6 +50,7 @@ class SMFirebase() {
                             )
                         )
                     } else {
+
                         // If sign in fails, display a message to the user.
                         Toast.makeText(
                             localContext,

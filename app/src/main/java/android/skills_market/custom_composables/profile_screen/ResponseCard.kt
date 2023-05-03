@@ -1,7 +1,7 @@
 package android.skills_market.custom_composables
 
 import android.skills_market.dataclasses.ResponseModel
-import android.skills_market.ui.theme.CardBackgroundGray
+import android.skills_market.ui.theme.Gray150
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -29,7 +29,7 @@ fun ResponseCard(response: ResponseModel) {
         shape = RoundedCornerShape(15.dp),
         elevation = 0.dp
     ) {
-        Column(modifier = Modifier.background(color = CardBackgroundGray)) {
+        Column(modifier = Modifier.background(color = Gray150)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val borderWidth = 2.dp
                 Image(

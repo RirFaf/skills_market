@@ -138,6 +138,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable gex
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
@@ -330,12 +331,15 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello
 string help
 string hide_password
 string in_progress
 string indeterminate
+string logging_in
 string login
 string logo_description
+string motto
 string name
 string navigation_menu
 string not_selected

@@ -1,10 +1,10 @@
 package android.skills_market.custom_composables
 
-import android.content.Context
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.theme.AccentBlue
-import android.skills_market.ui.theme.ButtonColor
-import android.skills_market.ui.theme.WhiteFontColor
+import android.skills_market.ui.theme.Gray300
+import android.skills_market.ui.theme.Gray150
+import android.skills_market.ui.theme.Gray200
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +19,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,7 +32,8 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LoginPasswordAndButton(localContext: Context, navController: NavController) {
+fun LoginPasswordAndButton(navController: NavController) {
+    val localContext = LocalContext.current
     val database = SMFirebase()
     val keyboardController = LocalSoftwareKeyboardController.current
     var login by remember { mutableStateOf("") }
@@ -43,8 +45,8 @@ fun LoginPasswordAndButton(localContext: Context, navController: NavController) 
         onValueChange = { login = it },
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color.Transparent)
-            .border(3.dp, Color.Black, RoundedCornerShape(4.dp)),
+            .background(color = Gray200)
+            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
         singleLine = true,
         placeholder = {
@@ -61,8 +63,8 @@ fun LoginPasswordAndButton(localContext: Context, navController: NavController) 
         onValueChange = { password = it },
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color.Transparent)
-            .border(3.dp, Color.Black, RoundedCornerShape(4.dp)),
+            .background(color = Gray200)
+            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
         label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
         singleLine = true,
         placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
@@ -114,11 +116,11 @@ fun LoginPasswordAndButton(localContext: Context, navController: NavController) 
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp),
-        colors = ButtonDefaults.buttonColors(backgroundColor = ButtonColor)
+        colors = ButtonDefaults.buttonColors(backgroundColor = Gray300)
     ) {
         Text(
-            text = stringResource(id = android.skills_market.R.string.login),
-            color = WhiteFontColor
+            text = stringResource(id = android.skills_market.R.string.logging_in),
+            color = Gray150
         )
     }
 }

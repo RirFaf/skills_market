@@ -21,6 +21,7 @@ drawable baseline_search_24
 drawable baseline_visibility_24
 drawable baseline_visibility_off_24
 drawable bell
+drawable gex
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable student_1
@@ -45,10 +46,13 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello
 string help
 string hide_password
+string logging_in
 string login
 string logo_description
+string motto
 string name
 string password
 string patronymic

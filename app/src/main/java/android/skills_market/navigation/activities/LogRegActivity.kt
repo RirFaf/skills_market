@@ -12,7 +12,7 @@ class LogRegActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            LogRegNavigationGraph(localContext = this@LogRegActivity, navController = navController)
+            LogRegNavigationGraph(navController = navController)
         }
     }
 }

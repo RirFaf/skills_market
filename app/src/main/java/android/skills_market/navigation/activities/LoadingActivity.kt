@@ -11,6 +11,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Icon
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,7 +39,7 @@ class LoadingActivity : ComponentActivity() {
                             OvershootInterpolator(4f).getInterpolation(it)
                         })
                 )
-                delay(3000L)
+                delay(1000L)
 
                 database.authentication(this@LoadingActivity)
             }
@@ -50,7 +51,7 @@ class LoadingActivity : ComponentActivity() {
             ) {
                 // Change the logo
                 Image(
-                    painter = painterResource(id = R.drawable.bell),
+                    painter = painterResource(id = R.drawable.gex),
                     contentDescription = "Logo",
                     modifier = Modifier.scale(scale.value)
                 )
