@@ -1,6 +1,5 @@
 package android.skills_market.navigation.common_classes
 
-import android.content.Context
 import android.skills_market.navigation.screens.LogRegScreen
 import android.skills_market.navigation.screens.LoginScreen
 import android.skills_market.navigation.screens.RegisterScreen

@@ -1,4 +1,4 @@
-package android.skills_market.custom_composables
+package android.skills_market.custom_composables.common
 
 import android.skills_market.R
 import androidx.compose.foundation.background
@@ -24,17 +24,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SignUpIn() {
+fun SignUpInTopBar() {
     Box(
-
-        modifier = Modifier.
-        background(color = Color.Black),
+        modifier = Modifier
+            .background(color = Color.Black),
         contentAlignment = Alignment.Center
     ) {
-
-
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Icon(
