@@ -6,7 +6,7 @@ sealed class Screen(val title: String?, val icon: Int?, val route: String) {
 
     object LogRegScreen : Screen(null, null, "log_reg_screen")
     object LoginScreen : Screen(null, null, "login_screen")
-    object RegisterScreen : Screen(null, null, "new_register_screen")
+    object RegisterScreen : Screen(null, null, "register_screen")
     object SearchScreen : Screen("Поиск", R.drawable.baseline_search_24, "search_screen")
     object FavouritesScreen :
         Screen("Избранное", R.drawable.baseline_favorite_border_24, "favourites_screen")
