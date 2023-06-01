@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Skills_market"
         tools:targetApi="31">
         <activity
-            android:name="android.skills_market.navigation.activities.AppActivity"
+            android:name="android.skills_market.ui.activities.AppActivity"
             android:exported="true">
 
             <meta-data
@@ -21,7 +21,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.navigation.activities.LogRegActivity"
+            android:name="android.skills_market.ui.activities.LogRegActivity"
             android:exported="true">
 
             <meta-data
@@ -29,7 +29,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="android.skills_market.navigation.activities.LoadingActivity"
+            android:name="android.skills_market.ui.activities.LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

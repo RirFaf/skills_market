@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.skills_market.dataclasses.StudentModel
-import android.skills_market.navigation.activities.AppActivity
-import android.skills_market.navigation.activities.LogRegActivity
+import android.skills_market.ui.activities.AppActivity
+import android.skills_market.ui.activities.LogRegActivity
 import android.util.Log
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -21,7 +23,7 @@ class SMFirebase() {
         localContext: Context,
         user: StudentModel
     ) {
-        val rootRef = database.getReference("Student")
+        val rootRef = Firebase.database.getReference("Student")
         val auth = Firebase.auth
         val eventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -40,7 +42,7 @@ class SMFirebase() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TagLog", "createUserWithEmail:success")
                         val userId = auth.currentUser!!.uid
-                        rootRef.child(userId).setValue(user)
+//                        rootRef.child(userId).setValue(user)
                         rootRef.addListenerForSingleValueEvent(eventListener)
                         (localContext as Activity).finish()
                         localContext.startActivity(
@@ -50,23 +52,16 @@ class SMFirebase() {
                             )
                         )
                     } else {
-
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(
-                            localContext,
-                            "//TODO: сделать валидацию",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        try {
+                        } catch (e: FirebaseAuthWeakPasswordException){
+                            Toast.makeText(localContext, "Пароль должен содержать минимум 6 символов", Toast.LENGTH_SHORT).show()
+                        }catch (e: FirebaseAuthInvalidCredentialsException){
+                            Toast.makeText(localContext, "Введите верный адрес эл. почты", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
         } else {
-            Toast.makeText(
-                localContext,
-                "//TODO: сделать валидацию",
-                Toast.LENGTH_SHORT
-            )
-                .show()
+            Toast.makeText(localContext, "Введите верный номер телефона", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -110,7 +105,7 @@ class SMFirebase() {
         )
     }
 
-    fun authentication(localContext: Context) {
+    fun authenticateUser(localContext: Context) {
         val auth = Firebase.auth
         val currentUser = auth.currentUser
         if (currentUser != null) {

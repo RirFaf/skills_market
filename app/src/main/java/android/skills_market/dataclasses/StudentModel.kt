@@ -10,3 +10,6 @@ data class StudentModel(
     val password: String,
     val phone: String
 )
+
+
+

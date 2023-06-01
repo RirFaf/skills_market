@@ -1,6 +1,6 @@
 package android.skills_market.custom_composables
 
-import android.skills_market.navigation.common_classes.Screen
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.Gray900
 import android.skills_market.ui.theme.Gray150
 import androidx.compose.material.*
