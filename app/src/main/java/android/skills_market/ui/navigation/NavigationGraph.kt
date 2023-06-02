@@ -1,10 +1,10 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.ui.screens.ChatListScreen
-import android.skills_market.ui.screens.FavouritesScreen
-import android.skills_market.ui.screens.ProfileScreen
-import android.skills_market.ui.screens.ResponsesListScreen
-import android.skills_market.ui.screens.SearchScreen
+import android.skills_market.ui.activities.screens.ChatListScreen
+import android.skills_market.ui.activities.screens.FavouritesScreen
+import android.skills_market.ui.activities.screens.ProfileScreen
+import android.skills_market.ui.activities.screens.ResponsesListScreen
+import android.skills_market.ui.activities.screens.SearchScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost

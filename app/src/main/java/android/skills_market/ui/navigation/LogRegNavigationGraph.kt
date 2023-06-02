@@ -1,8 +1,8 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.ui.screens.LogRegScreen
-import android.skills_market.ui.screens.LoginScreen
-import android.skills_market.ui.screens.RegisterScreen
+import android.skills_market.ui.activities.screens.LogRegScreen
+import android.skills_market.ui.activities.screens.LoginScreen
+import android.skills_market.ui.activities.screens.RegistrationScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -18,7 +18,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             LoginScreen(navController = navController)
         }
         composable(route = Screen.RegisterScreen.route) {
-            RegisterScreen(navController = navController)
+            RegistrationScreen(navController = navController)
         }
     }
 }

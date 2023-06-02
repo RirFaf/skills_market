@@ -3,7 +3,7 @@ package android.skills_market.db_functions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.skills_market.dataclasses.StudentModel
+import android.skills_market.data.StudentModel
 import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.activities.LogRegActivity
 import android.util.Log
@@ -53,10 +53,18 @@ class SMFirebase() {
                         )
                     } else {
                         try {
-                        } catch (e: FirebaseAuthWeakPasswordException){
-                            Toast.makeText(localContext, "Пароль должен содержать минимум 6 символов", Toast.LENGTH_SHORT).show()
-                        }catch (e: FirebaseAuthInvalidCredentialsException){
-                            Toast.makeText(localContext, "Введите верный адрес эл. почты", Toast.LENGTH_SHORT).show()
+                        } catch (e: FirebaseAuthWeakPasswordException) {
+                            Toast.makeText(
+                                localContext,
+                                "Пароль должен содержать минимум 6 символов",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } catch (e: FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(
+                                localContext,
+                                "Введите верный адрес эл. почты",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
@@ -66,7 +74,7 @@ class SMFirebase() {
     }
 
     fun loginUser(
-        localContext: Context,
+        successfulAction:() -> Unit,
         login: String,
         password: String
     ) {
@@ -76,20 +84,10 @@ class SMFirebase() {
             .addOnCompleteListener()
             { task ->
                 if (task.isSuccessful) {
-                    (localContext as Activity).finish()
-                    localContext.startActivity(
-                        Intent(
-                            localContext,
-                            AppActivity::class.java
-                        )
-                    )
+                    successfulAction()
                 } else {
-                    Toast.makeText(localContext, "Login failed", Toast.LENGTH_SHORT).show()
+                    throw task.exception!!
                 }
-            }
-            .addOnFailureListener()
-            {
-                Toast.makeText(localContext, "Login failed", Toast.LENGTH_SHORT).show()
             }
     }
 

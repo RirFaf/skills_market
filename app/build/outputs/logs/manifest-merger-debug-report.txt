@@ -198,30 +198,30 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\HP_Pavilion\.gradl
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
 	android:dataExtractionRules
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:9-65
-activity#android.skills_market.navigation.activities.AppActivity
+activity#android.skills_market.ui.activities.AppActivity
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-22:20
 	android:exported
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-83
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-75
 meta-data#android.app.lib_name
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:19:13-21:36
 	android:value
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:21:17-33
 	android:name
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:20:17-52
-activity#android.skills_market.navigation.activities.LogRegActivity
+activity#android.skills_market.ui.activities.LogRegActivity
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:9-30:20
 	android:exported
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-86
-activity#android.skills_market.navigation.activities.LoadingActivity
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-78
+activity#android.skills_market.ui.activities.LoadingActivity
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:31:9-43:20
 	android:exported
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:33:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:32:13-87
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:32:13-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:34:13-38:29
 action#android.intent.action.MAIN

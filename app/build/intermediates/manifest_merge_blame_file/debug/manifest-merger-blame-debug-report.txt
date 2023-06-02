@@ -61,8 +61,8 @@
 34-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
 35        <activity
 35-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-22:20
-36            android:name="android.skills_market.navigation.activities.AppActivity"
-36-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-83
+36            android:name="android.skills_market.ui.activities.AppActivity"
+36-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-75
 37            android:exported="true" >
 37-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-36
 38            <meta-data
@@ -74,8 +74,8 @@
 41        </activity>
 42        <activity
 42-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:9-30:20
-43            android:name="android.skills_market.navigation.activities.LogRegActivity"
-43-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-86
+43            android:name="android.skills_market.ui.activities.LogRegActivity"
+43-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-78
 44            android:exported="true" >
 44-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:25:13-36
 45            <meta-data
@@ -87,8 +87,8 @@
 48        </activity>
 49        <activity
 49-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:31:9-43:20
-50            android:name="android.skills_market.navigation.activities.LoadingActivity"
-50-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:32:13-87
+50            android:name="android.skills_market.ui.activities.LoadingActivity"
+50-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:32:13-79
 51            android:exported="true" >
 51-->C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:33:13-36
 52            <intent-filter>
