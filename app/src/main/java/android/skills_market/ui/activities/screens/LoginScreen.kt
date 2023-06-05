@@ -5,11 +5,10 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.activities.AppActivity
+import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Gray150
-import android.skills_market.ui.theme.Gray200
-import android.skills_market.ui.theme.Gray300
 import android.skills_market.ui.theme.Gray900
 import android.skills_market.view_models.LoginViewModel
 import androidx.compose.foundation.background
@@ -28,6 +27,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -55,27 +57,37 @@ fun LoginScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        topBar = {},
+        topBar = {
+            LogRegTopBar(
+                textRes = R.string.login,
+                navController = navController
+            )
+        },
         backgroundColor = Black
-    ) { innerPadding ->
+    ) { modifier ->
         Card(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 20.dp, end = 20.dp, top = 60.dp, bottom = 180.dp)
+                .padding(start = 16.dp, end = 16.dp, top = 18.dp, bottom = 450.dp)
                 .background(Black),
             shape = RoundedCornerShape(26.dp)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
+                    .padding(26.dp)
                     .background(Color.Transparent),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
                 Text(
                     text = "Личные данные",
-                    fontSize = 20.sp
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        fontFamily = FontFamily.SansSerif
+                    )
                 )
                 OutlinedTextField(
                     value = login,
@@ -83,6 +95,11 @@ fun LoginScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        cursorColor = Black,
+                        focusedBorderColor = Black,
+                        focusedLabelColor = Black,
+                    ),
                     label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
                     singleLine = true,
                     placeholder = {
@@ -99,8 +116,12 @@ fun LoginScreen(
                     onValueChange = { loginViewModel.updatePassword(it) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(6.dp)
                         .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        cursorColor = Black,
+                        focusedBorderColor = Black,
+                        focusedLabelColor = Black,
+                    ),
                     label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
                     singleLine = true,
                     placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
@@ -134,24 +155,21 @@ fun LoginScreen(
                             R.drawable.baseline_visibility_off_24
                         }
 
-                        val description =
-                            stringResource(
-                                id = if (passwordVisible)
-                                    android.skills_market.R.string.hide_password
-                                else android.skills_market.R.string.show_password
-                            )
-
                         //Изменеие видимости пароля
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
                                 painter = painterResource(id = image),
-                                description,
-                                tint = AccentBlue
+                                stringResource(
+                                    id = if (passwordVisible)
+                                        R.string.hide_password
+                                    else R.string.show_password
+                                ),
+                                tint = Black
                             )
                         }
-                    }
+                    },
                 )
-                Spacer(modifier = Modifier.padding(4.dp))
+                Spacer(modifier = Modifier.padding(6.dp))
                 Button(
                     onClick = {
                         /*TODO: иплементировать вход через бд*/
@@ -170,7 +188,6 @@ fun LoginScreen(
                         )
                     },
                     modifier = Modifier
-                        .padding(horizontal = 34.dp)
                         .fillMaxWidth()
                         .height(60.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = Gray900)

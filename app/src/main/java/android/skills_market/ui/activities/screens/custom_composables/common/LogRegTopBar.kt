@@ -1,8 +1,10 @@
 package android.skills_market.ui.activities.screens.custom_composables.common
 
 import android.skills_market.R
+import android.skills_market.ui.navigation.Screen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,11 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Preview
 @Composable
-fun SignUpInTopBar(
-    @StringRes textRes: Int
+fun LogRegTopBar(
+    @StringRes textRes: Int,
+    navController: NavController
 ) {
     Column(
         modifier = Modifier
@@ -38,7 +42,8 @@ fun SignUpInTopBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(top = 16.dp, start = 10.dp)
+                .clickable {navController.navigate(Screen.LogRegScreen.route)},
             horizontalArrangement = Arrangement.Start
         ) {
             Icon(
@@ -57,11 +62,11 @@ fun SignUpInTopBar(
                 )
             )
         }
-        Spacer(modifier = Modifier.padding(4.dp))
+        Spacer(modifier = Modifier.padding(10.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 12.dp),
+                .padding(start = 16.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(

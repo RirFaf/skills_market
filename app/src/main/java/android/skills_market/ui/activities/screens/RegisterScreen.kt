@@ -2,7 +2,7 @@ package android.skills_market.ui.activities.screens
 
 import android.skills_market.R
 import android.skills_market.custom_composables.RegistrationTextField
-import android.skills_market.ui.activities.screens.custom_composables.common.SignUpInTopBar
+import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.data.StudentModel
 import android.skills_market.ui.theme.Black
@@ -39,7 +39,12 @@ fun RegistrationScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        topBar = { SignUpInTopBar(R.string.registration) },
+        topBar = {
+            LogRegTopBar(
+                R.string.registration,
+                navController = navController
+            )
+        },
         backgroundColor = Black
     ) { innerPadding ->
         Card(
