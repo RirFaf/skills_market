@@ -1,7 +1,7 @@
 package android.skills_market.ui.activities.screens
 
 import android.skills_market.custom_composables.SearchBar
-import android.skills_market.custom_composables.VacancyCard
+import android.skills_market.ui.activities.screens.custom_composables.common.VacancyCard
 import android.skills_market.data.VacancyModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -25,7 +25,7 @@ val Typography = Typography(
         color = Color.White,
         fontFamily = Inter,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp
+        fontSize = 20.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,

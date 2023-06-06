@@ -5,16 +5,13 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.db_functions.SMFirebase
 import android.skills_market.ui.activities.AppActivity
+import android.skills_market.ui.activities.screens.custom_composables.common.LargeButton
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
-import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.Gray150
-import android.skills_market.ui.theme.Gray900
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,21 +22,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
@@ -68,13 +60,12 @@ fun LoginScreen(
                 navController = navController
             )
         },
-//        backgroundColor = Black
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(Black)
+                .background(Black),
         ) {
             Spacer(modifier = Modifier.padding(10.dp))
             Card(
@@ -100,8 +91,7 @@ fun LoginScreen(
                         value = login,
                         onValueChange = { loginViewModel.updateLogin(it) },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                            .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
                             cursorColor = Black,
                             focusedBorderColor = Black,
@@ -123,8 +113,7 @@ fun LoginScreen(
                         value = password,
                         onValueChange = { loginViewModel.updatePassword(it) },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                            .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
                             cursorColor = Black,
                             focusedBorderColor = Black,
@@ -179,7 +168,8 @@ fun LoginScreen(
                         shape = shapes.medium
                     )
                     Spacer(modifier = Modifier.padding(6.dp))
-                    Button(
+                    LargeButton(
+                        textResource = R.string.sign_in,
                         onClick = {
                             /*TODO: иплементировать вход через бд*/
                             database.loginUser(
@@ -196,17 +186,8 @@ fun LoginScreen(
                                 password = password
                             )
                         },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(60.dp),
-                        shape = shapes.medium,
-                        colors = ButtonDefaults.buttonColors(containerColor = Gray900)
-                    ) {
-                        Text(
-                            text = stringResource(id = android.skills_market.R.string.logging_in),
-                            style = Typography.bodyMedium
-                        )
-                    }
+                        height = 60
+                    )
                 }
             }
         }

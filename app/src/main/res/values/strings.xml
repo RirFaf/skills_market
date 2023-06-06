@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Биржа талантов</string>
-    <string name="hello">Привет</string>
-    <string name="logging_in">Войти</string>
+    <string name="sign_in">Войти</string>
     <string name="help">Помощь</string>
     <string name="done">Готово</string>
     <string name="search">Поиск</string>
@@ -24,5 +23,7 @@
     <string name="surname">Фамилия</string>
     <string name="course_num">Курс</string>
     <string name="personal_data">Личные данные</string>
+    <string name="respond">Откликунуться</string>
+    <string name="hello">Здравствуйте!</string>
     <string name="motto">Биржа талантов - возможность получить любимую работу!</string>
 </resources>
