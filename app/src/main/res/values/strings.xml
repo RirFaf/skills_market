@@ -23,5 +23,6 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="course_num">Курс</string>
+    <string name="personal_data">Личные данные</string>
     <string name="motto">Биржа талантов - возможность получить любимую работу!</string>
 </resources>

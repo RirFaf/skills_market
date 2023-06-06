@@ -37,7 +37,7 @@ class LoadingActivity : ComponentActivity() {
                             OvershootInterpolator(4f).getInterpolation(it)
                         })
                 )
-                delay(1000L)
+                delay(500L)
 
                 database.authenticateUser(this@LoadingActivity)
             }

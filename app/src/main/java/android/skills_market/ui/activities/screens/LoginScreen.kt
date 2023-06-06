@@ -10,6 +10,8 @@ import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Gray150
 import android.skills_market.ui.theme.Gray900
+import android.skills_market.ui.theme.Typography
+import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,11 +19,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -39,7 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
@@ -56,84 +60,128 @@ fun LoginScreen(
 
     Scaffold(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Black),
         topBar = {
             LogRegTopBar(
                 textRes = R.string.login,
                 navController = navController
             )
         },
-        backgroundColor = Black
-    ) { modifier ->
-        Card(
+//        backgroundColor = Black
+    ) { innerPadding ->
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp, top = 18.dp, bottom = 450.dp)
-                .background(Black),
-            shape = RoundedCornerShape(26.dp)
+                .padding(innerPadding)
+                .background(Black)
         ) {
-            Column(
+            Spacer(modifier = Modifier.padding(10.dp))
+            Card(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(26.dp)
-                    .background(Color.Transparent),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
+                    .padding(bottom = 450.dp, start = 16.dp, end = 16.dp),
+                shape = RoundedCornerShape(26.dp),
+                colors = CardDefaults.cardColors(containerColor = White)
             ) {
-                Text(
-                    text = "Личные данные",
-                    style = TextStyle(
-                        color = Color.Black,
-                        fontSize = 30.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        fontFamily = FontFamily.SansSerif
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(26.dp)
+                        .background(Color.Transparent),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Top
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.personal_data),
+                        style = Typography.headlineLarge
                     )
-                )
-                OutlinedTextField(
-                    value = login,
-                    onValueChange = { loginViewModel.updateLogin(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        cursorColor = Black,
-                        focusedBorderColor = Black,
-                        focusedLabelColor = Black,
-                    ),
-                    label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
-                    singleLine = true,
-                    placeholder = {
-                        Text(stringResource(id = android.skills_market.R.string.login))
-                    },
-                    keyboardOptions = KeyboardOptions(
-                        autoCorrect = false,
-                        imeAction = ImeAction.Next
-                    ),
-                )
-                Spacer(modifier = Modifier.padding(4.dp))
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { loginViewModel.updatePassword(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        cursorColor = Black,
-                        focusedBorderColor = Black,
-                        focusedLabelColor = Black,
-                    ),
-                    label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
-                    singleLine = true,
-                    placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
-                    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(
-                        autoCorrect = false,
-                        keyboardType = KeyboardType.Password,
-                        imeAction = ImeAction.Done,
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onDone = {
-                            keyboardController?.hide()
+                    OutlinedTextField(
+                        value = login,
+                        onValueChange = { loginViewModel.updateLogin(it) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            cursorColor = Black,
+                            focusedBorderColor = Black,
+                            focusedLabelColor = Black,
+                        ),
+                        label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
+                        singleLine = true,
+                        placeholder = {
+                            Text(stringResource(id = android.skills_market.R.string.login))
+                        },
+                        keyboardOptions = KeyboardOptions(
+                            autoCorrect = false,
+                            imeAction = ImeAction.Next
+                        ),
+                        shape = shapes.medium
+                    )
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { loginViewModel.updatePassword(it) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .border(3.dp, Color.Transparent, RoundedCornerShape(4.dp)),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            cursorColor = Black,
+                            focusedBorderColor = Black,
+                            focusedLabelColor = Black,
+                        ),
+                        label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
+                        singleLine = true,
+                        placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
+                        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(
+                            autoCorrect = false,
+                            keyboardType = KeyboardType.Password,
+                            imeAction = ImeAction.Done,
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                keyboardController?.hide()
+                                database.loginUser(
+                                    successfulAction = {
+                                        (localContext as Activity).finish()
+                                        localContext.startActivity(
+                                            Intent(
+                                                localContext,
+                                                AppActivity::class.java
+                                            )
+                                        )
+                                    },
+                                    login = login,
+                                    password = password
+                                )
+                            }),
+                        trailingIcon = {
+                            val image = if (passwordVisible) {
+                                R.drawable.baseline_visibility_24
+                            } else {
+                                R.drawable.baseline_visibility_off_24
+                            }
+
+                            //Изменеие видимости пароля
+                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                Icon(
+                                    painter = painterResource(id = image),
+                                    stringResource(
+                                        id = if (passwordVisible)
+                                            R.string.hide_password
+                                        else R.string.show_password
+                                    ),
+                                    tint = Black
+                                )
+                            }
+                        },
+                        shape = shapes.medium
+                    )
+                    Spacer(modifier = Modifier.padding(6.dp))
+                    Button(
+                        onClick = {
+                            /*TODO: иплементировать вход через бд*/
                             database.loginUser(
                                 successfulAction = {
                                     (localContext as Activity).finish()
@@ -147,55 +195,18 @@ fun LoginScreen(
                                 login = login,
                                 password = password
                             )
-                        }),
-                    trailingIcon = {
-                        val image = if (passwordVisible) {
-                            R.drawable.baseline_visibility_24
-                        } else {
-                            R.drawable.baseline_visibility_off_24
-                        }
-
-                        //Изменеие видимости пароля
-                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(
-                                painter = painterResource(id = image),
-                                stringResource(
-                                    id = if (passwordVisible)
-                                        R.string.hide_password
-                                    else R.string.show_password
-                                ),
-                                tint = Black
-                            )
-                        }
-                    },
-                )
-                Spacer(modifier = Modifier.padding(6.dp))
-                Button(
-                    onClick = {
-                        /*TODO: иплементировать вход через бд*/
-                        database.loginUser(
-                            successfulAction = {
-                                (localContext as Activity).finish()
-                                localContext.startActivity(
-                                    Intent(
-                                        localContext,
-                                        AppActivity::class.java
-                                    )
-                                )
-                            },
-                            login = login,
-                            password = password
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(60.dp),
+                        shape = shapes.medium,
+                        colors = ButtonDefaults.buttonColors(containerColor = Gray900)
+                    ) {
+                        Text(
+                            text = stringResource(id = android.skills_market.R.string.logging_in),
+                            style = Typography.bodyMedium
                         )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Gray900)
-                ) {
-                    Text(
-                        text = stringResource(id = android.skills_market.R.string.logging_in),
-                        color = Gray150
-                    )
+                    }
                 }
             }
         }
