@@ -2,6 +2,7 @@ package android.skills_market.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -21,8 +22,7 @@ private val LightColorPalette = lightColorScheme(
 )
 
 @Composable
-
-fun ComposeTutorialTheme(
+fun SkillsMarketTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -31,7 +31,6 @@ fun ComposeTutorialTheme(
     } else {
         LightColorPalette
     }
-
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

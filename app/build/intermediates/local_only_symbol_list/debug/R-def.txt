@@ -10,14 +10,17 @@ color teal_700
 color white
 drawable apple
 drawable baseline_arrow_back_ios_24
+drawable baseline_chat_bubble_24
 drawable baseline_chat_bubble_outline_24
 drawable baseline_email_24
+drawable baseline_favorite_24
 drawable baseline_favorite_border_24
 drawable baseline_handshake_24
 drawable baseline_logo_dev_24
 drawable baseline_menu_24
 drawable baseline_person_outline_24
 drawable baseline_search_24
+drawable baseline_search_outline_24
 drawable baseline_visibility_24
 drawable baseline_visibility_off_24
 drawable bell
@@ -42,6 +45,7 @@ font inter_thin
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+string back
 string city
 string company_name
 string course_num

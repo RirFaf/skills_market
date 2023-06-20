@@ -2,6 +2,8 @@ package android.skills_market.ui.activities.screens.custom_composables.common
 
 import android.skills_market.R
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.theme.Typography
+import android.skills_market.ui.theme.White
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,7 +45,7 @@ fun LogRegTopBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp, start = 10.dp)
-                .clickable {navController.navigate(Screen.LogRegScreen.route)},
+                .clickable { navController.navigate(Screen.LogRegScreen.route) },
             horizontalArrangement = Arrangement.Start
         ) {
             Icon(
@@ -53,13 +55,9 @@ fun LogRegTopBar(
             )
 
             Text(
-                text = "Назад",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif
-                )
+                text = stringResource(R.string.back),
+                color = White,
+                style = Typography.headlineSmall
             )
         }
         Spacer(modifier = Modifier.padding(10.dp))
@@ -71,14 +69,8 @@ fun LogRegTopBar(
         ) {
             Text(
                 text = stringResource(textRes),
-                textAlign = TextAlign.Center,
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif
-                )
-
+                color = White,
+                style = Typography.headlineLarge
             )
         }
     }

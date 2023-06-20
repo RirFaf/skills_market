@@ -2,7 +2,7 @@ package android.skills_market.ui.activities.screens
 
 import android.skills_market.R
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
-import android.skills_market.db_functions.SMFirebase
+import android.skills_market.database.SMFirebase
 import android.skills_market.data.StudentModel
 import android.skills_market.ui.activities.screens.custom_composables.common.LargeButton
 import android.skills_market.ui.theme.Black
@@ -123,7 +123,7 @@ fun RegistrationScreen(navController: NavController) {
                                 )
                             )
                         },
-                        height = 60
+                        height = 56
                     )
                 }
             }

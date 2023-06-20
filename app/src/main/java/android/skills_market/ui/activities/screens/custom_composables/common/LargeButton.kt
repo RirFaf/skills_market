@@ -2,6 +2,7 @@ package android.skills_market.ui.activities.screens.custom_composables.common
 
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
+import android.skills_market.ui.theme.White
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,6 +31,7 @@ fun LargeButton(
     ) {
         Text(
             text = stringResource(id = textResource),
+            color = White,
             style = Typography.bodyMedium
         )
     }

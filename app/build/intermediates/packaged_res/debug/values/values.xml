@@ -9,6 +9,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Биржа талантов</string>
+    <string name="back">Назад</string>
     <string name="city">Город</string>
     <string name="company_name">Название компании</string>
     <string name="course_num">Курс</string>

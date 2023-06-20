@@ -14,15 +14,26 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 40.sp
     ),
+    //logreg headline
     headlineLarge = TextStyle(
-        color = Color.Black,
-        fontSize = 30.sp,
-        fontWeight = FontWeight.ExtraBold,
-        fontFamily = FontFamily.SansSerif
+        fontSize = 34.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontFamily = Inter
     ),
-    //button
+    //log card head
+    headlineMedium = TextStyle(
+        fontSize = 28.sp,
+        fontWeight = FontWeight.Bold,
+        fontFamily = Inter
+    ),
+    //backbtn logreg
+    headlineSmall = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Bold,
+        fontFamily = Inter
+    ),
+    //common style
     bodyMedium = TextStyle(
-        color = Color.White,
         fontFamily = Inter,
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp

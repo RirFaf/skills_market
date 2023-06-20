@@ -2,7 +2,7 @@ package android.skills_market.custom_composables
 
 import android.content.Context
 import android.skills_market.R
-import android.skills_market.db_functions.SMFirebase
+import android.skills_market.database.SMFirebase
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 
 @Composable
 fun ProfileTopBar(localContext: Context) {

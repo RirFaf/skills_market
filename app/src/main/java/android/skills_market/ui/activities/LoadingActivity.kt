@@ -2,7 +2,7 @@ package android.skills_market.ui.activities
 
 import android.os.Bundle
 import android.skills_market.R
-import android.skills_market.db_functions.SMFirebase
+import android.skills_market.database.SMFirebase
 import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

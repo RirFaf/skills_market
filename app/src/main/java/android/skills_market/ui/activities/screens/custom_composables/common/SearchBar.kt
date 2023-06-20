@@ -1,14 +1,18 @@
 package android.skills_market.custom_composables
 
 import android.skills_market.ui.theme.AccentBlue
+import android.skills_market.ui.theme.Black
+import android.skills_market.ui.theme.Gray250
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 
@@ -20,8 +24,12 @@ fun SearchBar() {
             .fillMaxWidth()
     ) {
         TextField(
-            modifier = Modifier
-                .weight(1f),
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+                cursorColor = Black,
+                focusedIndicatorColor = Black
+            ),
             value = text,
             onValueChange = { text = it },
             placeholder = {

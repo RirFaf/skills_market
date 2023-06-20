@@ -3,7 +3,7 @@ package android.skills_market.ui.activities.screens
 import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
-import android.skills_market.db_functions.SMFirebase
+import android.skills_market.database.SMFirebase
 import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.activities.screens.custom_composables.common.LargeButton
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
@@ -11,6 +11,7 @@ import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -39,16 +40,15 @@ import androidx.navigation.NavController
 @Composable
 fun LoginScreen(
     navController: NavController,
-    loginViewModel: LoginViewModel = viewModel()
+    viewModel: LoginViewModel = viewModel()
 ) {
     val localContext = LocalContext.current
-    val loginUIState by loginViewModel.uiState.collectAsState()
-    val database = SMFirebase()
+    val uiState by viewModel.uiState.collectAsState()
     val keyboardController = LocalSoftwareKeyboardController.current
     // Creating a variable to store toggle state
     var passwordVisible by remember { mutableStateOf(false) }
-    val login = loginViewModel.login
-    val password = loginViewModel.password
+    val login = viewModel.login
+    val password = viewModel.password
 
     Scaffold(
         modifier = Modifier
@@ -71,7 +71,7 @@ fun LoginScreen(
             Card(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 450.dp, start = 16.dp, end = 16.dp),
+                    .padding(bottom = 436.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(26.dp),
                 colors = CardDefaults.cardColors(containerColor = White)
             ) {
@@ -85,11 +85,12 @@ fun LoginScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.personal_data),
-                        style = Typography.headlineLarge
+                        color = Black,
+                        style = Typography.headlineMedium
                     )
                     OutlinedTextField(
                         value = login,
-                        onValueChange = { loginViewModel.updateLogin(it) },
+                        onValueChange = { viewModel.updateLogin(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -111,7 +112,7 @@ fun LoginScreen(
                     Spacer(modifier = Modifier.padding(4.dp))
                     OutlinedTextField(
                         value = password,
-                        onValueChange = { loginViewModel.updatePassword(it) },
+                        onValueChange = { viewModel.updatePassword(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -130,9 +131,9 @@ fun LoginScreen(
                         ),
                         keyboardActions = KeyboardActions(
                             onDone = {
-                                keyboardController?.hide()
-                                database.loginUser(
-                                    successfulAction = {
+                                /*TODO: сделать нормальную валидацию*/
+                                viewModel.loginUser(
+                                    onSuccessAction = {
                                         (localContext as Activity).finish()
                                         localContext.startActivity(
                                             Intent(
@@ -141,10 +142,25 @@ fun LoginScreen(
                                             )
                                         )
                                     },
+                                    onWrongPasswordAction = {
+                                        Toast.makeText(
+                                            localContext,
+                                            "Wrong password",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    },
+                                    onWrongLoginAction = {
+                                        Toast.makeText(
+                                            localContext,
+                                            "Wrong login",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    },
                                     login = login,
                                     password = password
                                 )
-                            }),
+                            }
+                        ),
                         trailingIcon = {
                             val image = if (passwordVisible) {
                                 R.drawable.baseline_visibility_24
@@ -171,9 +187,9 @@ fun LoginScreen(
                     LargeButton(
                         textResource = R.string.sign_in,
                         onClick = {
-                            /*TODO: иплементировать вход через бд*/
-                            database.loginUser(
-                                successfulAction = {
+                            /*TODO: сделать нормальную валидацию*/
+                            viewModel.loginUser(
+                                onSuccessAction = {
                                     (localContext as Activity).finish()
                                     localContext.startActivity(
                                         Intent(
@@ -182,11 +198,25 @@ fun LoginScreen(
                                         )
                                     )
                                 },
+                                onWrongPasswordAction = {
+                                    Toast.makeText(
+                                        localContext,
+                                        "Wrong password",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
+                                onWrongLoginAction = {
+                                    Toast.makeText(
+                                        localContext,
+                                        "Wrong login",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
                                 login = login,
                                 password = password
                             )
                         },
-                        height = 60
+                        height = 56
                     )
                 }
             }
