@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 
 @Composable
 fun LogRegNavigationGraph(navController: NavHostController) {
@@ -21,4 +22,13 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             RegistrationScreen(navController = navController)
         }
     }
+}
+
+@Composable
+fun AnimatedRegGraph(navController: NavHostController, startDestination: String) {
+//    AnimatedNavHost(navController = navController, startDestination = startDestination) {
+//        composable(route){
+//
+//        }
+//    }
 }

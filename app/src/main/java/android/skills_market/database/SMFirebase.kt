@@ -15,14 +15,17 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
+import kotlin.Exception
 
 
 class SMFirebase() {
-    private val database = Firebase.database
+    private val db = Firebase.database
+
     fun addUser(
-        localContext: Context,
-        user: StudentModel
+        user: StudentModel,
+        onSuccessAction: () -> Unit,
     ) {
+        var e: Exception?
         val rootRef = Firebase.database.getReference("Student")
         val auth = Firebase.auth
         val eventListener: ValueEventListener = object : ValueEventListener {
@@ -34,60 +37,42 @@ class SMFirebase() {
                 Log.d("ErrorTag", databaseError.message) //Don't ignore errors!
             }
         }
-        if (user.phone.length == 11) {
-            auth.createUserWithEmailAndPassword(user.email, user.password)
-                .addOnCompleteListener()
-                { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("TagLog", "createUserWithEmail:success")
-                        val userId = auth.currentUser!!.uid
-                        rootRef.addListenerForSingleValueEvent(eventListener)
-                        (localContext as Activity).finish()
-                        localContext.startActivity(
-                            Intent(
-                                localContext,
-                                AppActivity::class.java
-                            )
-                        )
-                    } else {
-                        try {
-                        } catch (e: FirebaseAuthWeakPasswordException) {
-                            Toast.makeText(
-                                localContext,
-                                "Пароль должен содержать минимум 6 символов",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } catch (e: FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(
-                                localContext,
-                                "Введите верный адрес эл. почты",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-        } else {
-            Toast.makeText(localContext, "Введите верный номер телефона", Toast.LENGTH_SHORT).show()
-        }
+        auth.createUserWithEmailAndPassword(user.email, user.password)
+            .addOnSuccessListener {
+                rootRef.addListenerForSingleValueEvent(eventListener)
+                onSuccessAction()
+            }
+            .addOnFailureListener() { task ->
+                e = task
+                Log.e("ErrorTag", e.toString())
+            }
     }
 
+    /* TODO: Исправить валидацию */
+    @Throws(Exception::class)
     fun loginUser(
-        onSuccessAction:() -> Unit,
+        onSuccessAction: () -> Unit,
         login: String,
         password: String
     ) {
+        var e: Exception? = null
         val auth = Firebase.auth
-        Log.d("MyTag", auth.currentUser.toString())
+
         auth.signInWithEmailAndPassword(login, password)
-            .addOnCompleteListener()
-            { task ->
-                if (task.isSuccessful) {
-                    onSuccessAction()
-                } else {
-                    throw task.exception!!
-                }
+            .addOnSuccessListener {
+                onSuccessAction()
             }
+            .addOnFailureListener() { task ->
+                e = task
+                Log.e("ErrorTag", e.toString())
+            }
+            .addOnCompleteListener { task ->
+                e = task.exception!!
+            }
+        Log.e("ErrorTag", e.toString())
+        if (e != null) {
+            throw e!!
+        }
     }
 
     fun logoutUser(localContext: Context) {
@@ -135,6 +120,7 @@ class SMFirebase() {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
     }
 }
+
 
 
 

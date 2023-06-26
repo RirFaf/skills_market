@@ -17,6 +17,7 @@ class LoginViewModel : ViewModel() {
     private val db = SMFirebase()
     private val _uiState = MutableStateFlow(LoginUIState())
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
+
     var login by mutableStateOf("")
         private set
     var password by mutableStateOf("")
@@ -27,45 +28,64 @@ class LoginViewModel : ViewModel() {
         onSuccessAction: () -> Unit,
         onWrongPasswordAction: () -> Unit,
         onWrongLoginAction: () -> Unit,
-        login: String,
-        password: String
+        onEmptyPasswordAction: () -> Unit,
+        onEmptyLoginAction: () -> Unit,
     ) {
-        if (checkLogin(login) && checkPassword(password)) {
+        if (!isLoginNull(login) && !isPasswordNull(password)) {
             try {
                 db.loginUser(onSuccessAction, login, password)
             } catch (e: com.google.firebase.auth.FirebaseAuthInvalidCredentialsException) {
-                onWrongPasswordAction
+                onWrongPasswordAction()
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        isPasswordCorrect = false
+                    )
+                }
+                Log.d("ErrorTag",_uiState.value.isPasswordCorrect.toString())
             } catch (e: com.google.firebase.auth.FirebaseAuthInvalidUserException) {
-                onWrongLoginAction
+                onWrongLoginAction()
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        isLoginCorrect = false
+                    )
+                }
             }
         } else {
-            Log.e("MyTag", "Here")
+            if (isLoginNull(login)) onEmptyLoginAction() else onEmptyPasswordAction()
         }
     }
 
-    private fun checkLogin(login: String): Boolean {
+    private fun isLoginNull(login: String): Boolean {
         _uiState.update { currentState ->
             currentState.copy(
-                isLoginNull = login == ""
+                isLoginNull = login == "",
+                isLoginCorrect = login != ""
             )
         }
-        return login !=""
+        return login == ""
     }
 
-    private fun checkPassword(password: String): Boolean {
+    private fun isPasswordNull(password: String): Boolean {
         _uiState.update { currentState ->
             currentState.copy(
-                isPasswordNull = password == ""
+                isPasswordNull = password == "",
+                isPasswordCorrect = password != ""
             )
         }
-        return password !=""
+        return password == ""
     }
 
     fun updateLogin(enteredLogin: String) {
         login = enteredLogin
+        _uiState.update { currentState ->
+            currentState.copy(login = login)
+        }
     }
 
     fun updatePassword(enteredPassword: String) {
         password = enteredPassword
+        _uiState.update { currentState ->
+            currentState.copy(password = password)
+        }
     }
 }

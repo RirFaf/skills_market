@@ -17,9 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun FavouritesScreen(navController: NavController) {
+fun FavouritesScreen() {
     Scaffold(
-        topBar = { SearchBar() },
     ) { innerPadding ->
         Column(
             modifier = Modifier

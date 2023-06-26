@@ -1,9 +1,11 @@
-package android.skills_market.custom_composables
+package android.skills_market.ui.activities.screens.custom_composables.common
 
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.Gray900
 import android.skills_market.ui.theme.Gray150
 import androidx.compose.material.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
@@ -42,8 +44,6 @@ fun NavigationBar(navController: NavController) {
                         fontSize = 9.sp
                     )
                 },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = currentRoute == list.route,
                 onClick = {
@@ -51,9 +51,10 @@ fun NavigationBar(navController: NavController) {
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
                                 saveState = true
+                                inclusive = true
                             }
                         }
-                        launchSingleTop = true
+                        launchSingleTop = false
                         restoreState = true
                     }
                 }

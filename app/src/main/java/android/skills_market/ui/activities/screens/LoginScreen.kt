@@ -47,8 +47,8 @@ fun LoginScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     // Creating a variable to store toggle state
     var passwordVisible by remember { mutableStateOf(false) }
-    val login = viewModel.login
-    val password = viewModel.password
+    val login by remember { mutableStateOf("") }
+    val password by remember { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier
@@ -89,15 +89,18 @@ fun LoginScreen(
                         style = Typography.headlineMedium
                     )
                     OutlinedTextField(
-                        value = login,
+                        value = viewModel.login,
                         onValueChange = { viewModel.updateLogin(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
+                            errorBorderColor = Color.Red,
+                            errorLabelColor = Color.Red,
                             cursorColor = Black,
                             focusedBorderColor = Black,
                             focusedLabelColor = Black,
                         ),
+                        isError = uiState.isLoginCorrect,
                         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
                         singleLine = true,
                         placeholder = {
@@ -111,15 +114,18 @@ fun LoginScreen(
                     )
                     Spacer(modifier = Modifier.padding(4.dp))
                     OutlinedTextField(
-                        value = password,
+                        value = viewModel.password,
                         onValueChange = { viewModel.updatePassword(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
+                            errorBorderColor = Color.Red,
+                            errorLabelColor = Color.Red,
                             cursorColor = Black,
                             focusedBorderColor = Black,
                             focusedLabelColor = Black,
                         ),
+                        isError = uiState.isPasswordCorrect,
                         label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
                         singleLine = true,
                         placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
@@ -145,19 +151,31 @@ fun LoginScreen(
                                     onWrongPasswordAction = {
                                         Toast.makeText(
                                             localContext,
-                                            "Wrong password",
+                                            "Неправильный пароль",
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     },
                                     onWrongLoginAction = {
                                         Toast.makeText(
                                             localContext,
-                                            "Wrong login",
+                                            "Такого логина нет в нашей базе данных",
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     },
-                                    login = login,
-                                    password = password
+                                    onEmptyLoginAction = {
+                                        Toast.makeText(
+                                            localContext,
+                                            "Введите логин",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    },
+                                    onEmptyPasswordAction = {
+                                        Toast.makeText(
+                                            localContext,
+                                            "Введите пароль",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                                 )
                             }
                         ),
@@ -201,19 +219,31 @@ fun LoginScreen(
                                 onWrongPasswordAction = {
                                     Toast.makeText(
                                         localContext,
-                                        "Wrong password",
+                                        "Неправильный пароль",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 },
                                 onWrongLoginAction = {
                                     Toast.makeText(
                                         localContext,
-                                        "Wrong login",
+                                        "Такого логина нет в нашей базе данных",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 },
-                                login = login,
-                                password = password
+                                onEmptyLoginAction = {
+                                    Toast.makeText(
+                                        localContext,
+                                        "Введите логин",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
+                                onEmptyPasswordAction = {
+                                    Toast.makeText(
+                                        localContext,
+                                        "Введите пароль",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             )
                         },
                         height = 56

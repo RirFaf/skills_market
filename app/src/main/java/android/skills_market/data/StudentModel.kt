@@ -5,7 +5,7 @@ data class StudentModel(
     val name: String,
     val patronymic: String,
     val city: String,
-    val course: String,
+    val course: Int,
     val email: String,
     val password: String,
     val phone: String
