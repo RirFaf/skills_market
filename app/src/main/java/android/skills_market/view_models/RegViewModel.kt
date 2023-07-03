@@ -1,8 +1,13 @@
 package android.skills_market.view_models
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.skills_market.data.StudentModel
 import android.skills_market.database.SMFirebase
+import android.skills_market.ui.activities.AppActivity
 import android.skills_market.view_models.states.RegUIState
+import androidx.compose.runtime.CompositionLocalContext
 import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,7 +33,7 @@ class RegViewModel : ViewModel() {
         private set
     var city by mutableStateOf("")
         private set
-    var course by mutableStateOf(1)
+    var course by mutableStateOf("")
         private set
     var email by mutableStateOf("")
         private set
@@ -63,7 +68,7 @@ class RegViewModel : ViewModel() {
         }
     }
     fun updateCourse(enteredCourse: String) {
-        course = enteredCourse.toInt()
+        course = enteredCourse
         _uiState.update { currentState ->
             currentState.copy(course = course)
         }
@@ -88,7 +93,7 @@ class RegViewModel : ViewModel() {
     }
 
     fun register(
-        onSuccessAction: () -> Unit,
+        localContext: Context,
         onInvalidCredentialsAction: () -> Unit,
         onWeakPasswordAction: () -> Unit,
     ) {
@@ -104,7 +109,15 @@ class RegViewModel : ViewModel() {
                     _uiState.value.password,
                     _uiState.value.phone,
                 ),
-                onSuccessAction
+                onSuccessAction = {
+                    (localContext as Activity).finish()
+                    localContext.startActivity(
+                        Intent(
+                            localContext,
+                            AppActivity::class.java
+                        )
+                    )
+                }
             )
         } catch (e: FirebaseAuthWeakPasswordException) {
             onWeakPasswordAction()

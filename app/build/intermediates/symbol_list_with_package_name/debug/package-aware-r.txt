@@ -408,6 +408,7 @@ string logo_description
 string motto
 string name
 string navigation_menu
+string next
 string not_selected
 string off
 string on

@@ -66,6 +66,7 @@ string login
 string logo_description
 string motto
 string name
+string next
 string password
 string patronymic
 string personal_data
