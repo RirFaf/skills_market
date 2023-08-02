@@ -1,33 +1,53 @@
-package android.skills_market.ui.activities.screens.custom_composables.common
+package android.skills_market.ui.activities.screens.custom_composables
 
 import android.skills_market.R
 import android.skills_market.data.VacancyModel
-import android.skills_market.ui.theme.Gray150
+import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.theme.AccentBlue
+import android.skills_market.ui.theme.Typography
+import android.skills_market.ui.theme.White
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun VacancyCard(vacancy: VacancyModel) {
+fun VacancyCard(vacancy: VacancyModel, navController: NavController) {
     Card(
         modifier = Modifier
             .background(Color.Transparent)
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 14.dp),
-        shape = RoundedCornerShape(4.dp),
-        elevation = 0.dp
+            .fillMaxSize()
+            .clickable {
+                navController.navigate(Screen.VacancyScreen.route) {
+                    navController.graph.startDestinationRoute?.let { route ->
+                        popUpTo(route) {
+                            saveState = true
+                            inclusive = true
+                        }
+                    }
+                    launchSingleTop = false
+                    restoreState = true
+                }
+            },
+        shape = shapes.medium,
+        border = BorderStroke(width = 2.dp, color = AccentBlue)
     ) {
         Column(
             Modifier
-                .background(Gray150)
+                .background(White)
                 .fillMaxWidth()
                 .padding(vertical = 16.dp, horizontal = 14.dp)
         ) {
@@ -35,7 +55,7 @@ fun VacancyCard(vacancy: VacancyModel) {
                 text = vacancy.title,
                 modifier = Modifier
                     .fillMaxWidth(),
-                fontSize = 18.sp
+                style = Typography.headlineSmall
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Text(
@@ -54,9 +74,10 @@ fun VacancyCard(vacancy: VacancyModel) {
             )
             Spacer(modifier = Modifier.padding(4.dp))
             LargeButton(
-                textResource = R.string.respond,
+                text = stringResource(R.string.respond),
                 onClick = { /*TODO*/ },
-                height = 60)
+                colors = ButtonDefaults.buttonColors(AccentBlue)
+            )
         }
     }
 }

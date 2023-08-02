@@ -19,8 +19,7 @@ class AppActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             Scaffold(
-                bottomBar = { NavigationBar(navController = navController)
-                }
+                bottomBar = { NavigationBar(navController = navController) }
             ) { innerPadding ->
                 Column(modifier = Modifier.padding(innerPadding)) {
                     NavigationGraph(navController)

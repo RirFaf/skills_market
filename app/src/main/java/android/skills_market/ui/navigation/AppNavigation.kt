@@ -5,6 +5,7 @@ import android.skills_market.ui.activities.screens.FavouritesScreen
 import android.skills_market.ui.activities.screens.ProfileScreen
 import android.skills_market.ui.activities.screens.ResponsesListScreen
 import android.skills_market.ui.activities.screens.SearchScreen
+import android.skills_market.ui.activities.screens.VacancyScreen
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
@@ -21,8 +22,11 @@ fun NavigationGraph(navController: NavHostController) {
         composable(route = Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
         }
+        composable(route = Screen.VacancyScreen.route) {
+            VacancyScreen(navController = navController)
+        }
         composable(route = Screen.FavouritesScreen.route) {
-            FavouritesScreen()
+            FavouritesScreen(navController = navController)
         }
         composable(route = Screen.ChatListScreen.route) {
             ChatListScreen(navController = navController)

@@ -1,7 +1,6 @@
 package android.skills_market.ui.activities.screens
 
-import android.skills_market.custom_composables.SearchBar
-import android.skills_market.ui.activities.screens.custom_composables.common.VacancyCard
+import android.skills_market.ui.activities.screens.custom_composables.VacancyCard
 import android.skills_market.data.VacancyModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun FavouritesScreen() {
+fun FavouritesScreen(navController: NavController) {
     Scaffold(
     ) { innerPadding ->
         Column(
@@ -35,7 +34,7 @@ fun FavouritesScreen() {
                         VacancyModel("TeamLead", 10000, "Yandex"),
                     )
                 ) { _, item ->
-                    VacancyCard(vacancy = item)
+                    VacancyCard(vacancy = item, navController = navController)
                 }
             }
             Spacer(modifier = Modifier.padding(40.dp))

@@ -9,11 +9,6 @@ import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 40.sp
-    ),
     //logreg headline
     headlineLarge = TextStyle(
         fontSize = 34.sp,
@@ -28,9 +23,14 @@ val Typography = Typography(
     ),
     //backbtn logreg
     headlineSmall = TextStyle(
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Bold,
+        fontSize = 17.sp,
+        fontWeight = FontWeight.SemiBold,
         fontFamily = Inter
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp
     ),
     //common style
     bodyMedium = TextStyle(
@@ -38,9 +38,14 @@ val Typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp
     ),
+    bodySmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp
+    ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+        fontFamily = Inter,
+        fontWeight = FontWeight.Medium,
         fontSize = 12.sp
     )
 )

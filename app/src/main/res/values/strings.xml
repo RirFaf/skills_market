@@ -27,5 +27,6 @@
     <string name="hello">Здравствуйте!</string>
     <string name="next">Далее</string>
     <string name="back">Назад</string>
+    <string name="my_resume">Моё резюме</string>
     <string name="motto">Биржа талантов - возможность получить любимую работу!</string>
 </resources>

@@ -1,15 +1,14 @@
 package android.skills_market.ui.activities.screens
 
-import android.app.Activity
 import android.skills_market.R
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
 import android.skills_market.database.SMFirebase
-import android.skills_market.ui.activities.screens.custom_composables.common.LargeButton
+import android.skills_market.ui.activities.screens.custom_composables.LargeButton
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.view_models.RegViewModel
-import android.view.translation.UiTranslationStateCallback
 import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
@@ -21,9 +20,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActionScope
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -43,7 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import java.util.*
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -124,9 +122,9 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
                 lastField = true
             )
             LargeButton(
-                textResource = R.string.next,
+                text = stringResource(R.string.next),
                 onClick = { navController.navigate(Screen.CityCourseAndPhone.route) },
-                height = 56
+                colors = ButtonDefaults.buttonColors(Black)
             )
         }
     }
@@ -173,9 +171,9 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
                 lastField = true
             )
             LargeButton(
-                textResource = R.string.next,
+                text = stringResource(R.string.next),
                 onClick = { navController.navigate(Screen.EmailAndPasswordScreen.route) },
-                height = 56
+                colors = ButtonDefaults.buttonColors(Black)
             )
         }
     }
@@ -224,7 +222,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                 lastField = true
             )
             LargeButton(
-                textResource = R.string.done,
+                text = stringResource(R.string.done),
                 onClick = {
                     viewModel.register(
                         localContext = localContext,
@@ -232,7 +230,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                         onWeakPasswordAction = {}
                     )
                 },
-                height = 56
+                colors = ButtonDefaults.buttonColors(Black)
             )
         }
     }

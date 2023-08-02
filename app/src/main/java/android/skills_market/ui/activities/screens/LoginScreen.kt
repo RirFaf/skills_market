@@ -3,10 +3,10 @@ package android.skills_market.ui.activities.screens
 import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
-import android.skills_market.database.SMFirebase
 import android.skills_market.ui.activities.AppActivity
-import android.skills_market.ui.activities.screens.custom_composables.common.LargeButton
+import android.skills_market.ui.activities.screens.custom_composables.LargeButton
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
+import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
@@ -126,7 +126,7 @@ fun LoginScreen(
                             focusedLabelColor = Black,
                         ),
                         isError = uiState.isPasswordCorrect,
-                        label = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
+                        label = { Text(text = stringResource(id = R.string.password)) },
                         singleLine = true,
                         placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -203,7 +203,7 @@ fun LoginScreen(
                     )
                     Spacer(modifier = Modifier.padding(6.dp))
                     LargeButton(
-                        textResource = R.string.sign_in,
+                        text = stringResource(id = R.string.login),
                         onClick = {
                             /*TODO: сделать нормальную валидацию*/
                             viewModel.loginUser(
@@ -246,7 +246,7 @@ fun LoginScreen(
                                 }
                             )
                         },
-                        height = 56
+                        colors = ButtonDefaults.buttonColors(containerColor = Black)
                     )
                 }
             }

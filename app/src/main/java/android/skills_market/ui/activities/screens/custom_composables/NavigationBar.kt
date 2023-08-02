@@ -28,26 +28,26 @@ fun NavigationBar(navController: NavController) {
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-        list.forEach { list ->
+        list.forEach { listElement ->
             BottomNavigationItem(
                 icon = {
                     Icon(
-                        painter = painterResource(id = list.icon!!),
-                        contentDescription = list.title,
+                        painter = painterResource(id = listElement.icon!!),
+                        contentDescription = listElement.title,
                         tint = Gray150
                     )
                 },
                 label = {
                     Text(
-                        text = list.title!!,
+                        text = listElement.title!!,
                         color = Gray150,
                         fontSize = 9.sp
                     )
                 },
                 alwaysShowLabel = true,
-                selected = currentRoute == list.route,
+                selected = currentRoute == listElement.route,
                 onClick = {
-                    navController.navigate(list.route) {
+                    navController.navigate(listElement.route) {
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
                                 saveState = true
