@@ -16,12 +16,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,8 +43,8 @@ import androidx.navigation.NavController
 
 /**
 Родительский класс не имеет задаёт padding всем элементам,
- т.к. LazyRow с откликами должна занимать всю ширину экрана
-*/
+т.к. LazyRow с откликами должна занимать всю ширину экрана
+ */
 @Composable
 fun ProfileScreen(navController: NavController) {
     val localContext = LocalContext.current
@@ -158,28 +158,30 @@ private fun TopBar(localContext: Context) {
         mutableStateOf(false)
     }
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .height(70.dp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = {}
+            onClick = {},
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_notifications_none_24),
-                contentDescription = "Show menu"
+                contentDescription = "Show menu",
+                modifier = Modifier.size(30.dp)
             )
         }
         Text(text = "Профиль", fontSize = 28.sp)
-        Box(modifier = Modifier) {
-            IconButton(
-                onClick = { expandDropDownMenu = !expandDropDownMenu }
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_menu_24),
-                    contentDescription = "Show menu"
-                )
-            }
+        IconButton(
+            onClick = { expandDropDownMenu = !expandDropDownMenu }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_menu_24),
+                contentDescription = "Show menu",
+                modifier = Modifier.size(30.dp)
+            )
             DropdownMenu(
                 expanded = expandDropDownMenu,
                 onDismissRequest = { expandDropDownMenu = false }
@@ -197,5 +199,6 @@ private fun TopBar(localContext: Context) {
                 )
             }
         }
+
     }
 }

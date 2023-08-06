@@ -1,9 +1,12 @@
-package android.skills_market.ui.activities.screens.custom_composables.common
+package android.skills_market.ui.activities.screens.custom_composables
 
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Gray900
-import android.skills_market.ui.theme.Gray150
+import android.skills_market.ui.theme.White
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +26,7 @@ fun NavigationBar(navController: NavController) {
         Screen.ResponsesListScreen,
         Screen.ProfileScreen,
     )
-    BottomNavigation(
+    BottomAppBar(
         backgroundColor = Gray900
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -34,14 +37,14 @@ fun NavigationBar(navController: NavController) {
                     Icon(
                         painter = painterResource(id = listElement.icon!!),
                         contentDescription = listElement.title,
-                        tint = Gray150
+                        tint = if(currentRoute == listElement.route) AccentBlue else White
                     )
                 },
                 label = {
                     Text(
                         text = listElement.title!!,
-                        color = Gray150,
-                        fontSize = 9.sp
+                        fontSize = 9.sp,
+                        color = if(currentRoute == listElement.route) AccentBlue else White
                     )
                 },
                 alwaysShowLabel = true,

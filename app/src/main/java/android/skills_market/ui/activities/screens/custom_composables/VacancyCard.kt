@@ -6,6 +6,8 @@ import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
+import android.skills_market.view_models.VacancyViewModel
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +33,11 @@ fun VacancyCard(vacancy: VacancyModel, navController: NavController) {
             .background(Color.Transparent)
             .fillMaxSize()
             .clickable {
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    key = "vacancy",
+                    value = vacancy
+                )
+                Log.d("MyTag", vacancy.toString())
                 navController.navigate(Screen.VacancyScreen.route) {
                     navController.graph.startDestinationRoute?.let { route ->
                         popUpTo(route) {
@@ -52,7 +59,7 @@ fun VacancyCard(vacancy: VacancyModel, navController: NavController) {
                 .padding(vertical = 16.dp, horizontal = 14.dp)
         ) {
             Text(
-                text = vacancy.title,
+                text = vacancy.position,
                 modifier = Modifier
                     .fillMaxWidth(),
                 style = Typography.headlineSmall

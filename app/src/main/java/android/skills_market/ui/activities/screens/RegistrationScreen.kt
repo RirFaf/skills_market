@@ -2,15 +2,11 @@ package android.skills_market.ui.activities.screens
 
 import android.skills_market.R
 import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
-import android.skills_market.database.SMFirebase
 import android.skills_market.ui.activities.screens.custom_composables.LargeButton
-import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.view_models.RegViewModel
 import androidx.annotation.StringRes
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,14 +37,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import java.util.*
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun RegistrationScreen(navController: NavHostController) {
-    val localContext = LocalContext.current
-    val db = SMFirebase()
     val viewModel = RegViewModel()
     val uiState = viewModel.uiState.collectAsState()
     val regNavController = rememberNavController()
@@ -78,7 +73,6 @@ fun RegistrationScreen(navController: NavHostController) {
         }
     }
 }
-
 
 @Composable
 fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController) {
@@ -236,7 +230,6 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RegistrationTextField(
     value: String,
@@ -269,8 +262,20 @@ fun RegistrationTextField(
     Spacer(modifier = Modifier.padding(4.dp))
 }
 
-
-
-
-
-
+@Composable
+fun RegGraph(
+    navController: NavHostController,
+    viewModel: RegViewModel
+) {
+    NavHost(navController = navController, startDestination = Screen.NameAndGenderRegScreen.route) {
+        composable(route = Screen.NameAndGenderRegScreen.route) {
+            NameAndGenderRegScreen(viewModel = viewModel, navController = navController)
+        }
+        composable(route = Screen.CityCourseAndPhone.route) {
+            CityCourseAndPhone(viewModel = viewModel, navController = navController)
+        }
+        composable(route = Screen.EmailAndPasswordScreen.route) {
+            EmailAndPasswordScreen(viewModel = viewModel)
+        }
+    }
+}

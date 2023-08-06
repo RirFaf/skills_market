@@ -32,20 +32,3 @@ fun LogRegNavigationGraph(navController: NavHostController) {
     }
 }
 
-@Composable
-fun RegGraph(
-    navController: NavHostController,
-    viewModel: RegViewModel
-) {
-    NavHost(navController = navController, startDestination = Screen.NameAndGenderRegScreen.route) {
-        composable(route = Screen.NameAndGenderRegScreen.route) {
-            NameAndGenderRegScreen(viewModel = viewModel, navController = navController)
-        }
-        composable(route = Screen.CityCourseAndPhone.route) {
-            CityCourseAndPhone(viewModel = viewModel, navController = navController)
-        }
-        composable(route = Screen.EmailAndPasswordScreen.route) {
-            EmailAndPasswordScreen(viewModel = viewModel)
-        }
-    }
-}
