@@ -168,10 +168,6 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
-drawable student_1
-drawable student_2
-drawable student_3
-drawable student_4
 drawable twitter
 drawable worker
 font inter_black

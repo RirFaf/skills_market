@@ -38,7 +38,7 @@
     <string name="phone_number">Телефонный номер</string>
     <string name="project_id" translatable="false">skillsmarket-1dc70</string>
     <string name="registration">Регистрация</string>
-    <string name="respond">Откликунуться</string>
+    <string name="respond">Откликнуться</string>
     <string name="search">Поиск</string>
     <string name="search_description">Поиск</string>
     <string name="show_password">Показать пароль</string>

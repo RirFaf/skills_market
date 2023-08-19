@@ -29,10 +29,6 @@ drawable bell
 drawable gex
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-drawable student_1
-drawable student_2
-drawable student_3
-drawable student_4
 drawable twitter
 drawable worker
 font inter_black

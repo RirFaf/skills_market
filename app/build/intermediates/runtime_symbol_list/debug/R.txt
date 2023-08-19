@@ -167,10 +167,6 @@ int drawable notification_template_icon_bg 0x7f040036
 int drawable notification_template_icon_low_bg 0x7f040037
 int drawable notification_tile_bg 0x7f040038
 int drawable notify_panel_notification_icon_bg 0x7f040039
-int drawable student_1 0x7f04003a
-int drawable student_2 0x7f04003b
-int drawable student_3 0x7f04003c
-int drawable student_4 0x7f04003d
 int drawable twitter 0x7f04003e
 int drawable worker 0x7f04003f
 int font inter_black 0x7f050000
