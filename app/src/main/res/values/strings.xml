@@ -3,6 +3,8 @@
     <string name="sign_in">Войти</string>
     <string name="help">Помощь</string>
     <string name="done">Готово</string>
+    <string name="accept">Принять</string>
+    <string name="reject">Отклонить</string>
     <string name="search">Поиск</string>
     <string name="password">Пароль</string>
     <string name="registration">Регистрация</string>

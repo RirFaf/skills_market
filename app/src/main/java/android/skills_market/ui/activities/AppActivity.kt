@@ -1,7 +1,7 @@
 package android.skills_market.ui.activities
 
 import android.os.Bundle
-import android.skills_market.ui.activities.screens.custom_composables.NavigationBar
+import android.skills_market.ui.screens.custom_composables.NavigationBar
 import android.skills_market.ui.navigation.NavigationGraph
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

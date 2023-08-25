@@ -1,11 +1,11 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.ui.activities.screens.CityCourseAndPhone
-import android.skills_market.ui.activities.screens.EmailAndPasswordScreen
-import android.skills_market.ui.activities.screens.LogRegScreen
-import android.skills_market.ui.activities.screens.LoginScreen
-import android.skills_market.ui.activities.screens.NameAndGenderRegScreen
-import android.skills_market.ui.activities.screens.RegistrationScreen
+import android.skills_market.ui.screens.CityCourseAndPhone
+import android.skills_market.ui.screens.EmailAndPasswordScreen
+import android.skills_market.ui.screens.LogRegScreen
+import android.skills_market.ui.screens.LoginScreen
+import android.skills_market.ui.screens.NameAndGenderRegScreen
+import android.skills_market.ui.screens.RegistrationScreen
 import android.skills_market.view_models.RegViewModel
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi

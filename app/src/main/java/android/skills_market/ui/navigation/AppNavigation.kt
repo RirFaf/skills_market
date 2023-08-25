@@ -1,15 +1,15 @@
 package android.skills_market.ui.navigation
 
 import android.skills_market.data.VacancyModel
-import android.skills_market.ui.activities.screens.ChatListScreen
-import android.skills_market.ui.activities.screens.FavouritesScreen
-import android.skills_market.ui.activities.screens.ProfileScreen
-import android.skills_market.ui.activities.screens.ResponsesListScreen
-import android.skills_market.ui.activities.screens.SearchScreen
-import android.skills_market.ui.activities.screens.VacancyScreen
-import androidx.compose.animation.AnimatedContentScope
+import android.skills_market.ui.screens.ChatListScreen
+import android.skills_market.ui.screens.FavouritesScreen
+import android.skills_market.ui.screens.ProfileScreen
+import android.skills_market.ui.screens.ResponsesListScreen
+import android.skills_market.ui.screens.SearchScreen
+import android.skills_market.ui.screens.VacancyScreen
+import android.skills_market.view_models.VacancyViewModel
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.tween
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,13 +28,15 @@ fun NavigationGraph(navController: NavHostController) {
             SearchScreen(navController = navController)
         }
         composable(route = Screen.VacancyScreen.route) {
-            val vacancy =
-                navController.previousBackStackEntry?.savedStateHandle?.get<VacancyModel>("vacancy")
-            if (vacancy != null) {
-                VacancyScreen(navController = navController, vacancy)
+            val vacancyViewModel =
+                navController.previousBackStackEntry?.savedStateHandle?.get<VacancyViewModel>("vacancy")
+            if (vacancyViewModel != null) {
+                VacancyScreen(navController = navController, vacancyViewModel)
+            } else {
+                Text(text = "null")
             }
 /**            TODO: Пофиксить проблему с бэкстеком
-*                (первый экран при автоматической аутентификации не заходит в бэкстек)
+*                (первый экран не заходит в бэкстек)
 */
         }
         composable(route = Screen.FavouritesScreen.route) {

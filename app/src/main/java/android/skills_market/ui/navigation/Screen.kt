@@ -9,17 +9,17 @@ sealed class Screen(val title: String?, val icon: Int?, val route: String) {
     object CityCourseAndPhone : Screen(null, null, "city_course_and_phone_screen")
     object EmailAndPasswordScreen : Screen(null, null, "email_and_password_screen")
     object LoginScreen : Screen(null, null, "login_screen")
-    object SearchScreen : Screen("Поиск", R.drawable.baseline_search_24, "search_screen")
+    object SearchScreen : Screen("Поиск", R.drawable.search, "search_screen")
     object VacancyScreen : Screen(null, null, "vacancy_screen")
     object FavouritesScreen :
-        Screen("Избранное", R.drawable.baseline_favorite_border_24, "favourites_screen")
+        Screen("Избранное", R.drawable.favorite_border, "favourites_screen")
 
     object ResponsesListScreen :
-        Screen("Отклики", R.drawable.baseline_handshake_24, "responses_list_screen")
+        Screen("Отклики", R.drawable.handshake, "responses_list_screen")
 
     object ChatListScreen :
-        Screen("Чаты", R.drawable.baseline_chat_bubble_outline_24, "chat_list_screen")
+        Screen("Чаты", R.drawable.chat_bubble_outline, "chat_list_screen")
 
     object ProfileScreen :
-        Screen("Профиль", R.drawable.baseline_person_outline_24, "profile_screen")
+        Screen("Профиль", R.drawable.person_outline, "profile_screen")
 }

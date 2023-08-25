@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_sort_24" />
-                            <entry key="sourceFile" value="C:\Users\HP_Pavilion\Desktop\search_outline.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="twitter_svgrepo_com" />
+                            <entry key="sourceFile" value="C:\Users\HP_Pavilion\Downloads\twitter-svgrepo-com.svg" />
                           </map>
                         </option>
                       </PersistentState>

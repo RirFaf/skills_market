@@ -1,5 +1,6 @@
 package android.skills_market.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.skills_market.R
 import android.skills_market.database.SMFirebase
@@ -21,39 +22,22 @@ import kotlinx.coroutines.delay
 class LoadingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            val scale = remember {
-                androidx.compose.animation.core.Animatable(0f)
-            }
-            val database = SMFirebase()
-            // Animation
-            LaunchedEffect(key1 = true) {
-                scale.animateTo(
-                    targetValue = 0.7f,
-                    // tween Animation
-                    animationSpec = tween(
-                        durationMillis = 800,
-                        easing = {
-                            OvershootInterpolator(4f).getInterpolation(it)
-                        })
-                )
-                delay(500L)
 
-                database.authenticateUser(this@LoadingActivity)
-            }
+        val database = SMFirebase()
 
-            // Image
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                // Change the logo
-                Image(
-                    painter = painterResource(id = R.drawable.gex),
-                    contentDescription = "Logo",
-                    modifier = Modifier.scale(scale.value)
-                )
-            }
+        intent = if (database.authenticateUser()) {
+            Intent(
+                this,
+                AppActivity::class.java
+            )
+        } else {
+            Intent(
+                this,
+                LogRegActivity::class.java
+            )
         }
+
+        this.finish()
+        this.startActivity(intent)
     }
 }
