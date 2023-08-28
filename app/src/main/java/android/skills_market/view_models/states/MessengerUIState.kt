@@ -1,4 +1,6 @@
 package android.skills_market.view_models.states
 
-class MessengerUIState {
-}
+data class MessengerUIState (
+    val message: String = "",
+    val isMsgEmpty: Boolean = true,
+)
