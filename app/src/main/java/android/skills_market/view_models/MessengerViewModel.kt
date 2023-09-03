@@ -13,13 +13,30 @@ import kotlinx.coroutines.flow.update
 class MessengerViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(MessengerUIState())
     val uiState: StateFlow<MessengerUIState> = _uiState.asStateFlow()
-    var message by mutableStateOf("")
+    var currentMessage by mutableStateOf("")
         private set
 
-    fun updateMessage(enteredText: String) {
-        message = enteredText
+    fun updateEnteredText(enteredText: String) {
+        currentMessage = enteredText
         _uiState.update { currentState ->
-            currentState.copy(message = enteredText)
+            currentState.copy(
+                enteredText = currentMessage,
+                isMsgBlank = currentMessage.isNotBlank()
+                )
         }
+    }
+
+    fun sendMessage(messageText: String){
+        //Todo: вставить функцию для отправки сообщения на сервер
+        _uiState.update { currentState ->
+            currentState.copy(
+                enteredText = "",
+                isMsgBlank = true
+            )
+        }
+    }
+
+    fun receiveMessage(message: String){
+        
     }
 }

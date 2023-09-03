@@ -42,9 +42,16 @@
                 android:value="" />
         </activity>
 
+        <service
+            android:name="android.skills_market.ui.activities.AppActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
     </application>
-
 </manifest>

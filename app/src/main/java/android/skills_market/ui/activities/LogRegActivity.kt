@@ -7,7 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 class LogRegActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

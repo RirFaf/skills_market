@@ -16,7 +16,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.google.accompanist.navigation.animation.navigation
 
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -32,14 +31,8 @@ fun NavigationGraph(navController: NavHostController) {
         composable(route = Screen.VacancyScreen.route) {
             val vacancyViewModel =
                 navController.previousBackStackEntry?.savedStateHandle?.get<VacancyViewModel>("vacancy")
-            if (vacancyViewModel != null) {
-                VacancyScreen(navController = navController, vacancyViewModel)
-            } else {
-                Text(text = "null")
-            }
-/**            TODO: Пофиксить проблему с бэкстеком
-*                (первый экран не заходит в бэкстек)
-*/
+
+            VacancyScreen(navController = navController, vacancyViewModel!!)
         }
         composable(route = Screen.FavouritesScreen.route) {
             FavouritesScreen(navController = navController)

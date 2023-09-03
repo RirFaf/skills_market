@@ -4,6 +4,7 @@ import android.skills_market.R
 import android.skills_market.data.VacancyModel
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.theme.AccentBlue
+import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Inter
 import android.skills_market.view_models.VacancyViewModel
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,14 +40,16 @@ fun VacancyScreen(navController: NavController, vacancyViewModel: VacancyViewMod
     val vacancy: VacancyModel = vacancyViewModel.getVacancy()
     val uiState = vacancyViewModel.uiState.collectAsState()
     Scaffold(
-        modifier = Modifier.padding(vertical = 4.dp),
+        modifier = Modifier,
         topBar = { TopBar(navController = navController) }
     ) { innerPadding ->
         Surface(
             modifier = Modifier.padding(innerPadding)
         ) {
             Column(
-                modifier = Modifier.padding(horizontal = 10.dp),
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Row(
                     Modifier
@@ -57,7 +62,7 @@ fun VacancyScreen(navController: NavController, vacancyViewModel: VacancyViewMod
                         fontSize = 30.sp,
                         fontWeight = FontWeight.SemiBold,
                         fontFamily = Inter,
-                        color = Color.Black
+                        color = Black
                     )
                 }
                 VacancyInfo(heading = "Отрасль", content = vacancy.edArea)
@@ -89,6 +94,7 @@ fun VacancyScreen(navController: NavController, vacancyViewModel: VacancyViewMod
                     },
                     enabled = !uiState.value.isResponded
                 )
+                Spacer(modifier = Modifier.padding(8.dp))
             }
         }
     }

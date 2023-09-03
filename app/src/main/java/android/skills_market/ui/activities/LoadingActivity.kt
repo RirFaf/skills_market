@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.skills_market.R
 import android.skills_market.database.SMFirebase
+import android.util.Log
 import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

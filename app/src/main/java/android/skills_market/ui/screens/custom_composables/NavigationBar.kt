@@ -51,16 +51,11 @@ fun NavigationBar(navController: NavController) {
                 selected = currentRoute == listElement.route,
                 onClick = {
                     navController.navigate(listElement.route) {
-//                        navController.graph.startDestinationRoute?.let {
-//                            popUpTo(Screen.SearchScreen.route) {
-//                                saveState = true
-//                                inclusive = true
-//                            }
-//                        }
                         launchSingleTop = false
                         restoreState = true
                     }
-                }
+                },
+                enabled = currentRoute != listElement.route
             )
         }
     }

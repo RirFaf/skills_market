@@ -39,8 +39,8 @@ import androidx.navigation.NavController
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: LoginViewModel = viewModel()
 ) {
+    val viewModel = LoginViewModel()
     val localContext = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
     val keyboardController = LocalSoftwareKeyboardController.current

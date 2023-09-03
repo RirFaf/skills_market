@@ -24,6 +24,7 @@ drawable menu
 drawable notifications_none
 drawable person_outline
 drawable search
+drawable send
 drawable sort
 drawable twitter_logo
 drawable visibility
