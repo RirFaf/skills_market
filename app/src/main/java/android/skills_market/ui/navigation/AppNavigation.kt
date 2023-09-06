@@ -32,7 +32,9 @@ fun NavigationGraph(navController: NavHostController) {
             val vacancyViewModel =
                 navController.previousBackStackEntry?.savedStateHandle?.get<VacancyViewModel>("vacancy")
 
-            VacancyScreen(navController = navController, vacancyViewModel!!)
+            vacancyViewModel?.let {
+                VacancyScreen(navController = navController, vacancyViewModel)
+            }
         }
         composable(route = Screen.FavouritesScreen.route) {
             FavouritesScreen(navController = navController)

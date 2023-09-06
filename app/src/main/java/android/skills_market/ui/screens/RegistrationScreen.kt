@@ -1,15 +1,20 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
+import android.skills_market.ui.screens.custom_composables.LogRegTopBar
+import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.Black
+import android.skills_market.ui.theme.Typography
+import android.skills_market.ui.theme.White
 import android.skills_market.view_models.RegViewModel
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +23,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Icon
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedTextField
@@ -32,43 +38,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import java.util.*
 
 @Composable
 fun RegistrationScreen(navController: NavHostController) {
     val viewModel = RegViewModel()
-    val uiState = viewModel.uiState.collectAsState()
     val regNavController = rememberNavController()
+    /*TODO: Доделать переходы и валидацию*/
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Black),
-        topBar = {
-            LogRegTopBar(
-                R.string.registration,
-                navController = navController
-            )
-        },
+        topBar = { TopBar(navController = navController) },
+        containerColor = Black
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .background(Black),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            /*TODO: Доделать переходы и валидацию*/
+        Column(Modifier.padding(innerPadding)) {
             RegGraph(
                 navController = regNavController,
-                viewModel = viewModel,
+                viewModel = viewModel
             )
         }
     }
@@ -263,19 +254,51 @@ fun RegistrationTextField(
 }
 
 @Composable
-fun RegGraph(
-    navController: NavHostController,
-    viewModel: RegViewModel
+private fun TopBar(
+    navController: NavController
 ) {
-    NavHost(navController = navController, startDestination = Screen.NameAndGenderRegScreen.route) {
-        composable(route = Screen.NameAndGenderRegScreen.route) {
-            NameAndGenderRegScreen(viewModel = viewModel, navController = navController)
+    Column(
+        modifier = Modifier
+            .background(color = Color.Black),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp, start = 10.dp)
+                .clickable {
+                    navController.popBackStack(
+                        route = "log_reg_screen",
+                        inclusive = false
+                    )
+                },
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.arrow_back),
+                contentDescription = "Back Icon",
+                tint = Color.White
+            )
+
+            androidx.compose.material.Text(
+                text = stringResource(R.string.back),
+                color = White,
+                style = Typography.headlineSmall
+            )
         }
-        composable(route = Screen.CityCourseAndPhone.route) {
-            CityCourseAndPhone(viewModel = viewModel, navController = navController)
-        }
-        composable(route = Screen.EmailAndPasswordScreen.route) {
-            EmailAndPasswordScreen(viewModel = viewModel)
+        Spacer(modifier = Modifier.padding(10.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            androidx.compose.material.Text(
+                text = stringResource(R.string.registration),
+                color = White,
+                style = Typography.headlineLarge
+            )
         }
     }
 }
+

@@ -6,7 +6,9 @@ import android.skills_market.ui.theme.Gray150
 import android.skills_market.ui.theme.Gray250
 import android.skills_market.ui.theme.Inter
 import android.skills_market.ui.theme.Teal200
+import android.skills_market.ui.theme.White
 import android.skills_market.view_models.MessengerViewModel
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,11 +22,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -45,17 +50,19 @@ fun MessengerScreen(navController: NavController) {
             BottomBar(
                 viewModel = viewModel
             )
-        }
+        },
+        containerColor = White
     ) { innerPadding ->
         LazyColumn(
-            modifier = Modifier.padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             itemsIndexed(
                 listOf(1, 2)
             ) { _, _ ->
-                SentMessageBubble()
-                ReceivedMessageBubble()
+                SentMessageBubble("Да")
+                ReceivedMessageBubble("Нет")
             }
         }
     }
@@ -66,7 +73,8 @@ private fun TopBar(navController: NavController) {
     Row(
         modifier = Modifier
             .height(70.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(White),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -88,14 +96,14 @@ private fun TopBar(navController: NavController) {
                 fontWeight = FontWeight.SemiBold,
                 fontFamily = Inter,
                 color = Black
-                )
+            )
             Text(
                 text = "Vacancy",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 fontFamily = Inter,
                 color = Gray250
-                )
+            )
         }
     }
 }
@@ -104,23 +112,40 @@ private fun TopBar(navController: NavController) {
 private fun BottomBar(
     viewModel: MessengerViewModel
 ) {
-    TextField(
-        value = viewModel.currentMessage,
-        onValueChange = { viewModel.updateEnteredText(it) },
-        modifier = Modifier.fillMaxWidth(),
-        trailingIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.send),
-                    contentDescription = "Отправить"
-                )
-            }
-        }
-    )
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Divider(
+            modifier = Modifier.padding(2.dp),
+            color = Black,
+            thickness = 1.dp
+        )
+        TextField(
+            value = viewModel.currentMessage,
+            onValueChange = { viewModel.updateEnteredText(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(70.dp),
+            trailingIcon = {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.send),
+                        contentDescription = "Отправить"
+                    )
+                }
+            },
+            shape = shapes.extraSmall,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = White,
+                unfocusedContainerColor = White,
+                focusedTextColor = Black,
+                unfocusedTextColor = Black,
+                cursorColor = Black
+            )
+        )
+    }
 }
 
 @Composable
-private fun SentMessageBubble() {
+private fun SentMessageBubble(text: String) {
     Spacer(modifier = Modifier.padding(2.dp))
     Row(
         modifier = Modifier
@@ -140,7 +165,7 @@ private fun SentMessageBubble() {
             ) {
                 Spacer(modifier = Modifier.padding(2.dp))
                 Text(
-                    text = "Да, полностью согласен",
+                    text = text,
                     modifier = Modifier.padding(2.dp)
                 )
                 Spacer(modifier = Modifier.padding(2.dp))
@@ -152,7 +177,7 @@ private fun SentMessageBubble() {
 }
 
 @Composable
-private fun ReceivedMessageBubble() {
+private fun ReceivedMessageBubble(text: String) {
     Spacer(modifier = Modifier.padding(2.dp))
     Row(
         modifier = Modifier
@@ -172,7 +197,7 @@ private fun ReceivedMessageBubble() {
             ) {
                 Spacer(modifier = Modifier.padding(2.dp))
                 Text(
-                    text = "Да, полностью согласен",
+                    text = text,
                     modifier = Modifier.padding(2.dp)
                 )
                 Spacer(modifier = Modifier.padding(2.dp))

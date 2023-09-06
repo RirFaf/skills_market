@@ -1,4 +1,4 @@
-package android.skills_market.ui.activities.screens.custom_composables.common
+package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.R
 import android.skills_market.ui.navigation.Screen
@@ -40,7 +40,7 @@ fun LogRegTopBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp, start = 10.dp)
-                .clickable { navController.navigate(Screen.LogRegScreen.route) },
+                .clickable { navController.popBackStack(route = "log_reg_screen", inclusive = false) },
             horizontalArrangement = Arrangement.Start
         ) {
             Icon(

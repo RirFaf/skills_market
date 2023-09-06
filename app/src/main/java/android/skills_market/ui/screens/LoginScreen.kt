@@ -5,13 +5,15 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.screens.custom_composables.LargeButton
-import android.skills_market.ui.activities.screens.custom_composables.common.LogRegTopBar
+import android.skills_market.ui.screens.custom_composables.LogRegTopBar
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -32,7 +34,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
@@ -44,27 +45,15 @@ fun LoginScreen(
     val localContext = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
     val keyboardController = LocalSoftwareKeyboardController.current
-    // Creating a variable to store toggle state
     var passwordVisible by remember { mutableStateOf(false) }
-    val login by remember { mutableStateOf("") }
-    val password by remember { mutableStateOf("") }
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Black),
-        topBar = {
-            LogRegTopBar(
-                textRes = R.string.login,
-                navController = navController
-            )
-        },
+        topBar = { TopBar(navController = navController)},
+        containerColor = Black
     ) { innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(innerPadding)
-                .background(Black),
         ) {
             Spacer(modifier = Modifier.padding(10.dp))
             Card(
@@ -253,3 +242,51 @@ fun LoginScreen(
     }
 }
 
+@Composable
+private fun TopBar(
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .background(color = Color.Black),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp, start = 10.dp)
+                .clickable {
+                    navController.popBackStack(
+                        route = "log_reg_screen",
+                        inclusive = false
+                    )
+                },
+            horizontalArrangement = Arrangement.Start
+        ) {
+            androidx.compose.material.Icon(
+                painter = painterResource(id = R.drawable.arrow_back),
+                contentDescription = "Back Icon",
+                tint = Color.White
+            )
+
+            androidx.compose.material.Text(
+                text = stringResource(R.string.back),
+                color = White,
+                style = Typography.headlineSmall
+            )
+        }
+        Spacer(modifier = Modifier.padding(10.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            androidx.compose.material.Text(
+                text = stringResource(R.string.login),
+                color = White,
+                style = Typography.headlineLarge
+            )
+        }
+    }
+}

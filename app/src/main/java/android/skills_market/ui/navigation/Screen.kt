@@ -13,15 +13,11 @@ sealed class Screen(val title: String?, val icon: Int?, val route: String) {
     object VacancyScreen : Screen(null, null, "vacancy_screen")
     object FavouritesScreen :
         Screen("Избранное", R.drawable.favorite_border, "favourites_screen")
-
     object ResponsesListScreen :
         Screen("Отклики", R.drawable.handshake, "responses_list_screen")
-
     object ChatListScreen :
         Screen("Чаты", R.drawable.chat_bubble_outline, "chat_list_screen")
     object MessengerScreen : Screen(null, null, "messenger_screen")
-
-
     object ProfileScreen :
         Screen("Профиль", R.drawable.person_outline, "profile_screen")
 }
