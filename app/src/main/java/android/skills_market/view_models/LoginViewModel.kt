@@ -2,12 +2,10 @@ package android.skills_market.view_models
 
 import android.skills_market.database.SMFirebase
 import android.skills_market.view_models.states.LoginUIState
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,66 +24,49 @@ class LoginViewModel : ViewModel() {
 
     fun loginUser(
         onSuccessAction: () -> Unit,
-        onWrongPasswordAction: () -> Unit,
-        onWrongLoginAction: () -> Unit,
         onEmptyPasswordAction: () -> Unit,
         onEmptyLoginAction: () -> Unit,
     ) {
-        if (!isLoginNull(login) && !isPasswordNull(password)) {
-            try {
-                db.loginUser(onSuccessAction, login, password)
-            } catch (e: com.google.firebase.auth.FirebaseAuthInvalidCredentialsException) {
-                onWrongPasswordAction()
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        isPasswordCorrect = false
-                    )
-                }
-                Log.d("ErrorTag",_uiState.value.isPasswordCorrect.toString())
-            } catch (e: com.google.firebase.auth.FirebaseAuthInvalidUserException) {
-                onWrongLoginAction()
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        isLoginCorrect = false
-                    )
-                }
-            }
-        } else {
-            if (isLoginNull(login)) onEmptyLoginAction() else onEmptyPasswordAction()
-        }
+        if (!isLoginBlankOrNull(login) && !isPasswordBlankOrNull(password)) {
+            db.loginUser(onSuccessAction, login, password)
+        } else if (isLoginBlankOrNull(login)) onEmptyLoginAction() else onEmptyPasswordAction()
     }
 
-    private fun isLoginNull(login: String): Boolean {
+    private fun isLoginBlankOrNull(login: String): Boolean {
         _uiState.update { currentState ->
             currentState.copy(
-                isLoginNull = login == "",
-                isLoginCorrect = login != ""
+                isLoginBlank = login.isBlank(),
+                isLoginCorrect = false
             )
         }
-        return login == ""
+        return login.isBlank()
     }
 
-    private fun isPasswordNull(password: String): Boolean {
+    private fun isPasswordBlankOrNull(password: String): Boolean {
         _uiState.update { currentState ->
             currentState.copy(
-                isPasswordNull = password == "",
-                isPasswordCorrect = password != ""
+                isPasswordBlank = password.isBlank(),
+                isPasswordCorrect = false
             )
         }
-        return password == ""
+        return password.isBlank()
     }
 
     fun updateLogin(enteredLogin: String) {
         login = enteredLogin
         _uiState.update { currentState ->
-            currentState.copy(login = login)
+            currentState.copy(
+                login = login
+            )
         }
     }
 
     fun updatePassword(enteredPassword: String) {
         password = enteredPassword
         _uiState.update { currentState ->
-            currentState.copy(password = password)
+            currentState.copy(
+                password = password
+            )
         }
     }
 }

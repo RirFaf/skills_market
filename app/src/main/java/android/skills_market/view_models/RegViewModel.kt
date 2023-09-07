@@ -1,20 +1,12 @@
 package android.skills_market.view_models
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.skills_market.data.StudentModel
 import android.skills_market.database.SMFirebase
-import android.skills_market.ui.activities.AppActivity
 import android.skills_market.view_models.states.RegUIState
-import androidx.compose.runtime.CompositionLocalContext
-import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -49,42 +41,49 @@ class RegViewModel : ViewModel() {
             currentState.copy(name = name)
         }
     }
+
     fun updateSurname(enteredSurname: String) {
         surname = enteredSurname
         _uiState.update { currentState ->
             currentState.copy(surname = surname)
         }
     }
+
     fun updatePatronymic(enteredPatronymic: String) {
         patronymic = enteredPatronymic
         _uiState.update { currentState ->
             currentState.copy(patronymic = patronymic)
         }
     }
+
     fun updateCity(enteredCity: String) {
         city = enteredCity
         _uiState.update { currentState ->
             currentState.copy(city = city)
         }
     }
+
     fun updateCourse(enteredCourse: String) {
         course = enteredCourse
         _uiState.update { currentState ->
             currentState.copy(course = course)
         }
     }
+
     fun updateEmail(enteredEmail: String) {
         email = enteredEmail
         _uiState.update { currentState ->
             currentState.copy(email = email)
         }
     }
+
     fun updatePassword(enteredPassword: String) {
         password = enteredPassword
         _uiState.update { currentState ->
             currentState.copy(password = password)
         }
     }
+
     fun updatePhone(enteredPhone: String) {
         phone = enteredPhone
         _uiState.update { currentState ->
@@ -93,11 +92,12 @@ class RegViewModel : ViewModel() {
     }
 
     fun register(
-        localContext: Context,
-        onInvalidCredentialsAction: () -> Unit,
-        onWeakPasswordAction: () -> Unit,
+        onSuccessAction: () -> Unit,
+        onFailureAction: () -> Unit,
+        onEmptyPasswordAction: () -> Unit,
+        onEmptyLoginAction: () -> Unit,
     ) {
-        try {
+        if (!isLoginBlankOrNull(email) && !isPasswordBlankOrNull(password)) {
             db.addUser(
                 StudentModel(
                     _uiState.value.surname,
@@ -110,19 +110,30 @@ class RegViewModel : ViewModel() {
                     _uiState.value.phone,
                 ),
                 onSuccessAction = {
-                    (localContext as Activity).finish()
-                    localContext.startActivity(
-                        Intent(
-                            localContext,
-                            AppActivity::class.java
-                        )
-                    )
+                    onSuccessAction()
+                },
+                onFailureAction = {
+                    onFailureAction()
                 }
             )
-        } catch (e: FirebaseAuthWeakPasswordException) {
-            onWeakPasswordAction()
-        } catch (e: FirebaseAuthInvalidCredentialsException) {
-            onInvalidCredentialsAction()
+        } else if (isLoginBlankOrNull(email)) onEmptyLoginAction() else onEmptyPasswordAction()
+    }
+
+    private fun isLoginBlankOrNull(login: String): Boolean {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isLoginBlank = login.isBlank(),
+            )
         }
+        return login.isBlank()
+    }
+
+    private fun isPasswordBlankOrNull(password: String): Boolean {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isPasswordBlank = password.isBlank(),
+            )
+        }
+        return password.isBlank()
     }
 }

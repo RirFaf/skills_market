@@ -1,7 +1,9 @@
 package android.skills_market.ui.screens
 
+import android.app.Activity
+import android.content.Intent
 import android.skills_market.R
-import android.skills_market.ui.screens.custom_composables.LogRegTopBar
+import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.navigation.Screen
@@ -9,6 +11,7 @@ import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.RegViewModel
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,7 +19,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -26,6 +28,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -73,7 +76,8 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
             .wrapContentSize()
             .padding(horizontal = 30.dp)
             .background(Black),
-        shape = RoundedCornerShape(26.dp)
+        shape = RoundedCornerShape(26.dp),
+        colors = CardDefaults.cardColors(containerColor = White)
     ) {
         Column(
             modifier = Modifier
@@ -123,7 +127,8 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
             .wrapContentSize()
             .padding(horizontal = 30.dp)
             .background(Black),
-        shape = RoundedCornerShape(26.dp)
+        shape = RoundedCornerShape(26.dp),
+        colors = CardDefaults.cardColors(containerColor = White)
     ) {
         Column(
             modifier = Modifier
@@ -175,7 +180,8 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
             .wrapContentSize()
             .padding(horizontal = 30.dp)
             .background(Black),
-        shape = RoundedCornerShape(26.dp)
+        shape = RoundedCornerShape(26.dp),
+        colors = CardDefaults.cardColors(containerColor = White)
     ) {
         Column(
             modifier = Modifier
@@ -196,9 +202,36 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                 keyboardActions = KeyboardActions(
                     onDone = {
                         viewModel.register(
-                            localContext = localContext,
-                            onInvalidCredentialsAction = {},
-                            onWeakPasswordAction = {}
+                            onSuccessAction = {
+                                (localContext as Activity).finish()
+                                localContext.startActivity(
+                                    Intent(
+                                        localContext,
+                                        AppActivity::class.java
+                                    )
+                                )
+                            },
+                            onFailureAction = {
+                                Toast.makeText(
+                                    localContext,
+                                    "Упс.. попробуйте ещё раз",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            onEmptyPasswordAction = {
+                                Toast.makeText(
+                                    localContext,
+                                    "Введите пароль",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            onEmptyLoginAction =  {
+                                Toast.makeText(
+                                    localContext,
+                                    "Введите почту",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         )
                         keyboardController?.hide()
                     }
@@ -210,9 +243,37 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                 text = stringResource(R.string.done),
                 onClick = {
                     viewModel.register(
-                        localContext = localContext,
-                        onInvalidCredentialsAction = {},
-                        onWeakPasswordAction = {}
+
+                        onSuccessAction = {
+                            (localContext as Activity).finish()
+                            localContext.startActivity(
+                                Intent(
+                                    localContext,
+                                    AppActivity::class.java
+                                )
+                            )
+                        },
+                        onFailureAction = {
+                            Toast.makeText(
+                                localContext,
+                                "Упс.. попробуйте ещё раз",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onEmptyPasswordAction = {
+                            Toast.makeText(
+                                localContext,
+                                "Введите пароль",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onEmptyLoginAction =  {
+                            Toast.makeText(
+                                localContext,
+                                "Введите почту",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     )
                 },
                 colors = ButtonDefaults.buttonColors(Black)

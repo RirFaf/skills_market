@@ -9,4 +9,6 @@ data class RegUIState(
     val email: String = "",
     val password: String = "",
     val phone: String = "",
+    val isPasswordBlank: Boolean = true,
+    val isLoginBlank: Boolean = true,
 )

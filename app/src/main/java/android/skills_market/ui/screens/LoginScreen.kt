@@ -5,13 +5,11 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.screens.custom_composables.LargeButton
-import android.skills_market.ui.screens.custom_composables.LogRegTopBar
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -48,7 +46,7 @@ fun LoginScreen(
     var passwordVisible by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopBar(navController = navController)},
+        topBar = { TopBar(navController = navController) },
         containerColor = Black
     ) { innerPadding ->
         Column(
@@ -136,35 +134,22 @@ fun LoginScreen(
                                             )
                                         )
                                     },
-                                    onWrongPasswordAction = {
-                                        Toast.makeText(
-                                            localContext,
-                                            "Неправильный пароль",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    },
-                                    onWrongLoginAction = {
-                                        Toast.makeText(
-                                            localContext,
-                                            "Такого логина нет в нашей базе данных",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    },
-                                    onEmptyLoginAction = {
-                                        Toast.makeText(
-                                            localContext,
-                                            "Введите логин",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    },
                                     onEmptyPasswordAction = {
                                         Toast.makeText(
                                             localContext,
                                             "Введите пароль",
                                             Toast.LENGTH_SHORT
                                         ).show()
+                                    },
+                                    onEmptyLoginAction =  {
+                                        Toast.makeText(
+                                            localContext,
+                                            "Введите логин",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 )
+                                keyboardController?.hide()
                             }
                         ),
                         trailingIcon = {
@@ -204,17 +189,10 @@ fun LoginScreen(
                                         )
                                     )
                                 },
-                                onWrongPasswordAction = {
+                                onEmptyPasswordAction = {
                                     Toast.makeText(
                                         localContext,
-                                        "Неправильный пароль",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                },
-                                onWrongLoginAction = {
-                                    Toast.makeText(
-                                        localContext,
-                                        "Такого логина нет в нашей базе данных",
+                                        "Введите пароль",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 },
@@ -224,15 +202,9 @@ fun LoginScreen(
                                         "Введите логин",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                },
-                                onEmptyPasswordAction = {
-                                    Toast.makeText(
-                                        localContext,
-                                        "Введите пароль",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
                                 }
                             )
+                            keyboardController?.hide()
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Black)
                     )

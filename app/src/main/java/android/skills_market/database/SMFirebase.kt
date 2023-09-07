@@ -4,30 +4,24 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.skills_market.data.StudentModel
-import android.skills_market.ui.activities.AppActivity
 import android.skills_market.ui.activities.LogRegActivity
 import android.util.Log
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.util.regex.Pattern
 import kotlin.Exception
 
 
 class SMFirebase() {
-    private val db = Firebase.database
-
+    private val auth = Firebase.auth
+    @Throws(Exception::class)
     fun addUser(
         user: StudentModel,
         onSuccessAction: () -> Unit,
+        onFailureAction: () -> Unit,
     ) {
-        var e: Exception?
         val rootRef = Firebase.database.getReference("Student")
-        val auth = Firebase.auth
         val eventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 rootRef.push().setValue(user)
@@ -37,46 +31,28 @@ class SMFirebase() {
                 Log.d("ErrorTag", databaseError.message) //Don't ignore errors!
             }
         }
+
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnSuccessListener {
                 rootRef.addListenerForSingleValueEvent(eventListener)
                 onSuccessAction()
             }
-            .addOnFailureListener() { task ->
-                e = task
-                Log.e("ErrorTag", e.toString())
-            }
     }
 
-    /* TODO: Исправить валидацию */
-    @Throws(Exception::class)
+
+    /* TODO: Исправить валидацию (поля меняют цвет в любом случае) */
     fun loginUser(
         onSuccessAction: () -> Unit,
         login: String,
         password: String
     ) {
-        var e: Exception? = null
-        val auth = Firebase.auth
-
         auth.signInWithEmailAndPassword(login, password)
             .addOnSuccessListener {
                 onSuccessAction()
             }
-            .addOnFailureListener() { task ->
-                e = task
-                Log.e("ErrorTag", e.toString())
-            }
-            .addOnCompleteListener { task ->
-                e = task.exception!!
-            }
-        Log.e("ErrorTag", e.toString())
-        if (e != null) {
-            throw e!!
-        }
     }
 
     fun logoutUser(localContext: Context) {
-        val auth = Firebase.auth
         auth.signOut()
         (localContext as Activity).finish()
         localContext.startActivity(

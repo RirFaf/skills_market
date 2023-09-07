@@ -15,6 +15,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.Ease
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
+import androidx.compose.animation.core.EaseOutSine
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -38,19 +39,19 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             route = Screen.LogRegScreen.route,
             popEnterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             }
@@ -61,29 +62,29 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             route = Screen.LoginScreen.route,
             enterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
@@ -94,29 +95,29 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             route = Screen.RegistrationScreen.route,
             enterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
@@ -139,39 +140,31 @@ fun RegGraph(
     ) {
         composable(
             route = Screen.NameAndGenderRegScreen.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             popEnterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
@@ -182,37 +175,37 @@ fun RegGraph(
             route = Screen.CityCourseAndPhone.route,
             enterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             popEnterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
@@ -223,37 +216,37 @@ fun RegGraph(
             route = Screen.EmailAndPasswordScreen.route,
             enterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             popEnterTransition = {
                 fadeIn(
-                    animationSpec = tween(300, easing = LinearEasing),
+                    animationSpec = tween(250, easing = LinearEasing),
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        250, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(250, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
