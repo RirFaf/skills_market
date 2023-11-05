@@ -1,9 +1,8 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.data.VacancyModel
+import android.skills_market.network.models.SelectedVacancyModel
 import android.skills_market.ui.screens.custom_composables.LargeButton
-import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Inter
 import android.skills_market.view_models.VacancyViewModel
@@ -17,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -36,9 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun VacancyScreen(navController: NavController, vacancyViewModel: VacancyViewModel) {
-    val vacancy: VacancyModel = vacancyViewModel.getVacancy()
-    val uiState = vacancyViewModel.uiState.collectAsState()
+fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
     Scaffold(
         modifier = Modifier,
         topBar = { TopBar(navController = navController) }
@@ -90,9 +86,8 @@ fun VacancyScreen(navController: NavController, vacancyViewModel: VacancyViewMod
                 LargeButton(
                     text = stringResource(id = R.string.respond),
                     onClick = {
-                        vacancyViewModel.respond()
                     },
-                    enabled = !uiState.value.isResponded
+                    enabled = true
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
             }

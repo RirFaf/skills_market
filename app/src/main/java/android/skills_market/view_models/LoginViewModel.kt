@@ -1,7 +1,6 @@
 package android.skills_market.view_models
 
-import android.skills_market.database.SMFirebase
-import android.skills_market.view_models.states.LoginUIState
+import android.skills_market.network.SMFirebase
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,9 +10,23 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+sealed interface LoginUIState {
+    data class Success(
+        val isPasswordBlank: Boolean = true,
+        val isPasswordCorrect: Boolean = false,
+        val isLoginBlank: Boolean = true,
+        val isLoginCorrect: Boolean = false,
+        val login: String = "",
+        val password: String = "",
+    ) : LoginUIState
+
+    object Error : LoginUIState
+    object Loading : LoginUIState
+}
+
 class LoginViewModel : ViewModel() {
     private val db = SMFirebase()
-    private val _uiState = MutableStateFlow(LoginUIState())
+    private val _uiState = MutableStateFlow(LoginUIState.Success())
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
 
     var login by mutableStateOf("")

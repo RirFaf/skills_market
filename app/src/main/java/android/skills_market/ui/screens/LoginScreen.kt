@@ -3,7 +3,7 @@ package android.skills_market.ui.screens
 import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
-import android.skills_market.ui.activities.AppActivity
+import android.skills_market.activities.AppActivity
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
@@ -86,7 +86,6 @@ fun LoginScreen(
                             focusedBorderColor = Black,
                             focusedLabelColor = Black,
                         ),
-                        isError = uiState.isLoginCorrect,
                         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
                         singleLine = true,
                         placeholder = {
@@ -111,7 +110,6 @@ fun LoginScreen(
                             focusedBorderColor = Black,
                             focusedLabelColor = Black,
                         ),
-                        isError = uiState.isPasswordCorrect,
                         label = { Text(text = stringResource(id = R.string.password)) },
                         singleLine = true,
                         placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },

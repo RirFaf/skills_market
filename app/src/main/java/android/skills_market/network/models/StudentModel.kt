@@ -1,4 +1,4 @@
-package android.skills_market.data
+package android.skills_market.network.models
 
 data class StudentModel(
     val surname: String,

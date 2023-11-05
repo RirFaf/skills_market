@@ -1,4 +1,4 @@
-package android.skills_market.ui.activities
+package android.skills_market.activities
 
 import android.os.Bundle
 import android.skills_market.R

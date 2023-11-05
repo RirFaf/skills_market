@@ -1,6 +1,6 @@
 package android.skills_market.view_models
 
-import android.skills_market.view_models.states.MessengerUIState
+import android.skills_market.network.models.StudentModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,8 +10,18 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+sealed interface MessengerUIState {
+    data class Success(
+        val enteredText: String = "",
+        val isMsgBlank: Boolean = true,
+    ) : MessengerUIState
+
+    object Error : MessengerUIState
+    object Loading : MessengerUIState
+}
+
 class MessengerViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(MessengerUIState())
+    private val _uiState = MutableStateFlow(MessengerUIState.Success())
     val uiState: StateFlow<MessengerUIState> = _uiState.asStateFlow()
     var currentMessage by mutableStateOf("")
         private set
@@ -22,11 +32,11 @@ class MessengerViewModel : ViewModel() {
             currentState.copy(
                 enteredText = currentMessage,
                 isMsgBlank = currentMessage.isNotBlank()
-                )
+            )
         }
     }
 
-    fun sendMessage(messageText: String){
+    fun sendMessage(messageText: String) {
         //Todo: вставить функцию для отправки сообщения на сервер
         _uiState.update { currentState ->
             currentState.copy(
@@ -36,7 +46,7 @@ class MessengerViewModel : ViewModel() {
         }
     }
 
-    fun receiveMessage(message: String){
-        
+    fun receiveMessage(message: String) {
+
     }
 }

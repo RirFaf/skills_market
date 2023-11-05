@@ -3,8 +3,8 @@ package android.skills_market.ui.screens
 import android.content.Context
 import android.skills_market.R
 import android.skills_market.custom_composables.ResponseCard
-import android.skills_market.data.ResponseModel
-import android.skills_market.database.SMFirebase
+import android.skills_market.network.models.ResponseModel
+import android.skills_market.network.SMFirebase
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.theme.AccentBlue
 import androidx.annotation.DrawableRes

@@ -2,16 +2,15 @@ package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.AccentBlue
-import android.skills_market.ui.theme.Gray900
+import android.skills_market.ui.theme.Black
+import android.skills_market.ui.theme.Gray90
 import android.skills_market.ui.theme.White
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.*
-import androidx.compose.material3.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -27,7 +26,7 @@ fun NavigationBar(navController: NavController) {
         Screen.ProfileScreen,
     )
     BottomAppBar(
-        backgroundColor = Gray900
+        backgroundColor = Black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

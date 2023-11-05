@@ -2,7 +2,8 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.ui.screens.custom_composables.VacancyCard
-import android.skills_market.data.VacancyModel
+import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.network.models.ShortVacancyModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -46,23 +47,15 @@ fun FavouritesScreen(navController: NavController) {
                 ) {
                     itemsIndexed(
                         listOf(
-                            VacancyModel(
+                            ShortVacancyModel(
                                 position = "Интерн",
                                 salary = 50000,
                                 companyName = "Семейный доктор",
-                                edArea = "Медицина",
-                                formOfEmployment = "Частичная",
-                                requirements = "Окончание 3 курса",
-                                location = "Казань, метро Площадь Тукая"
                             ),
-                            VacancyModel(
+                            ShortVacancyModel(
                                 position = "Секретарь",
                                 salary = 20000,
                                 companyName = "ИП Петров Игорь Михайлович",
-                                edArea = "Востоковедение",
-                                formOfEmployment = "Частичная",
-                                requirements = "Начальное знание турецкого языка",
-                                location = "Казань, метро Козья слобода"
                             ),
                         )
                     ) { _, item ->

@@ -3,7 +3,7 @@ package android.skills_market.ui.screens
 import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
-import android.skills_market.ui.activities.AppActivity
+import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.navigation.Screen
@@ -87,20 +87,20 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = uiState.surname,
+                value = viewModel.surname,
                 onValueChange = { viewModel.updateSurname(it) },
                 keyboardActions = KeyboardActions(),
                 placeholder = R.string.surname,
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.name,
+                value = viewModel.name,
                 onValueChange = { viewModel.updateName(it) },
                 placeholder = R.string.name,
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.patronymic,
+                value = viewModel.patronymic,
                 onValueChange = { viewModel.updatePatronymic(it) },
                 keyboardActions = KeyboardActions(
                     onDone = {
@@ -138,19 +138,19 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = uiState.city,
+                value = viewModel.city,
                 onValueChange = { viewModel.updateCity(it) },
                 placeholder = R.string.city,
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.course,
+                value = viewModel.course,
                 onValueChange = { viewModel.updateCourse(it) },
                 placeholder = R.string.course_num,
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.phone,
+                value = viewModel.phone,
                 onValueChange = { viewModel.updatePhone(it) },
                 keyboardActions = KeyboardActions(
                     onDone = {
@@ -191,13 +191,13 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = uiState.email,
+                value = viewModel.email,
                 onValueChange = { viewModel.updateEmail(it) },
                 placeholder = R.string.email,
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.password,
+                value = viewModel.password,
                 onValueChange = { viewModel.updatePassword(it) },
                 keyboardActions = KeyboardActions(
                     onDone = {

@@ -3,8 +3,7 @@ package android.skills_market.ui.screens
 import android.skills_market.R
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.Gray250
-import android.skills_market.ui.theme.White
+import android.skills_market.ui.theme.Gray70
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -90,7 +88,7 @@ private fun ChatCard(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color.Transparent),
-                    color = Gray250,
+                    color = Gray70,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
@@ -113,7 +111,7 @@ private fun ChatCard(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Transparent),
-                color = Gray250,
+                color = Gray70,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Start,

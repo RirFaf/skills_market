@@ -2,8 +2,8 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.Gray150
-import android.skills_market.ui.theme.Gray250
+import android.skills_market.ui.theme.Gray50
+import android.skills_market.ui.theme.Gray70
 import android.skills_market.ui.theme.Inter
 import android.skills_market.ui.theme.Teal200
 import android.skills_market.ui.theme.White
@@ -102,7 +102,7 @@ private fun TopBar(navController: NavController) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 fontFamily = Inter,
-                color = Gray250
+                color = Gray70
             )
         }
     }
@@ -189,7 +189,7 @@ private fun ReceivedMessageBubble(text: String) {
         Card(
             modifier = Modifier
                 .wrapContentSize(),
-            colors = CardDefaults.cardColors(containerColor = Gray150)
+            colors = CardDefaults.cardColors(containerColor = Gray50)
         ) {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(

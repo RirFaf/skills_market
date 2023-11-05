@@ -3,7 +3,8 @@ package android.skills_market.ui.screens
 import android.skills_market.R
 import android.skills_market.ui.screens.custom_composables.SearchBar
 import android.skills_market.ui.screens.custom_composables.VacancyCard
-import android.skills_market.data.VacancyModel
+import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.network.models.ShortVacancyModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun SearchScreen(navController: NavController) {
+fun SearchScreen(navController: NavController, vacancies: ArrayList<ShortVacancyModel>) {
     Scaffold(
         modifier = Modifier.padding(),
         topBar = { TopBar() },
@@ -44,65 +45,8 @@ fun SearchScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(14.dp),
                     contentPadding = PaddingValues(4.dp)
                 ) {
-                    itemsIndexed(
-                        listOf(
-                            VacancyModel(
-                                position = "Юрист",
-                                salary = 50000,
-                                companyName = "Газпром",
-                                edArea = "Юриспрюденция",
-                                formOfEmployment = "Полная",
-                                requirements = "Знание английского языка",
-                                location = "Казань, метро Площадь Тукая"
-                            ),
-                            VacancyModel(
-                                position = "Программист",
-                                salary = 30000,
-                                companyName = "Битрикс 1С",
-                                edArea = "Информационные Технологии",
-                                formOfEmployment = "Частичная",
-                                requirements = "Диплом об окончании курсов",
-                                location = "Казань, метро Козья слобода"
-                            ),
-                            VacancyModel(
-                                position = "Java Trainee",
-                                salary = 60000,
-                                companyName = "Aston",
-                                edArea = "Информационные Технологии",
-                                formOfEmployment = "Полный день",
-                                requirements = "Знание английского языка",
-                                location = "Казань, метро Площадь Тукая"
-                            ),
-                            VacancyModel(
-                                position = "Android developer",
-                                salary = 100000,
-                                companyName = "Aston",
-                                edArea = "Информационные технологии",
-                                formOfEmployment = "Полная",
-                                requirements = "Знание английского/немецкого языка",
-                                location = "Казань, метро Суконная слобода"
-                            ),
-                            VacancyModel(
-                                position = "Интерн",
-                                salary = 50000,
-                                companyName = "Семейный доктор",
-                                edArea = "Медицина",
-                                formOfEmployment = "Частичная",
-                                requirements = "Окончание 3 курса",
-                                location = "Казань, метро Площадь Тукая"
-                            ),
-                            VacancyModel(
-                                position = "Секретарь",
-                                salary = 20000,
-                                companyName = "ИП Петров Игорь Михайлович",
-                                edArea = "Востоковедение",
-                                formOfEmployment = "Частичная",
-                                requirements = "Начальное знание турецкого языка",
-                                location = "Казань, метро Козья слобода"
-                            ),
-                        )
-                    ) { _, item ->
-                        VacancyCard(vacancy = item, navController = navController)
+                    itemsIndexed(vacancies) { _, vacancy ->
+                        VacancyCard(vacancy = vacancy, navController = navController)
                     }
                 }
             }

@@ -1,8 +1,8 @@
 package android.skills_market.custom_composables
 
 import android.skills_market.R
-import android.skills_market.data.ResponseModel
-import android.skills_market.ui.theme.Gray150
+import android.skills_market.network.models.ResponseModel
+import android.skills_market.ui.theme.Gray90
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -29,9 +29,10 @@ fun ResponseCard(response: ResponseModel) {
             .fillMaxWidth()
             .padding(10.dp),
         shape = RoundedCornerShape(15.dp),
-        elevation = 0.dp
+        elevation = 0.dp,
+        backgroundColor = Gray90
     ) {
-        Column(modifier = Modifier.background(color = Gray150)) {
+        Column(modifier = Modifier.fillMaxSize()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = response.imageId),

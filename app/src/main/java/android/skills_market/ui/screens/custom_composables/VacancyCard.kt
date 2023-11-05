@@ -1,19 +1,17 @@
 package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.R
-import android.skills_market.data.VacancyModel
+import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.network.models.ShortVacancyModel
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.AccentBlue
 import android.skills_market.ui.theme.Typography
 import android.skills_market.ui.theme.White
 import android.skills_market.view_models.VacancyViewModel
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme.shapes
@@ -28,22 +26,22 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun VacancyCard(vacancy: VacancyModel, navController: NavController) {
+fun VacancyCard(vacancy: ShortVacancyModel, navController: NavController) {
     val vacancyViewModel = VacancyViewModel()
-    val uiState = vacancyViewModel.uiState.collectAsState()
+//    val uiState = vacancyViewModel.uiState.collectAsState()
     Card(
         modifier = Modifier
             .background(Color.Transparent)
             .fillMaxSize()
             .clickable {
-                vacancyViewModel.setVacancy(vacancy)
-                navController.currentBackStackEntry?.savedStateHandle?.set(
-                    key = "vacancy",
-                    value = vacancyViewModel
-                )
+//                vacancyViewModel.setVacancy(vacancy)
+//                navController.currentBackStackEntry?.savedStateHandle?.set(
+//                    key = "vacancy",
+//                    value = vacancyViewModel
+//                )
                 navController.navigate(Screen.VacancyScreen.route) {
                     /**
-                     * Использовать чтобы предыдущий экран вылетил из бэктека
+                     * Использовать чтобы предыдущий экран вылетил из бэкстека
                      */
 //                    navController.graph.startDestinationRoute?.let { route ->
 //                        popUpTo(route) {
@@ -89,9 +87,9 @@ fun VacancyCard(vacancy: VacancyModel, navController: NavController) {
             LargeButton(
                 text = stringResource(R.string.respond),
                 onClick = {
-                    vacancyViewModel.respond()
+//                    vacancyViewModel.respond()
                 },
-                enabled = !uiState.value.isResponded
+//                enabled = !uiState.value.isResponded
             )
         }
     }

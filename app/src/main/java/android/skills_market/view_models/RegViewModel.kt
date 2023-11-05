@@ -1,8 +1,7 @@
 package android.skills_market.view_models
 
-import android.skills_market.data.StudentModel
-import android.skills_market.database.SMFirebase
-import android.skills_market.view_models.states.RegUIState
+import android.skills_market.network.models.StudentModel
+import android.skills_market.network.SMFirebase
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,9 +11,27 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+sealed interface RegUIState {
+    data class Success(
+        val patronymic: String = "",
+        val name: String = "",
+        val surname: String = "",
+        val city: String = "",
+        val course: String = "",
+        val email: String = "",
+        val password: String = "",
+        val phone: String = "",
+        val isPasswordBlank: Boolean = true,
+        val isLoginBlank: Boolean = true,
+    ) : RegUIState
+
+    object Error : RegUIState
+    object Loading : RegUIState
+}
+
 class RegViewModel : ViewModel() {
     private val db = SMFirebase()
-    private val _uiState = MutableStateFlow(RegUIState())
+    private val _uiState = MutableStateFlow(RegUIState.Success())
     val uiState: StateFlow<RegUIState> = _uiState.asStateFlow()
 
     var surname by mutableStateOf("")

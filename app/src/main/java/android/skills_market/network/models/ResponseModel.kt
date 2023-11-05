@@ -1,4 +1,4 @@
-package android.skills_market.data
+package android.skills_market.network.models
 
 import androidx.annotation.DrawableRes
 

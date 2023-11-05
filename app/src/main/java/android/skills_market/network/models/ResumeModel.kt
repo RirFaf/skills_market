@@ -1,4 +1,4 @@
-package android.skills_market.data
+package android.skills_market.network.models
 data class ResumeModel(
     val name:String,
     val minprice:String,

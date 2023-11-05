@@ -1,10 +1,10 @@
-package android.skills_market.database
+package android.skills_market.network
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.skills_market.data.StudentModel
-import android.skills_market.ui.activities.LogRegActivity
+import android.skills_market.network.models.StudentModel
+import android.skills_market.activities.LogRegActivity
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
