@@ -1,9 +1,7 @@
 package android.skills_market.ui.screens.custom_composables
 
-import android.skills_market.ui.theme.Gray50
 import android.skills_market.network.models.ResumeModel
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,8 +21,8 @@ fun ResumeCard(item: ResumeModel){
     ) {
         Card(
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            backgroundColor = Gray50
+//            shape = RoundedCornerShape(16.dp),
+//            backgroundColor = Gray50
         ){
             Column(
                 modifier = Modifier

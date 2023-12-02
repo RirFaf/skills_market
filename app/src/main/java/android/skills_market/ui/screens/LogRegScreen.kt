@@ -2,21 +2,15 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.White
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +27,6 @@ fun LogRegScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Black)
             .padding(horizontal = 12.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -41,9 +34,7 @@ fun LogRegScreen(navController: NavController) {
         Text(
             text = stringResource(id = R.string.hello),
             modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Transparent),
-            color = White,
+                .fillMaxWidth(),
             fontSize = 28.sp,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
@@ -55,7 +46,6 @@ fun LogRegScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Transparent),
-            color = White,
             fontSize = 28.sp,
             textAlign = TextAlign.Center
         )
@@ -65,21 +55,15 @@ fun LogRegScreen(navController: NavController) {
                 navController.navigate(Screen.LoginScreen.route)
             },
             modifier = Modifier
-                .fillMaxWidth()
-                .border(2.dp, White, RoundedCornerShape(10.dp)),
-            shape = shapes.medium,
-            colors = ButtonDefaults.buttonColors(White)
+                .fillMaxWidth(),
         ) {
             Text(
                 text = stringResource(R.string.login),
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Transparent),
-                color = Black,
+                    .fillMaxWidth(),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
-                maxLines = 1
             )
         }
         Spacer(modifier = Modifier.padding(6.dp))
@@ -88,21 +72,15 @@ fun LogRegScreen(navController: NavController) {
                 navController.navigate(Screen.RegistrationScreen.route)
             },
             modifier = Modifier
-                .fillMaxWidth()
-                .border(1.dp, White, RoundedCornerShape(10.dp)),
-            shape = shapes.medium,
-            colors = ButtonDefaults.buttonColors(Black)
+                .fillMaxWidth(),
         ) {
             Text(
                 text = stringResource(R.string.registration),
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Transparent),
-                color = White,
+                    .fillMaxWidth(),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
-                maxLines = 1
             )
         }
     }

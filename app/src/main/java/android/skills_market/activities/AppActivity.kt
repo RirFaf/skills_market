@@ -1,13 +1,17 @@
 package android.skills_market.activities
 
 import android.os.Bundle
-import android.skills_market.ui.screens.custom_composables.NavigationBar
+import android.skills_market.ui.screens.custom_composables.CustomNavBar
 import android.skills_market.ui.navigation.NavigationGraph
+import android.skills_market.ui.theme.SkillsMarketTheme
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,6 +27,7 @@ class AppActivity : ComponentActivity() {
             val navController = rememberNavController()
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
+            //Убираем нижнюю навигацию, когда заходим в переписку
             when (navBackStackEntry?.destination?.route) {
                 "search_screen" -> {
                     bottomBarState.value = true
@@ -48,15 +53,22 @@ class AppActivity : ComponentActivity() {
                     bottomBarState.value = false
                 }
             }
-            Scaffold(
-                bottomBar = {
-                    if (bottomBarState.value) {
-                        NavigationBar(navController = navController)
+            SkillsMarketTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Scaffold(
+                        bottomBar = {
+                            if (bottomBarState.value) {
+                                CustomNavBar(navController = navController)
+                            }
+                        }
+                    ) { innerPadding ->
+                        Column(modifier = Modifier.padding(innerPadding)) {
+                            NavigationGraph(navController)
+                        }
                     }
-                }
-            ) { innerPadding ->
-                Column(modifier = Modifier.padding(innerPadding)) {
-                    NavigationGraph(navController)
                 }
             }
         }

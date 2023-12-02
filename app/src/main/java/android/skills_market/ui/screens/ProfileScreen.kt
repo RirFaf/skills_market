@@ -2,27 +2,26 @@ package android.skills_market.ui.screens
 
 import android.content.Context
 import android.skills_market.R
-import android.skills_market.custom_composables.ResponseCard
-import android.skills_market.network.models.ResponseModel
 import android.skills_market.network.SMFirebase
-import android.skills_market.ui.screens.custom_composables.LargeButton
-import android.skills_market.ui.theme.AccentBlue
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,12 +44,53 @@ import androidx.navigation.NavController
 Родительский класс не имеет задаёт padding всем элементам,
 т.к. LazyRow с откликами должна занимать всю ширину экрана
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(navController: NavController) {
     val localContext = LocalContext.current
     Scaffold(
-        topBar = { TopBar(localContext = localContext) },
-        modifier = Modifier
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Профиль") },
+                actions = {
+                    val database = SMFirebase()
+                    var expandDropDownMenu by remember {
+                        mutableStateOf(false)
+                    }
+                    IconButton(
+                        onClick = {},
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.notifications_none),
+                            contentDescription = "Show menu",
+                        )
+                    }
+                    IconButton(
+                        onClick = { expandDropDownMenu = !expandDropDownMenu }
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.menu),
+                            contentDescription = "Show menu",
+                        )
+                        DropdownMenu(
+                            expanded = expandDropDownMenu,
+                            onDismissRequest = { expandDropDownMenu = false }
+                        ) {
+                            Text(
+                                text = "Выйти",
+                                modifier = Modifier
+                                    .padding(10.dp)
+                                    .clickable(onClick = {
+                                        database.logoutUser(
+                                            localContext = localContext
+                                        )
+                                    }),
+                            )
+                        }
+                    }
+                }
+            )
+        },
     ) { innerPadding ->
         Surface(
             modifier = Modifier.padding(innerPadding)
@@ -64,15 +104,16 @@ fun ProfileScreen(navController: NavController) {
                     number = "+79541024498",
                     profilePicRes = R.drawable.person_outline
                 )
-                LargeButton(
+                Button(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp)
-                        .height(60.dp),
-                    text = stringResource(R.string.my_resume),
+                        .padding(10.dp),
                     onClick = {},
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentBlue)
-                )
+                ) {
+                    Text(
+                        text = stringResource(R.string.my_resume),
+                    )
+                }
                 Spacer(modifier = Modifier.padding(6.dp))
                 Row(
                     modifier = Modifier.padding(10.dp),
@@ -81,7 +122,6 @@ fun ProfileScreen(navController: NavController) {
                 ) {
                     Text(
                         text = "Место учёбы",
-                        color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -89,7 +129,6 @@ fun ProfileScreen(navController: NavController) {
                 StudPlace(heading = "Университет", content = "Казанский Федеральный Университет")
                 StudPlace(heading = "Институт", content = "ИВМиИТ")
                 StudPlace(heading = "Направление", content = "Прикладная информатика")
-                ResponsesRow()
             }
         }
     }
@@ -114,91 +153,13 @@ private fun StudentInfo(name: String, number: String, @DrawableRes profilePicRes
         modifier = Modifier.padding(horizontal = 10.dp)
     ) {
         val borderWidth = 2.dp
-        Image(
-            painter = painterResource(id = profilePicRes),
+        Icon(
+            imageVector = Icons.Outlined.Person,
             contentDescription = "worker",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .padding(2.dp)
-                .size(120.dp)
-                .clip(CircleShape)
-                .border(
-                    BorderStroke(borderWidth, color = Color.Black),
-                    CircleShape
-                )
         )
         Column(modifier = Modifier.padding(8.dp)) {
             Text(text = name, fontSize = 25.sp)
             Text(text = number, fontSize = 18.sp)
         }
-    }
-}
-
-@Composable
-private fun ResponsesRow() {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        itemsIndexed(
-            listOf(
-                ResponseModel(R.drawable.apple_logo, "Разработчик", "Akvelon"),
-                ResponseModel(R.drawable.twitter_logo, "Тестировщик", "Anderson")
-            )
-        ) { _, item ->
-            ResponseCard(item)
-        }
-    }
-}
-
-@Composable
-private fun TopBar(localContext: Context) {
-    val database = SMFirebase()
-    var expandDropDownMenu by remember {
-        mutableStateOf(false)
-    }
-    Row(
-        modifier = Modifier
-            .height(70.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(
-            onClick = {},
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notifications_none),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-        Text(text = "Профиль", fontSize = 28.sp)
-        IconButton(
-            onClick = { expandDropDownMenu = !expandDropDownMenu }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-            DropdownMenu(
-                expanded = expandDropDownMenu,
-                onDismissRequest = { expandDropDownMenu = false }
-            ) {
-                Text(
-                    text = "Выйти",
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .clickable(onClick = {
-                            database.logoutUser(
-                                localContext = localContext
-                            )
-                        }),
-                    fontSize = 18.sp,
-                )
-            }
-        }
-
     }
 }

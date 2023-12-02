@@ -1,48 +1,52 @@
 package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.R
-import android.skills_market.network.models.SelectedVacancyModel
 import android.skills_market.network.models.ShortVacancyModel
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.ui.theme.AccentBlue
-import android.skills_market.ui.theme.Typography
-import android.skills_market.ui.theme.White
 import android.skills_market.view_models.VacancyViewModel
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+@Preview
 @Composable
-fun VacancyCard(vacancy: ShortVacancyModel, navController: NavController) {
+fun VacancyCard(
+    vacancy: ShortVacancyModel = ShortVacancyModel(0, "null", 10, "null"),
+    navController: NavController
+) {
     val vacancyViewModel = VacancyViewModel()
 //    val uiState = vacancyViewModel.uiState.collectAsState()
-    Card(
+    OutlinedCard(
         modifier = Modifier
-            .background(Color.Transparent)
             .fillMaxSize()
             .clickable {
 //                vacancyViewModel.setVacancy(vacancy)
-//                navController.currentBackStackEntry?.savedStateHandle?.set(
-//                    key = "vacancy",
-//                    value = vacancyViewModel
-//                )
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    key = "vacancy",
+                    value = vacancyViewModel
+                )
                 navController.navigate(Screen.VacancyScreen.route) {
                     /**
                      * Использовать чтобы предыдущий экран вылетил из бэкстека
                      */
+                    /**
+                     * Использовать чтобы предыдущий экран вылетил из бэкстека
+                     */
+
 //                    navController.graph.startDestinationRoute?.let { route ->
 //                        popUpTo(route) {
 //                            saveState = true
@@ -53,12 +57,10 @@ fun VacancyCard(vacancy: ShortVacancyModel, navController: NavController) {
                     restoreState = true
                 }
             },
-        shape = shapes.medium,
-        border = BorderStroke(width = 2.dp, color = AccentBlue)
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.onPrimaryContainer)
     ) {
         Column(
             Modifier
-                .background(White)
                 .fillMaxWidth()
                 .padding(vertical = 16.dp, horizontal = 14.dp)
         ) {
@@ -66,7 +68,6 @@ fun VacancyCard(vacancy: ShortVacancyModel, navController: NavController) {
                 text = vacancy.position,
                 modifier = Modifier
                     .fillMaxWidth(),
-                style = Typography.headlineSmall
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Text(
@@ -84,13 +85,14 @@ fun VacancyCard(vacancy: ShortVacancyModel, navController: NavController) {
                 fontSize = 14.sp
             )
             Spacer(modifier = Modifier.padding(4.dp))
-            LargeButton(
-                text = stringResource(R.string.respond),
+            Button(
                 onClick = {
 //                    vacancyViewModel.respond()
                 },
 //                enabled = !uiState.value.isResponded
-            )
+            ){
+                Text(text = stringResource(id = R.string.respond))
+            }
         }
     }
 }

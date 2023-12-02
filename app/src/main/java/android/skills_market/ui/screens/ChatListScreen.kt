@@ -2,8 +2,6 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.Gray70
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,10 +13,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,10 +33,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatListScreen(navController: NavController) {
     Scaffold(
-        topBar = { TopBar() }
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "Чаты")
+                },
+                actions = {
+                    IconButton(
+                        onClick = {}
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Notifications,
+                            contentDescription = "Show menu",
+                        )
+                    }
+                    IconButton(
+                        onClick = { }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Show menu",
+                        )
+                    }
+                }
+            )
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -76,7 +104,6 @@ private fun ChatCard(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .background(Color.Transparent),
-                    color = Black,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Start,
@@ -88,7 +115,6 @@ private fun ChatCard(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color.Transparent),
-                    color = Gray70,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
@@ -100,7 +126,6 @@ private fun ChatCard(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Transparent),
-                color = Black,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Start,
@@ -111,7 +136,6 @@ private fun ChatCard(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Transparent),
-                color = Gray70,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Start,
@@ -121,33 +145,3 @@ private fun ChatCard(navController: NavController) {
     }
 }
 
-@Composable
-private fun TopBar() {
-    Row(
-        modifier = Modifier
-            .height(70.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(
-            onClick = {}
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notifications_none),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-        Text(text = "Чаты", fontSize = 28.sp)
-        IconButton(
-            onClick = { }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-    }
-}

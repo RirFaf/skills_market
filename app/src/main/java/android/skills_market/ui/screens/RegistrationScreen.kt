@@ -5,15 +5,10 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
-import android.skills_market.ui.screens.custom_composables.LargeButton
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.ui.theme.Black
-import android.skills_market.ui.theme.Typography
-import android.skills_market.ui.theme.White
 import android.skills_market.view_models.RegViewModel
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,23 +17,22 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -50,14 +44,39 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import java.util.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(navController: NavHostController) {
     val viewModel = RegViewModel()
     val regNavController = rememberNavController()
     /*TODO: Доделать переходы и валидацию*/
     Scaffold(
-        topBar = { TopBar(navController = navController) },
-        containerColor = Black
+        topBar = {
+            LargeTopAppBar(
+                title = { Text(text = "Регистрация") },
+                navigationIcon = {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.popBackStack(
+                                    route = "log_reg_screen",
+                                    inclusive = false
+                                )
+                            },
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.arrow_back),
+                            contentDescription = "Back Icon",
+                        )
+                        Text(
+                            text = stringResource(R.string.back),
+                        )
+                    }
+                }
+            )
+        },
     ) { innerPadding ->
         Column(Modifier.padding(innerPadding)) {
             RegGraph(
@@ -71,18 +90,14 @@ fun RegistrationScreen(navController: NavHostController) {
 @Composable
 fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController) {
     val uiState by viewModel.uiState.collectAsState()
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
-            .padding(horizontal = 30.dp)
-            .background(Black),
-        shape = RoundedCornerShape(26.dp),
-        colors = CardDefaults.cardColors(containerColor = White)
+            .padding(horizontal = 30.dp),
     ) {
         Column(
             modifier = Modifier
-                .padding(26.dp)
-                .background(Color.Transparent),
+                .padding(26.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -110,11 +125,14 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
                 placeholder = R.string.patronymic,
                 lastField = true
             )
-            LargeButton(
-                text = stringResource(R.string.next),
+            Button(
                 onClick = { navController.navigate(Screen.CityCourseAndPhone.route) },
-                colors = ButtonDefaults.buttonColors(Black)
-            )
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(R.string.next),
+                )
+            }
         }
     }
 }
@@ -122,18 +140,14 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
 @Composable
 fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
     val uiState by viewModel.uiState.collectAsState()
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
-            .padding(horizontal = 30.dp)
-            .background(Black),
-        shape = RoundedCornerShape(26.dp),
-        colors = CardDefaults.cardColors(containerColor = White)
+            .padding(horizontal = 30.dp),
     ) {
         Column(
             modifier = Modifier
-                .padding(26.dp)
-                .background(Color.Transparent),
+                .padding(26.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -160,11 +174,14 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
                 placeholder = R.string.phone_number,
                 lastField = true
             )
-            LargeButton(
-                text = stringResource(R.string.next),
+            Button(
                 onClick = { navController.navigate(Screen.EmailAndPasswordScreen.route) },
-                colors = ButtonDefaults.buttonColors(Black)
-            )
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(R.string.next),
+                )
+            }
         }
     }
 }
@@ -175,18 +192,14 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val uiState by viewModel.uiState.collectAsState()
     val localContext = LocalContext.current
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
             .padding(horizontal = 30.dp)
-            .background(Black),
-        shape = RoundedCornerShape(26.dp),
-        colors = CardDefaults.cardColors(containerColor = White)
     ) {
         Column(
             modifier = Modifier
-                .padding(26.dp)
-                .background(Color.Transparent),
+                .padding(26.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -225,7 +238,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
-                            onEmptyLoginAction =  {
+                            onEmptyLoginAction = {
                                 Toast.makeText(
                                     localContext,
                                     "Введите почту",
@@ -239,8 +252,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                 placeholder = R.string.password,
                 lastField = true
             )
-            LargeButton(
-                text = stringResource(R.string.done),
+            Button(
                 onClick = {
                     viewModel.register(
 
@@ -267,7 +279,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
-                        onEmptyLoginAction =  {
+                        onEmptyLoginAction = {
                             Toast.makeText(
                                 localContext,
                                 "Введите почту",
@@ -276,8 +288,12 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                         }
                     )
                 },
-                colors = ButtonDefaults.buttonColors(Black)
-            )
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(R.string.done),
+                )
+            }
         }
     }
 }
@@ -294,16 +310,11 @@ fun RegistrationTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth(),
-        colors = OutlinedTextFieldDefaults.colors(
-            cursorColor = Black,
-            focusedBorderColor = Black,
-            focusedLabelColor = Black,
-        ),
         label = { Text(text = stringResource(id = placeholder)) },
         singleLine = true,
-        placeholder = {
-            Text(text = stringResource(id = placeholder))
-        },
+//        placeholder = {
+//            Text(text = stringResource(id = placeholder))
+//        },
         keyboardOptions = KeyboardOptions(
             autoCorrect = false,
             imeAction = if (lastField) ImeAction.Done else ImeAction.Next
@@ -314,52 +325,5 @@ fun RegistrationTextField(
     Spacer(modifier = Modifier.padding(4.dp))
 }
 
-@Composable
-private fun TopBar(
-    navController: NavController
-) {
-    Column(
-        modifier = Modifier
-            .background(color = Color.Black),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp, start = 10.dp)
-                .clickable {
-                    navController.popBackStack(
-                        route = "log_reg_screen",
-                        inclusive = false
-                    )
-                },
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.arrow_back),
-                contentDescription = "Back Icon",
-                tint = Color.White
-            )
 
-            androidx.compose.material.Text(
-                text = stringResource(R.string.back),
-                color = White,
-                style = Typography.headlineSmall
-            )
-        }
-        Spacer(modifier = Modifier.padding(10.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            androidx.compose.material.Text(
-                text = stringResource(R.string.registration),
-                color = White,
-                style = Typography.headlineLarge
-            )
-        }
-    }
-}
 

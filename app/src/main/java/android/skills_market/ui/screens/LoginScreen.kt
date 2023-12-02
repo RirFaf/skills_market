@@ -4,25 +4,29 @@ import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.AppActivity
-import android.skills_market.ui.screens.custom_composables.LargeButton
-import android.skills_market.ui.theme.Black
 import android.skills_market.ui.theme.Typography
-import android.skills_market.ui.theme.White
 import android.skills_market.view_models.LoginViewModel
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -46,32 +50,46 @@ fun LoginScreen(
     var passwordVisible by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopBar(navController = navController) },
-        containerColor = Black
+        topBar = {
+            LargeTopAppBar(
+                title = {
+                    Text(text = stringResource(id = R.string.login))
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.popBackStack()
+                        },
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowLeft,
+                            contentDescription = null
+                        )
+                    }
+                }
+            )
+        },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
         ) {
             Spacer(modifier = Modifier.padding(10.dp))
-            Card(
+            OutlinedCard(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 436.dp, start = 16.dp, end = 16.dp),
+                    .padding(bottom = 406.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(26.dp),
-                colors = CardDefaults.cardColors(containerColor = White)
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(26.dp)
-                        .background(Color.Transparent),
+                        .padding(26.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top
                 ) {
                     Text(
                         text = stringResource(id = R.string.personal_data),
-                        color = Black,
                         style = Typography.headlineMedium
                     )
                     OutlinedTextField(
@@ -79,13 +97,6 @@ fun LoginScreen(
                         onValueChange = { viewModel.updateLogin(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            errorBorderColor = Color.Red,
-                            errorLabelColor = Color.Red,
-                            cursorColor = Black,
-                            focusedBorderColor = Black,
-                            focusedLabelColor = Black,
-                        ),
                         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
                         singleLine = true,
                         placeholder = {
@@ -103,16 +114,9 @@ fun LoginScreen(
                         onValueChange = { viewModel.updatePassword(it) },
                         modifier = Modifier
                             .fillMaxWidth(),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            errorBorderColor = Color.Red,
-                            errorLabelColor = Color.Red,
-                            cursorColor = Black,
-                            focusedBorderColor = Black,
-                            focusedLabelColor = Black,
-                        ),
                         label = { Text(text = stringResource(id = R.string.password)) },
                         singleLine = true,
-                        placeholder = { Text(text = stringResource(id = android.skills_market.R.string.password)) },
+                        placeholder = { Text(text = stringResource(id = R.string.password)) },
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(
                             autoCorrect = false,
@@ -139,7 +143,7 @@ fun LoginScreen(
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     },
-                                    onEmptyLoginAction =  {
+                                    onEmptyLoginAction = {
                                         Toast.makeText(
                                             localContext,
                                             "Введите логин",
@@ -161,20 +165,18 @@ fun LoginScreen(
                             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(
                                     painter = painterResource(id = image),
-                                    stringResource(
+                                    contentDescription = stringResource(
                                         id = if (passwordVisible)
                                             R.string.hide_password
                                         else R.string.show_password
                                     ),
-                                    tint = Black
                                 )
                             }
                         },
                         shape = shapes.medium
                     )
                     Spacer(modifier = Modifier.padding(6.dp))
-                    LargeButton(
-                        text = stringResource(id = R.string.login),
+                    Button(
                         onClick = {
                             /*TODO: сделать нормальную валидацию*/
                             viewModel.loginUser(
@@ -204,59 +206,12 @@ fun LoginScreen(
                             )
                             keyboardController?.hide()
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Black)
-                    )
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(text = stringResource(id = R.string.login))
+                    }
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun TopBar(
-    navController: NavController
-) {
-    Column(
-        modifier = Modifier
-            .background(color = Color.Black),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp, start = 10.dp)
-                .clickable {
-                    navController.popBackStack(
-                        route = "log_reg_screen",
-                        inclusive = false
-                    )
-                },
-            horizontalArrangement = Arrangement.Start
-        ) {
-            androidx.compose.material.Icon(
-                painter = painterResource(id = R.drawable.arrow_back),
-                contentDescription = "Back Icon",
-                tint = Color.White
-            )
-
-            androidx.compose.material.Text(
-                text = stringResource(R.string.back),
-                color = White,
-                style = Typography.headlineSmall
-            )
-        }
-        Spacer(modifier = Modifier.padding(10.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            androidx.compose.material.Text(
-                text = stringResource(R.string.login),
-                color = White,
-                style = Typography.headlineLarge
-            )
         }
     }
 }

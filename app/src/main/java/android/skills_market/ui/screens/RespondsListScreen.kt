@@ -9,12 +9,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun ResponsesListScreen(navController: NavController) {
-    Scaffold(
-    ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
 
-        }
-    }
 }
 
 
