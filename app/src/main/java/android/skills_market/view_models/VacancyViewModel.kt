@@ -1,13 +1,12 @@
 package android.skills_market.view_models
 
-import android.os.Parcelable
 import android.skills_market.network.models.SelectedVacancyModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.parcelize.Parcelize
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 sealed interface VacancyUIState {
     data class Success(
@@ -16,32 +15,20 @@ sealed interface VacancyUIState {
         ),
         val isResponded: Boolean = false,
     ) : VacancyUIState
-    object Error: VacancyUIState
-    object Loading: VacancyUIState
+
+    object Error : VacancyUIState
+    object Loading : VacancyUIState
 }
 
 class VacancyViewModel : ViewModel() {
-//    private val _uiState = MutableStateFlow(VacancyUIState.Success())
-//    val uiState: StateFlow<VacancyUIState> = _uiState.asStateFlow()
-//
-//    fun setVacancy(providedVacancy: SelectedVacancyModel) {
-//        _uiState.update { currentState ->
-//            currentState.copy(vacancy = providedVacancy)
-//        }
-//    }
-//
-//    fun getVacancy(): SelectedVacancyModel {
-//        return _uiState.value.vacancy
-//    }
-//
-//    fun respond() {
-//        _uiState.update { currentState ->
-//            currentState.copy(isResponded = true)
-//        }
-//    }
+    var vacancyUIState: VacancyUIState by mutableStateOf(VacancyUIState.Loading)
+        private set
 
-    /*TODO: передача вакансии (
-    *       отметка отклика
-    *       ...
-    * */
+    fun getVacancy() {
+        viewModelScope.launch {
+            vacancyUIState = VacancyUIState.Loading
+            Thread.sleep(1000)
+            vacancyUIState = VacancyUIState.Success()
+        }
+    }
 }

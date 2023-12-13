@@ -3,28 +3,25 @@ package android.skills_market.ui.screens
 import android.skills_market.R
 import android.skills_market.network.models.SelectedVacancyModel
 import android.skills_market.ui.theme.Inter
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -88,14 +85,6 @@ fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
             Spacer(modifier = Modifier.padding(8.dp))
             VacancyInfo(heading = "Компания", content = vacancy.companyName)
             Spacer(modifier = Modifier.padding(8.dp))
-            Text(
-                text = "Вакансия",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                fontFamily = Inter,
-                color = Color.Black
-            )
-            Spacer(modifier = Modifier.padding(6.dp))
             VacancyInfo(heading = "Тип занятости", content = vacancy.formOfEmployment)
             Spacer(modifier = Modifier.padding(8.dp))
             VacancyInfo(heading = "Требования", content = vacancy.requirements)
@@ -114,21 +103,6 @@ fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
             }
             Spacer(modifier = Modifier.padding(8.dp))
         }
-
-    }
-}
-
-
-@Composable
-private fun TopBar(navController: NavController) {
-    Row(
-        modifier = Modifier
-            .height(70.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
     }
 }
 
@@ -138,7 +112,7 @@ private fun VacancyInfo(heading: String, content: String) {
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Text(text = heading, color = Color.Gray, fontSize = 14.sp)
+        Text(text = heading, color = MaterialTheme.colorScheme.onPrimaryContainer, fontSize = 14.sp)
         Text(text = content, fontSize = 20.sp)
     }
 }

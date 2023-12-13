@@ -6,10 +6,12 @@ import android.skills_market.ui.navigation.Screen
 import android.skills_market.view_models.VacancyViewModel
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -28,25 +30,21 @@ fun VacancyCard(
     vacancy: ShortVacancyModel = ShortVacancyModel(0, "null", 10, "null"),
     navController: NavController
 ) {
-    val vacancyViewModel = VacancyViewModel()
 //    val uiState = vacancyViewModel.uiState.collectAsState()
     OutlinedCard(
         modifier = Modifier
             .fillMaxSize()
             .clickable {
+                val vacancyViewModel = VacancyViewModel()
 //                vacancyViewModel.setVacancy(vacancy)
-                navController.currentBackStackEntry?.savedStateHandle?.set(
-                    key = "vacancy",
-                    value = vacancyViewModel
-                )
+//                navController.currentBackStackEntry?.savedStateHandle?.set(
+//                    key = "vacancy",
+//                    value = vacancyViewModel
+//                )
                 navController.navigate(Screen.VacancyScreen.route) {
                     /**
                      * Использовать чтобы предыдущий экран вылетил из бэкстека
                      */
-                    /**
-                     * Использовать чтобы предыдущий экран вылетил из бэкстека
-                     */
-
 //                    navController.graph.startDestinationRoute?.let { route ->
 //                        popUpTo(route) {
 //                            saveState = true
@@ -57,7 +55,10 @@ fun VacancyCard(
                     restoreState = true
                 }
             },
-        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.onPrimaryContainer)
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.colorScheme.onPrimaryContainer
+        )
     ) {
         Column(
             Modifier
@@ -90,7 +91,7 @@ fun VacancyCard(
 //                    vacancyViewModel.respond()
                 },
 //                enabled = !uiState.value.isResponded
-            ){
+            ) {
                 Text(text = stringResource(id = R.string.respond))
             }
         }

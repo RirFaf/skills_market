@@ -1,15 +1,17 @@
 package android.skills_market.ui.screens
 
-import android.content.Context
 import android.skills_market.R
 import android.skills_market.network.SMFirebase
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
@@ -19,7 +21,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -29,9 +30,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -92,56 +90,57 @@ fun ProfileScreen(navController: NavController) {
             )
         },
     ) { innerPadding ->
-        Surface(
-            modifier = Modifier.padding(innerPadding)
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(horizontal = 10.dp)
+                .verticalScroll(rememberScrollState())
         ) {
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+            StudentInfo(
+                name = "Роман Королёв",
+                number = "+79541024498",
+                profilePicRes = R.drawable.person_outline
+            )
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                onClick = {},
             ) {
-                StudentInfo(
-                    name = "Роман Королёв",
-                    number = "+79541024498",
-                    profilePicRes = R.drawable.person_outline
+                Text(
+                    text = stringResource(R.string.my_resume),
                 )
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    onClick = {},
-                ) {
-                    Text(
-                        text = stringResource(R.string.my_resume),
-                    )
-                }
-                Spacer(modifier = Modifier.padding(6.dp))
-                Row(
-                    modifier = Modifier.padding(10.dp),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.Top
-                ) {
-                    Text(
-                        text = "Место учёбы",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-                }
-                StudPlace(heading = "Университет", content = "Казанский Федеральный Университет")
-                StudPlace(heading = "Институт", content = "ИВМиИТ")
-                StudPlace(heading = "Направление", content = "Прикладная информатика")
             }
+            Spacer(modifier = Modifier.padding(6.dp))
+            Row(
+                modifier = Modifier.padding(10.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    text = "Место учёбы",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 22.sp
+                )
+            }
+            StudPlace(heading = "Университет", content = "Казанский Федеральный Университет")
+            Spacer(modifier = Modifier.padding(8.dp))
+            StudPlace(heading = "Институт", content = "ИВМиИТ")
+            Spacer(modifier = Modifier.padding(8.dp))
+            StudPlace(heading = "Направление", content = "Прикладная информатика")
+            Spacer(modifier = Modifier.padding(8.dp))
         }
     }
 }
+
 
 @Composable
 fun StudPlace(heading: String, content: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 10.dp)
     ) {
-        Text(text = heading, color = Color.Gray, fontSize = 14.sp)
+        Text(text = heading, color = MaterialTheme.colorScheme.onPrimaryContainer, fontSize = 14.sp)
         Text(text = content, fontSize = 20.sp)
     }
 }

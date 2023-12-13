@@ -9,8 +9,6 @@ import android.skills_market.ui.screens.ProfileScreen
 import android.skills_market.ui.screens.ResponsesListScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
-import android.skills_market.view_models.VacancyViewModel
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -19,7 +17,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -45,8 +42,8 @@ fun NavigationGraph(navController: NavHostController) {
             route = Screen.SearchScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
             SearchScreen(navController = navController, vacancies = VacanciesModel().vacancies)
         }
@@ -54,40 +51,32 @@ fun NavigationGraph(navController: NavHostController) {
             route = Screen.VacancyScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
-            val vacancyViewModel =
-                navController.previousBackStackEntry?.savedStateHandle?.get<VacancyViewModel>("vacancy")
-
-            vacancyViewModel?.let {
-                VacancyScreen(
-                    navController = navController,
-                    /***
-                    Для тестирования
-                     ***/
-                    vacancy = SelectedVacancyModel(
-                        id = 0,
-                        position = "",
-                        salary = 0,
-                        companyName = "",
-                        edArea = "",
-                        formOfEmployment = "",
-                        requirements = "",
-                        location = ""
-                    )
-                    /***
-                    Для тестирования
-                     ***/
+            VacancyScreen(
+                navController = navController,
+                /***
+                Для тестирования
+                 ***/
+                vacancy = SelectedVacancyModel(
+                    id = 0,
+                    position = "Бухгалтер",
+                    salary = 100000,
+                    companyName = "АкБарс",
+                    edArea = "Юриспрюденция",
+                    formOfEmployment = "Частичная",
+                    requirements = "2 курса",
+                    location = "Казань, ст. Козья слобода",
                 )
-            }
+            )
         }
         composable(
             route = Screen.FavouritesScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
             FavouritesScreen(navController = navController)
         }
@@ -95,20 +84,20 @@ fun NavigationGraph(navController: NavHostController) {
             route = Screen.ChatListScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
             ChatListScreen(navController = navController)
         }
         composable(
             route = Screen.MessengerScreen.route,
-            enterTransition = {customEnterTransition},
+            enterTransition = { customEnterTransition },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(0, easing = LinearEasing)
                 )
             },
-            popEnterTransition = {customEnterTransition},
+            popEnterTransition = { customEnterTransition },
             popExitTransition = {
                 fadeOut(
                     animationSpec = tween(0, easing = LinearEasing)
@@ -122,8 +111,8 @@ fun NavigationGraph(navController: NavHostController) {
             route = Screen.ResponsesListScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
             ResponsesListScreen(navController = navController)
         }
@@ -131,8 +120,8 @@ fun NavigationGraph(navController: NavHostController) {
             route = Screen.ProfileScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
-            popEnterTransition = {customEnterTransition},
-            popExitTransition = {customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
         ) {
             ProfileScreen(navController = navController)
         }

@@ -19,17 +19,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.MediumTopAppBar
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.OutlinedCard
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -42,7 +43,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,12 +52,11 @@ fun RegistrationScreen(navController: NavHostController) {
     /*TODO: Доделать переходы и валидацию*/
     Scaffold(
         topBar = {
-            LargeTopAppBar(
+            MediumTopAppBar(
                 title = { Text(text = "Регистрация") },
                 navigationIcon = {
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth()
                             .clickable {
                                 navController.popBackStack(
                                     route = "log_reg_screen",
@@ -312,9 +311,6 @@ fun RegistrationTextField(
         modifier = Modifier.fillMaxWidth(),
         label = { Text(text = stringResource(id = placeholder)) },
         singleLine = true,
-//        placeholder = {
-//            Text(text = stringResource(id = placeholder))
-//        },
         keyboardOptions = KeyboardOptions(
             autoCorrect = false,
             imeAction = if (lastField) ImeAction.Done else ImeAction.Next
