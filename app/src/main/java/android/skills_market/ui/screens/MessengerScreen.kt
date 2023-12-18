@@ -8,16 +8,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -43,7 +45,7 @@ fun MessengerScreen(navController: NavController) {
                 title = {
                     Column() {
                         Text(
-                            text = "Company Name",
+                            text = "Sample Company Name",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = Inter,
@@ -71,50 +73,35 @@ fun MessengerScreen(navController: NavController) {
             )
         },
         bottomBar = {
-            MessengerTextField(
-                viewModel = viewModel
+            TextField(
+                value = viewModel.currentMessage,
+                onValueChange = { viewModel.updateEnteredText(it) },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                trailingIcon = {
+                    IconButton(onClick = { /*TODO отправка сообщения*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Send,
+                            contentDescription = "Отправить"
+                        )
+                    }
+                },
+                shape = RoundedCornerShape(0.dp)
             )
         },
     ) { innerPadding ->
-        LazyColumn(
+        Column(
             modifier = Modifier
+                .padding(horizontal = 4.dp)
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            itemsIndexed(
-                listOf(1, 2)
-            ) { _, _ ->
-                SentMessageBubble("Да")
-                ReceivedMessageBubble("Нет")
-            }
+            SentMessageBubble("Здравствуйте")
+            ReceivedMessageBubble("Добрый день")
+            ReceivedMessageBubble("Собеседования проходят каждый четверг в 16.00")
+            SentMessageBubble("Хорошо, увидемся там")
+            ReceivedMessageBubble("До встречи!")
         }
-    }
-}
-
-@Composable
-private fun MessengerTextField(
-    viewModel: MessengerViewModel
-) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Divider(
-            modifier = Modifier.padding(2.dp),
-            thickness = 1.dp
-        )
-        TextField(
-            value = viewModel.currentMessage,
-            onValueChange = { viewModel.updateEnteredText(it) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp),
-            trailingIcon = {
-                IconButton(onClick = { /*TODO отправка сообщения*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.send),
-                        contentDescription = "Отправить"
-                    )
-                }
-            },
-        )
     }
 }
 
@@ -130,7 +117,11 @@ private fun SentMessageBubble(text: String) {
     ) {
         Card(
             modifier = Modifier
-                .wrapContentSize(),
+                .wrapContentSize()
+                .widthIn(0.dp, 300.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.onSecondary
+            )
         ) {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(
@@ -161,7 +152,8 @@ private fun ReceivedMessageBubble(text: String) {
     ) {
         Card(
             modifier = Modifier
-                .wrapContentSize(),
+                .wrapContentSize()
+                .widthIn(0.dp, 300.dp),
         ) {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(
