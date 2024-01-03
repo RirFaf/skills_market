@@ -1,8 +1,8 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.ui.screens.custom_composables.VacancyCard
 import android.skills_market.network.models.ShortVacancyModel
+import android.skills_market.ui.screens.custom_composables.VacancyCard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,14 +16,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -62,34 +60,33 @@ fun FavouritesScreen(navController: NavController) {
             )
         },
     ) { innerPadding ->
-        Surface(modifier = Modifier.padding(innerPadding)) {
-            Column(
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 10.dp)
+                .padding(innerPadding)
+        ) {
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 10.dp)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                contentPadding = PaddingValues(4.dp)
             ) {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(14.dp),
-                    contentPadding = PaddingValues(4.dp)
-                ) {
-                    itemsIndexed(
-                        listOf(
-                            ShortVacancyModel(
-                                position = "Интерн",
-                                salary = 50000,
-                                companyName = "Семейный доктор",
-                            ),
-                            ShortVacancyModel(
-                                position = "Секретарь",
-                                salary = 20000,
-                                companyName = "ИП Петров Игорь Михайлович",
-                            ),
-                        )
-                    ) { _, item ->
-                        VacancyCard(vacancy = item, navController = navController)
-                    }
+                itemsIndexed(
+                    listOf(
+                        ShortVacancyModel(
+                            position = "Интерн",
+                            salary = 50000,
+                            companyName = "Семейный доктор",
+                        ),
+                        ShortVacancyModel(
+                            position = "Секретарь",
+                            salary = 20000,
+                            companyName = "ИП Петров Игорь Михайлович",
+                        ),
+                    )
+                ) { _, item ->
+                    VacancyCard(vacancy = item, navController = navController)
                 }
             }
         }

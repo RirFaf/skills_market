@@ -2,8 +2,7 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.SMFirebase
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.clickable
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,7 +55,10 @@ fun ProfileScreen(navController: NavController) {
                         mutableStateOf(false)
                     }
                     IconButton(
-                        onClick = {},
+                        onClick = {
+                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
+                                .show()
+                        },
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.notifications_none),
@@ -64,27 +66,16 @@ fun ProfileScreen(navController: NavController) {
                         )
                     }
                     IconButton(
-                        onClick = { expandDropDownMenu = !expandDropDownMenu }
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.menu),
-                            contentDescription = "Show menu",
-                        )
-                        DropdownMenu(
-                            expanded = expandDropDownMenu,
-                            onDismissRequest = { expandDropDownMenu = false }
-                        ) {
-                            Text(
-                                text = "Выйти",
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .clickable(onClick = {
-                                        database.logoutUser(
-                                            localContext = localContext
-                                        )
-                                    }),
+                        onClick = {
+                            database.logoutUser(
+                                localContext = localContext
                             )
                         }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.ExitToApp,
+                            contentDescription = "Show menu",
+                        )
                     }
                 }
             )
@@ -97,15 +88,16 @@ fun ProfileScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
         ) {
             StudentInfo(
-                name = "Роман Королёв",
-                number = "+79541024498",
-                profilePicRes = R.drawable.person_outline
+                name = "Иванов Иван",
+                number = "+79123456789"
             )
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp),
-                onClick = {},
+                onClick = {
+                    Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT).show()
+                },
             ) {
                 Text(
                     text = stringResource(R.string.my_resume),
@@ -146,7 +138,7 @@ fun StudPlace(heading: String, content: String) {
 }
 
 @Composable
-private fun StudentInfo(name: String, number: String, @DrawableRes profilePicRes: Int) {
+private fun StudentInfo(name: String, number: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(horizontal = 10.dp)

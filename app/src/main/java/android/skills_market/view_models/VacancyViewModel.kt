@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 sealed interface VacancyUIState {
     data class Success(
         val vacancy: SelectedVacancyModel = SelectedVacancyModel(
-            0, "", 0, "", "", "", "", ""
+            0, "", 0, "", "", "", "", "", ""
         ),
         val isResponded: Boolean = false,
     ) : VacancyUIState

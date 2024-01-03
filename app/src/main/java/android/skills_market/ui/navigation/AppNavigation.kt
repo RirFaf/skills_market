@@ -68,6 +68,7 @@ fun NavigationGraph(navController: NavHostController) {
                     formOfEmployment = "Частичная",
                     requirements = "2 курса",
                     location = "Казань, ст. Козья слобода",
+                    about = "Пример"
                 )
             )
         }
