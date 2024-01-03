@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Биржа талантов</string>
+    <string name="sign_in">Войти</string>
+    <string name="help">Помощь</string>
+    <string name="done">Готово</string>
+    <string name="accept">Принять</string>
+    <string name="reject">Отклонить</string>
+    <string name="search">Поиск</string>
+    <string name="password">Пароль</string>
+    <string name="registration">Регистрация</string>
+    <string name="login">Вход</string>
+    <string name="student">Студент</string>
+    <string name="employer">Работодатель</string>
+    <string name="logo_description">Логотип</string>
+    <string name="search_description">Поиск</string>
+    <string name="show_password">Показать пароль</string>
+    <string name="hide_password">Скрыть пароль</string>
+    <string name="phone_number">Телефонный номер</string>
+    <string name="email">Электронная почта</string>
+    <string name="company_name">Название компании</string>
+    <string name="speciality">Специальность</string>
+    <string name="city">Город</string>
+    <string name="patronymic">Отчество</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="course_num">Курс</string>
+    <string name="personal_data">Личные данные</string>
+    <string name="respond">Откликнуться</string>
+    <string name="hello">Здравствуйте!</string>
+    <string name="next">Далее</string>
+    <string name="back">Назад</string>
+    <string name="my_resume">Моё резюме</string>
+    <string name="motto">Биржа талантов - возможность получить любимую работу!</string>
+</resources>
