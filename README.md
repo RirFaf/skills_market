@@ -8,3 +8,26 @@
 -Navigation Compose;
 -Google Accompanist;
 -Google Firebase;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DI здесь нету, всем в легаси- большой привет
