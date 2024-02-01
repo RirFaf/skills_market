@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -90,16 +91,14 @@ fun LoginScreen(
             Spacer(modifier = Modifier.padding(10.dp))
             OutlinedCard(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(bottom = 406.dp, start = 16.dp, end = 16.dp),
-                shape = RoundedCornerShape(26.dp),
+                    .wrapContentSize()
+                    .padding(horizontal = 30.dp)
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize()
                         .padding(26.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                    verticalArrangement = Arrangement.Center
                 ) {
                     Text(
                         text = stringResource(id = R.string.personal_data),
@@ -112,9 +111,6 @@ fun LoginScreen(
                             .fillMaxWidth(),
                         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
                         singleLine = true,
-                        placeholder = {
-                            Text(stringResource(id = android.skills_market.R.string.login))
-                        },
                         keyboardOptions = KeyboardOptions(
                             autoCorrect = false,
                             imeAction = ImeAction.Next
@@ -129,7 +125,6 @@ fun LoginScreen(
                             .fillMaxWidth(),
                         label = { Text(text = stringResource(id = R.string.password)) },
                         singleLine = true,
-                        placeholder = { Text(text = stringResource(id = R.string.password)) },
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(
                             autoCorrect = false,
@@ -168,21 +163,17 @@ fun LoginScreen(
                             }
                         ),
                         trailingIcon = {
-                            val image = if (passwordVisible) {
-                                R.drawable.visibility
-                            } else {
-                                R.drawable.visibility_off
-                            }
-
                             //Изменеие видимости пароля
                             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(
-                                    painter = painterResource(id = image),
-                                    contentDescription = stringResource(
-                                        id = if (passwordVisible)
-                                            R.string.hide_password
-                                        else R.string.show_password
+                                    painter = painterResource(
+                                        id =
+                                        if (passwordVisible)
+                                            R.drawable.visibility
+                                        else
+                                            R.drawable.visibility_off
                                     ),
+                                    contentDescription = "password visibility",
                                 )
                             }
                         },

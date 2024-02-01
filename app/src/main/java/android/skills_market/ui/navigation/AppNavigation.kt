@@ -7,6 +7,7 @@ import android.skills_market.ui.screens.FavouritesScreen
 import android.skills_market.ui.screens.MessengerScreen
 import android.skills_market.ui.screens.ProfileScreen
 import android.skills_market.ui.screens.ResponsesListScreen
+import android.skills_market.ui.screens.ResumeRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
 import androidx.compose.animation.EnterTransition
@@ -125,6 +126,15 @@ fun NavigationGraph(navController: NavHostController) {
             popExitTransition = { customExitTransition },
         ) {
             ProfileScreen(navController = navController)
+        }
+        composable(
+            route = Screen.ResumeRedactorScreen.route,
+            enterTransition = { customEnterTransition },
+            exitTransition = { customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
+        ) {
+            ResumeRedactorScreen(navController = navController)
         }
     }
 }

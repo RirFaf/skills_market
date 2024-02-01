@@ -22,6 +22,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.OutlinedCard
@@ -31,6 +32,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -39,6 +43,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -104,13 +110,13 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
                 value = viewModel.surname,
                 onValueChange = { viewModel.updateSurname(it) },
                 keyboardActions = KeyboardActions(),
-                placeholder = R.string.surname,
+                label = stringResource(R.string.surname),
                 lastField = false
             )
             RegistrationTextField(
                 value = viewModel.name,
                 onValueChange = { viewModel.updateName(it) },
-                placeholder = R.string.name,
+                label = stringResource(R.string.name),
                 lastField = false
             )
             RegistrationTextField(
@@ -121,7 +127,7 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
                         navController.navigate(Screen.CityCourseAndPhone.route)
                     }
                 ),
-                placeholder = R.string.patronymic,
+                label = stringResource(R.string.patronymic),
                 lastField = true
             )
             Button(
@@ -153,13 +159,13 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
             RegistrationTextField(
                 value = viewModel.city,
                 onValueChange = { viewModel.updateCity(it) },
-                placeholder = R.string.city,
+                label = stringResource(R.string.city),
                 lastField = false
             )
             RegistrationTextField(
                 value = viewModel.course,
                 onValueChange = { viewModel.updateCourse(it) },
-                placeholder = R.string.course_num,
+                label = stringResource(R.string.course_num),
                 lastField = false
             )
             RegistrationTextField(
@@ -170,7 +176,7 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
                         navController.navigate(Screen.EmailAndPasswordScreen.route)
                     }
                 ),
-                placeholder = R.string.phone_number,
+                label = stringResource(R.string.phone_number),
                 lastField = true
             )
             Button(
@@ -191,6 +197,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val uiState by viewModel.uiState.collectAsState()
     val localContext = LocalContext.current
+    var passwordVisible by remember { mutableStateOf(false) }
     OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
@@ -205,12 +212,36 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
             RegistrationTextField(
                 value = viewModel.email,
                 onValueChange = { viewModel.updateEmail(it) },
-                placeholder = R.string.email,
+                label = stringResource(R.string.email),
                 lastField = false
             )
-            RegistrationTextField(
+            OutlinedTextField(
                 value = viewModel.password,
                 onValueChange = { viewModel.updatePassword(it) },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text(text = stringResource(id = R.string.password)) },
+                singleLine = true,
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    autoCorrect = false,
+                    imeAction = ImeAction.Done
+                ),
+                trailingIcon = {
+                    //Изменеие видимости пароля
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(
+                                id =
+                                if (passwordVisible)
+                                    R.drawable.visibility
+                                else
+                                    R.drawable.visibility_off
+                            ),
+                            contentDescription = "password visibility",
+                        )
+                    }
+                },
+                shape = shapes.medium,
                 keyboardActions = KeyboardActions(
                     onDone = {
                         viewModel.register(
@@ -226,7 +257,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                             onFailureAction = {
                                 Toast.makeText(
                                     localContext,
-                                    "Упс.. попробуйте ещё раз",
+                                    "Попробуйте ещё раз",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
@@ -248,13 +279,11 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                         keyboardController?.hide()
                     }
                 ),
-                placeholder = R.string.password,
-                lastField = true
             )
+            Spacer(modifier = Modifier.padding(4.dp))
             Button(
                 onClick = {
                     viewModel.register(
-
                         onSuccessAction = {
                             (localContext as Activity).finish()
                             localContext.startActivity(
@@ -302,14 +331,14 @@ fun RegistrationTextField(
     value: String,
     onValueChange: (String) -> Unit,
     keyboardActions: KeyboardActions = KeyboardActions(),
-    @StringRes placeholder: Int,
+    label: String,
     lastField: Boolean
 ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = stringResource(id = placeholder)) },
+        label = { Text(text = label) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             autoCorrect = false,

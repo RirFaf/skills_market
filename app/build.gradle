@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
+    id("com.google.devtools.ksp")
 //    id 'dagger.hilt.android.plugin'
 }
 
@@ -43,7 +43,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerExtensionVersion '1.5.0'
     }
     packagingOptions {
         resources {
@@ -87,8 +87,8 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Dagger Hilt
 //    implementation ("com.google.dagger:hilt-android:2.44")

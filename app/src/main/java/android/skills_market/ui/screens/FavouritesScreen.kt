@@ -35,7 +35,6 @@ import androidx.navigation.NavController
 @Composable
 fun FavouritesScreen(navController: NavController) {
     Scaffold(
-        modifier = Modifier.padding(),
         topBar = {
             TopAppBar(
                 title = { Text(text = "Избранное") },

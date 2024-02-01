@@ -52,57 +52,57 @@ class RegViewModel : ViewModel() {
         private set
 
 
-    fun updateName(enteredName: String) {
-        name = enteredName
+    fun updateName(input: String) {
+        name = input
         _uiState.update { currentState ->
             currentState.copy(name = name)
         }
     }
 
-    fun updateSurname(enteredSurname: String) {
-        surname = enteredSurname
+    fun updateSurname(input: String) {
+        surname = input
         _uiState.update { currentState ->
             currentState.copy(surname = surname)
         }
     }
 
-    fun updatePatronymic(enteredPatronymic: String) {
-        patronymic = enteredPatronymic
+    fun updatePatronymic(input: String) {
+        patronymic = input
         _uiState.update { currentState ->
             currentState.copy(patronymic = patronymic)
         }
     }
 
-    fun updateCity(enteredCity: String) {
-        city = enteredCity
+    fun updateCity(input: String) {
+        city = input
         _uiState.update { currentState ->
             currentState.copy(city = city)
         }
     }
 
-    fun updateCourse(enteredCourse: String) {
-        course = enteredCourse
+    fun updateCourse(input: String) {
+        course = input
         _uiState.update { currentState ->
             currentState.copy(course = course)
         }
     }
 
-    fun updateEmail(enteredEmail: String) {
-        email = enteredEmail
+    fun updateEmail(input: String) {
+        email = input
         _uiState.update { currentState ->
             currentState.copy(email = email)
         }
     }
 
-    fun updatePassword(enteredPassword: String) {
-        password = enteredPassword
+    fun updatePassword(input: String) {
+        password = input
         _uiState.update { currentState ->
             currentState.copy(password = password)
         }
     }
 
-    fun updatePhone(enteredPhone: String) {
-        phone = enteredPhone
+    fun updatePhone(input: String) {
+        phone = input
         _uiState.update { currentState ->
             currentState.copy(phone = phone)
         }

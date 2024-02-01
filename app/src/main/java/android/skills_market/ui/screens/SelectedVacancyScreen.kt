@@ -2,6 +2,7 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.ui.screens.custom_composables.CustomText
 import android.skills_market.ui.theme.Inter
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -96,19 +97,19 @@ fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
                     fontFamily = Inter,
                 )
             }
-            VacancyInfo(heading = "Отрасль", content = vacancy.edArea)
+            CustomText(heading = "Отрасль", content = vacancy.edArea)
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "Компания", content = vacancy.companyName)
+            CustomText(heading = "Компания", content = vacancy.companyName)
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "Тип занятости", content = vacancy.formOfEmployment)
+            CustomText(heading = "Тип занятости", content = vacancy.formOfEmployment)
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "Требования", content = vacancy.requirements)
+            CustomText(heading = "Требования", content = vacancy.requirements)
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "Расположение", content = vacancy.location)
+            CustomText(heading = "Расположение", content = vacancy.location)
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "Заработная плата", content = vacancy.salary.toString())
+            CustomText(heading = "Заработная плата", content = vacancy.salary.toString())
             Spacer(modifier = Modifier.padding(8.dp))
-            VacancyInfo(heading = "О вакансии", content = vacancy.about)
+            CustomText(heading = "О вакансии", content = vacancy.about)
             Spacer(modifier = Modifier.padding(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
@@ -121,16 +122,5 @@ fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
             }
             Spacer(modifier = Modifier.padding(8.dp))
         }
-    }
-}
-
-@Composable
-private fun VacancyInfo(heading: String, content: String) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Text(text = heading, color = MaterialTheme.colorScheme.onPrimaryContainer, fontSize = 14.sp)
-        Text(text = content, fontSize = 20.sp)
     }
 }

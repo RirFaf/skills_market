@@ -2,6 +2,7 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.SMFirebase
+import android.skills_market.ui.screens.custom_composables.CustomText
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,10 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
-/**
-Родительский класс не имеет задаёт padding всем элементам,
-т.к. LazyRow с откликами должна занимать всю ширину экрана
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(navController: NavController) {
@@ -87,16 +84,25 @@ fun ProfileScreen(navController: NavController) {
                 .padding(horizontal = 10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            StudentInfo(
-                name = "Иванов Иван",
-                number = "+79123456789"
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 10.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Person,
+                    contentDescription = "worker",
+                )
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Text(text = "Иванов Иван", fontSize = 25.sp)
+                    Text(text = "+79123456789", fontSize = 18.sp)
+                }
+            }
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp),
                 onClick = {
-                    Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT).show()
+                    navController.navigate("resume_redactor_screen")
                 },
             ) {
                 Text(
@@ -115,42 +121,13 @@ fun ProfileScreen(navController: NavController) {
                     fontSize = 22.sp
                 )
             }
-            StudPlace(heading = "Университет", content = "Казанский Федеральный Университет")
+            CustomText(heading = "Университет", content = "Казанский Федеральный Университет")
             Spacer(modifier = Modifier.padding(8.dp))
-            StudPlace(heading = "Институт", content = "ИВМиИТ")
+            CustomText(heading = "Институт", content = "ИВМиИТ")
             Spacer(modifier = Modifier.padding(8.dp))
-            StudPlace(heading = "Направление", content = "Прикладная информатика")
+            CustomText(heading = "Направление", content = "Прикладная информатика")
             Spacer(modifier = Modifier.padding(8.dp))
         }
     }
 }
 
-
-@Composable
-fun StudPlace(heading: String, content: String) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Text(text = heading, color = MaterialTheme.colorScheme.onPrimaryContainer, fontSize = 14.sp)
-        Text(text = content, fontSize = 20.sp)
-    }
-}
-
-@Composable
-private fun StudentInfo(name: String, number: String) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = 10.dp)
-    ) {
-        val borderWidth = 2.dp
-        Icon(
-            imageVector = Icons.Outlined.Person,
-            contentDescription = "worker",
-        )
-        Column(modifier = Modifier.padding(8.dp)) {
-            Text(text = name, fontSize = 25.sp)
-            Text(text = number, fontSize = 18.sp)
-        }
-    }
-}

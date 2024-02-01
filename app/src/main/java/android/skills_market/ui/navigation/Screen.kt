@@ -23,4 +23,5 @@ sealed class Screen(
 
     object MessengerScreen : Screen("messenger_screen")
     object ProfileScreen : Screen("profile_screen")
+    object ResumeRedactorScreen : Screen("resume_redactor_screen")
 }
