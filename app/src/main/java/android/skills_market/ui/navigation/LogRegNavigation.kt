@@ -6,26 +6,30 @@ import android.skills_market.ui.screens.LogRegScreen
 import android.skills_market.ui.screens.LoginScreen
 import android.skills_market.ui.screens.NameAndGenderRegScreen
 import android.skills_market.ui.screens.RegistrationScreen
-import android.skills_market.view_models.RegViewModel
-import androidx.compose.animation.AnimatedContentScope
+import android.skills_market.view_model.LoginViewModel
+import android.skills_market.view_model.RegViewModel
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.Ease
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
-import androidx.compose.animation.core.EaseOutSine
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavBackStackEntry
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
 
 @Composable
 fun LogRegNavigationGraph(navController: NavHostController) {
@@ -61,9 +65,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
         composable(
             route = Screen.LoginScreen.route,
             enterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
+                slideIntoContainer(
                     animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
@@ -89,7 +91,15 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                 )
             }
         ) {
-            LoginScreen(navController = navController)
+            val loginViewModel = viewModel<LoginViewModel>(
+                factory = LoginViewModel.Factory
+            )
+            val uiState by loginViewModel.uiState.collectAsStateWithLifecycle()
+            LoginScreen(
+                navController = navController,
+                onEvent = loginViewModel::onEvent,
+                uiState = uiState
+            )
         }
         composable(
             route = Screen.RegistrationScreen.route,
@@ -101,27 +111,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            popExitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
-        ) {
+        ){
             RegistrationScreen(navController = navController)
         }
     }
@@ -135,8 +125,6 @@ fun RegGraph(
     NavHost(
         navController = navController,
         startDestination = Screen.NameAndGenderRegScreen.route,
-        enterTransition = { EnterTransition.None },
-        exitTransition = { ExitTransition.None },
     ) {
         composable(
             route = Screen.NameAndGenderRegScreen.route,
@@ -255,4 +243,5 @@ fun RegGraph(
         }
     }
 }
+
 

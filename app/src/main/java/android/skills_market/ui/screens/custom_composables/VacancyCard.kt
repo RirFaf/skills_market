@@ -3,7 +3,7 @@ package android.skills_market.ui.screens.custom_composables
 import android.skills_market.R
 import android.skills_market.network.models.ShortVacancyModel
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.view_models.VacancyViewModel
+import android.skills_market.view_model.VacancyViewModel
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable

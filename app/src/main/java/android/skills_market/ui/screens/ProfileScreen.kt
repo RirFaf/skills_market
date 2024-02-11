@@ -1,6 +1,9 @@
 package android.skills_market.ui.screens
 
+import android.app.Activity
+import android.content.Intent
 import android.skills_market.R
+import android.skills_market.activities.LogRegActivity
 import android.skills_market.network.SMFirebase
 import android.skills_market.ui.screens.custom_composables.CustomText
 import android.widget.Toast
@@ -48,9 +51,6 @@ fun ProfileScreen(navController: NavController) {
                 title = { Text(text = "Профиль") },
                 actions = {
                     val database = SMFirebase()
-                    var expandDropDownMenu by remember {
-                        mutableStateOf(false)
-                    }
                     IconButton(
                         onClick = {
                             Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
@@ -64,14 +64,23 @@ fun ProfileScreen(navController: NavController) {
                     }
                     IconButton(
                         onClick = {
+                            //TODO засунусть в обработчик событий
                             database.logoutUser(
-                                localContext = localContext
+                                onLogoutAction = {
+                                    (localContext as Activity).finish()
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            LogRegActivity::class.java
+                                        )
+                                    )
+                                }
                             )
                         }
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.ExitToApp,
-                            contentDescription = "Show menu",
+                            contentDescription = "Logout",
                         )
                     }
                 }

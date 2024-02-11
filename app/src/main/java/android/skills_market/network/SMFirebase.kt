@@ -14,7 +14,9 @@ import kotlin.Exception
 
 
 class SMFirebase() {
+    private val tag = "FirebaseTag"
     private val auth = Firebase.auth
+
     @Throws(Exception::class)
     fun addUser(
         user: StudentModel,
@@ -50,17 +52,16 @@ class SMFirebase() {
             .addOnSuccessListener {
                 onSuccessAction()
             }
+            .addOnFailureListener {
+                Log.e(tag, it.toString())
+            }
     }
 
-    fun logoutUser(localContext: Context) {
+    fun logoutUser(
+        onLogoutAction: () -> Unit
+    ) {
         auth.signOut()
-        (localContext as Activity).finish()
-        localContext.startActivity(
-            Intent(
-                localContext,
-                LogRegActivity::class.java
-            )
-        )
+        onLogoutAction()
     }
 
     fun authenticateUser(): Boolean {

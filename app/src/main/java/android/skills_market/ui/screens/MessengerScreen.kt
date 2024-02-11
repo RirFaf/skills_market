@@ -2,7 +2,7 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.ui.theme.Inter
-import android.skills_market.view_models.MessengerViewModel
+import android.skills_market.view_model.MessengerViewModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

@@ -1,7 +1,7 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.ui.screens.custom_composables.CustomTextField
-import android.skills_market.view_models.RedactorViewModel
+import android.skills_market.view_model.RedactorViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth

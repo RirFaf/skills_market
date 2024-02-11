@@ -1,4 +1,4 @@
-package android.skills_market.view_models
+package android.skills_market.view_model
 
 import android.skills_market.network.models.VacanciesModel
 import androidx.lifecycle.ViewModel

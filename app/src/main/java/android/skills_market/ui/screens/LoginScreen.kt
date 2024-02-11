@@ -5,18 +5,18 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.AppActivity
 import android.skills_market.ui.theme.Typography
-import android.skills_market.view_models.LoginViewModel
+import android.skills_market.view_model.LoginUIState
+import android.skills_market.view_model.LoginViewModel
+import android.skills_market.view_model.event.LoginEvent
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -52,11 +52,11 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
+    uiState: LoginUIState.Success,
     navController: NavController,
+    onEvent: (LoginEvent) -> Unit
 ) {
-    val viewModel = LoginViewModel()
     val localContext = LocalContext.current
-    val uiState by viewModel.uiState.collectAsState()
     val keyboardController = LocalSoftwareKeyboardController.current
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -105,8 +105,10 @@ fun LoginScreen(
                         style = Typography.headlineMedium
                     )
                     OutlinedTextField(
-                        value = viewModel.login,
-                        onValueChange = { viewModel.updateLogin(it) },
+                        value = uiState.login,
+                        onValueChange = {
+                            onEvent(LoginEvent.SetLogin(it))
+                        },
                         modifier = Modifier
                             .fillMaxWidth(),
                         label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
@@ -119,8 +121,10 @@ fun LoginScreen(
                     )
                     Spacer(modifier = Modifier.padding(4.dp))
                     OutlinedTextField(
-                        value = viewModel.password,
-                        onValueChange = { viewModel.updatePassword(it) },
+                        value = uiState.password,
+                        onValueChange = {
+                            onEvent(LoginEvent.SetPassword(it))
+                        },
                         modifier = Modifier
                             .fillMaxWidth(),
                         label = { Text(text = stringResource(id = R.string.password)) },
@@ -134,7 +138,7 @@ fun LoginScreen(
                         keyboardActions = KeyboardActions(
                             onDone = {
                                 /*TODO: сделать нормальную валидацию*/
-                                viewModel.loginUser(
+                                onEvent(LoginEvent.LoginUser(
                                     onSuccessAction = {
                                         (localContext as Activity).finish()
                                         localContext.startActivity(
@@ -158,7 +162,7 @@ fun LoginScreen(
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
-                                )
+                                ))
                                 keyboardController?.hide()
                             }
                         ),
@@ -183,7 +187,7 @@ fun LoginScreen(
                     Button(
                         onClick = {
                             /*TODO: сделать нормальную валидацию*/
-                            viewModel.loginUser(
+                            onEvent(LoginEvent.LoginUser(
                                 onSuccessAction = {
                                     (localContext as Activity).finish()
                                     localContext.startActivity(
@@ -207,7 +211,7 @@ fun LoginScreen(
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
-                            )
+                            ))
                             keyboardController?.hide()
                         },
                         modifier = Modifier.fillMaxWidth()

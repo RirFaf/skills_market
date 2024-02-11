@@ -1,6 +1,5 @@
-package android.skills_market.view_models
+package android.skills_market.view_model
 
-import android.view.View
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

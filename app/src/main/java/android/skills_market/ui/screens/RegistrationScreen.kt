@@ -6,9 +6,8 @@ import android.skills_market.R
 import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.view_models.RegViewModel
+import android.skills_market.view_model.RegViewModel
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

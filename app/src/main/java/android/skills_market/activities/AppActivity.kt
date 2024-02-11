@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.skills_market.ui.screens.custom_composables.CustomNavBar
 import android.skills_market.ui.navigation.NavigationGraph
 import android.skills_market.ui.theme.SkillsMarketTheme
+import android.skills_market.view_model.LoginViewModel
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
