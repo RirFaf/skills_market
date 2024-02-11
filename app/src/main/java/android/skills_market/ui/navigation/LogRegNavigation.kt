@@ -13,23 +13,20 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 
 @Composable
 fun LogRegNavigationGraph(navController: NavHostController) {
@@ -49,7 +46,25 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
             exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        250, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(250, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+            popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
                         250, easing = LinearEasing
@@ -111,23 +126,6 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
-        ){
-            RegistrationScreen(navController = navController)
-        }
-    }
-}
-
-@Composable
-fun RegGraph(
-    navController: NavHostController,
-    viewModel: RegViewModel
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.NameAndGenderRegScreen.route,
-    ) {
-        composable(
-            route = Screen.NameAndGenderRegScreen.route,
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
@@ -135,14 +133,6 @@ fun RegGraph(
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            popEnterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
-                    animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
@@ -157,7 +147,38 @@ fun RegGraph(
                 )
             }
         ) {
-            NameAndGenderRegScreen(viewModel = viewModel, navController = navController)
+            RegistrationScreen(navController = navController)
+        }
+    }
+}
+
+@Composable
+fun RegGraph(
+    navController: NavHostController,
+) {
+    NavHost(
+        navController = navController,
+        startDestination = Screen.NameAndGenderRegScreen.route,
+    ) {
+        composable(
+            route = Screen.NameAndGenderRegScreen.route,
+            popEnterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
+        ) { entry ->
+            val regViewModel =
+                entry.sharedViewModel<RegViewModel>(navController = navController)
+            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+            NameAndGenderRegScreen(
+                navController = navController,
+                onEvent = regViewModel::onEvent,
+                uiState = state
+            )
         }
         composable(
             route = Screen.CityCourseAndPhone.route,
@@ -197,8 +218,15 @@ fun RegGraph(
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) {
-            CityCourseAndPhone(viewModel = viewModel, navController = navController)
+        ) { entry ->
+            val regViewModel =
+                entry.sharedViewModel<RegViewModel>(navController = navController)
+            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+            CityCourseAndPhone(
+                navController = navController,
+                onEvent = regViewModel::onEvent,
+                uiState = state
+            )
         }
         composable(
             route = Screen.EmailAndPasswordScreen.route,
@@ -238,10 +266,30 @@ fun RegGraph(
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) {
-            EmailAndPasswordScreen(viewModel = viewModel)
+        ) { entry ->
+            val regViewModel =
+                entry.sharedViewModel<RegViewModel>(navController = navController)
+            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+            EmailAndPasswordScreen(
+                navController = navController,
+                onEvent = regViewModel::onEvent,
+                uiState = state
+            )
         }
     }
+}
+
+@Composable
+inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
+    navController: NavHostController,
+): T {
+    val navGraphRoute = destination.parent?.route ?: return viewModel()
+    val parentEntry = remember(this) {
+        navController.getBackStackEntry(navGraphRoute)
+    }
+    return viewModel(
+        viewModelStoreOwner = parentEntry,
+    )
 }
 
 

@@ -6,7 +6,8 @@ import android.skills_market.R
 import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.view_model.RegViewModel
+import android.skills_market.view_model.RegUIState
+import android.skills_market.view_model.event.RegistrationEvent
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +30,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +52,6 @@ import androidx.navigation.compose.rememberNavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(navController: NavHostController) {
-    val viewModel = RegViewModel()
     val regNavController = rememberNavController()
     /*TODO: Доделать переходы и валидацию*/
     Scaffold(
@@ -84,16 +83,18 @@ fun RegistrationScreen(navController: NavHostController) {
     ) { innerPadding ->
         Column(Modifier.padding(innerPadding)) {
             RegGraph(
-                navController = regNavController,
-                viewModel = viewModel
+                navController = regNavController
             )
         }
     }
 }
 
 @Composable
-fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController) {
-    val uiState by viewModel.uiState.collectAsState()
+fun NameAndGenderRegScreen(
+    navController: NavController,
+    onEvent: (RegistrationEvent) -> Unit,
+    uiState: RegUIState.Success
+) {
     OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
@@ -106,21 +107,27 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = viewModel.surname,
-                onValueChange = { viewModel.updateSurname(it) },
+                value = uiState.surname,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetSurname(it))
+                },
                 keyboardActions = KeyboardActions(),
                 label = stringResource(R.string.surname),
                 lastField = false
             )
             RegistrationTextField(
-                value = viewModel.name,
-                onValueChange = { viewModel.updateName(it) },
+                value = uiState.name,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetName(it))
+                },
                 label = stringResource(R.string.name),
                 lastField = false
             )
             RegistrationTextField(
-                value = viewModel.patronymic,
-                onValueChange = { viewModel.updatePatronymic(it) },
+                value = uiState.patronymic,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetPatronymic(it))
+                },
                 keyboardActions = KeyboardActions(
                     onDone = {
                         navController.navigate(Screen.CityCourseAndPhone.route)
@@ -142,8 +149,11 @@ fun NameAndGenderRegScreen(viewModel: RegViewModel, navController: NavController
 }
 
 @Composable
-fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
-    val uiState by viewModel.uiState.collectAsState()
+fun CityCourseAndPhone(
+    navController: NavController,
+    onEvent: (RegistrationEvent) -> Unit,
+    uiState: RegUIState.Success
+) {
     OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
@@ -156,20 +166,26 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = viewModel.city,
-                onValueChange = { viewModel.updateCity(it) },
+                value = uiState.city,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetCity(it))
+                },
                 label = stringResource(R.string.city),
                 lastField = false
             )
             RegistrationTextField(
-                value = viewModel.course,
-                onValueChange = { viewModel.updateCourse(it) },
+                value = uiState.course,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetCourse(it))
+                },
                 label = stringResource(R.string.course_num),
                 lastField = false
             )
             RegistrationTextField(
-                value = viewModel.phone,
-                onValueChange = { viewModel.updatePhone(it) },
+                value = uiState.phone,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetPhoneNumber(it))
+                },
                 keyboardActions = KeyboardActions(
                     onDone = {
                         navController.navigate(Screen.EmailAndPasswordScreen.route)
@@ -192,9 +208,12 @@ fun CityCourseAndPhone(viewModel: RegViewModel, navController: NavController) {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun EmailAndPasswordScreen(viewModel: RegViewModel) {
+fun EmailAndPasswordScreen(
+    navController: NavController,
+    onEvent: (RegistrationEvent) -> Unit,
+    uiState: RegUIState.Success
+) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    val uiState by viewModel.uiState.collectAsState()
     val localContext = LocalContext.current
     var passwordVisible by remember { mutableStateOf(false) }
     OutlinedCard(
@@ -209,14 +228,18 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             RegistrationTextField(
-                value = viewModel.email,
-                onValueChange = { viewModel.updateEmail(it) },
+                value = uiState.email,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetEmail(it))
+                },
                 label = stringResource(R.string.email),
                 lastField = false
             )
             OutlinedTextField(
-                value = viewModel.password,
-                onValueChange = { viewModel.updatePassword(it) },
+                value = uiState.password,
+                onValueChange = {
+                    onEvent(RegistrationEvent.SetPassword(it))
+                },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text(text = stringResource(id = R.string.password)) },
                 singleLine = true,
@@ -243,7 +266,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                 shape = shapes.medium,
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        viewModel.register(
+                        onEvent(RegistrationEvent.AddUser(
                             onSuccessAction = {
                                 (localContext as Activity).finish()
                                 localContext.startActivity(
@@ -275,6 +298,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                                 ).show()
                             }
                         )
+                        )
                         keyboardController?.hide()
                     }
                 ),
@@ -282,7 +306,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
             Spacer(modifier = Modifier.padding(4.dp))
             Button(
                 onClick = {
-                    viewModel.register(
+                    onEvent(RegistrationEvent.AddUser(
                         onSuccessAction = {
                             (localContext as Activity).finish()
                             localContext.startActivity(
@@ -295,7 +319,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                         onFailureAction = {
                             Toast.makeText(
                                 localContext,
-                                "Упс.. попробуйте ещё раз",
+                                "Попробуйте ещё раз",
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
@@ -313,6 +337,7 @@ fun EmailAndPasswordScreen(viewModel: RegViewModel) {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+                    )
                     )
                 },
                 modifier = Modifier.fillMaxWidth()
