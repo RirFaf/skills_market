@@ -1,11 +1,16 @@
 package android.skills_market.view_model
 
+import android.skills_market.DefaultApplication
+import android.skills_market.data.LoginRepository
 import android.skills_market.network.SMFirebase
 import android.skills_market.view_model.event.LoginEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -112,15 +117,11 @@ class LoginViewModel(
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-//                val application = checkNotNull(extras[APPLICATION_KEY])
-//                val savedStateHandle = extras.createSavedStateHandle()
-                return LoginViewModel() as T
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val application = (this[APPLICATION_KEY] as DefaultApplication)
+                val loginRepository  = application.container.loginRepository // TODO:  
+                LoginViewModel()
             }
         }
     }
