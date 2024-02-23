@@ -3,8 +3,10 @@ package android.skills_market.view_model
 import android.skills_market.DefaultApplication
 import android.skills_market.data.LoginRepository
 import android.skills_market.network.SMFirebase
+import android.skills_market.network.SessionManager
 import android.skills_market.view_model.event.LoginEvent
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -34,6 +36,7 @@ sealed interface LoginUIState {
 
 class LoginViewModel(
 ) : ViewModel() {
+    private val sessionManager = MutableLiveData<SessionManager>().value
     private val tag = "VMTAG"
     private val db = SMFirebase()
 
@@ -42,7 +45,8 @@ class LoginViewModel(
     val uiState: StateFlow<LoginUIState.Success> = _uiState.asStateFlow()
 
     init {
-        Log.i(tag, "LoginViewModel initialized")
+        Log.i(tag, "LoginViewModel initialized\n" +
+                "SessionManager ${sessionManager.toString()}")
     }
 
     override fun onCleared() {
@@ -120,7 +124,8 @@ class LoginViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
-                val loginRepository  = application.container.loginRepository // TODO:  
+                val loginRepository  = application.container.loginRepository // TODO:
+                val sessionManager = application.sessionManager
                 LoginViewModel()
             }
         }

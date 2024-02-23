@@ -1,5 +1,6 @@
-package android.skills_market.network.models
+package android.skills_market.network.models.responses
 
+import android.skills_market.network.models.User
 import com.google.gson.annotations.SerializedName
 
 data class AuthResponse(

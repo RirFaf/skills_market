@@ -2,20 +2,19 @@ package android.skills_market.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.skills_market.network.ApiClient
+import android.skills_market.network.AuthApiClient
 import android.skills_market.network.SMFirebase
 import android.skills_market.network.SessionManager
+import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.MutableLiveData
 
 class LoadingActivity : ComponentActivity() {
-    private lateinit var sessionManager: SessionManager
-    private lateinit var apiClient: ApiClient
+    private lateinit var authApiClient: AuthApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        apiClient = ApiClient()
-        sessionManager = SessionManager(this)
-
+        authApiClient = AuthApiClient()
         val database = SMFirebase()
 
         intent = if (database.authenticateUser()) {

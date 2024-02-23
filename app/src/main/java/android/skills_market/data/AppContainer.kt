@@ -1,16 +1,15 @@
 package android.skills_market.data
 
-import android.skills_market.network.ApiClient
-import android.skills_market.network.ApiService
+import android.skills_market.network.AuthApiClient
 
 interface AppContainer {
     val loginRepository: LoginRepository
 }
 
 class DefaultAppContainer : AppContainer {
-    private val apiClient = ApiClient()
+    private val authApiClient = AuthApiClient()
 
-    private val retrofitApiService = apiClient.getApiService()
+    private val retrofitApiService = authApiClient.getApiService()
 
     override val loginRepository: LoginRepository by lazy {
         NetworkLoginRepository(retrofitApiService)

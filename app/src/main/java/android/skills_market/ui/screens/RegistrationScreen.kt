@@ -7,6 +7,7 @@ import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.RegGraph
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.view_model.RegUIState
+import android.skills_market.view_model.RegViewModel
 import android.skills_market.view_model.event.RegistrationEvent
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -51,7 +52,11 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrationScreen(navController: NavHostController) {
+fun RegistrationScreen(
+    navController: NavHostController,
+    regViewModel: RegViewModel,
+    state: RegUIState.Success
+) {
     val regNavController = rememberNavController()
     /*TODO: Доделать переходы и валидацию*/
     Scaffold(
@@ -83,7 +88,9 @@ fun RegistrationScreen(navController: NavHostController) {
     ) { innerPadding ->
         Column(Modifier.padding(innerPadding)) {
             RegGraph(
-                navController = regNavController
+                navController = regNavController,
+                regViewModel = regViewModel,
+                state = state
             )
         }
     }

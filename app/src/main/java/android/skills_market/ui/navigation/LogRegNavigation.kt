@@ -7,6 +7,7 @@ import android.skills_market.ui.screens.LoginScreen
 import android.skills_market.ui.screens.NameAndGenderRegScreen
 import android.skills_market.ui.screens.RegistrationScreen
 import android.skills_market.view_model.LoginViewModel
+import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.RegViewModel
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
@@ -146,8 +147,15 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) {
-            RegistrationScreen(navController = navController)
+        ) { entry ->
+            val regViewModel =
+                entry.sharedViewModel<RegViewModel>(navController = navController)
+            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+            RegistrationScreen(
+                navController = navController,
+                regViewModel = regViewModel,
+                state = state
+            )
         }
     }
 }
@@ -155,6 +163,8 @@ fun LogRegNavigationGraph(navController: NavHostController) {
 @Composable
 fun RegGraph(
     navController: NavHostController,
+    regViewModel: RegViewModel,
+    state: RegUIState.Success
 ) {
     NavHost(
         navController = navController,
@@ -170,10 +180,7 @@ fun RegGraph(
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
-        ) { entry ->
-            val regViewModel =
-                entry.sharedViewModel<RegViewModel>(navController = navController)
-            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+        ) {
             NameAndGenderRegScreen(
                 navController = navController,
                 onEvent = regViewModel::onEvent,
@@ -218,10 +225,7 @@ fun RegGraph(
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) { entry ->
-            val regViewModel =
-                entry.sharedViewModel<RegViewModel>(navController = navController)
-            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+        ) {
             CityCourseAndPhone(
                 navController = navController,
                 onEvent = regViewModel::onEvent,
@@ -266,10 +270,7 @@ fun RegGraph(
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) { entry ->
-            val regViewModel =
-                entry.sharedViewModel<RegViewModel>(navController = navController)
-            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+        ) {
             EmailAndPasswordScreen(
                 navController = navController,
                 onEvent = regViewModel::onEvent,
