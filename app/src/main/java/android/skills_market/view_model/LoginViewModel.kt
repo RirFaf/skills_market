@@ -1,7 +1,6 @@
 package android.skills_market.view_model
 
-import android.skills_market.DefaultApplication
-import android.skills_market.data.LoginRepository
+import android.skills_market.app.DefaultApplication
 import android.skills_market.network.SMFirebase
 import android.skills_market.network.SessionManager
 import android.skills_market.view_model.event.LoginEvent
@@ -10,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow

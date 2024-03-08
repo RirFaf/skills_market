@@ -26,11 +26,11 @@ import androidx.navigation.compose.composable
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NavigationGraph(navController: NavHostController) {
-    val customEnterTransition: EnterTransition? =
+    val customEnterTransition: EnterTransition =
         fadeIn(
             animationSpec = tween(150, easing = LinearEasing)
         )
-    val customExitTransition: ExitTransition? =
+    val customExitTransition: ExitTransition =
         fadeOut(
             animationSpec = tween(150, easing = LinearEasing)
         )

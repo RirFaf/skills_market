@@ -1,4 +1,4 @@
-package android.skills_market
+package android.skills_market.app
 
 import android.app.Application
 import android.skills_market.data.AppContainer
