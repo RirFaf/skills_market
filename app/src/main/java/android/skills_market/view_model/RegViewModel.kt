@@ -1,16 +1,24 @@
 package android.skills_market.view_model
 
+import android.skills_market.app.DefaultApplication
+import android.skills_market.data.repository.RegistrationRepository
 import android.skills_market.network.models.StudentModel
 import android.skills_market.network.SMFirebase
+import android.skills_market.network.models.requests.AuthRequest
 import android.skills_market.view_model.event.RegistrationEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 sealed interface RegUIState {
     data class Success(
@@ -30,7 +38,9 @@ sealed interface RegUIState {
     object Loading : RegUIState
 }
 
-class RegViewModel : ViewModel() {
+class RegViewModel(
+    private val registrationRepository: RegistrationRepository
+) : ViewModel() {
     private val tag = "VMTAG"
     private val db = SMFirebase()
 
@@ -47,10 +57,10 @@ class RegViewModel : ViewModel() {
         Log.i(tag, "RegViewModel is cleared")
     }
 
-    fun onEvent(event:RegistrationEvent){
-        when (event){
+    fun onEvent(event: RegistrationEvent) {
+        when (event) {
             is RegistrationEvent.AddUser -> {
-                if (!_uiState.value.isLoginBlank && !_uiState.value.isPasswordBlank){
+                if (!_uiState.value.isLoginBlank && !_uiState.value.isPasswordBlank) {
                     db.addUser(
                         StudentModel(
                             _uiState.value.surname,
@@ -69,12 +79,22 @@ class RegViewModel : ViewModel() {
                             event.onFailureAction()
                         }
                     )
+                    viewModelScope.launch{
+                        val response = registrationRepository.register(
+                            AuthRequest(
+                                email = uiState.value.email,
+                                password = uiState.value.password
+                            )
+                        )
+                        Log.i(tag, response.isExecuted.toString())
+                    }
                 } else if (!uiState.value.isLoginBlank) {
                     event.onEmptyLoginAction()
                 } else {
                     event.onEmptyPasswordAction()
                 }
             }
+
             is RegistrationEvent.SetCity -> {
                 _uiState.update {
                     it.copy(
@@ -82,6 +102,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetCourse -> {
                 _uiState.update {
                     it.copy(
@@ -89,6 +110,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetEmail -> {
                 _uiState.update {
                     it.copy(
@@ -97,6 +119,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetName -> {
                 _uiState.update {
                     it.copy(
@@ -104,6 +127,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetPassword -> {
                 _uiState.update {
                     it.copy(
@@ -112,6 +136,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetPatronymic -> {
                 _uiState.update {
                     it.copy(
@@ -119,6 +144,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetPhoneNumber -> {
                 _uiState.update {
                     it.copy(
@@ -126,6 +152,7 @@ class RegViewModel : ViewModel() {
                     )
                 }
             }
+
             is RegistrationEvent.SetSurname -> {
                 _uiState.update {
                     it.copy(
@@ -135,14 +162,14 @@ class RegViewModel : ViewModel() {
             }
         }
     }
+
     companion object {
-        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-                return RegViewModel() as T
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val application = (this[APPLICATION_KEY] as DefaultApplication)
+                val registrationRepository = application.container.registrationRepository // TODO:
+                val sessionManager = application.sessionManager
+                RegViewModel(registrationRepository = registrationRepository)
             }
         }
     }

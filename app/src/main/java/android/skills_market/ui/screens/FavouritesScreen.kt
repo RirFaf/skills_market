@@ -71,22 +71,22 @@ fun FavouritesScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(14.dp),
                 contentPadding = PaddingValues(4.dp)
             ) {
-                itemsIndexed(
-                    listOf(
-                        ShortVacancyModel(
-                            position = "Интерн",
-                            salary = 50000,
-                            companyName = "Семейный доктор",
-                        ),
-                        ShortVacancyModel(
-                            position = "Секретарь",
-                            salary = 20000,
-                            companyName = "ИП Петров Игорь Михайлович",
-                        ),
-                    )
-                ) { _, item ->
-                    VacancyCard(vacancy = item, navController = navController)
-                }
+//                itemsIndexed(
+//                    listOf(
+//                        ShortVacancyModel(
+//                            position = "Интерн",
+//                            salary = 50000,
+//                            companyName = "Семейный доктор",
+//                        ),
+//                        ShortVacancyModel(
+//                            position = "Секретарь",
+//                            salary = 20000,
+//                            companyName = "ИП Петров Игорь Михайлович",
+//                        ),
+//                    )
+//                ) { _, item ->
+//                    VacancyCard(vacancy = item, navController = navController)
+//                }
             }
         }
     }

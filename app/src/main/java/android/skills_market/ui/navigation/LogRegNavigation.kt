@@ -9,6 +9,7 @@ import android.skills_market.ui.screens.RegistrationScreen
 import android.skills_market.view_model.LoginViewModel
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.RegViewModel
+import android.skills_market.view_model.event.RegistrationEvent
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -110,11 +112,11 @@ fun LogRegNavigationGraph(navController: NavHostController) {
             val loginViewModel = viewModel<LoginViewModel>(
                 factory = LoginViewModel.Factory
             )
-            val uiState by loginViewModel.uiState.collectAsStateWithLifecycle()
+            val state by loginViewModel.uiState.collectAsStateWithLifecycle()
             LoginScreen(
                 navController = navController,
                 onEvent = loginViewModel::onEvent,
-                uiState = uiState
+                state = state
             )
         }
         composable(
@@ -148,12 +150,13 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                 )
             }
         ) { entry ->
-            val regViewModel =
-                entry.sharedViewModel<RegViewModel>(navController = navController)
+            val regViewModel = viewModel<RegViewModel>(
+                factory = RegViewModel.Factory
+            )
             val state by regViewModel.uiState.collectAsStateWithLifecycle()
             RegistrationScreen(
                 navController = navController,
-                regViewModel = regViewModel,
+                onEvent = regViewModel::onEvent,
                 state = state
             )
         }
@@ -163,7 +166,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
 @Composable
 fun RegGraph(
     navController: NavHostController,
-    regViewModel: RegViewModel,
+    onEvent: (RegistrationEvent) -> Unit,
     state: RegUIState.Success
 ) {
     NavHost(
@@ -183,7 +186,7 @@ fun RegGraph(
         ) {
             NameAndGenderRegScreen(
                 navController = navController,
-                onEvent = regViewModel::onEvent,
+                onEvent = onEvent,
                 uiState = state
             )
         }
@@ -228,7 +231,7 @@ fun RegGraph(
         ) {
             CityCourseAndPhone(
                 navController = navController,
-                onEvent = regViewModel::onEvent,
+                onEvent = onEvent,
                 uiState = state
             )
         }
@@ -273,7 +276,7 @@ fun RegGraph(
         ) {
             EmailAndPasswordScreen(
                 navController = navController,
-                onEvent = regViewModel::onEvent,
+                onEvent = onEvent,
                 uiState = state
             )
         }
@@ -283,6 +286,7 @@ fun RegGraph(
 @Composable
 inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
     navController: NavHostController,
+    factory: ViewModelProvider.Factory
 ): T {
     val navGraphRoute = destination.parent?.route ?: return viewModel()
     val parentEntry = remember(this) {
@@ -290,6 +294,7 @@ inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
     }
     return viewModel(
         viewModelStoreOwner = parentEntry,
+        factory = factory
     )
 }
 

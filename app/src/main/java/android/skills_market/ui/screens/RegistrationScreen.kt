@@ -54,7 +54,7 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun RegistrationScreen(
     navController: NavHostController,
-    regViewModel: RegViewModel,
+    onEvent: (RegistrationEvent) -> Unit,
     state: RegUIState.Success
 ) {
     val regNavController = rememberNavController()
@@ -89,7 +89,7 @@ fun RegistrationScreen(
         Column(Modifier.padding(innerPadding)) {
             RegGraph(
                 navController = regNavController,
-                regViewModel = regViewModel,
+                onEvent = onEvent,
                 state = state
             )
         }

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-49:12
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:1-53:12
 MERGED from [com.google.accompanist:accompanist-pager-indicators:0.13.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\06aa44f8e4b44d72a5bdb3da2a0c0c23\transformed\accompanist-pager-indicators-0.13.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.accompanist:accompanist-pager:0.13.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\21369c382596b5fa7c3d7bd33dbb21b7\transformed\accompanist-pager-0.13.0\AndroidManifest.xml:17:1-24:12
 MERGED from [io.coil-kt:coil-compose:2.4.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\42d8d7f77fa237d12ff619aab2c4e5e0\transformed\coil-compose-2.4.0\AndroidManifest.xml:2:1-7:12
@@ -142,9 +142,33 @@ MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\HP_Pavil
 		INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:10:5-67
+MERGED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:10:5-67
+MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bbfc8f4f6972d0d533cfcd8a9e4dd611\transformed\firebase-auth-21.1.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bbfc8f4f6972d0d533cfcd8a9e4dd611\transformed\firebase-auth-21.1.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fbaba61636338ec4495150435f8bbebf\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fbaba61636338ec4495150435f8bbebf\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-inappmessaging:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e6d63b179e0e5a7e538eb9810b93a8bb\transformed\firebase-inappmessaging-20.3.1\AndroidManifest.xml:10:5-67
+MERGED from [com.google.firebase:firebase-inappmessaging:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e6d63b179e0e5a7e538eb9810b93a8bb\transformed\firebase-inappmessaging-20.3.1\AndroidManifest.xml:10:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\d4b4eab34336cf0453e41712e2c68c9a\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\d4b4eab34336cf0453e41712e2c68c9a\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e933e8c189613a2f4a992f4179bb40c7\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
+MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e933e8c189613a2f4a992f4179bb40c7\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
+MERGED from [com.google.android.gms:play-services-measurement:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22aa52662160e2881919b982f1d66746\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22aa52662160e2881919b982f1d66746\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\60908a912bc4d0a9adbe844d9edd501a\transformed\play-services-measurement-impl-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\60908a912bc4d0a9adbe844d9edd501a\transformed\play-services-measurement-impl-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b57f1a099fc471578bf98d026e03f63a\transformed\play-services-measurement-sdk-api-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b57f1a099fc471578bf98d026e03f63a\transformed\play-services-measurement-sdk-api-21.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9e2c10dbda24fa8dbc28cd9539f9dfbc\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9e2c10dbda24fa8dbc28cd9539f9dfbc\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
+	android:name
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:5:5-48:19
-INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:5:5-48:19
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:5-52:19
+INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:5-52:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\815909a8490519c8fe26aa9f56790c14\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.5.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\815909a8490519c8fe26aa9f56790c14\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display-ktx:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\26cd6375a379a053fffddca37f154919\transformed\firebase-inappmessaging-display-ktx-20.3.1\AndroidManifest.xml:10:5-18:19
@@ -234,57 +258,59 @@ MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\HP_Pavil
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b2457f1a1ea767c7f9ab2c5db5a10b1b\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:8:9-54
-	android:roundIcon
 		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:11:9-54
+	android:roundIcon
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:14:9-54
 	tools:targetApi
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:14:9-29
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:9-29
 	android:icon
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:13:9-51
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:9-51
 	android:dataExtractionRules
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:7:9-65
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:10:9-65
+	android:name
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:8:9-47
 activity#android.skills_market.activities.AppActivity
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:15:9-22:20
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:19:9-26:20
 	android:exported
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:17:13-36
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:21:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:16:13-72
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:20:13-72
 meta-data#android.app.lib_name
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:19:13-21:36
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:13-25:36
 	android:value
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:21:17-33
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:25:17-33
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:20:17-52
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:17-52
 activity#android.skills_market.activities.LogRegActivity
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:23:9-30:20
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:27:9-34:20
 	android:exported
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:25:13-36
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:29:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:24:13-75
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:28:13-75
 activity#android.skills_market.activities.LoadingActivity
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:31:9-43:20
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:35:9-47:20
 	android:exported
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:33:13-36
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:37:13-36
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:32:13-76
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:36:13-76
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:34:13-38:29
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:38:13-42:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:35:17-69
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:39:17-69
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:35:25-66
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:39:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:37:17-77
+ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:41:17-77
 	android:name
-		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:37:27-74
+		ADDED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml:41:27-74
 uses-sdk
 INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\HP_Pavilion\AndroidStudioProjects\skills_market\app\src\main\AndroidManifest.xml
@@ -625,28 +651,6 @@ MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bc9b28849db1ba241d03ed3a0857bbd8\transformed\transport-runtime-3.1.8\AndroidManifest.xml:22:5-79
 	android:name
 		ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:9:22-76
-uses-permission#android.permission.INTERNET
-ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:10:5-67
-MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bbfc8f4f6972d0d533cfcd8a9e4dd611\transformed\firebase-auth-21.1.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\bbfc8f4f6972d0d533cfcd8a9e4dd611\transformed\firebase-auth-21.1.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fbaba61636338ec4495150435f8bbebf\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\fbaba61636338ec4495150435f8bbebf\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-inappmessaging:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e6d63b179e0e5a7e538eb9810b93a8bb\transformed\firebase-inappmessaging-20.3.1\AndroidManifest.xml:10:5-67
-MERGED from [com.google.firebase:firebase-inappmessaging:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e6d63b179e0e5a7e538eb9810b93a8bb\transformed\firebase-inappmessaging-20.3.1\AndroidManifest.xml:10:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\d4b4eab34336cf0453e41712e2c68c9a\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\d4b4eab34336cf0453e41712e2c68c9a\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e933e8c189613a2f4a992f4179bb40c7\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
-MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\e933e8c189613a2f4a992f4179bb40c7\transformed\firebase-installations-17.1.3\AndroidManifest.xml:10:5-67
-MERGED from [com.google.android.gms:play-services-measurement:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22aa52662160e2881919b982f1d66746\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\22aa52662160e2881919b982f1d66746\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\60908a912bc4d0a9adbe844d9edd501a\transformed\play-services-measurement-impl-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\60908a912bc4d0a9adbe844d9edd501a\transformed\play-services-measurement-impl-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b57f1a099fc471578bf98d026e03f63a\transformed\play-services-measurement-sdk-api-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\b57f1a099fc471578bf98d026e03f63a\transformed\play-services-measurement-sdk-api-21.2.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9e2c10dbda24fa8dbc28cd9539f9dfbc\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
-MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\9e2c10dbda24fa8dbc28cd9539f9dfbc\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:25:5-67
-	android:name
-		ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:10:22-64
 queries
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.3.1] C:\Users\HP_Pavilion\.gradle\caches\transforms-3\3a6f9b229750c1454b760c49afa87b84\transformed\firebase-inappmessaging-display-20.3.1\AndroidManifest.xml:12:5-18:15
 intent#action:name:android.intent.action.VIEW+data:scheme:https

@@ -1,7 +1,11 @@
-#Sun Feb 11 15:16:25 MSK 2024
+#Sat Apr 06 14:12:18 MSK 2024
 base.0=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+base.11=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.12=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.13=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.14=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
 base.2=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
 base.3=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
 base.4=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
@@ -13,6 +17,10 @@ base.9=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=classes3.dex
+path.11=10/classes.dex
+path.12=11/classes.dex
+path.13=4/classes.dex
+path.14=8/classes.dex
 path.2=12/classes.dex
 path.3=13/classes.dex
 path.4=2/classes.dex
@@ -24,6 +32,10 @@ path.9=classes2.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.10=classes11.dex
+renamed.11=classes12.dex
+renamed.12=classes13.dex
+renamed.13=classes14.dex
+renamed.14=classes15.dex
 renamed.2=classes3.dex
 renamed.3=classes4.dex
 renamed.4=classes5.dex

@@ -2,8 +2,8 @@ package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.R
 import android.skills_market.network.models.ShortVacancyModel
+import android.skills_market.network.models.VacancyModel
 import android.skills_market.ui.navigation.Screen
-import android.skills_market.view_model.VacancyViewModel
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -37,11 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
-@Preview
 @Composable
 fun VacancyCard(
-    vacancy: ShortVacancyModel = ShortVacancyModel(0, "null", 10, "null"),
-    navController: NavController
+    vacancy: VacancyModel = VacancyModel(0, "", 10, "", "", "", "", "", ""),
+    onClick: () -> Unit
 ) {
     val localContext = LocalContext.current
     var enabled by remember {
@@ -54,11 +53,7 @@ fun VacancyCard(
         modifier = Modifier
             .fillMaxSize()
             .clickable {
-                val vacancyViewModel = VacancyViewModel()
-                navController.navigate(Screen.VacancyScreen.route) {
-                    launchSingleTop = false
-                    restoreState = true
-                }
+                onClick()
             },
         border = BorderStroke(
             width = 1.dp,

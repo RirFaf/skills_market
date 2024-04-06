@@ -1,6 +1,6 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.network.models.VacancyModel
 import android.skills_market.network.models.VacanciesModel
 import android.skills_market.ui.screens.ChatListScreen
 import android.skills_market.ui.screens.FavouritesScreen
@@ -10,6 +10,7 @@ import android.skills_market.ui.screens.ResponsesListScreen
 import android.skills_market.ui.screens.ResumeRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
+import android.skills_market.view_model.SearchViewModel
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -18,9 +19,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -46,10 +52,56 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            SearchScreen(navController = navController, vacancies = VacanciesModel().vacancies)
+            val searchViewModel = viewModel<SearchViewModel>(
+                factory = SearchViewModel.Factory
+            )
+            val state by searchViewModel.uiState.collectAsStateWithLifecycle()
+            SearchScreen(
+                navController = navController,
+                onEvent = searchViewModel::onEvent,
+                state = state
+            )
         }
         composable(
-            route = Screen.VacancyScreen.route,
+            route = Screen.VacancyScreen.route +
+                    "/{id}" +
+                    "/{position}" +
+                    "/{salary}" +
+                    "/{companyName}" +
+                    "/{edArea}" +
+                    "/{formOfEmployment}" +
+                    "/{requirements}" +
+                    "/{location}" +
+                    "/{about}",
+            arguments = listOf(
+                navArgument(name = "id") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "position") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "salary") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "companyName") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "edArea") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "formOfEmployment") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "requirements") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "location") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "about") {
+                    type = NavType.StringType
+                },
+            ),
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
@@ -57,19 +109,16 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             VacancyScreen(
                 navController = navController,
-                /***
-                Для тестирования
-                 ***/
-                vacancy = SelectedVacancyModel(
-                    id = 0,
-                    position = "Бухгалтер",
-                    salary = 100000,
-                    companyName = "АкБарс",
-                    edArea = "Юриспрюденция",
-                    formOfEmployment = "Частичная",
-                    requirements = "2 курса",
-                    location = "Казань, ст. Козья слобода",
-                    about = "Пример"
+                vacancy = VacancyModel(
+                    id = it.arguments?.getInt("id")!!,
+                    position = it.arguments?.getString("position")!!,
+                    salary = it.arguments?.getInt("salary")!!,
+                    companyName = it.arguments?.getString("companyName")!!,
+                    edArea = it.arguments?.getString("edArea")!!,
+                    formOfEmployment = it.arguments?.getString("formOfEmployment")!!,
+                    requirements = it.arguments?.getString("requirements")!!,
+                    location = it.arguments?.getString("location")!!,
+                    about = it.arguments?.getString("about")!!
                 )
             )
         }

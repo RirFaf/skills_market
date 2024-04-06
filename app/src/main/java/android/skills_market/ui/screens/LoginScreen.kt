@@ -6,7 +6,6 @@ import android.skills_market.R
 import android.skills_market.activities.AppActivity
 import android.skills_market.ui.theme.Typography
 import android.skills_market.view_model.LoginUIState
-import android.skills_market.view_model.LoginViewModel
 import android.skills_market.view_model.event.LoginEvent
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -30,7 +29,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +50,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    uiState: LoginUIState.Success,
+    state: LoginUIState.Success,
     navController: NavController,
     onEvent: (LoginEvent) -> Unit
 ) {
@@ -105,7 +103,7 @@ fun LoginScreen(
                         style = Typography.headlineMedium
                     )
                     OutlinedTextField(
-                        value = uiState.login,
+                        value = state.email,
                         onValueChange = {
                             onEvent(LoginEvent.SetLogin(it))
                         },
@@ -121,7 +119,7 @@ fun LoginScreen(
                     )
                     Spacer(modifier = Modifier.padding(4.dp))
                     OutlinedTextField(
-                        value = uiState.password,
+                        value = state.password,
                         onValueChange = {
                             onEvent(LoginEvent.SetPassword(it))
                         },

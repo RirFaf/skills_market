@@ -15,6 +15,7 @@ sealed class Screen(
     object LoginScreen : Screen("login_screen")
     object SearchScreen : Screen("search_screen")
     object VacancyScreen : Screen("vacancy_screen")
+
     object FavouritesScreen : Screen("favourites_screen")
 
     object ResponsesListScreen : Screen("responses_list_screen")
