@@ -2,7 +2,12 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.models.ShortVacancyModel
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
+import android.skills_market.view_model.FavouritesUIState
+import android.skills_market.view_model.SearchUIState
+import android.skills_market.view_model.event.FavouritesEvent
+import android.skills_market.view_model.event.SearchEvent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,7 +38,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavouritesScreen(navController: NavController) {
+fun FavouritesScreen(
+    state: FavouritesUIState.Success,
+    navController: NavController,
+    onEvent: (FavouritesEvent) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -71,22 +80,30 @@ fun FavouritesScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(14.dp),
                 contentPadding = PaddingValues(4.dp)
             ) {
-//                itemsIndexed(
-//                    listOf(
-//                        ShortVacancyModel(
-//                            position = "Интерн",
-//                            salary = 50000,
-//                            companyName = "Семейный доктор",
-//                        ),
-//                        ShortVacancyModel(
-//                            position = "Секретарь",
-//                            salary = 20000,
-//                            companyName = "ИП Петров Игорь Михайлович",
-//                        ),
-//                    )
-//                ) { _, item ->
-//                    VacancyCard(vacancy = item, navController = navController)
-//                }
+                itemsIndexed(
+                    state.favourites.vacancies
+                ) { _, item ->
+                    VacancyCard(
+                        vacancy = item,
+                        onClick = {
+                            navController.navigate(
+                                route = Screen.VacancyScreen.route +
+                                        "/${item.id}" +
+                                        "/${item.position}" +
+                                        "/${item.salary}" +
+                                        "/${item.companyName}" +
+                                        "/${item.edArea}" +
+                                        "/${item.formOfEmployment}" +
+                                        "/${item.requirements}" +
+                                        "/${item.location}" +
+                                        "/${if (item.about.isEmpty()) " " else item.about}"
+                            ) {
+                                launchSingleTop = false
+                                restoreState = true
+                            }
+                        }
+                    )
+                }
             }
         }
     }

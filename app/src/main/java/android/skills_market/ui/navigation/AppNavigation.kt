@@ -10,6 +10,7 @@ import android.skills_market.ui.screens.ResponsesListScreen
 import android.skills_market.ui.screens.ResumeRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
+import android.skills_market.view_model.FavouritesViewModel
 import android.skills_market.view_model.SearchViewModel
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -129,7 +130,15 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            FavouritesScreen(navController = navController)
+            val favouritesViewModel = viewModel<FavouritesViewModel>(
+                factory = FavouritesViewModel.Factory
+            )
+            val state by favouritesViewModel.uiState.collectAsStateWithLifecycle()
+            FavouritesScreen(
+                navController = navController,
+                onEvent = favouritesViewModel::onEvent,
+                state = state
+            )
         }
         composable(
             route = Screen.ChatListScreen.route,

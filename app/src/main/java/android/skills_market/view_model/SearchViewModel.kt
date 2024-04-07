@@ -137,7 +137,7 @@ class SearchViewModel(
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
 //                val searchRepository = application.container.searchRepository
-                val sessionManager = application.sessionManager
+//                val sessionManager = application.sessionManager
                 SearchViewModel(
 //                    searchRepository = searchRepository
                 )
