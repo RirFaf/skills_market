@@ -1,6 +1,8 @@
 package android.skills_market.ui.screens.custom_composables
 
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.theme.md_theme_dark_surface
+import android.util.Log
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
@@ -13,19 +15,27 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun CustomNavBar(navController: NavController) {
+    var currentIndex by remember {
+        mutableStateOf(-1)
+    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
     val list = listOf(
         BottomNavItem(
             title = "Поиск",
@@ -79,36 +89,60 @@ fun CustomNavBar(navController: NavController) {
         ),
     )
     NavigationBar {
-        var selectedItemIndex by rememberSaveable {
-            mutableStateOf(0)
-        }
-//        val navBackStackEntry by navController.currentBackStackEntryAsState()
-//        val currentRoute = navBackStackEntry?.destination?.route
-        list.forEachIndexed() { index, listElement ->
+        list.forEachIndexed() { index, element ->
             NavigationBarItem(
                 icon = {
                     Icon(
-                        imageVector = if (selectedItemIndex == index) {
-                            listElement.selectedIcon
+                        imageVector =
+                        //вся эта хрень для правильного отображения выбранного элемента
+                        if ((currentIndex == index) && navBackStackEntry?.destination?.route == element.route) {
+                            element.selectedIcon
                         } else {
-                            listElement.unselectedIcon
+                            if (currentIndex == -1 && navBackStackEntry?.destination?.route == Screen.ChatListScreen.route || navBackStackEntry?.destination?.route == Screen.SearchScreen.route) {
+                                if (navBackStackEntry?.destination?.route == element.route) {
+                                    element.selectedIcon
+                                } else {
+                                    element.unselectedIcon
+                                }
+                            } else {
+                                if (currentIndex == index) {
+                                    element.selectedIcon
+                                } else {
+                                    element.unselectedIcon
+                                }
+                            }
                         },
-                        contentDescription = listElement.title,
+                        contentDescription = element.title,
                     )
                 },
                 label = {
                     Text(
-                        text = listElement.title,
+                        text = element.title,
                     )
                 },
                 alwaysShowLabel = true,
-                selected = selectedItemIndex == index,
+                //вся эта хрень для правильного отображения выбранного элемента
+                selected = if ((currentIndex == index) && navBackStackEntry?.destination?.route == element.route) {
+                    true
+                } else {
+                    if (currentIndex == -1 && navBackStackEntry?.destination?.route == Screen.ChatListScreen.route || navBackStackEntry?.destination?.route == Screen.SearchScreen.route) {
+                        navBackStackEntry?.destination?.route == element.route
+                    } else {
+                        currentIndex == index
+                    }
+                },
                 onClick = {
-                    selectedItemIndex = index
-                    navController.navigate(listElement.route) {
+                    navController.navigate(element.route) {
+                        //Для обеспечения правильной обработки действия "назад" и выбора элементов
+                        if (navBackStackEntry?.destination?.route == element.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                        }
                         launchSingleTop = false
                         restoreState = true
                     }
+                    currentIndex = index
                 }
             )
         }

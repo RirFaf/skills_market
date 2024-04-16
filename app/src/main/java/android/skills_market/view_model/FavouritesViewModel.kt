@@ -52,6 +52,7 @@ class FavouritesViewModel(
                 requirements = "Диплом о законченом высшем образовании",
                 location = "Казань",
                 about = "",
+                liked = true
             ),
             VacancyModel(
                 position = "Секретарь",
@@ -62,6 +63,7 @@ class FavouritesViewModel(
                 requirements = "Неполное высшее",
                 location = "Саратов",
                 about = " ",
+                liked = true
             ),
             VacancyModel(
                 position = "Врач-терапевт",
@@ -72,6 +74,7 @@ class FavouritesViewModel(
                 requirements = "Неполное высшее",
                 location = "Вознесенск",
                 about = " ",
+                liked = true
             ),
         )
     )

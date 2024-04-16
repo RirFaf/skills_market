@@ -39,7 +39,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun VacancyCard(
-    vacancy: VacancyModel = VacancyModel(0, "", 10, "", "", "", "", "", ""),
+    vacancy: VacancyModel,
     onClick: () -> Unit
 ) {
     val localContext = LocalContext.current
@@ -47,7 +47,7 @@ fun VacancyCard(
         mutableStateOf(true)
     }
     var liked by remember {
-        mutableStateOf(false)
+        mutableStateOf(vacancy.liked)
     }
     OutlinedCard(
         modifier = Modifier
@@ -107,7 +107,11 @@ fun VacancyCard(
                     }
                 ) {
                     Icon(
-                        imageVector = if (liked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                        if (liked) {
+                            Icons.Filled.Favorite
+                        } else {
+                            Icons.Outlined.FavoriteBorder
+                        },
                         contentDescription = ""
                     )
                 }

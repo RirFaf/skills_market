@@ -45,7 +45,8 @@
         android:theme="@style/Theme.Skills_market" >
         <activity
             android:name="android.skills_market.activities.AppActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

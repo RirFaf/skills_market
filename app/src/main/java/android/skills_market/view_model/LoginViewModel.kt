@@ -22,15 +22,16 @@ import kotlinx.coroutines.launch
 
 sealed interface LoginUIState {
     data class Success(
-        val isPasswordBlank: Boolean = true,
-        val isPasswordEntered: Boolean = false,
-        val isPasswordCorrect: Boolean = false,
-        val isLoginEntered: Boolean = false,
-        val isLoginBlank: Boolean = true,
-        val isLoginCorrect: Boolean = false,
+        val isPasswordCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
+        val isLoginCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
         val email: String = "",
         val password: String = "",
-    ) : LoginUIState
+    ) : LoginUIState {
+        val isLoginBlank: Boolean
+            get() = email.isBlank()
+        val isPasswordBlank: Boolean
+            get() = password.isBlank()
+    }
 
     object Error : LoginUIState
     object Loading : LoginUIState
@@ -45,7 +46,6 @@ class LoginViewModel(
     private val db = SMFirebase()
 
     private val _uiState = MutableStateFlow(LoginUIState.Success())//переделать под обработку REST
-
     val uiState: StateFlow<LoginUIState.Success> = _uiState.asStateFlow()
 
     init {
@@ -72,33 +72,17 @@ class LoginViewModel(
 
             is LoginEvent.SetLogin -> {
                 _uiState.update {
-                    if (event.input.isBlank()) {
-                        it.copy(
-                            isLoginBlank = true,
-                            email = event.input
-                        )
-                    } else {
-                        it.copy(
-                            isLoginBlank = false,
-                            email = event.input
-                        )
-                    }
+                    it.copy(
+                        email = event.input
+                    )
                 }
             }
 
             is LoginEvent.SetPassword -> {
                 _uiState.update {
-                    if (event.input.isBlank()) {
-                        it.copy(
-                            isPasswordBlank = true,
-                            password = event.input
-                        )
-                    } else {
-                        it.copy(
-                            isPasswordBlank = false,
-                            password = event.input
-                        )
-                    }
+                    it.copy(
+                        password = event.input
+                    )
                 }
             }
 
@@ -109,15 +93,15 @@ class LoginViewModel(
                         login = uiState.value.email,
                         password = uiState.value.password
                     )
-                    viewModelScope.launch{
-                        val response = loginRepository.login(
-                            AuthRequest(
-                                email = uiState.value.email,
-                                password = uiState.value.password
-                            )
-                        )
-                        Log.i(tag, response.isExecuted.toString())
-                    }
+//                    viewModelScope.launch{
+//                        val response = loginRepository.login(
+//                            AuthRequest(
+//                                email = uiState.value.email,
+//                                password = uiState.value.password
+//                            )
+//                        )
+//                        Log.i(tag, response.isExecuted.toString())
+//                    }
                 } else if (!uiState.value.isLoginBlank) {
                     event.onEmptyLoginAction()
                 } else {

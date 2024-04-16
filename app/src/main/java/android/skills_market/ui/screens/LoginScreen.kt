@@ -78,7 +78,8 @@ fun LoginScreen(
                             text = stringResource(R.string.back),
                         )
                     }
-                }
+                },
+                modifier = Modifier.padding(start = 8.dp)
             )
         },
     ) { innerPadding ->
@@ -113,7 +114,8 @@ fun LoginScreen(
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(
                             autoCorrect = false,
-                            imeAction = ImeAction.Next
+                            imeAction = ImeAction.Next,
+                            keyboardType = KeyboardType.Email
                         ),
                         shape = shapes.medium
                     )

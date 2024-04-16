@@ -14,4 +14,5 @@ data class VacancyModel(
     val requirements: String,
     val location: String,
     val about: String,
+    val liked: Boolean = false
 ) : Parcelable

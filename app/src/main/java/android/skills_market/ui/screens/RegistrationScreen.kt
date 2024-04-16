@@ -82,7 +82,8 @@ fun RegistrationScreen(
                             text = stringResource(R.string.back),
                         )
                     }
-                }
+                },
+                modifier = Modifier.padding(start = 8.dp)
             )
         },
     ) { innerPadding ->

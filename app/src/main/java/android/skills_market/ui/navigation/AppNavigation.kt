@@ -11,6 +11,7 @@ import android.skills_market.ui.screens.ResumeRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
 import android.skills_market.view_model.FavouritesViewModel
+import android.skills_market.view_model.MessengerViewModel
 import android.skills_market.view_model.SearchViewModel
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -123,6 +124,7 @@ fun NavigationGraph(navController: NavHostController) {
                 )
             )
         }
+
         composable(
             route = Screen.FavouritesScreen.route,
             enterTransition = { customEnterTransition },
@@ -149,6 +151,7 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             ChatListScreen(navController = navController)
         }
+
         composable(
             route = Screen.MessengerScreen.route,
             enterTransition = { customEnterTransition },
@@ -164,7 +167,15 @@ fun NavigationGraph(navController: NavHostController) {
                 )
             },
         ) {
-            MessengerScreen(navController = navController)
+            val messengerViewModel = viewModel<MessengerViewModel>(
+                factory = MessengerViewModel.Factory
+            )
+            val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
+            MessengerScreen(
+                navController = navController,
+                onEvent = messengerViewModel::onEvent,
+                state = state
+            )
         }
 
         composable(
@@ -176,6 +187,7 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             ResponsesListScreen(navController = navController)
         }
+
         composable(
             route = Screen.ProfileScreen.route,
             enterTransition = { customEnterTransition },
@@ -185,6 +197,7 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             ProfileScreen(navController = navController)
         }
+
         composable(
             route = Screen.ResumeRedactorScreen.route,
             enterTransition = { customEnterTransition },

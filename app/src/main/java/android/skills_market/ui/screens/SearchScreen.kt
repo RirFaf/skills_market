@@ -103,7 +103,8 @@ fun SearchScreen(
                             contentDescription = "sort",
                         )
                     }
-                }
+                },
+                modifier = Modifier.padding(vertical = 8.dp),
             )
         },
     ) { innerPadding ->
@@ -137,7 +138,7 @@ fun SearchScreen(
                                         "/${item.location}" +
                                         "/${if (item.about.isEmpty()) " " else item.about}"
                             ) {
-                                launchSingleTop = false
+                                launchSingleTop = true
                                 restoreState = true
                             }
                         }
