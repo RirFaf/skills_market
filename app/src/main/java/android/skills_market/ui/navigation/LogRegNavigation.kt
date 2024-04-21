@@ -1,11 +1,11 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.ui.screens.LogRegScreen
-import android.skills_market.ui.screens.LoginScreen
-import android.skills_market.ui.screens.RegistrationScreen
-import android.skills_market.ui.screens.registration_screen.CityCourseAndPhoneScreen
-import android.skills_market.ui.screens.registration_screen.EmailAndPasswordScreen
-import android.skills_market.ui.screens.registration_screen.NameAndGenderScreen
+import android.skills_market.ui.screens.authentication.LogRegScreen
+import android.skills_market.ui.screens.authentication.LoginScreen
+import android.skills_market.ui.screens.authentication.registration_screen.RegistrationScreen
+import android.skills_market.ui.screens.authentication.registration_screen.CityCourseAndPhoneScreen
+import android.skills_market.ui.screens.authentication.registration_screen.EmailAndPasswordScreen
+import android.skills_market.ui.screens.authentication.registration_screen.NameAndGenderScreen
 import android.skills_market.view_model.LoginViewModel
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.RegViewModel

@@ -113,7 +113,7 @@ class SearchViewModel(
 
     fun onEvent(event: SearchEvent){
         when(event){
-            SearchEvent.GetVacancies -> {
+            is SearchEvent.GetVacancies -> {
                 viewModelScope.launch {
 //            searchRepository.getVacanciesList().asResult()
 //            _uiState = SearchUIState.Loading
@@ -128,7 +128,9 @@ class SearchViewModel(
             }
 
             is SearchEvent.GetVacanciesBySearch -> {}//TODO имплементировать поиск вакансий
-            SearchEvent.RespondToVacancy -> {}
+            is SearchEvent.RespondToVacancy -> {}
+            is SearchEvent.Respond -> {}
+            is SearchEvent.SetFavourite -> {}
         }
     }
 

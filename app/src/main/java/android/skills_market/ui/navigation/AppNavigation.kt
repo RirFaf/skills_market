@@ -1,15 +1,15 @@
 package android.skills_market.ui.navigation
 
 import android.skills_market.network.models.VacancyModel
-import android.skills_market.network.models.VacanciesModel
-import android.skills_market.ui.screens.ChatListScreen
+import android.skills_market.ui.screens.messenger.ChatListScreen
 import android.skills_market.ui.screens.FavouritesScreen
-import android.skills_market.ui.screens.MessengerScreen
-import android.skills_market.ui.screens.ProfileScreen
+import android.skills_market.ui.screens.messenger.MessengerScreen
+import android.skills_market.ui.screens.profile.ProfileScreen
 import android.skills_market.ui.screens.ResponsesListScreen
-import android.skills_market.ui.screens.ResumeRedactorScreen
+import android.skills_market.ui.screens.profile.ProfileRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
+import android.skills_market.ui.screens.resume.ResumeScreen
 import android.skills_market.view_model.FavouritesViewModel
 import android.skills_market.view_model.MessengerViewModel
 import android.skills_market.view_model.SearchViewModel
@@ -199,13 +199,23 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(
-            route = Screen.ResumeRedactorScreen.route,
+            route = Screen.ProfileRedactorScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            ResumeRedactorScreen(navController = navController)
+            ProfileRedactorScreen(navController = navController)
+        }
+
+        composable(
+            route = Screen.ResumeScreen.route,
+            enterTransition = { customEnterTransition },
+            exitTransition = { customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
+        ) {
+            ResumeScreen(navController = navController)
         }
     }
 }

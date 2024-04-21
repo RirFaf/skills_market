@@ -1,6 +1,6 @@
 package android.skills_market.network
 
-import android.skills_market.data.Constants
+import android.skills_market.data.constants.URLs
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +19,7 @@ class AuthApiClient {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(URLs.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

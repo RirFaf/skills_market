@@ -136,7 +136,7 @@ fun SearchScreen(
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
                                         "/${item.location}" +
-                                        "/${if (item.about.isEmpty()) " " else item.about}"
+                                        "/${item.about.ifEmpty { " " }}"
                             ) {
                                 launchSingleTop = true
                                 restoreState = true
