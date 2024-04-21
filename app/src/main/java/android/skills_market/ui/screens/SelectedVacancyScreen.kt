@@ -1,7 +1,7 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.network.models.SelectedVacancyModel
+import android.skills_market.network.models.VacancyModel
 import android.skills_market.ui.screens.custom_composables.CustomText
 import android.skills_market.ui.theme.Inter
 import android.widget.Toast
@@ -20,7 +20,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -40,7 +39,7 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun VacancyScreen(navController: NavController, vacancy: SelectedVacancyModel) {
+fun VacancyScreen(navController: NavController, vacancy: VacancyModel) {
     val localContext = LocalContext.current
     var liked by remember { mutableStateOf(false) }
     Scaffold(

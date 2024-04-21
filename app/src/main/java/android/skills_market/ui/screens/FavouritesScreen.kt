@@ -2,7 +2,12 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.models.ShortVacancyModel
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
+import android.skills_market.view_model.FavouritesUIState
+import android.skills_market.view_model.SearchUIState
+import android.skills_market.view_model.event.FavouritesEvent
+import android.skills_market.view_model.event.SearchEvent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,7 +38,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavouritesScreen(navController: NavController) {
+fun FavouritesScreen(
+    state: FavouritesUIState.Success,
+    navController: NavController,
+    onEvent: (FavouritesEvent) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -72,53 +81,32 @@ fun FavouritesScreen(navController: NavController) {
                 contentPadding = PaddingValues(4.dp)
             ) {
                 itemsIndexed(
-                    listOf(
-                        ShortVacancyModel(
-                            position = "Интерн",
-                            salary = 50000,
-                            companyName = "Семейный доктор",
-                        ),
-                        ShortVacancyModel(
-                            position = "Секретарь",
-                            salary = 20000,
-                            companyName = "ИП Петров Игорь Михайлович",
-                        ),
-                    )
+                    state.favourites.vacancies
                 ) { _, item ->
-                    VacancyCard(vacancy = item, navController = navController)
+                    VacancyCard(
+                        vacancy = item,
+                        onClick = {
+                            navController.navigate(
+                                route = Screen.VacancyScreen.route +
+                                        "/${item.id}" +
+                                        "/${item.position}" +
+                                        "/${item.salary}" +
+                                        "/${item.companyName}" +
+                                        "/${item.edArea}" +
+                                        "/${item.formOfEmployment}" +
+                                        "/${item.requirements}" +
+                                        "/${item.location}" +
+                                        "/${if (item.about.isEmpty()) " " else item.about}"
+                            ) {
+                                launchSingleTop = false
+                                restoreState = true
+                            }
+                        },
+                        onRespond = {},
+                        onLike = {}
+                    )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun TopBar() {
-    Row(
-        modifier = Modifier
-            .height(70.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(
-            onClick = {}
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notifications_none),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-        Text(text = "Понравившиеся", fontSize = 28.sp)
-        IconButton(
-            onClick = { }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
         }
     }
 }

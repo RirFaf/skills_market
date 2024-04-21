@@ -1,15 +1,23 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.network.models.SelectedVacancyModel
-import android.skills_market.network.models.VacanciesModel
-import android.skills_market.ui.screens.ChatListScreen
+import android.skills_market.network.models.VacancyModel
+import android.skills_market.ui.navigation.extensions.sharedViewModel
+import android.skills_market.ui.screens.messenger.ChatListScreen
 import android.skills_market.ui.screens.FavouritesScreen
-import android.skills_market.ui.screens.MessengerScreen
-import android.skills_market.ui.screens.ProfileScreen
+import android.skills_market.ui.screens.messenger.MessengerScreen
+import android.skills_market.ui.screens.profile.ProfileScreen
 import android.skills_market.ui.screens.ResponsesListScreen
-import android.skills_market.ui.screens.ResumeRedactorScreen
+import android.skills_market.ui.screens.profile.ProfileRedactorScreen
 import android.skills_market.ui.screens.SearchScreen
 import android.skills_market.ui.screens.VacancyScreen
+import android.skills_market.ui.screens.resume.ResumeRedactorScreen
+import android.skills_market.ui.screens.resume.ResumeScreen
+import android.skills_market.view_model.FavouritesViewModel
+import android.skills_market.view_model.MessengerViewModel
+import android.skills_market.view_model.ProfileViewModel
+import android.skills_market.view_model.ResponsesViewModel
+import android.skills_market.view_model.ResumeViewModel
+import android.skills_market.view_model.SearchViewModel
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -18,19 +26,24 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NavigationGraph(navController: NavHostController) {
-    val customEnterTransition: EnterTransition? =
+    val customEnterTransition: EnterTransition =
         fadeIn(
             animationSpec = tween(150, easing = LinearEasing)
         )
-    val customExitTransition: ExitTransition? =
+    val customExitTransition: ExitTransition =
         fadeOut(
             animationSpec = tween(150, easing = LinearEasing)
         )
@@ -46,10 +59,56 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            SearchScreen(navController = navController, vacancies = VacanciesModel().vacancies)
+            val searchViewModel = viewModel<SearchViewModel>(
+                factory = SearchViewModel.Factory
+            )
+            val state by searchViewModel.uiState.collectAsStateWithLifecycle()
+            SearchScreen(
+                navController = navController,
+                onEvent = searchViewModel::onEvent,
+                state = state
+            )
         }
         composable(
-            route = Screen.VacancyScreen.route,
+            route = Screen.VacancyScreen.route +
+                    "/{id}" +
+                    "/{position}" +
+                    "/{salary}" +
+                    "/{companyName}" +
+                    "/{edArea}" +
+                    "/{formOfEmployment}" +
+                    "/{requirements}" +
+                    "/{location}" +
+                    "/{about}",
+            arguments = listOf(
+                navArgument(name = "id") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "position") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "salary") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "companyName") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "edArea") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "formOfEmployment") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "requirements") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "location") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "about") {
+                    type = NavType.StringType
+                },
+            ),
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
@@ -57,22 +116,20 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             VacancyScreen(
                 navController = navController,
-                /***
-                Для тестирования
-                 ***/
-                vacancy = SelectedVacancyModel(
-                    id = 0,
-                    position = "Бухгалтер",
-                    salary = 100000,
-                    companyName = "АкБарс",
-                    edArea = "Юриспрюденция",
-                    formOfEmployment = "Частичная",
-                    requirements = "2 курса",
-                    location = "Казань, ст. Козья слобода",
-                    about = "Пример"
+                vacancy = VacancyModel(
+                    id = it.arguments?.getInt("id")!!,
+                    position = it.arguments?.getString("position")!!,
+                    salary = it.arguments?.getInt("salary")!!,
+                    companyName = it.arguments?.getString("companyName")!!,
+                    edArea = it.arguments?.getString("edArea")!!,
+                    formOfEmployment = it.arguments?.getString("formOfEmployment")!!,
+                    requirements = it.arguments?.getString("requirements")!!,
+                    location = it.arguments?.getString("location")!!,
+                    about = it.arguments?.getString("about")!!
                 )
             )
         }
+
         composable(
             route = Screen.FavouritesScreen.route,
             enterTransition = { customEnterTransition },
@@ -80,7 +137,15 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            FavouritesScreen(navController = navController)
+            val favouritesViewModel = viewModel<FavouritesViewModel>(
+                factory = FavouritesViewModel.Factory
+            )
+            val state by favouritesViewModel.uiState.collectAsStateWithLifecycle()
+            FavouritesScreen(
+                navController = navController,
+                onEvent = favouritesViewModel::onEvent,
+                state = state
+            )
         }
         composable(
             route = Screen.ChatListScreen.route,
@@ -91,6 +156,7 @@ fun NavigationGraph(navController: NavHostController) {
         ) {
             ChatListScreen(navController = navController)
         }
+
         composable(
             route = Screen.MessengerScreen.route,
             enterTransition = { customEnterTransition },
@@ -106,7 +172,15 @@ fun NavigationGraph(navController: NavHostController) {
                 )
             },
         ) {
-            MessengerScreen(navController = navController)
+            val messengerViewModel = viewModel<MessengerViewModel>(
+                factory = MessengerViewModel.Factory
+            )
+            val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
+            MessengerScreen(
+                navController = navController,
+                onEvent = messengerViewModel::onEvent,
+                state = state
+            )
         }
 
         composable(
@@ -116,16 +190,70 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            ResponsesListScreen(navController = navController)
+            val responsesViewModel = viewModel<ResponsesViewModel>(factory = ResponsesViewModel.Factory)
+            val state by responsesViewModel.uiState.collectAsStateWithLifecycle()
+            ResponsesListScreen(
+                navController = navController,
+                state = state,
+                onEvent = responsesViewModel::onEvent
+            )
         }
+
         composable(
             route = Screen.ProfileScreen.route,
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
-        ) {
-            ProfileScreen(navController = navController)
+        ) {entry ->
+            val profileViewModel = entry.sharedViewModel<ProfileViewModel>(
+                factory = ProfileViewModel.Factory,
+                navController = navController
+            )
+            val state by profileViewModel.uiState.collectAsStateWithLifecycle()
+            ProfileScreen(
+                navController = navController,
+                state = state,
+                onEvent = profileViewModel::onEvent
+            )
+        }
+
+        composable(
+            route = Screen.ProfileRedactorScreen.route,
+            enterTransition = { customEnterTransition },
+            exitTransition = { customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
+        ) { entry ->
+            val profileViewModel = entry.sharedViewModel<ProfileViewModel>(
+                factory = ProfileViewModel.Factory,
+                navController = navController
+            )
+            val state by profileViewModel.uiState.collectAsStateWithLifecycle()
+            ProfileRedactorScreen(
+                navController = navController,
+                state = state,
+                onEvent = profileViewModel::onEvent
+            )
+        }
+
+        composable(
+            route = Screen.ResumeScreen.route,
+            enterTransition = { customEnterTransition },
+            exitTransition = { customExitTransition },
+            popEnterTransition = { customEnterTransition },
+            popExitTransition = { customExitTransition },
+        ) { entry ->
+            val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
+                navController = navController,
+                factory = ResumeViewModel.Factory
+            )
+            val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
+            ResumeScreen(
+                navController = navController,
+                state = state,
+                onEvent = resumeViewModel::onEvent
+            )
         }
         composable(
             route = Screen.ResumeRedactorScreen.route,
@@ -133,8 +261,17 @@ fun NavigationGraph(navController: NavHostController) {
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
-        ) {
-            ResumeRedactorScreen(navController = navController)
+        ) { entry ->
+            val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
+                navController = navController,
+                factory = ResumeViewModel.Factory
+            )
+            val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
+            ResumeRedactorScreen(
+                navController = navController,
+                state = state,
+                onEvent = resumeViewModel::onEvent
+            )
         }
     }
 }

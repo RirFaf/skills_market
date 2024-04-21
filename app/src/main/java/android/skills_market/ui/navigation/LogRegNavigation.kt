@@ -1,27 +1,31 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.ui.screens.CityCourseAndPhone
-import android.skills_market.ui.screens.EmailAndPasswordScreen
-import android.skills_market.ui.screens.LogRegScreen
-import android.skills_market.ui.screens.LoginScreen
-import android.skills_market.ui.screens.NameAndGenderRegScreen
-import android.skills_market.ui.screens.RegistrationScreen
-import android.skills_market.view_models.RegViewModel
-import androidx.compose.animation.AnimatedContentScope
+import android.skills_market.ui.screens.authentication.LogRegScreen
+import android.skills_market.ui.screens.authentication.LoginScreen
+import android.skills_market.ui.screens.authentication.registration_screen.RegistrationScreen
+import android.skills_market.ui.screens.authentication.registration_screen.CityCourseAndPhoneScreen
+import android.skills_market.ui.screens.authentication.registration_screen.EmailAndPasswordScreen
+import android.skills_market.ui.screens.authentication.registration_screen.NameAndGenderScreen
+import android.skills_market.view_model.LoginViewModel
+import android.skills_market.view_model.RegUIState
+import android.skills_market.view_model.RegViewModel
+import android.skills_market.view_model.event.RegistrationEvent
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.Ease
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
-import androidx.compose.animation.core.EaseOutSine
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -45,7 +49,25 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
             exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        250, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(250, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+            popExitTransition = {
                 fadeOut(
                     animationSpec = tween(
                         250, easing = LinearEasing
@@ -61,9 +83,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
         composable(
             route = Screen.LoginScreen.route,
             enterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
+                slideIntoContainer(
                     animationSpec = tween(250, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
@@ -89,7 +109,15 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                 )
             }
         ) {
-            LoginScreen(navController = navController)
+            val loginViewModel = viewModel<LoginViewModel>(
+                factory = LoginViewModel.Factory
+            )
+            val state by loginViewModel.uiState.collectAsStateWithLifecycle()
+            LoginScreen(
+                navController = navController,
+                onEvent = loginViewModel::onEvent,
+                state = state
+            )
         }
         composable(
             route = Screen.RegistrationScreen.route,
@@ -108,7 +136,7 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             },
             popExitTransition = {
@@ -121,8 +149,16 @@ fun LogRegNavigationGraph(navController: NavHostController) {
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
-        ) {
-            RegistrationScreen(navController = navController)
+        ) { entry ->
+            val regViewModel = viewModel<RegViewModel>(
+                factory = RegViewModel.Factory
+            )
+            val state by regViewModel.uiState.collectAsStateWithLifecycle()
+            RegistrationScreen(
+                navController = navController,
+                onEvent = regViewModel::onEvent,
+                state = state
+            )
         }
     }
 }
@@ -130,90 +166,42 @@ fun LogRegNavigationGraph(navController: NavHostController) {
 @Composable
 fun RegGraph(
     navController: NavHostController,
-    viewModel: RegViewModel
+    onEvent: (RegistrationEvent) -> Unit,
+    state: RegUIState.Success
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.NameAndGenderRegScreen.route,
-        enterTransition = { EnterTransition.None },
-        exitTransition = { ExitTransition.None },
+        startDestination = Screen.EmailAndPasswordScreen.route,
     ) {
         composable(
-            route = Screen.NameAndGenderRegScreen.route,
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            popEnterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
-                    animationSpec = tween(250, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            },
-            popExitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
-        ) {
-            NameAndGenderRegScreen(viewModel = viewModel, navController = navController)
-        }
-        composable(
-            route = Screen.CityCourseAndPhone.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
-                    animationSpec = tween(250, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            popEnterTransition = {
-                fadeIn(
-                    animationSpec = tween(250, easing = LinearEasing),
-                ) + slideIntoContainer(
-                    animationSpec = tween(250, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            },
-            popExitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        250, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(250, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
-        ) {
-            CityCourseAndPhone(viewModel = viewModel, navController = navController)
-        }
-        composable(
             route = Screen.EmailAndPasswordScreen.route,
+            popEnterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
+            exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        250, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(250, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+        ) {
+            EmailAndPasswordScreen(
+                navController = navController,
+                onEvent = onEvent,
+                uiState = state
+            )
+        }
+        composable(
+            route = Screen.NameAndGenderScreen.route,
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(250, easing = LinearEasing),
@@ -251,8 +239,60 @@ fun RegGraph(
                 )
             }
         ) {
-            EmailAndPasswordScreen(viewModel = viewModel)
+            NameAndGenderScreen(
+                navController = navController,
+                onEvent = onEvent,
+                uiState = state
+            )
+        }
+        composable(
+            route = Screen.CityCourseAndPhoneScreen.route,
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+            exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        250, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(250, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+            popEnterTransition = {
+                fadeIn(
+                    animationSpec = tween(250, easing = LinearEasing),
+                ) + slideIntoContainer(
+                    animationSpec = tween(250, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
+            popExitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        250, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(250, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            }
+        ) {
+            CityCourseAndPhoneScreen(
+                navController = navController,
+                onEvent = onEvent,
+                uiState = state
+            )
         }
     }
 }
+
+
+
 

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "android.skills_market.app-mergeDebugResources-65:/values-ml/values-ml.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-66:/values-ml/values-ml.xml",
             "map": [
                 {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\8a5172645fa43d7bf655161c0e7b03ef\\transformed\\play-services-basement-18.1.0\\res\\values-ml\\values.xml",

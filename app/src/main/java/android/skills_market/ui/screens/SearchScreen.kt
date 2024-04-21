@@ -2,7 +2,13 @@ package android.skills_market.ui.screens
 
 import android.skills_market.R
 import android.skills_market.network.models.ShortVacancyModel
+import android.skills_market.network.models.VacancyModel
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
+import android.skills_market.view_model.LoginUIState
+import android.skills_market.view_model.SearchUIState
+import android.skills_market.view_model.event.LoginEvent
+import android.skills_market.view_model.event.SearchEvent
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,7 +45,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen(navController: NavController, vacancies: ArrayList<ShortVacancyModel>) {
+fun SearchScreen(
+    state: SearchUIState.Success,//TODO убрать Success
+    navController: NavController,
+    onEvent: (SearchEvent) -> Unit
+) {
     val localContext = LocalContext.current
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -93,7 +103,8 @@ fun SearchScreen(navController: NavController, vacancies: ArrayList<ShortVacancy
                             contentDescription = "sort",
                         )
                     }
-                }
+                },
+                modifier = Modifier.padding(vertical = 8.dp),
             )
         },
     ) { innerPadding ->
@@ -110,35 +121,30 @@ fun SearchScreen(navController: NavController, vacancies: ArrayList<ShortVacancy
                 contentPadding = PaddingValues(4.dp)
             ) {
                 itemsIndexed(
-                    listOf(
-                        ShortVacancyModel(
-                            position = "Интерн",
-                            salary = 50000,
-                            companyName = "Семейный доктор",
-                        ),
-                        ShortVacancyModel(
-                            position = "Секретарь",
-                            salary = 20000,
-                            companyName = "ИП Петров Игорь Михайлович",
-                        ),
-                        ShortVacancyModel(
-                            position = "Врач-терапевт",
-                            salary = 70000,
-                            companyName = "АйБольно",
-                        ),
-                        ShortVacancyModel(
-                            position = "Уборщик",
-                            salary = 30000,
-                            companyName = "ЛангОфф",
-                        ),
-                        ShortVacancyModel(
-                            position = "Пекарь",
-                            salary = 70000,
-                            companyName = "Кухня дяди Васи",
-                        ),
-                    )
+                    state.vacancies.vacancies
                 ) { _, item ->
-                    VacancyCard(vacancy = item, navController = navController)
+                    VacancyCard(
+                        vacancy = item,
+                        onClick = {
+                            navController.navigate(
+                                route = Screen.VacancyScreen.route +
+                                        "/${item.id}" +
+                                        "/${item.position}" +
+                                        "/${item.salary}" +
+                                        "/${item.companyName}" +
+                                        "/${item.edArea}" +
+                                        "/${item.formOfEmployment}" +
+                                        "/${item.requirements}" +
+                                        "/${item.location}" +
+                                        "/${item.about.ifEmpty { " " }}"
+                            ) {
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        onRespond = {},
+                        onLike = {}
+                    )
                 }
             }
         }

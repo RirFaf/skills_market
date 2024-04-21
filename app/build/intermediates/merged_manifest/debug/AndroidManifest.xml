@@ -8,8 +8,8 @@
         android:minSdkVersion="21"
         android:targetSdkVersion="33" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <queries>
         <intent>
@@ -30,6 +30,7 @@
     <uses-permission android:name="android.skills_market.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
+        android:name="android.skills_market.app.DefaultApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -44,7 +45,8 @@
         android:theme="@style/Theme.Skills_market" >
         <activity
             android:name="android.skills_market.activities.AppActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -76,9 +78,6 @@
 
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
-            android:exported="true" />
-        <activity
-            android:name="androidx.activity.ComponentActivity"
             android:exported="true" />
 
         <service
@@ -212,6 +211,10 @@
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
                 android:value="androidx.startup" />
         </provider>
+
+        <activity
+            android:name="androidx.activity.ComponentActivity"
+            android:exported="true" />
 
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"

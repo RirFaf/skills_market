@@ -1,17 +1,25 @@
 package android.skills_market.data
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
+import android.skills_market.data.repository.LoginRepository
+import android.skills_market.data.repository.NetworkLoginRepository
+import android.skills_market.data.repository.NetworkRegistrationRepository
+import android.skills_market.data.repository.RegistrationRepository
+import android.skills_market.network.AuthApiClient
 
 interface AppContainer {
+    val loginRepository: LoginRepository
+    val registrationRepository: RegistrationRepository
 }
 
 class DefaultAppContainer : AppContainer {
-    private val BASE_URL = ""/*TODO: Добавить ссылку на API*/
+    private val authApiClient = AuthApiClient()
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BASE_URL)
-        .build()
+    private val retrofitApiService = authApiClient.getApiService()
+
+    override val loginRepository: LoginRepository by lazy {
+        NetworkLoginRepository(retrofitApiService)
+    }
+    override val registrationRepository: RegistrationRepository by lazy {
+        NetworkRegistrationRepository(retrofitApiService)
+    }
 }
