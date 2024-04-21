@@ -32,7 +32,7 @@ import androidx.navigation.NavController
 fun CityCourseAndPhoneScreen(
     navController: NavController,
     onEvent: (RegistrationEvent) -> Unit,
-    uiState: RegUIState.Success
+    uiState: RegUIState.Success//TODO убрать Success
 ) {
     val localContext = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current

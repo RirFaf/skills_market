@@ -44,7 +44,7 @@ import androidx.navigation.NavController
 fun EmailAndPasswordScreen(
     navController: NavController,
     onEvent: (RegistrationEvent) -> Unit,
-    uiState: RegUIState.Success
+    uiState: RegUIState.Success//TODO убрать Success
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val localContext = LocalContext.current

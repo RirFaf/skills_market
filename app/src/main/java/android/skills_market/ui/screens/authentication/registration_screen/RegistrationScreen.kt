@@ -27,7 +27,7 @@ import androidx.navigation.compose.rememberNavController
 fun RegistrationScreen(
     navController: NavHostController,
     onEvent: (RegistrationEvent) -> Unit,
-    state: RegUIState.Success
+    state: RegUIState.Success//TODO убрать Success
 ) {
     val regNavController = rememberNavController()
     /*TODO: Доделать переходы и валидацию*/

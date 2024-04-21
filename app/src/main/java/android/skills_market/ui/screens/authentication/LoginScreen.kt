@@ -50,7 +50,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    state: LoginUIState.Success,
+    state: LoginUIState.Success,//TODO убрать Success
     navController: NavController,
     onEvent: (LoginEvent) -> Unit
 ) {

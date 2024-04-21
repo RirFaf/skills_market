@@ -12,6 +12,7 @@ import android.skills_market.ui.screens.VacancyScreen
 import android.skills_market.ui.screens.resume.ResumeScreen
 import android.skills_market.view_model.FavouritesViewModel
 import android.skills_market.view_model.MessengerViewModel
+import android.skills_market.view_model.ResumeViewModel
 import android.skills_market.view_model.SearchViewModel
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -215,7 +216,13 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            ResumeScreen(navController = navController)
+            val resumeViewModel = viewModel<ResumeViewModel>(factory = ResumeViewModel.Factory)
+            val state = resumeViewModel.uiState.collectAsStateWithLifecycle()
+            ResumeScreen(
+                navController = navController,
+                state = state,
+                onEvent = resumeViewModel::onEvent
+            )
         }
     }
 }

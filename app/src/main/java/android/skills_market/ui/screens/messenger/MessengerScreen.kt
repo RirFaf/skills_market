@@ -46,7 +46,7 @@ import androidx.navigation.NavController
 @Composable
 fun MessengerScreen(
     navController: NavController,
-    state: MessengerUIState.Success,
+    state: MessengerUIState.Success,//TODO убрать Success
     onEvent: (MessengerEvent) -> Unit
 ) {
     Scaffold(

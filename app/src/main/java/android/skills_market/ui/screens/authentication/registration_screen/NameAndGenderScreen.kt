@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 fun NameAndGenderScreen(
     navController: NavController,
     onEvent: (RegistrationEvent) -> Unit,
-    uiState: RegUIState.Success
+    uiState: RegUIState.Success//TODO убрать Success
 ) {
     OutlinedCard(
         modifier = Modifier
