@@ -20,21 +20,11 @@ import kotlinx.coroutines.launch
 sealed interface FavouritesUIState {
     data class Success(
         val favourites: VacanciesModel,
-        val favouriteVacancy: VacancyModel = VacancyModel(
-            id = 0,
-            position = "",
-            salary = 0,
-            companyName = "",
-            edArea = "",
-            formOfEmployment = "",
-            requirements = "",
-            location = "",
-            about = "",
-        )
+        val favouriteVacancy: VacancyModel
     ) : SearchUIState
 
-    object Error : FavouritesUIState
-    object Loading : FavouritesUIState
+    data object Error : FavouritesUIState
+    data object Loading : FavouritesUIState
 }
 
 class FavouritesViewModel(
@@ -79,7 +69,7 @@ class FavouritesViewModel(
         )
     )
     private val tag = "VMTAG"
-    private val _uiState = MutableStateFlow(FavouritesUIState.Success(vacancies))
+    private val _uiState = MutableStateFlow(FavouritesUIState.Success(vacancies, favouriteVacancy = vacancies.vacancies[0]))
     val uiState: StateFlow<FavouritesUIState.Success> = _uiState.asStateFlow()
 
     init {

@@ -1,4 +1,4 @@
-#Fri Apr 19 17:01:07 MSK 2024
+#Sun Apr 21 18:33:14 MSK 2024
 base.0=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
@@ -8,6 +8,7 @@ base.13=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\buil
 base.14=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 base.15=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
 base.16=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.17=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 base.2=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
 base.3=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
 base.4=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
@@ -25,6 +26,7 @@ path.13=9/classes.dex
 path.14=classes2.dex
 path.15=classes3.dex
 path.16=5/classes.dex
+path.17=1/classes.dex
 path.2=10/classes.dex
 path.3=11/classes.dex
 path.4=12/classes.dex
@@ -42,6 +44,7 @@ renamed.13=classes14.dex
 renamed.14=classes15.dex
 renamed.15=classes16.dex
 renamed.16=classes17.dex
+renamed.17=classes18.dex
 renamed.2=classes3.dex
 renamed.3=classes4.dex
 renamed.4=classes5.dex

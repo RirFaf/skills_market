@@ -101,7 +101,8 @@ fun MessengerScreen(
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                reverseLayout = true
             ) {
                 items(
                     listOfMessages

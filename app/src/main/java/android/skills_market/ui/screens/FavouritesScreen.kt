@@ -101,41 +101,12 @@ fun FavouritesScreen(
                                 launchSingleTop = false
                                 restoreState = true
                             }
-                        }
+                        },
+                        onRespond = {},
+                        onLike = {}
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun TopBar() {
-    Row(
-        modifier = Modifier
-            .height(70.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(
-            onClick = {}
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notifications_none),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-        Text(text = "Понравившиеся", fontSize = 28.sp)
-        IconButton(
-            onClick = { }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "Show menu",
-                modifier = Modifier.size(30.dp)
-            )
         }
     }
 }

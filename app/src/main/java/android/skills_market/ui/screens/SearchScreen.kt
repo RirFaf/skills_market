@@ -46,7 +46,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    state: SearchUIState.Success,
+    state: SearchUIState.Success,//TODO убрать Success
     navController: NavController,
     onEvent: (SearchEvent) -> Unit
 ) {
@@ -141,7 +141,9 @@ fun SearchScreen(
                                 launchSingleTop = true
                                 restoreState = true
                             }
-                        }
+                        },
+                        onRespond = {},
+                        onLike = {}
                     )
                 }
             }

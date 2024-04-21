@@ -40,7 +40,10 @@ import androidx.navigation.NavController
 @Composable
 fun VacancyCard(
     vacancy: VacancyModel,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onRespond:()->Unit,
+    onLike:()->Unit,
+    modifier: Modifier = Modifier
 ) {
     val localContext = LocalContext.current
     var enabled by remember {
@@ -50,8 +53,7 @@ fun VacancyCard(
         mutableStateOf(vacancy.liked)
     }
     OutlinedCard(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
             .clickable {
                 onClick()
             },
