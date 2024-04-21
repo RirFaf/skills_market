@@ -16,10 +16,8 @@ import kotlinx.coroutines.flow.update
 
 sealed interface ResumeUIState {
     data class Success(
-        val university: String = "",
-        val faculty: String = "",
         val about: String = "",
-        val experience: String = "",
+        val keySkills: String = "",
         val course: String = "",
     ) : ResumeUIState
 
@@ -63,24 +61,10 @@ class ResumeViewModel(
                     )
                 }
             }
-            is ResumeEvent.SetExperience -> {
+            is ResumeEvent.SetKeySkills -> {
                 _uiState.update {
                     it.copy(
-                        experience = event.input
-                    )
-                }
-            }
-            is ResumeEvent.SetFaculty -> {
-                _uiState.update {
-                    it.copy(
-                        faculty = event.input
-                    )
-                }
-            }
-            is ResumeEvent.SetUniversity -> {
-                _uiState.update {
-                    it.copy(
-                        university = event.input
+                        keySkills = event.input
                     )
                 }
             }

@@ -293,19 +293,6 @@ fun RegGraph(
     }
 }
 
-@Composable
-inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
-    navController: NavHostController,
-    factory: ViewModelProvider.Factory
-): T {
-    val navGraphRoute = destination.parent?.route ?: return viewModel()
-    val parentEntry = remember(this) {
-        navController.getBackStackEntry(navGraphRoute)
-    }
-    return viewModel(
-        viewModelStoreOwner = parentEntry,
-        factory = factory
-    )
-}
+
 
 

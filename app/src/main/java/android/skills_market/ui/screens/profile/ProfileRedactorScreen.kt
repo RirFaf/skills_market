@@ -1,7 +1,10 @@
 package android.skills_market.ui.screens.profile
 
+import android.provider.ContactsContract.Profile
 import android.skills_market.ui.screens.custom_composables.CustomTextField
+import android.skills_market.view_model.ProfileUIState
 import android.skills_market.view_model.ResumeViewModel
+import android.skills_market.view_model.event.ProfileEvent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,8 +27,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileRedactorScreen(navController: NavController) {
-    val viewModel = ResumeViewModel()
+fun ProfileRedactorScreen(
+    navController: NavController,
+    state: ProfileUIState.Success,//TODO убрать Success
+    onEvent: (ProfileEvent) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -52,42 +58,10 @@ fun ProfileRedactorScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
         ) {
             CustomTextField(
-                heading = "Университет",
-                value = viewModel.university,
+                heading = "Номер телефона",
+                value = state.student?.phone ?: "Отсутствует",
                 onValueChange = {
-                    viewModel.updateUniversity(it)
-                }
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            CustomTextField(
-                heading = "Факультет, направление",
-                value = viewModel.faculty,
-                onValueChange = {
-                    viewModel.updateFaculty(it)
-                }
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            CustomTextField(
-                heading = "Курс",
-                value = viewModel.course,
-                onValueChange = {
-                    viewModel.updateCourse(it)
-                }
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            CustomTextField(
-                heading = "Опыт",
-                value = viewModel.experience,
-                onValueChange = {
-                    viewModel.updateExperience(it)
-                }
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            CustomTextField(
-                heading = "Обо мне, дополнительно",
-                value = viewModel.about,
-                onValueChange = {
-                    viewModel.updateAbout(it)
+                    onEvent(ProfileEvent.SetPhoneNumber(it))
                 }
             )
             Spacer(modifier = Modifier.padding(8.dp))

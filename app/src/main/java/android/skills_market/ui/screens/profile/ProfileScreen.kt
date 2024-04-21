@@ -8,6 +8,8 @@ import android.skills_market.data.constants.Courses
 import android.skills_market.network.SMFirebase
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.CustomText
+import android.skills_market.view_model.ProfileUIState
+import android.skills_market.view_model.event.ProfileEvent
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -49,7 +51,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(navController: NavController) {
+fun ProfileScreen(
+    navController: NavController,
+    state: ProfileUIState.Success,//TODO убрать Success
+    onEvent: (ProfileEvent) -> Unit
+) {
     val localContext = LocalContext.current
     Scaffold(
         topBar = {
