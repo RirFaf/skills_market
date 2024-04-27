@@ -1,7 +1,7 @@
 package android.skills_market.activities
 
 import android.os.Bundle
-import android.skills_market.network.AuthApiClient
+import android.skills_market.data.network.AuthApiClient
 import android.skills_market.ui.screens.custom_composables.CustomNavBar
 import android.skills_market.ui.navigation.NavigationGraph
 import android.skills_market.ui.theme.SkillsMarketTheme

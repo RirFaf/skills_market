@@ -1,6 +1,6 @@
 package android.skills_market.ui.navigation
 
-import android.skills_market.network.models.VacancyModel
+import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.ui.navigation.extensions.sharedViewModel
 import android.skills_market.ui.screens.messenger.ChatListScreen
 import android.skills_market.ui.screens.FavouritesScreen

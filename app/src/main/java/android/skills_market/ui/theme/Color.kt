@@ -67,6 +67,16 @@ val md_theme_dark_scrim = Color(0xFF000000)
 
 val seed = Color(0xFF045494)
 
+fun u(password: String) {
+    if (password.length >= 6 &&
+        password.contains("[A-ZА-Я]+") &&
+        password.contains("[a-zа-я]+") &&
+        password.contains("[0-9]+") &&
+        password.contains("[!@#$%&-+]")
+    ) {
+        return
+    }
+}
 
 
 

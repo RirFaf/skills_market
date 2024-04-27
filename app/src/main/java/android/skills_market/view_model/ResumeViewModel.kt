@@ -1,7 +1,7 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.network.SessionManager
+import android.skills_market.data.network.SessionManager
 import android.skills_market.view_model.event.ResumeEvent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

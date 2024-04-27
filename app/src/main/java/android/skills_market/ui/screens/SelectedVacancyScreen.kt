@@ -1,7 +1,7 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.network.models.VacancyModel
+import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.ui.screens.custom_composables.CustomText
 import android.skills_market.ui.theme.Inter
 import android.widget.Toast

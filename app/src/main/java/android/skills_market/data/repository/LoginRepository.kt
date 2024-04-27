@@ -1,8 +1,8 @@
 package android.skills_market.data.repository
 
-import android.skills_market.network.AuthApiService
-import android.skills_market.network.models.requests.AuthRequest
-import android.skills_market.network.models.responses.AuthResponse
+import android.skills_market.data.network.AuthApiService
+import android.skills_market.data.network.models.requests.AuthRequest
+import android.skills_market.data.network.models.responses.AuthResponse
 import retrofit2.Call
 
 interface LoginRepository {

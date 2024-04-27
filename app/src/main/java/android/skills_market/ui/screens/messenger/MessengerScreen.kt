@@ -1,8 +1,8 @@
 package android.skills_market.ui.screens.messenger
 
 import android.skills_market.R
-import android.skills_market.network.models.MessageModel
-import android.skills_market.network.models.User
+import android.skills_market.data.network.models.MessageModel
+import android.skills_market.data.network.models.User
 import android.skills_market.ui.theme.Inter
 import android.skills_market.ui.theme.md_theme_dark_inverseOnSurface
 import android.skills_market.view_model.MessengerUIState

@@ -1,4 +1,4 @@
-package android.skills_market.network.models
+package android.skills_market.data.network.models
 
 import com.google.gson.annotations.SerializedName
 

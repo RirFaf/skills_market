@@ -1,9 +1,8 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.network.models.VacanciesModel
-import android.skills_market.network.models.VacancyModel
-import android.skills_market.view_model.event.FavouritesEvent
+import android.skills_market.data.network.models.VacanciesModel
+import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.ResponsesEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel

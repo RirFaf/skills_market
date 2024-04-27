@@ -1,7 +1,5 @@
 package android.skills_market.view_model.event
 
-import android.skills_market.network.models.VacancyModel
-
 sealed interface SearchEvent {
     data object RespondToVacancy : SearchEvent
     data object GetVacancies : SearchEvent

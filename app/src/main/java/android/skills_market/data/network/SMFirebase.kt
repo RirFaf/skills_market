@@ -1,6 +1,6 @@
-package android.skills_market.network
+package android.skills_market.data.network
 
-import android.skills_market.network.models.StudentModel
+import android.skills_market.data.network.models.StudentModel
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*

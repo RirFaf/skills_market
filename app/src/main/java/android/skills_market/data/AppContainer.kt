@@ -4,7 +4,7 @@ import android.skills_market.data.repository.LoginRepository
 import android.skills_market.data.repository.NetworkLoginRepository
 import android.skills_market.data.repository.NetworkRegistrationRepository
 import android.skills_market.data.repository.RegistrationRepository
-import android.skills_market.network.AuthApiClient
+import android.skills_market.data.network.AuthApiClient
 
 interface AppContainer {
     val loginRepository: LoginRepository

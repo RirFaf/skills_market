@@ -1,4 +1,4 @@
-package android.skills_market.network
+package android.skills_market.data.network
 
 import android.skills_market.data.constants.URLs
 import okhttp3.OkHttpClient

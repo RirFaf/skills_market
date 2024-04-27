@@ -2,22 +2,19 @@ package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.repository.RegistrationRepository
-import android.skills_market.network.models.StudentModel
-import android.skills_market.network.SMFirebase
-import android.skills_market.network.models.requests.AuthRequest
+import android.skills_market.data.network.models.StudentModel
+import android.skills_market.data.network.SMFirebase
 import android.skills_market.view_model.event.RegistrationEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 sealed interface RegUIState {
     data class Success(

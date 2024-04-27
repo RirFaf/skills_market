@@ -1,4 +1,4 @@
-package android.skills_market.network
+package android.skills_market.data.network
 
 import android.content.Context
 import android.content.SharedPreferences

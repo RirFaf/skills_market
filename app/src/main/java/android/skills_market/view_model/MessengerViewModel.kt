@@ -1,13 +1,9 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.network.SessionManager
-import android.skills_market.network.models.MessageModel
+import android.skills_market.data.network.SessionManager
 import android.skills_market.view_model.event.MessengerEvent
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

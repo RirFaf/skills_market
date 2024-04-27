@@ -1,13 +1,9 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.network.models.ShortVacancyModel
-import android.skills_market.network.models.VacancyModel
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
-import android.skills_market.view_model.LoginUIState
 import android.skills_market.view_model.SearchUIState
-import android.skills_market.view_model.event.LoginEvent
 import android.skills_market.view_model.event.SearchEvent
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -141,6 +137,7 @@ fun SearchScreen(
                                 launchSingleTop = true
                                 restoreState = true
                             }
+
                         },
                         onRespond = {},
                         onLike = {}

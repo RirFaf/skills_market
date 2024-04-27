@@ -1,8 +1,8 @@
-package android.skills_market.network
+package android.skills_market.data.network
 
 import android.skills_market.data.constants.URLs
-import android.skills_market.network.models.requests.AuthRequest
-import android.skills_market.network.models.responses.AuthResponse
+import android.skills_market.data.network.models.requests.AuthRequest
+import android.skills_market.data.network.models.responses.AuthResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

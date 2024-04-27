@@ -1,8 +1,8 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.network.models.VacanciesModel
-import android.skills_market.network.models.VacancyModel
+import android.skills_market.data.network.models.VacanciesModel
+import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.SearchEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -14,7 +14,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 sealed interface SearchUIState {
