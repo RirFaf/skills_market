@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 sealed interface SearchUIState {
@@ -29,11 +30,12 @@ sealed interface SearchUIState {
             requirements = "",
             location = "",
             about = "",
-        )
+        ),
+        var currentSearch: String = ""
     ) : SearchUIState
 
-    object Error : SearchUIState
-    object Loading : SearchUIState
+    data object Error : SearchUIState
+    data object Loading : SearchUIState
 
 }
 
@@ -105,13 +107,14 @@ class SearchViewModel(
         )
         onEvent(SearchEvent.GetVacancies)
     }
+
     override fun onCleared() {
         super.onCleared()
         Log.i(tag, "SearchViewModel is cleared")
     }
 
-    fun onEvent(event: SearchEvent){
-        when(event){
+    fun onEvent(event: SearchEvent) {
+        when (event) {
             is SearchEvent.GetVacancies -> {
                 viewModelScope.launch {
 //            searchRepository.getVacanciesList().asResult()
@@ -130,6 +133,13 @@ class SearchViewModel(
             is SearchEvent.RespondToVacancy -> {}
             is SearchEvent.Respond -> {}
             is SearchEvent.SetFavourite -> {}
+            is SearchEvent.SetSearch -> {
+                _uiState.update {
+                    it.copy(
+                        currentSearch = event.input
+                    )
+                }
+            }
         }
     }
 

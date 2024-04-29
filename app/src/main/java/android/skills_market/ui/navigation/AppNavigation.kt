@@ -47,7 +47,6 @@ fun NavigationGraph(navController: NavHostController) {
         fadeOut(
             animationSpec = tween(150, easing = LinearEasing)
         )
-
     NavHost(
         navController = navController,
         startDestination = Screen.SearchScreen.route

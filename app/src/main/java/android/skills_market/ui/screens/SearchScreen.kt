@@ -52,10 +52,11 @@ fun SearchScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    var text by remember { mutableStateOf(TextFieldValue("")) }
                     OutlinedTextField(
-                        value = text,
-                        onValueChange = { text = it },
+                        value = state.currentSearch,
+                        onValueChange = {
+                            onEvent(SearchEvent.SetSearch(it))
+                        },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Search,
@@ -137,7 +138,6 @@ fun SearchScreen(
                                 launchSingleTop = true
                                 restoreState = true
                             }
-
                         },
                         onRespond = {},
                         onLike = {}
