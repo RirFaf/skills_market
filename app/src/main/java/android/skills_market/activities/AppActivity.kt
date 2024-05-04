@@ -1,7 +1,6 @@
 package android.skills_market.activities
 
 import android.os.Bundle
-import android.skills_market.data.network.AuthApiClient
 import android.skills_market.ui.screens.custom_composables.CustomNavBar
 import android.skills_market.ui.navigation.NavigationGraph
 import android.skills_market.ui.theme.SkillsMarketTheme
@@ -22,11 +21,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 class AppActivity : ComponentActivity() {
-    private lateinit var authApiClient: AuthApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        authApiClient = AuthApiClient()
 
         setContent {
             var showBottomBar by rememberSaveable { (mutableStateOf(true)) }

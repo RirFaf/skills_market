@@ -1,7 +1,6 @@
 package android.skills_market.activities
 
 import android.os.Bundle
-import android.skills_market.data.network.AuthApiClient
 import android.skills_market.ui.navigation.LogRegNavigationGraph
 import android.skills_market.ui.theme.SkillsMarketTheme
 import androidx.activity.ComponentActivity
@@ -13,11 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 
 class LogRegActivity : ComponentActivity() {
-    private lateinit var authApiClient: AuthApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        authApiClient = AuthApiClient()
 
         setContent {
             val navController = rememberNavController()

@@ -60,7 +60,7 @@ fun ProfileScreen(
             TopAppBar(
                 title = { Text(text = "Профиль") },
                 actions = {
-                    val database = SMFirebase()
+                    val database = SMFirebase
                     IconButton(
                         onClick = {
                             Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)

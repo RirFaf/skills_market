@@ -46,7 +46,6 @@ string back
 string city
 string company_name
 string course_num
-string default_web_client_id
 string done
 string email
 string employer

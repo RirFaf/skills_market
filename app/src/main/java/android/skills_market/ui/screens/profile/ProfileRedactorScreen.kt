@@ -59,7 +59,7 @@ fun ProfileRedactorScreen(
         ) {
             CustomTextField(
                 heading = "Номер телефона",
-                value = state.student?.phone ?: "Отсутствует",
+                value = state.student?.phoneNumber ?: "Отсутствует",
                 onValueChange = {
                     onEvent(ProfileEvent.SetPhoneNumber(it))
                 }

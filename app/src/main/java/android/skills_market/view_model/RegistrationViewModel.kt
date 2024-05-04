@@ -18,27 +18,30 @@ import kotlinx.coroutines.flow.update
 
 sealed interface RegUIState {
     data class Success(
-        val patronymic: String = "",
-        val name: String = "",
-        val surname: String = "",
-        val city: String = "",
-        val course: String = "",
-        val email: String = "",
-        val password: String = "",
-        val phone: String = "",
-        val isPasswordBlank: Boolean = true,
-        val isLoginBlank: Boolean = true,
+        val email: String = "android@mail.ru",
+        val password: String = "123456",
+        val patronymicName: String = "",
+        val firstName: String = "",
+        val secondName: String = "",
+        var birthDate: String = "",
+        var university: String = "",
+        var institute: String = "",
+        var phoneNumber: String = "",
+        var aboutMe: String = "",
+        var gender: String = "",
+        var city: String = "",
+        var direction: String = "",
     ) : RegUIState
 
-    object Error : RegUIState
-    object Loading : RegUIState
+    data object Error : RegUIState
+    data object Loading : RegUIState
 }
 
 class RegViewModel(
     private val registrationRepository: RegistrationRepository
 ) : ViewModel() {
     private val tag = "VMTAG"
-    private val db = SMFirebase()
+    private val db = SMFirebase
 
     private val _uiState = MutableStateFlow(RegUIState.Success())//переделать под обработку REST
 
@@ -56,18 +59,11 @@ class RegViewModel(
     fun onEvent(event: RegistrationEvent) {
         when (event) {
             is RegistrationEvent.AddUser -> {
-                if (!_uiState.value.isLoginBlank && !_uiState.value.isPasswordBlank) {
+                Log.d("FirebaseTag", "addUser")
+                if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
                     db.addUser(
-                        StudentModel(
-                            _uiState.value.surname,
-                            _uiState.value.name,
-                            _uiState.value.patronymic,
-                            _uiState.value.city,
-                            _uiState.value.course,
-                            _uiState.value.email,
-                            _uiState.value.password,
-                            _uiState.value.phone,
-                        ),
+                        login = _uiState.value.email,
+                        password = _uiState.value.password,
                         onSuccessAction = {
                             event.onSuccessAction()
                         },
@@ -84,12 +80,19 @@ class RegViewModel(
 //                        )
 //                        Log.i(tag, response.isExecuted.toString())
 //                    }
-                } else if (!uiState.value.isLoginBlank) {
+                } else if (uiState.value.email.isBlank()) {
                     event.onEmptyLoginAction()
+                    Log.d("FirebaseTag", "Login empty")
+
                 } else {
                     event.onEmptyPasswordAction()
+                    Log.d("FirebaseTag", "password empty")
+
                 }
             }
+
+            is RegistrationEvent.AddUserLocation -> TODO()
+            is RegistrationEvent.AddUserName -> TODO()
 
             is RegistrationEvent.SetCity -> {
                 _uiState.update {
@@ -99,19 +102,10 @@ class RegViewModel(
                 }
             }
 
-            is RegistrationEvent.SetCourse -> {
-                _uiState.update {
-                    it.copy(
-                        course = event.input
-                    )
-                }
-            }
-
             is RegistrationEvent.SetEmail -> {
                 _uiState.update {
                     it.copy(
                         email = event.input,
-                        isLoginBlank = event.input.isBlank()
                     )
                 }
             }
@@ -119,7 +113,7 @@ class RegViewModel(
             is RegistrationEvent.SetName -> {
                 _uiState.update {
                     it.copy(
-                        name = event.input
+                        firstName = event.input
                     )
                 }
             }
@@ -128,7 +122,6 @@ class RegViewModel(
                 _uiState.update {
                     it.copy(
                         password = event.input,
-                        isPasswordBlank = event.input.isBlank()
                     )
                 }
             }
@@ -136,7 +129,7 @@ class RegViewModel(
             is RegistrationEvent.SetPatronymic -> {
                 _uiState.update {
                     it.copy(
-                        patronymic = event.input
+                        patronymicName = event.input
                     )
                 }
             }
@@ -144,7 +137,7 @@ class RegViewModel(
             is RegistrationEvent.SetPhoneNumber -> {
                 _uiState.update {
                     it.copy(
-                        phone = event.input
+                        phoneNumber = event.input
                     )
                 }
             }
@@ -152,7 +145,31 @@ class RegViewModel(
             is RegistrationEvent.SetSurname -> {
                 _uiState.update {
                     it.copy(
-                        surname = event.input
+                        secondName = event.input
+                    )
+                }
+            }
+
+            is RegistrationEvent.SetDirection -> {
+                _uiState.update {
+                    it.copy(
+                        direction = event.input
+                    )
+                }
+            }
+
+            is RegistrationEvent.SetGender -> {
+                _uiState.update {
+                    it.copy(
+                        gender = event.input
+                    )
+                }
+            }
+
+            is RegistrationEvent.SetInstitute -> {
+                _uiState.update {
+                    it.copy(
+                        institute = event.input
                     )
                 }
             }

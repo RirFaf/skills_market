@@ -40,7 +40,7 @@ class LoginViewModel(
     private val sessionManager = MutableLiveData<SessionManager>().value
 
     private val tag = "VMTAG"
-    private val db = SMFirebase()
+    private val db = SMFirebase
 
     private val _uiState = MutableStateFlow(LoginUIState.Success())//переделать под обработку REST
     val uiState: StateFlow<LoginUIState.Success> = _uiState.asStateFlow()

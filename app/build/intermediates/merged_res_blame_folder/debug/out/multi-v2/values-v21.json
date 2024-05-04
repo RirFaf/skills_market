@@ -1,8 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "android.skills_market.app-mergeDebugResources-66:/values-v21/values-v21.xml",
+            "outputFile": "android.skills_market.app-mergeDebugResources-73:/values-v21/values-v21.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\a1873323285fef8f863e2c83582d2ed6\\transformed\\firebase-inappmessaging-display-21.0.0\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5,8,13",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,174,291,586",
+                        "endLines": "4,7,12,15",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "169,286,581,699"
+                    },
+                    "to": {
+                        "startLines": "226,229,232,237",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "16503,16622,16739,17034",
+                        "endLines": "228,231,236,239",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "16617,16734,17029,17147"
+                    }
+                },
                 {
                     "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\f88e25baa1404431f61a97d6a2134742\\transformed\\media-1.0.0\\res\\values-v21\\values-v21.xml",
                     "from": {
@@ -20,25 +39,6 @@
                         "endLines": "282,285,289,293",
                         "endColumns": "12,12,12,12",
                         "endOffsets": "19709,19872,20166,20461"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\3a6f9b229750c1454b760c49afa87b84\\transformed\\firebase-inappmessaging-display-20.3.1\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5,8,13",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,174,291,586",
-                        "endLines": "4,7,12,15",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "169,286,581,699"
-                    },
-                    "to": {
-                        "startLines": "226,229,232,237",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "16503,16622,16739,17034",
-                        "endLines": "228,231,236,239",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "16617,16734,17029,17147"
                     }
                 },
                 {
@@ -61,7 +61,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\b2457f1a1ea767c7f9ab2c5db5a10b1b\\transformed\\core-1.12.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\ab8792a865f39e8fb8934782948e062c\\transformed\\core-1.13.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -71,12 +71,31 @@
                         "endOffsets": "168,232,299,363,479,605,731,859,1031,1383"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,278,279,286,290,294,297",
+                        "startLines": "2,3,4,5,278,279,286,290,302,305",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,237,304,19304,19420,19877,20171,20466,20638",
-                        "endLines": "2,3,4,5,278,279,286,290,296,301",
+                        "startOffsets": "55,173,237,304,19304,19420,19877,20171,20959,21131",
+                        "endLines": "2,3,4,5,278,279,286,290,304,309",
                         "endColumns": "117,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "168,232,299,363,19415,19541,19998,20294,20633,20985"
+                        "endOffsets": "168,232,299,363,19415,19541,19998,20294,21126,21478"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\HP_Pavilion\\.gradle\\caches\\transforms-3\\7979db97d129897f6d5d6db843ff1a51\\transformed\\credentials-play-services-auth-1.2.0-rc01\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "543"
+                    },
+                    "to": {
+                        "startLines": "294",
+                        "startColumns": "4",
+                        "startOffsets": "20466",
+                        "endLines": "301",
+                        "endColumns": "12",
+                        "endOffsets": "20954"
                     }
                 }
             ]

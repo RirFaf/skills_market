@@ -1,10 +1,15 @@
 package android.skills_market.ui.screens.authentication.registration_screen
 
+import android.app.Activity
+import android.content.Intent
 import android.skills_market.R
+import android.skills_market.activities.AppActivity
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.RegistrationTextField
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.event.RegistrationEvent
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -99,19 +104,69 @@ fun EmailAndPasswordScreen(
                 shape = MaterialTheme.shapes.medium,
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        navController.navigate(Screen.NameAndGenderScreen.route)
+                        RegistrationEvent.AddUser(
+                            onSuccessAction = {
+                                navController.navigate(Screen.NameAndGenderScreen.route)
+                            },
+                            onFailureAction = {
+                                Toast.makeText(
+                                    localContext,
+                                    "Попробуйте ещё раз",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            onEmptyPasswordAction = {
+                                Toast.makeText(
+                                    localContext,
+                                    "Введите пароль",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            onEmptyLoginAction = {
+                                Toast.makeText(
+                                    localContext,
+                                    "Введите почту",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        )
                     }
                 ),
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Button(
                 onClick = {
-                    navController.navigate(Screen.NameAndGenderScreen.route)
+                    onEvent(RegistrationEvent.AddUser(
+                        onSuccessAction = {
+                            navController.navigate(Screen.NameAndGenderScreen.route)
+                        },
+                        onFailureAction = {
+                            Toast.makeText(
+                                localContext,
+                                "Попробуйте ещё раз",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onEmptyPasswordAction = {
+                            Toast.makeText(
+                                localContext,
+                                "Введите пароль",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onEmptyLoginAction = {
+                            Toast.makeText(
+                                localContext,
+                                "Введите почту",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    ))
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = stringResource(R.string.done),
+                    text = stringResource(R.string.next),
                 )
             }
         }

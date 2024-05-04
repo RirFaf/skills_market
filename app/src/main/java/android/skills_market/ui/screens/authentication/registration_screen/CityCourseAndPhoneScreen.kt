@@ -56,15 +56,15 @@ fun CityCourseAndPhoneScreen(
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.course,
+                value = uiState.university,
                 onValueChange = {
-                    onEvent(RegistrationEvent.SetCourse(it))
+//                    onEvent(RegistrationEvent.S(it))
                 },
                 label = stringResource(R.string.course_num),
                 lastField = false
             )
             RegistrationTextField(
-                value = uiState.phone,
+                value = uiState.phoneNumber,
                 onValueChange = {
                     onEvent(RegistrationEvent.SetPhoneNumber(it))
                 },
@@ -112,45 +112,18 @@ fun CityCourseAndPhoneScreen(
             )
             Button(
                 onClick = {
-                    onEvent(
-                        RegistrationEvent.AddUser(
-                            onSuccessAction = {
-                                (localContext as Activity).finish()
-                                localContext.startActivity(
-                                    Intent(
-                                        localContext,
-                                        AppActivity::class.java
-                                    )
-                                )
-                            },
-                            onFailureAction = {
-                                Toast.makeText(
-                                    localContext,
-                                    "Попробуйте ещё раз",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            },
-                            onEmptyPasswordAction = {
-                                Toast.makeText(
-                                    localContext,
-                                    "Введите пароль",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            },
-                            onEmptyLoginAction = {
-                                Toast.makeText(
-                                    localContext,
-                                    "Введите почту",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                    (localContext as Activity).finish()
+                    localContext.startActivity(
+                        Intent(
+                            localContext,
+                            AppActivity::class.java
                         )
                     )
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = stringResource(R.string.next),
+                    text = stringResource(R.string.done),
                 )
             }
         }
