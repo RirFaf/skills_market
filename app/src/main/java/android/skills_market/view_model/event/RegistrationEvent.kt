@@ -8,6 +8,7 @@ sealed interface RegistrationEvent {
     data class SetBirthDate(val input: String) : RegistrationEvent
     data class SetCity(val input: String) : RegistrationEvent
     data class SetPhoneNumber(val input: String) : RegistrationEvent
+    data class SetAboutMe(val input: String) : RegistrationEvent
     data class SetUniversity(val input: String) : RegistrationEvent
     data class SetInstitute(val input: String) : RegistrationEvent
     data class SetDirection(val input: String) : RegistrationEvent
@@ -32,7 +33,6 @@ sealed interface RegistrationEvent {
         val onSuccessAction: () -> Unit,
         val onFailureAction: () -> Unit,
         val onEmptyCityAction: () -> Unit,
-        val onEmptyPhoneAction: () -> Unit,
         val onEmptyUniversityAction: () -> Unit,
         val onEmptyInstituteAction: () -> Unit,
         val onEmptyDirectionAction: () -> Unit,

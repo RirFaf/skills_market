@@ -1,4 +1,4 @@
-#Sat May 04 18:24:02 MSK 2024
+#Sun May 05 18:08:35 MSK 2024
 base.0=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\HP_Pavilion\\AndroidStudioProjects\\skills_market\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex

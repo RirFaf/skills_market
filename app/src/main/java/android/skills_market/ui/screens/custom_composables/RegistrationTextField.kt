@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 fun RegistrationTextField(
     value: String,
     onValueChange: (String) -> Unit,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(),
     keyboardActions: KeyboardActions = KeyboardActions(),
     label: String,
-    lastField: Boolean,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     placeholder: @Composable () -> Unit = {}
 ) {
@@ -31,14 +31,11 @@ fun RegistrationTextField(
         modifier = Modifier.fillMaxWidth(),
         label = { Text(text = label) },
         singleLine = true,
-        keyboardOptions = KeyboardOptions(
-            autoCorrect = false,
-            imeAction = if (lastField) ImeAction.Done else ImeAction.Next
-        ),
+        keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         shape = MaterialTheme.shapes.medium,
         visualTransformation = visualTransformation,
-        placeholder = placeholder
+        placeholder = placeholder,
     )
     Spacer(modifier = Modifier.padding(4.dp))
 }

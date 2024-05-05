@@ -3,9 +3,9 @@ package android.skills_market.ui.navigation
 import android.skills_market.ui.screens.authentication.LogRegScreen
 import android.skills_market.ui.screens.authentication.LoginScreen
 import android.skills_market.ui.screens.authentication.registration_screen.RegistrationScreen
-import android.skills_market.ui.screens.authentication.registration_screen.CityCourseAndPhoneScreen
+import android.skills_market.ui.screens.authentication.registration_screen.UniversityInfoScreen
 import android.skills_market.ui.screens.authentication.registration_screen.EmailAndPasswordScreen
-import android.skills_market.ui.screens.authentication.registration_screen.NameAndGenderScreen
+import android.skills_market.ui.screens.authentication.registration_screen.PersonalDataScreen
 import android.skills_market.view_model.LoginViewModel
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.RegViewModel
@@ -21,12 +21,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -239,7 +235,7 @@ fun RegGraph(
                 )
             }
         ) {
-            NameAndGenderScreen(
+            PersonalDataScreen(
                 navController = navController,
                 onEvent = onEvent,
                 uiState = state
@@ -284,7 +280,7 @@ fun RegGraph(
                 )
             }
         ) {
-            CityCourseAndPhoneScreen(
+            UniversityInfoScreen(
                 navController = navController,
                 onEvent = onEvent,
                 uiState = state

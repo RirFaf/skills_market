@@ -59,7 +59,6 @@ class RegViewModel(
     fun onEvent(event: RegistrationEvent) {
         when (event) {
             is RegistrationEvent.AddUser -> {
-                Log.d("FirebaseTag", "addUser")
                 if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
                     db.addUser(
                         login = _uiState.value.email,
@@ -173,6 +172,23 @@ class RegViewModel(
                     )
                 }
             }
+
+            is RegistrationEvent.SetBirthDate -> {
+                _uiState.update {
+                    it.copy(
+                        birthDate = event.input
+                    )
+                }
+            }
+            is RegistrationEvent.SetUniversity -> {
+                _uiState.update {
+                    it.copy(
+                        university = event.input
+                    )
+                }
+            }
+
+            is RegistrationEvent.SetAboutMe -> TODO()
         }
     }
 
