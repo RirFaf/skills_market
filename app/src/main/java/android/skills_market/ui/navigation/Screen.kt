@@ -6,8 +6,8 @@ sealed class Screen(
     /***Authentication***/
     data object LogRegScreen : Screen("log_reg_screen")
     data object RegistrationScreen : Screen("registration_screen")
-    data object NameAndGenderScreen : Screen("name_and_gender_screen")
-    data object CityCourseAndPhoneScreen : Screen("city_course_and_phone_screen")
+    data object PersonalDataScreen : Screen("personal_data_screen")
+    data object UniversityInfoScreen : Screen("university_info_screen")
     data object EmailAndPasswordScreen : Screen("email_and_password_screen")
     data object LoginScreen : Screen("login_screen")
     /***Main app***/

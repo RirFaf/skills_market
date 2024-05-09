@@ -5,9 +5,11 @@ import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.CustomExposedDropdownMenuBox
 import android.skills_market.ui.screens.custom_composables.RegistrationTextField
 import android.skills_market.ui.text_transformation.DateTransformation
+import android.skills_market.ui.text_transformation.PhoneTransformation
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.event.RegistrationEvent
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,12 +27,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import java.util.Date
+import java.util.Locale
 
 
 @Composable
@@ -39,7 +44,20 @@ fun PersonalDataScreen(
     onEvent: (RegistrationEvent) -> Unit,
     uiState: RegUIState.Success//TODO убрать Success
 ) {
-    var isPhoneSendable by remember {
+    val localContext = LocalContext.current
+    var isNameWrong by remember {
+        mutableStateOf(false)
+    }
+    var isSurnameWrong by remember {
+        mutableStateOf(false)
+    }
+    var isPatronymicWrong by remember {
+        mutableStateOf(false)
+    }
+    var isGenderWrong by remember {
+        mutableStateOf(false)
+    }
+    var isBirthDateWrong by remember {
         mutableStateOf(false)
     }
     OutlinedCard(
@@ -56,45 +74,57 @@ fun PersonalDataScreen(
             RegistrationTextField(
                 value = uiState.secondName,
                 onValueChange = {
+                    isSurnameWrong = false
                     onEvent(RegistrationEvent.SetSurname(it))
                 },
                 label = stringResource(R.string.surname),
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
-                )
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
+                ),
+                isError = isSurnameWrong
             )
             RegistrationTextField(
                 value = uiState.firstName,
                 onValueChange = {
+                    isNameWrong = false
                     onEvent(RegistrationEvent.SetName(it))
                 },
                 label = stringResource(R.string.name),
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
-                )
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
+                ),
+                isError = isNameWrong
             )
             RegistrationTextField(
                 value = uiState.patronymicName,
                 onValueChange = {
+                    isPatronymicWrong = false
                     onEvent(RegistrationEvent.SetPatronymic(it))
                 },
                 label = stringResource(R.string.patronymic),
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
-                )
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
+                ),
+                isError = isPatronymicWrong
             )
             CustomExposedDropdownMenuBox(
                 listOfOptions = listOf("Мужской", "Женский"),
                 onOptionChoice = {
+                    isGenderWrong = false
                     onEvent(RegistrationEvent.SetGender(it))
-                }
+                },
+                isError = isGenderWrong
             )
             RegistrationTextField(
                 value = uiState.birthDate,
                 onValueChange = {
+                    isBirthDateWrong = false
                     onEvent(RegistrationEvent.SetBirthDate(it))
                 },
                 keyboardOptions = KeyboardOptions(
@@ -105,19 +135,13 @@ fun PersonalDataScreen(
                 visualTransformation = DateTransformation(),
                 placeholder = {
                     Text(text = "__.__.____")
-                }
+                },
+                isError = isBirthDateWrong
             )
             RegistrationTextField(
                 value = uiState.phoneNumber,
                 onValueChange = {
-                    if (it.length <= 11) {
-                        onEvent(RegistrationEvent.SetPhoneNumber(it))
-                    }
-                    if (it.length == 11 || it.isEmpty()) {
-                        isPhoneSendable = true
-                    } else {
-                        isPhoneSendable = false
-                    }
+                    onEvent(RegistrationEvent.SetPhoneNumber(it))
                 },
                 label = "Номер телефона (не обязательно)",
                 keyboardOptions = KeyboardOptions(
@@ -125,10 +149,12 @@ fun PersonalDataScreen(
                     imeAction = ImeAction.Done,
                     keyboardType = KeyboardType.Number
                 ),
+                visualTransformation = PhoneTransformation(),
                 placeholder = {
                     Text(text = "+_(___)___-__-__")
                 }
             )
+
             RegistrationTextField(
                 value = uiState.aboutMe,
                 onValueChange = {
@@ -136,7 +162,31 @@ fun PersonalDataScreen(
                 },
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        navController.navigate(Screen.CityCourseAndPhoneScreen.route)
+                        if (
+                            uiState.firstName.isNotBlank() &&
+                            uiState.secondName.isNotBlank() &&
+                            uiState.patronymicName.isNotBlank() &&
+                            uiState.gender.isNotBlank() &&
+                            uiState.birthDate.isNotBlank()&&
+                            uiState.birthDate.length == 8
+                        ) {
+                            navController.navigate(Screen.UniversityInfoScreen.route)
+                        }
+                        if (uiState.firstName.isBlank()) {
+                            isNameWrong = true
+                        }
+                        if (uiState.secondName.isBlank()) {
+                            isSurnameWrong = true
+                        }
+                        if (uiState.patronymicName.isBlank()) {
+                            isPatronymicWrong = true
+                        }
+                        if (uiState.gender.isBlank()) {
+                            isGenderWrong = true
+                        }
+                        if (uiState.birthDate.isBlank()) {
+                            isBirthDateWrong = true
+                        }
                     }
                 ),
                 label = "Обо мне (не обязательно)",
@@ -147,7 +197,30 @@ fun PersonalDataScreen(
             )
             Button(
                 onClick = {
-                    navController.navigate(Screen.CityCourseAndPhoneScreen.route)
+                    if (
+                        uiState.firstName.isNotBlank() &&
+                        uiState.secondName.isNotBlank() &&
+                        uiState.patronymicName.isNotBlank() &&
+                        uiState.gender.isNotBlank() &&
+                        uiState.birthDate.isNotBlank()
+                    ) {
+                        navController.navigate(Screen.UniversityInfoScreen.route)
+                    }
+                    if (uiState.firstName.isBlank()) {
+                        isNameWrong = true
+                    }
+                    if (uiState.secondName.isBlank()) {
+                        isSurnameWrong = true
+                    }
+                    if (uiState.patronymicName.isBlank()) {
+                        isPatronymicWrong = true
+                    }
+                    if (uiState.gender.isBlank()) {
+                        isGenderWrong = true
+                    }
+                    if (uiState.birthDate.isBlank()) {
+                        isBirthDateWrong = true
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {

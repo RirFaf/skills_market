@@ -12,7 +12,6 @@ class DateTransformation() : VisualTransformation {
 }
 
 fun dateFilter(text: AnnotatedString): TransformedText {
-
     val trimmed = if (text.text.length >= 8) text.text.substring(0..7) else text.text
     var out = ""
     for (i in trimmed.indices) {
@@ -38,3 +37,4 @@ fun dateFilter(text: AnnotatedString): TransformedText {
 
     return TransformedText(AnnotatedString(out), numberOffsetTranslator)
 }
+

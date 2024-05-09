@@ -36,7 +36,8 @@ fun CustomExposedDropdownMenuBox(
     onOptionChoice: (String) -> Unit,
     modifier: Modifier = Modifier,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
-    placeholderText: String = ""
+    placeholderText: String = "",
+    isError:Boolean = false
 ) {
     val localDensity = LocalDensity.current
     var expanded by remember {
@@ -74,7 +75,8 @@ fun CustomExposedDropdownMenuBox(
             placeholder = {
                 Text(text = placeholderText)
             },
-            shape = MaterialTheme.shapes.medium
+            shape = MaterialTheme.shapes.medium,
+            isError = isError
         )
         ExposedDropdownMenu(
             expanded = expanded,

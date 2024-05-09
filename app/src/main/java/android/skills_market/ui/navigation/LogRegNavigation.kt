@@ -167,7 +167,7 @@ fun RegGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.EmailAndPasswordScreen.route,
+        startDestination = Screen.PersonalDataScreen.route,
     ) {
         composable(
             route = Screen.EmailAndPasswordScreen.route,
@@ -197,7 +197,7 @@ fun RegGraph(
             )
         }
         composable(
-            route = Screen.NameAndGenderScreen.route,
+            route = Screen.PersonalDataScreen.route,
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(250, easing = LinearEasing),
@@ -242,7 +242,7 @@ fun RegGraph(
             )
         }
         composable(
-            route = Screen.CityCourseAndPhoneScreen.route,
+            route = Screen.UniversityInfoScreen.route,
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(250, easing = LinearEasing),

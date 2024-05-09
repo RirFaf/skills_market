@@ -23,7 +23,8 @@ fun RegistrationTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     label: String,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    placeholder: @Composable () -> Unit = {}
+    placeholder: @Composable () -> Unit = {},
+    isError: Boolean = false
 ) {
     OutlinedTextField(
         value = value,
@@ -36,6 +37,7 @@ fun RegistrationTextField(
         shape = MaterialTheme.shapes.medium,
         visualTransformation = visualTransformation,
         placeholder = placeholder,
+        isError = isError
     )
     Spacer(modifier = Modifier.padding(4.dp))
 }

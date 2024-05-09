@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.AppActivity
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.RegistrationTextField
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.event.RegistrationEvent
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +21,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -38,6 +44,18 @@ fun UniversityInfoScreen(
 ) {
     val localContext = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    var isCityWrong by remember {
+        mutableStateOf(false)
+    }
+    var isUniversityWrong by remember {
+        mutableStateOf(false)
+    }
+    var isInstituteWrong by remember {
+        mutableStateOf(false)
+    }
+    var isDirectionWrong by remember {
+        mutableStateOf(false)
+    }
     OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
@@ -52,6 +70,7 @@ fun UniversityInfoScreen(
             RegistrationTextField(
                 value = uiState.city,
                 onValueChange = {
+                    isCityWrong = false
                     onEvent(RegistrationEvent.SetCity(it))
                 },
                 label = "Город проживания",
@@ -63,6 +82,7 @@ fun UniversityInfoScreen(
             RegistrationTextField(
                 value = uiState.university,
                 onValueChange = {
+                    isUniversityWrong = false
                     onEvent(RegistrationEvent.SetUniversity(it))
                 },
                 label = "Университет",
@@ -74,6 +94,7 @@ fun UniversityInfoScreen(
             RegistrationTextField(
                 value = uiState.institute,
                 onValueChange = {
+                    isInstituteWrong = false
                     onEvent(RegistrationEvent.SetInstitute(it))
                 },
                 label = "Институт",
@@ -85,6 +106,7 @@ fun UniversityInfoScreen(
             RegistrationTextField(
                 value = uiState.direction,
                 onValueChange = {
+                    isDirectionWrong = false
                     onEvent(RegistrationEvent.SetDirection(it))
                 },
                 label = "Направление",
@@ -94,56 +116,38 @@ fun UniversityInfoScreen(
                     keyboardType = KeyboardType.Number
                 )
             )
+            Log.d("MyTag", uiState.birthDate)
+
             Button(
                 onClick = {
+                    if (
+                        uiState.firstName.isNotBlank() &&
+                        uiState.secondName.isNotBlank() &&
+                        uiState.patronymicName.isNotBlank() &&
+                        uiState.gender.isNotBlank() &&
+                        uiState.birthDate.isNotBlank()
+                    ) {
+                        navController.navigate(Screen.EmailAndPasswordScreen.route)
+                    }
+                    if (uiState.city.isBlank()) {
+                        isCityWrong = true
+                    }
+                    if (uiState.university.isBlank()) {
+                        isUniversityWrong = true
+                    }
+                    if (uiState.institute.isBlank()) {
+                        isInstituteWrong = true
+                    }
+                    if (uiState.direction.isBlank()) {
+                        isDirectionWrong = true
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = stringResource(R.string.done),
+                    text = stringResource(R.string.next),
                 )
             }
         }
     }
 }
-
-
-//keyboardActions = KeyboardActions(
-//onDone = {
-//    onEvent(
-//        RegistrationEvent.AddUser(
-//            onSuccessAction = {
-//                (localContext as Activity).finish()
-//                localContext.startActivity(
-//                    Intent(
-//                        localContext,
-//                        AppActivity::class.java
-//                    )
-//                )
-//            },
-//            onFailureAction = {
-//                Toast.makeText(
-//                    localContext,
-//                    "Попробуйте ещё раз",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            },
-//            onEmptyPasswordAction = {
-//                Toast.makeText(
-//                    localContext,
-//                    "Введите пароль",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            },
-//            onEmptyLoginAction = {
-//                Toast.makeText(
-//                    localContext,
-//                    "Введите почту",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        )
-//    )
-//    keyboardController?.hide()
-//}
-//),

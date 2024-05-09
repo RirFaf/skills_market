@@ -18,6 +18,8 @@ import android.skills_market.view_model.ProfileViewModel
 import android.skills_market.view_model.ResponsesViewModel
 import android.skills_market.view_model.ResumeViewModel
 import android.skills_market.view_model.SearchViewModel
+import android.skills_market.view_model.VacancyViewModel
+import android.skills_market.view_model.event.VacancyEvent
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -112,20 +114,28 @@ fun NavigationGraph(navController: NavHostController) {
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
-        ) {
+        ) {entry->
+            val vacancyViewModel = viewModel<VacancyViewModel> (
+                factory = VacancyViewModel.Factory
+            )
+            val state by vacancyViewModel.uiState.collectAsStateWithLifecycle()
+            vacancyViewModel.onEvent(VacancyEvent.SetVacancy(
+                VacancyModel(
+                    id = entry.arguments?.getInt("id")!!,
+                    position = entry.arguments?.getString("position")!!,
+                    salary = entry.arguments?.getInt("salary")!!,
+                    companyName = entry.arguments?.getString("companyName")!!,
+                    edArea = entry.arguments?.getString("edArea")!!,
+                    formOfEmployment = entry.arguments?.getString("formOfEmployment")!!,
+                    requirements = entry.arguments?.getString("requirements")!!,
+                    location = entry.arguments?.getString("location")!!,
+                    about = entry.arguments?.getString("about")!!
+                )
+            ))
             VacancyScreen(
                 navController = navController,
-                vacancy = VacancyModel(
-                    id = it.arguments?.getInt("id")!!,
-                    position = it.arguments?.getString("position")!!,
-                    salary = it.arguments?.getInt("salary")!!,
-                    companyName = it.arguments?.getString("companyName")!!,
-                    edArea = it.arguments?.getString("edArea")!!,
-                    formOfEmployment = it.arguments?.getString("formOfEmployment")!!,
-                    requirements = it.arguments?.getString("requirements")!!,
-                    location = it.arguments?.getString("location")!!,
-                    about = it.arguments?.getString("about")!!
-                )
+                state = state,
+                onEvent = vacancyViewModel::onEvent
             )
         }
 

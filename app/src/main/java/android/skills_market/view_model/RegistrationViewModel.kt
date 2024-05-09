@@ -2,19 +2,20 @@ package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.repository.RegistrationRepository
-import android.skills_market.data.network.models.StudentModel
 import android.skills_market.data.network.SMFirebase
 import android.skills_market.view_model.event.RegistrationEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 sealed interface RegUIState {
     data class Success(
@@ -60,38 +61,114 @@ class RegViewModel(
         when (event) {
             is RegistrationEvent.AddUser -> {
                 if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
-                    db.addUser(
-                        login = _uiState.value.email,
-                        password = _uiState.value.password,
-                        onSuccessAction = {
-                            event.onSuccessAction()
-                        },
-                        onFailureAction = {
-                            event.onFailureAction()
-                        }
-                    )
-//                    viewModelScope.launch{
-//                        val response = registrationRepository.register(
-//                            AuthRequest(
-//                                email = uiState.value.email,
-//                                password = uiState.value.password
-//                            )
-//                        )
-//                        Log.i(tag, response.isExecuted.toString())
-//                    }
-                } else if (uiState.value.email.isBlank()) {
+                    viewModelScope.launch {
+                        db.addUser(
+                            login = _uiState.value.email,
+                            password = _uiState.value.password,
+                            firstName = _uiState.value.firstName,
+                            secondName = _uiState.value.secondName,
+                            patronymicName = _uiState.value.patronymicName,
+                            gender = _uiState.value.gender,
+                            birthDate = _uiState.value.birthDate,
+                            city = _uiState.value.city,
+                            direction = _uiState.value.direction,
+                            institute = _uiState.value.institute,
+                            university = _uiState.value.university,
+                            aboutMe = _uiState.value.aboutMe,
+                            phoneNumber = _uiState.value.phoneNumber,
+                            onFailureAction = {
+                                event.onFailureAction()
+                            },
+                            onSuccessAction = {
+                                event.onSuccessAction()
+                            },
+                        )
+                    }
+                }
+                if (uiState.value.email.isBlank()) {
                     event.onEmptyLoginAction()
                     Log.d("FirebaseTag", "Login empty")
 
-                } else {
+                }
+                if (uiState.value.password.isBlank()) {
                     event.onEmptyPasswordAction()
                     Log.d("FirebaseTag", "password empty")
 
                 }
             }
 
-            is RegistrationEvent.AddUserLocation -> TODO()
-            is RegistrationEvent.AddUserName -> TODO()
+            is RegistrationEvent.AddUserLocation -> {
+                if (_uiState.value.city.isNotBlank()
+                    && _uiState.value.university.isNotBlank()
+                    && _uiState.value.institute.isNotBlank()
+                    && _uiState.value.direction.isNotBlank()
+                ) {
+                    viewModelScope.launch {
+                        db.updateCurrentUserInfo(
+                            city = _uiState.value.city,
+                            university = _uiState.value.university,
+                            institute = _uiState.value.institute,
+                            direction = _uiState.value.direction,
+                            onSuccessAction = { event.onSuccessAction() },
+                            onFailureAction = { event.onFailureAction() }
+                        )
+                    }
+                }
+                if (_uiState.value.city.isBlank()) {
+                    event.onEmptyCityAction()
+                }
+                if (_uiState.value.university.isBlank()) {
+                    event.onEmptyUniversityAction()
+                }
+                if (_uiState.value.institute.isBlank()) {
+                    event.onEmptyInstituteAction()
+                }
+                if (_uiState.value.direction.isBlank()) {
+                    event.onEmptyDirectionAction()
+                }
+            }
+
+            is RegistrationEvent.AddUserPersonalInfo -> {
+                if (_uiState.value.firstName.isNotBlank()
+                    && _uiState.value.secondName.isNotBlank()
+                    && _uiState.value.patronymicName.isNotBlank()
+                    && _uiState.value.gender.isNotBlank()
+                    && _uiState.value.birthDate.isNotBlank()
+                ) {
+                    viewModelScope.launch {
+                        db.updateCurrentUserInfo(
+                            firstName = _uiState.value.firstName,
+                            secondName = _uiState.value.secondName,
+                            patronymicName = _uiState.value.patronymicName,
+                            gender = _uiState.value.gender,
+                            birthDate = _uiState.value.birthDate,
+                            aboutMe = _uiState.value.aboutMe,
+                            phoneNumber = if (_uiState.value.phoneNumber.length == 11) {
+                                "+${_uiState.value.phoneNumber}"
+                            } else {
+                                ""
+                            },
+                            onSuccessAction = { event.onSuccessAction() },
+                            onFailureAction = { event.onFailureAction() }
+                        )
+                    }
+                }
+                if (_uiState.value.firstName.isBlank()) {
+                    event.onEmptyNameAction()
+                }
+                if (_uiState.value.secondName.isBlank()) {
+                    event.onEmptySurnameAction()
+                }
+                if (_uiState.value.patronymicName.isBlank()) {
+                    event.onEmptyPatronymicAction()
+                }
+                if (_uiState.value.gender.isBlank()) {
+                    event.onEmptyGenderAction()
+                }
+                if (_uiState.value.birthDate.isBlank()) {
+                    event.onEmptyBirthDateAction()
+                }
+            }
 
             is RegistrationEvent.SetCity -> {
                 _uiState.update {
@@ -180,6 +257,7 @@ class RegViewModel(
                     )
                 }
             }
+
             is RegistrationEvent.SetUniversity -> {
                 _uiState.update {
                     it.copy(
@@ -188,7 +266,13 @@ class RegViewModel(
                 }
             }
 
-            is RegistrationEvent.SetAboutMe -> TODO()
+            is RegistrationEvent.SetAboutMe -> {
+                _uiState.update {
+                    it.copy(
+                        aboutMe = event.input
+                    )
+                }
+            }
         }
     }
 
