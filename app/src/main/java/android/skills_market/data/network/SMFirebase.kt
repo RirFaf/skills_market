@@ -6,8 +6,6 @@ import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 object SMFirebase {
     private const val tag = "FirebaseTag"
@@ -30,7 +28,6 @@ object SMFirebase {
         onSuccessAction: () -> Unit,
         onFailureAction: () -> Unit,
     ) {
-        Log.d(tag, "addUser")
         val rootRef = Firebase.firestore.collection("users")
 
         auth.createUserWithEmailAndPassword(login, password)
@@ -53,10 +50,7 @@ object SMFirebase {
                             id = currentUser.uid
                         )
                     )
-                    Log.d(tag, "User created in db")
                 }
-                Log.i(tag, "${auth.currentUser}")
-                auth.currentUser?.let { Log.i(tag, "User created successfully\nid=${it.uid}") }
                 onSuccessAction()
             }
             .addOnFailureListener {
@@ -113,6 +107,32 @@ object SMFirebase {
         }
     }
 
+    suspend fun loginUser(
+        onSuccessAction: () -> Unit,
+        onFailureAction: () -> Unit,
+        login: String,
+        password: String
+    ) {
+        auth.signInWithEmailAndPassword(login, password)
+            .addOnSuccessListener {
+                onSuccessAction()
+            }
+            .addOnFailureListener {
+                Log.e(tag, it.toString())
+                onFailureAction()
+            }
+    }
+
+    fun logoutUser(
+        onLogoutAction: () -> Unit
+    ) {
+        auth.signOut()
+        onLogoutAction()
+    }
+
+    fun authenticateUser(): Boolean {
+        return Firebase.auth.currentUser != null
+    }
     fun isPersonalInfoBlank(): Boolean {
         val collectionRef = Firebase.firestore.collection("users")
         var res = true
@@ -167,33 +187,6 @@ object SMFirebase {
             res = true
         }
         return res
-    }
-
-
-    /* TODO: Исправить валидацию (поля меняют цвет в любом случае) */
-    suspend fun loginUser(
-        onSuccessAction: () -> Unit,
-        login: String,
-        password: String
-    ) {
-        auth.signInWithEmailAndPassword(login, password)
-            .addOnSuccessListener {
-                onSuccessAction()
-            }
-            .addOnFailureListener {
-                Log.e(tag, it.toString())
-            }
-    }
-
-    fun logoutUser(
-        onLogoutAction: () -> Unit
-    ) {
-        auth.signOut()
-        onLogoutAction()
-    }
-
-    fun authenticateUser(): Boolean {
-        return Firebase.auth.currentUser != null
     }
 }
 

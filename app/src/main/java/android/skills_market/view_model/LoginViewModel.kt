@@ -23,17 +23,12 @@ sealed interface LoginUIState {
     data class Success(
         val isPasswordCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
         val isLoginCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
-        val email: String = "",
-        val password: String = "",
-    ) : LoginUIState {
-        val isLoginBlank: Boolean
-            get() = email.isBlank()
-        val isPasswordBlank: Boolean
-            get() = password.isBlank()
-    }
+        val email: String = "android@mail.ru",
+        val password: String = "123456",
+    ) : LoginUIState
 
-    object Error : LoginUIState
-    object Loading : LoginUIState
+    data object Error : LoginUIState
+    data object Loading : LoginUIState
 }
 
 class LoginViewModel(
@@ -61,13 +56,6 @@ class LoginViewModel(
 
     fun onEvent(event: LoginEvent) {
         when (event) {
-            is LoginEvent.SetIsLoginCorrect -> {
-//                TODO()
-            }
-
-            is LoginEvent.SetIsPasswordCorrect -> {
-//                TODO()
-            }
 
             is LoginEvent.SetLogin -> {
                 _uiState.update {
@@ -86,36 +74,23 @@ class LoginViewModel(
             }
 
             is LoginEvent.LoginUser -> {
-                if (!_uiState.value.isLoginBlank && !_uiState.value.isPasswordBlank) {
+                Log.d("MyTag", "LoginUser is called")
+                if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
                     viewModelScope.launch(){
                         db.loginUser(
                             onSuccessAction = event.onSuccessAction,
+                            onFailureAction = event.onFailureAction,
                             login = uiState.value.email,
                             password = uiState.value.password
                         )
                     }
-//                    viewModelScope.launch{
-//                        val response = loginRepository.login(
-//                            AuthRequest(
-//                                email = uiState.value.email,
-//                                password = uiState.value.password
-//                            )
-//                        )
-//                        Log.i(tag, response.isExecuted.toString())
-//                    }
-                } else if (!uiState.value.isLoginBlank) {
+                }
+                if (uiState.value.email.isBlank()) {
                     event.onEmptyLoginAction()
-                } else {
+                }
+                if (uiState.value.password.isBlank()){
                     event.onEmptyPasswordAction()
                 }
-            }
-
-            is LoginEvent.SetIsLoginEntered -> {
-//                TODO()
-            }
-
-            is LoginEvent.SetIsPasswordEntered -> {
-//                TODO()
             }
         }
     }

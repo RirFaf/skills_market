@@ -7,7 +7,7 @@ import android.skills_market.activities.AppActivity
 import android.skills_market.ui.theme.Typography
 import android.skills_market.view_model.LoginUIState
 import android.skills_market.view_model.event.LoginEvent
-import android.widget.Toast
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -57,7 +57,12 @@ fun LoginScreen(
     val localContext = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var passwordVisible by remember { mutableStateOf(false) }
-
+    var isLoginWrong by remember {
+        mutableStateOf(false)
+    }
+    var isPasswordWrong by remember {
+        mutableStateOf(false)
+    }
     Scaffold(
         topBar = {
             MediumTopAppBar(
@@ -106,11 +111,12 @@ fun LoginScreen(
                     OutlinedTextField(
                         value = state.email,
                         onValueChange = {
+                            isLoginWrong = false
                             onEvent(LoginEvent.SetLogin(it))
                         },
                         modifier = Modifier
                             .fillMaxWidth(),
-                        label = { Text(text = stringResource(id = android.skills_market.R.string.login)) },
+                        label = { Text(text = stringResource(id = R.string.login)) },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(
                             autoCorrect = false,
@@ -123,6 +129,7 @@ fun LoginScreen(
                     OutlinedTextField(
                         value = state.password,
                         onValueChange = {
+                            isPasswordWrong = false
                             onEvent(LoginEvent.SetPassword(it))
                         },
                         modifier = Modifier
@@ -137,9 +144,9 @@ fun LoginScreen(
                         ),
                         keyboardActions = KeyboardActions(
                             onDone = {
-                                /*TODO: сделать нормальную валидацию*/
                                 onEvent(LoginEvent.LoginUser(
                                     onSuccessAction = {
+                                        Log.d("MyTag", "onSuccess called")
                                         (localContext as Activity).finish()
                                         localContext.startActivity(
                                             Intent(
@@ -148,19 +155,14 @@ fun LoginScreen(
                                             )
                                         )
                                     },
+                                    onFailureAction = {
+                                        Log.e("MyTag", "onFailure called")
+                                    },
                                     onEmptyPasswordAction = {
-                                        Toast.makeText(
-                                            localContext,
-                                            "Введите пароль",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        isPasswordWrong = true
                                     },
                                     onEmptyLoginAction = {
-                                        Toast.makeText(
-                                            localContext,
-                                            "Введите логин",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        isLoginWrong = true
                                     }
                                 ))
                                 keyboardController?.hide()
@@ -186,9 +188,9 @@ fun LoginScreen(
                     Spacer(modifier = Modifier.padding(6.dp))
                     Button(
                         onClick = {
-                            /*TODO: сделать нормальную валидацию*/
                             onEvent(LoginEvent.LoginUser(
                                 onSuccessAction = {
+                                    Log.d("MyTag", "onSuccess called")
                                     (localContext as Activity).finish()
                                     localContext.startActivity(
                                         Intent(
@@ -197,19 +199,16 @@ fun LoginScreen(
                                         )
                                     )
                                 },
+                                onFailureAction = {
+                                    Log.e("MyTag", "onFailure called")
+                                },
                                 onEmptyPasswordAction = {
-                                    Toast.makeText(
-                                        localContext,
-                                        "Введите пароль",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Log.d("MyTag", "onEmptyPassword called")
+                                    isPasswordWrong = true
                                 },
                                 onEmptyLoginAction = {
-                                    Toast.makeText(
-                                        localContext,
-                                        "Введите логин",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Log.d("MyTag", "onEmptyLogin called")
+                                    isLoginWrong = true
                                 }
                             ))
                             keyboardController?.hide()
