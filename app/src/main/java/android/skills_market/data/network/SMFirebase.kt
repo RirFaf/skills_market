@@ -1,17 +1,137 @@
 package android.skills_market.data.network
 
+import android.skills_market.data.constants.TAG
+import android.skills_market.data.network.models.ChatModel
+import android.skills_market.data.network.models.CompanyModel
+import android.skills_market.data.network.models.MessageModel
 import android.skills_market.data.network.models.StudentModel
 import android.skills_market.data.network.models.UserAuthData
+import android.skills_market.data.network.models.VacancyFilter
+import android.skills_market.data.network.models.VacancyModel
 import android.util.Log
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.database.database
+import com.google.firebase.firestore.firestore
 
 object SMFirebase {
-    private const val tag = "FirebaseTag"
     private val auth = Firebase.auth
 
-    suspend fun addUser(
+
+    fun getVacancies(
+        search: String = "",
+        filter: VacancyFilter,
+        onSuccessAction: (List<VacancyModel>) -> Unit,
+        onFailureAction: () -> Unit
+    ) {
+        val vacancies = ArrayList<VacancyModel>()
+        //Поиск осуществляется тут
+        var searchRef =
+            if (search.isNotBlank()) {
+                Log.d(TAG.FIREBASE, "searching vacancies")
+                Firebase.firestore.collection("vacancy")
+                    .whereEqualTo(
+                        "companyName",
+                        search.replaceFirstChar { it.uppercaseChar() })
+            } else {
+                Log.d(TAG.FIREBASE, "loading all vacancies")
+                Firebase.firestore.collection("vacancy")
+            }
+
+        //Фильтрация осуществляется тут
+        var filterRef =
+            when (filter) {
+                is VacancyFilter.None -> {
+                    searchRef
+                }
+
+                is VacancyFilter.BySalary -> {
+                    searchRef
+                        .whereGreaterThan("salary", filter.from)
+                        .whereLessThan("salary", filter.to)
+                }
+            }
+
+        filterRef.get()
+            .addOnSuccessListener { documents ->
+                Log.d(TAG.FIREBASE, "filter = ${filter.javaClass.canonicalName}, search = $search")
+                for (doc in documents) {
+                    vacancies.add(
+                        VacancyModel(
+                            id = doc.data["id"].toString(),
+                            company = CompanyModel(
+                                id = doc.data["companyId"].toString(),
+                                name = doc.data["companyName"].toString(),
+                            ),
+                            edArea = doc.data["edArea"].toString(),
+                            formOfEmployment = doc.data["formOfEmployment"].toString(),
+                            liked = doc.data["liked"].toString().toBoolean(),
+                            location = doc.data["location"].toString(),
+                            position = doc.data["position"].toString(),
+                            requirements = doc.data["requirements"].toString(),
+                            salary = doc.data["salary"].toString().toInt()
+                        )
+                    )
+                }
+                onSuccessAction(vacancies)
+            }
+            .addOnFailureListener {
+                onFailureAction()
+                Log.e(TAG.FIREBASE, it.toString())
+            }
+        if (search.isNotBlank()) {
+            //Поиск осуществляется тут
+            searchRef =
+                    Firebase.firestore.collection("vacancy")
+                        .whereEqualTo(
+                            "position",
+                            search.replaceFirstChar { it.uppercaseChar() })
+            filterRef =
+                when (filter) {
+                    is VacancyFilter.None -> {
+                        searchRef
+                    }
+
+                    is VacancyFilter.BySalary -> {
+                        searchRef
+                            .whereGreaterThan("salary", filter.from)
+                            .whereLessThan("salary", filter.to)
+                    }
+                }
+            filterRef.get()
+                .addOnSuccessListener { documents ->
+                    Log.d(
+                        TAG.FIREBASE,
+                        "filter = ${filter.javaClass.canonicalName}, search = $search"
+                    )
+                    for (doc in documents) {
+                        vacancies.add(
+                            VacancyModel(
+                                id = doc.data["id"].toString(),
+                                company = CompanyModel(
+                                    id = doc.data["companyId"].toString(),
+                                    name = doc.data["companyName"].toString(),
+                                ),
+                                edArea = doc.data["edArea"].toString(),
+                                formOfEmployment = doc.data["formOfEmployment"].toString(),
+                                liked = doc.data["liked"].toString().toBoolean(),
+                                location = doc.data["location"].toString(),
+                                position = doc.data["position"].toString(),
+                                requirements = doc.data["requirements"].toString(),
+                                salary = doc.data["salary"].toString().toInt()
+                            )
+                        )
+                    }
+                    onSuccessAction(vacancies)
+                }
+                .addOnFailureListener {
+                    onFailureAction()
+                    Log.e(TAG.FIREBASE, it.toString())
+                }
+        }
+    }
+
+    fun addUser(
         login: String,
         password: String,
         secondName: String,
@@ -29,7 +149,6 @@ object SMFirebase {
         onFailureAction: () -> Unit,
     ) {
         val rootRef = Firebase.firestore.collection("users")
-
         auth.createUserWithEmailAndPassword(login, password)
             .addOnSuccessListener {
                 auth.currentUser?.let { currentUser ->
@@ -54,12 +173,12 @@ object SMFirebase {
                 onSuccessAction()
             }
             .addOnFailureListener {
-                Log.e(tag, it.toString())
+                Log.e(TAG.FIREBASE, it.toString())
                 onFailureAction()
             }
     }
 
-    suspend fun updateCurrentUserInfo(
+    fun updateCurrentUserInfo(
         secondName: String = "",
         firstName: String = "",
         patronymicName: String = "",
@@ -99,15 +218,15 @@ object SMFirebase {
                 )
             )
                 .addOnFailureListener {
-                    Log.e(tag, it.toString())
+                    Log.e(TAG.FIREBASE, it.toString())
                 }
                 .addOnSuccessListener {
-                    Log.d(tag, "User info updated")
+                    Log.d(TAG.FIREBASE, "User info updated")
                 }
         }
     }
 
-    suspend fun loginUser(
+    fun loginUser(
         onSuccessAction: () -> Unit,
         onFailureAction: () -> Unit,
         login: String,
@@ -118,7 +237,7 @@ object SMFirebase {
                 onSuccessAction()
             }
             .addOnFailureListener {
-                Log.e(tag, it.toString())
+                Log.e(TAG.FIREBASE, it.toString())
                 onFailureAction()
             }
     }
@@ -133,60 +252,73 @@ object SMFirebase {
     fun authenticateUser(): Boolean {
         return Firebase.auth.currentUser != null
     }
-    fun isPersonalInfoBlank(): Boolean {
-        val collectionRef = Firebase.firestore.collection("users")
-        var res = true
-        if (auth.currentUser != null) {
-            collectionRef.document(
-                collectionRef.whereEqualTo("id", auth.currentUser?.uid).get().result.documents[0].id
-            ).get()
-                .addOnFailureListener {
-                    Log.e(tag, it.toString())
-                    res = true
-                }
-                .addOnSuccessListener { document ->
-                    res = if (document != null) {
-                        !(document.get("firstName").toString().isBlank() &&
-                                document.get("secondName").toString().isBlank() &&
-                                document.get("patronymicName").toString().isBlank() &&
-                                document.get("gender").toString().isBlank() &&
-                                document.get("birthDate").toString().isBlank())
-                    } else {
-                        true
-                    }
-                }
-        } else {
-            res = true
+
+    suspend fun getMessages(
+        receiverId: String,
+        onFailureAction: () -> Unit
+    ): List<MessageModel> {
+        val currentUserId = Firebase.auth.currentUser?.uid
+        val currentChatRef =
+            Firebase.database.getReference("messages").child("$currentUserId$receiverId")
+                .orderByChild("time")
+        val messages = ArrayList<MessageModel>()
+        for (chatSnapshot in currentChatRef.get().result.children) {
+            try {
+                messages.add(
+                    MessageModel(
+                        text = chatSnapshot.child("text").getValue(String::class.java)!!,
+                        senderId = chatSnapshot.child("senderId").getValue(String::class.java)!!,
+                        time = chatSnapshot.child("time").getValue(String::class.java)!!,
+                    )
+                )
+            } catch (e: Exception) {
+                onFailureAction()
+                Log.e(TAG.FIREBASE, e.toString())
+            }
         }
-        return res
+        return messages
     }
 
-    fun isUniversityInfoBlank(): Boolean {
-        val collectionRef = Firebase.firestore.collection("users")
-        var res = true
-        if (auth.currentUser != null) {
-            collectionRef.document(
-                collectionRef.whereEqualTo("id", auth.currentUser?.uid).get().result.documents[0].id
-            ).get()
-                .addOnFailureListener {
-                    Log.e(tag, it.toString())
-                    res = true
+    fun getChats(
+        onFailureAction: () -> Unit
+    ): List<ChatModel> {
+        val chats = ArrayList<ChatModel>()
+        val currentUserId = Firebase.auth.currentUser?.uid
+        val chatListRef =
+            Firebase.database.getReference("messages").get().result.children
+        val vacanciesRef = Firebase.firestore.collection("vacancy")
+        var vacancy = VacancyModel()
+        for (chatListSnapshot in chatListRef) {
+            try {
+                vacanciesRef.document(
+                    vacanciesRef.whereEqualTo("id", chatListSnapshot.child("vacancyId"))
+                        .get().result.documents[0].id
+                ).get().addOnSuccessListener { snapshot ->
+                    vacancy = snapshot.toObject(VacancyModel::class.java)!!
                 }
-                .addOnSuccessListener { document ->
-                    res = if (document != null) {
-                        !(document.get("city").toString().isBlank() &&
-                                document.get("direction").toString().isBlank() &&
-                                document.get("university").toString().isBlank() &&
-                                document.get("institute").toString().isBlank())
-
-                    } else {
-                        true
-                    }
-                }
-        } else {
-            res = true
+                chats.add(
+                    ChatModel(
+                        vacancy = vacancy,
+                        lastMessage = MessageModel(
+                            text = chatListSnapshot.children.last().child("text").value.toString(),
+                            senderId = chatListSnapshot.children.last()
+                                .child("senderId").value.toString(),
+                            time = chatListSnapshot.children.last()
+                                .child("timestamp").value.toString()
+                        )
+                    )
+                )
+            } catch (e: Exception) {
+                Log.e(TAG.FIREBASE, e.toString())
+                onFailureAction()
+            }
         }
-        return res
+        return chats
+    }
+
+
+    suspend fun sendMessage(message: String) {
+
     }
 }
 

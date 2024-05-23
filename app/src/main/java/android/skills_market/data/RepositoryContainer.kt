@@ -26,12 +26,11 @@ class DefaultRepositoryContainer : RepositoryContainer {
             authApiService = retrofit.create(AuthApiService::class.java)
         }
     }
-
     override val loginRepository: LoginRepository by lazy {
-        NetworkLoginRepository(authApiService)
+        NetworkLoginRepository()
     }
     override val registrationRepository: RegistrationRepository by lazy {
-        NetworkRegistrationRepository(authApiService)
+        NetworkRegistrationRepository()
     }
 }
 

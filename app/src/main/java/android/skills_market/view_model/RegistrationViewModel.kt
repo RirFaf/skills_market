@@ -21,6 +21,7 @@ sealed interface RegUIState {
     data class Success(
         val email: String = "android@mail.ru",
         val password: String = "123456",
+        val password1: String = "123456",
         val patronymicName: String = "",
         val firstName: String = "",
         val secondName: String = "",
@@ -44,8 +45,7 @@ class RegViewModel(
     private val tag = "VMTAG"
     private val db = SMFirebase
 
-    private val _uiState = MutableStateFlow(RegUIState.Success())//переделать под обработку REST
-
+    private val _uiState = MutableStateFlow(RegUIState.Success())
     val uiState: StateFlow<RegUIState.Success> = _uiState.asStateFlow()
 
     init {
@@ -60,7 +60,7 @@ class RegViewModel(
     fun onEvent(event: RegistrationEvent) {
         when (event) {
             is RegistrationEvent.AddUser -> {
-                if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
+                if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank() && (_uiState.value.password == _uiState.value.password1)) {
                     viewModelScope.launch {
                         db.addUser(
                             login = _uiState.value.email,
@@ -90,7 +90,7 @@ class RegViewModel(
                     Log.d("FirebaseTag", "Login empty")
 
                 }
-                if (uiState.value.password.isBlank()) {
+                if (uiState.value.password.isBlank() || (_uiState.value.password != _uiState.value.password1)) {
                     event.onEmptyPasswordAction()
                     Log.d("FirebaseTag", "password empty")
 
@@ -169,7 +169,6 @@ class RegViewModel(
                     event.onEmptyBirthDateAction()
                 }
             }
-
             is RegistrationEvent.SetCity -> {
                 _uiState.update {
                     it.copy(
@@ -177,7 +176,6 @@ class RegViewModel(
                     )
                 }
             }
-
             is RegistrationEvent.SetEmail -> {
                 _uiState.update {
                     it.copy(
@@ -198,6 +196,13 @@ class RegViewModel(
                 _uiState.update {
                     it.copy(
                         password = event.input,
+                    )
+                }
+            }
+            is RegistrationEvent.SetPassword1 -> {
+                _uiState.update {
+                    it.copy(
+                        password1 = event.input,
                     )
                 }
             }
@@ -287,3 +292,4 @@ class RegViewModel(
         }
     }
 }
+

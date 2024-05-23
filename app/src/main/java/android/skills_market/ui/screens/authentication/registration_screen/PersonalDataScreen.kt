@@ -119,13 +119,16 @@ fun PersonalDataScreen(
                     isGenderWrong = false
                     onEvent(RegistrationEvent.SetGender(it))
                 },
-                isError = isGenderWrong
+                isError = isGenderWrong,
+                placeholderText = "Пол"
             )
             RegistrationTextField(
                 value = uiState.birthDate,
                 onValueChange = {
                     isBirthDateWrong = false
-                    onEvent(RegistrationEvent.SetBirthDate(it))
+                    if (it.length <= 8) {
+                        onEvent(RegistrationEvent.SetBirthDate(it))
+                    }
                 },
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
@@ -141,9 +144,11 @@ fun PersonalDataScreen(
             RegistrationTextField(
                 value = uiState.phoneNumber,
                 onValueChange = {
-                    onEvent(RegistrationEvent.SetPhoneNumber(it))
+                    if (it.length <= 11) {
+                        onEvent(RegistrationEvent.SetPhoneNumber(it))
+                    }
                 },
-                label = "Номер телефона (не обязательно)",
+                label = "Тел. номер (не обязательно)",
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
                     imeAction = ImeAction.Done,
@@ -167,7 +172,7 @@ fun PersonalDataScreen(
                             uiState.secondName.isNotBlank() &&
                             uiState.patronymicName.isNotBlank() &&
                             uiState.gender.isNotBlank() &&
-                            uiState.birthDate.isNotBlank()&&
+                            uiState.birthDate.isNotBlank() &&
                             uiState.birthDate.length == 8
                         ) {
                             navController.navigate(Screen.UniversityInfoScreen.route)

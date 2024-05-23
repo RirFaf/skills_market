@@ -1,7 +1,7 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.network.models.VacanciesModel
+import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.ResponsesEvent
 import android.util.Log
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 sealed interface ResponsesUIState {
     data class Success(
-        val responses: VacanciesModel,
+        val responses: List<VacancyModel>,
         val selectedResponse: VacancyModel
     ) : ResponsesUIState
 
@@ -26,36 +26,35 @@ sealed interface ResponsesUIState {
 class ResponsesViewModel(
     //responsesRepository: ResponsesRepository
 ) : ViewModel() {
-    private val vacancies = VacanciesModel(
-        listOf(
-            VacancyModel(
-                id = 0,
-                position = "Педиатр",
-                salary = 50000,
-                companyName = "Семейный доктор",
-                edArea = "Педиатрия",
-                formOfEmployment = "Полная",
-                requirements = "Диплом о законченом высшем образовании",
-                location = "Казань",
-                about = "",
-                liked = true
-            ),
-            VacancyModel(
-                position = "Секретарь",
-                salary = 20000,
-                companyName = "ИП Петров Игорь Михайлович",
-                edArea = "Юриспрюденция",
-                formOfEmployment = "Полная",
-                requirements = "Неполное высшее",
-                location = "Саратов",
-                about = " ",
-                liked = true
-            ),
-        )
+    private val vacancies = listOf(
+        VacancyModel(
+            id = "0",
+            position = "Педиатр",
+            salary = 50000,
+            company = CompanyModel("0", "Семейный доктор"),
+            edArea = "Педиатрия",
+            formOfEmployment = "Полная",
+            requirements = "Диплом о законченом высшем образовании",
+            location = "Казань",
+            about = "",
+            liked = true
+        ),
+        VacancyModel(
+            id = "1",
+            position = "Секретарь",
+            salary = 20000,
+            company = CompanyModel("1", "ИП Петров Игорь Михайлович"),
+            edArea = "Юриспрюденция",
+            formOfEmployment = "Полная",
+            requirements = "Неполное высшее",
+            location = "Саратов",
+            about = " ",
+            liked = true
+        ),
     )
     private val tag = "VMTAG"
     private val _uiState =
-        MutableStateFlow(ResponsesUIState.Success(vacancies, vacancies.vacancies[0]))
+        MutableStateFlow(ResponsesUIState.Success(vacancies, vacancies[0]))
     val uiState: StateFlow<ResponsesUIState.Success> = _uiState.asStateFlow()
 
     init {

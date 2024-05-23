@@ -1,14 +1,19 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
+import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
 import android.skills_market.view_model.SearchUIState
 import android.skills_market.view_model.event.SearchEvent
+import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,25 +22,28 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -53,15 +61,19 @@ fun SearchScreen(
             TopAppBar(
                 title = {
                     OutlinedTextField(
-                        value = state.currentSearch,
+                        value = state.searchInput,
                         onValueChange = {
-                            onEvent(SearchEvent.SetSearch(it))
+                            onEvent(SearchEvent.SetSearchInput(it))
                         },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = stringResource(id = R.string.search),
-                            )
+                        trailingIcon = {
+                            IconButton(onClick = {
+                                onEvent(SearchEvent.GetVacancies)
+                            }) {
+                                Icon(
+                                    imageVector = Icons.Default.Search,
+                                    contentDescription = stringResource(id = R.string.search),
+                                )
+                            }
                         },
                         placeholder = {
                             Text(
@@ -78,8 +90,7 @@ fun SearchScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                                .show()
+                            onEvent(SearchEvent.ShowFilterDialog)
                         },
                         modifier = Modifier
                     ) {
@@ -105,43 +116,164 @@ fun SearchScreen(
             )
         },
     ) { innerPadding ->
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 10.dp)
                 .padding(innerPadding)
         ) {
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(14.dp),
-                contentPadding = PaddingValues(4.dp)
+                    .fillMaxSize()
+                    .padding(horizontal = 10.dp)
             ) {
-                itemsIndexed(
-                    state.vacancies.vacancies
-                ) { _, item ->
-                    VacancyCard(
-                        vacancy = item,
-                        onClick = {
-                            navController.navigate(
-                                route = Screen.VacancyScreen.route +
-                                        "/${item.id}" +
-                                        "/${item.position}" +
-                                        "/${item.salary}" +
-                                        "/${item.companyName}" +
-                                        "/${item.edArea}" +
-                                        "/${item.formOfEmployment}" +
-                                        "/${item.requirements}" +
-                                        "/${item.location}" +
-                                        "/${item.about.ifEmpty { " " }}"
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
+                    contentPadding = PaddingValues(4.dp)
+                ) {
+                    itemsIndexed(
+                        state.vacancies
+                    ) { _, item ->
+                        VacancyCard(
+                            vacancy = item,
+                            onClick = {
+                                navController.navigate(
+                                    route = Screen.VacancyScreen.route +
+                                            "/${item.id}" +
+                                            "/${item.position}" +
+                                            "/${item.salary}" +
+                                            "/${item.company.id}" +
+                                            "/${item.company.name}" +
+                                            "/${item.edArea}" +
+                                            "/${item.formOfEmployment}" +
+                                            "/${item.requirements}" +
+                                            "/${item.location}" +
+                                            "/${item.about.ifEmpty { " " }}"
+                                ) {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            onRespond = {},
+                            onLike = {}
+                        )
+                    }
+                }
+            }
+            if (state.showFilterDialog) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xCD000000)),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Card(
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp, horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.Start,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = state.currentFilter == VacancyFilter.None,
+                                onClick = {
+                                    onEvent(
+                                        SearchEvent.SetVacanciesFilter(
+                                            VacancyFilter.None
+                                        )
+                                    )
+                                }
+                            )
+                            Text(
+                                text = "None",
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp, horizontal = 8.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Start,
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                launchSingleTop = true
-                                restoreState = true
+                                RadioButton(
+                                    selected = state.currentFilter != VacancyFilter.None,
+                                    onClick = {
+                                        onEvent(
+                                            SearchEvent.SetVacanciesFilter(
+                                                VacancyFilter.BySalary()
+                                            )
+                                        )
+                                    }
+                                )
+                                Text(
+                                    text = "By salary",
+                                    textAlign = TextAlign.Center
+                                )
                             }
-                        },
-                        onRespond = {},
-                        onLike = {}
-                    )
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp, horizontal = 8.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                OutlinedTextField(
+                                    value = state.from.toString(),
+                                    onValueChange = {
+                                        onEvent(
+                                            SearchEvent.SetFrom(it)
+                                        )
+                                    },
+                                    modifier = Modifier.fillMaxWidth(0.4f),
+                                    enabled = state.currentFilter != VacancyFilter.None
+                                )
+                                OutlinedTextField(
+                                    value = state.to.toString(),
+                                    onValueChange = {
+                                        onEvent(
+                                            SearchEvent.SetTo(it)
+                                        )
+                                    },
+                                    modifier = Modifier.fillMaxWidth(0.8f),
+                                    enabled = state.currentFilter != VacancyFilter.None
+                                )
+                            }
+                        }
+                        Button(
+                            onClick = {
+                                onEvent(
+                                    if (state.currentFilter != VacancyFilter.None) {
+                                        SearchEvent.SetVacanciesFilter(
+                                            VacancyFilter.BySalary(
+                                                from = state.from,
+                                                to = state.to
+                                            )
+                                        )
+                                    } else {
+                                        SearchEvent.SetVacanciesFilter(
+                                            VacancyFilter.None
+                                        )
+                                    }
+                                )
+                                onEvent(
+                                    SearchEvent.GetVacancies
+                                )
+                                onEvent(SearchEvent.ShowFilterDialog)
+                            },
+                            modifier = Modifier
+                                .padding(vertical = 8.dp, horizontal = 16.dp)
+                        ) {
+                            Text(text = "done")
+                        }
+                    }
                 }
             }
         }

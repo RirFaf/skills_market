@@ -123,7 +123,8 @@ fun LoginScreen(
                             imeAction = ImeAction.Next,
                             keyboardType = KeyboardType.Email
                         ),
-                        shape = shapes.medium
+                        shape = shapes.medium,
+                        isError = isLoginWrong
                     )
                     Spacer(modifier = Modifier.padding(4.dp))
                     OutlinedTextField(
@@ -142,6 +143,7 @@ fun LoginScreen(
                             keyboardType = KeyboardType.Password,
                             imeAction = ImeAction.Done,
                         ),
+                        isError = isPasswordWrong,
                         keyboardActions = KeyboardActions(
                             onDone = {
                                 onEvent(LoginEvent.LoginUser(
@@ -159,9 +161,11 @@ fun LoginScreen(
                                         Log.e("MyTag", "onFailure called")
                                     },
                                     onEmptyPasswordAction = {
+                                        Log.d("MyTag", "onEmptyPassword called")
                                         isPasswordWrong = true
                                     },
                                     onEmptyLoginAction = {
+                                        Log.d("MyTag", "onEmptyLogin called")
                                         isLoginWrong = true
                                     }
                                 ))

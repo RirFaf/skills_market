@@ -1,37 +1,31 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.network.models.VacanciesModel
+import android.skills_market.data.constants.TAG
+import android.skills_market.data.network.SMFirebase
+import android.skills_market.data.network.models.CompanyModel
+import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.SearchEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 sealed interface SearchUIState {
     data class Success(
-        val vacancies: VacanciesModel,
-        val vacancy: VacancyModel = VacancyModel(
-            id = 0,
-            position = "",
-            salary = 0,
-            companyName = "",
-            edArea = "",
-            formOfEmployment = "",
-            requirements = "",
-            location = "",
-            about = "",
-        ),
-        var currentSearch: String = ""
+        val vacancies: List<VacancyModel> = listOf(),
+        val searchInput: String = "",
+        val currentFilter: VacancyFilter = VacancyFilter.None,
+        val showFilterDialog: Boolean = false,
+        val from: Int = 0,
+        val to: Int = 0
     ) : SearchUIState
 
     data object Error : SearchUIState
@@ -42,71 +36,10 @@ sealed interface SearchUIState {
 class SearchViewModel(
 //    private val searchRepository: SearchRepository
 ) : ViewModel() {
-    private val vacancies = VacanciesModel(
-        listOf(
-            VacancyModel(
-                id = 0,
-                position = "Педиатр",
-                salary = 50000,
-                companyName = "Семейный доктор",
-                edArea = "Педиатрия",
-                formOfEmployment = "Полная",
-                requirements = "Диплом о законченом высшем образовании",
-                location = "Казань",
-                about = "",
-            ),
-            VacancyModel(
-                position = "Секретарь",
-                salary = 20000,
-                companyName = "ИП Петров Игорь Михайлович",
-                edArea = "Юриспрюденция",
-                formOfEmployment = "Полная",
-                requirements = "Неполное высшее",
-                location = "Саратов",
-                about = " ",
-            ),
-            VacancyModel(
-                position = "Врач-терапевт",
-                salary = 70000,
-                companyName = "АйБольно",
-                edArea = "Медицина",
-                formOfEmployment = "Неполная",
-                requirements = "Неполное высшее",
-                location = "Вознесенск",
-                about = " ",
-            ),
-            VacancyModel(
-                position = "Уборщик",
-                salary = 30000,
-                companyName = "ЛангОфф",
-                edArea = "Любая",
-                formOfEmployment = "Неполная",
-                requirements = "Нет",
-                location = "Москва",
-                about = " ",
-            ),
-            VacancyModel(
-                position = "Пекарь",
-                salary = 70000,
-                companyName = "Кухня дяди Васи",
-                edArea = "Нет",
-                formOfEmployment = "Полная",
-                requirements = "Нет",
-                location = "Казань",
-                about = " ",
-            ),
-        )
-    )
     private val tag = "VMTAG"
-    private val _uiState = MutableStateFlow(SearchUIState.Success(vacancies))
+    private val _uiState = MutableStateFlow(SearchUIState.Success())
     val uiState: StateFlow<SearchUIState.Success> = _uiState.asStateFlow()
-
-    init {
-        Log.i(
-            tag, "SearchViewModel initialized"
-        )
-        onEvent(SearchEvent.GetVacancies)
-    }
+    private val db = SMFirebase
 
     override fun onCleared() {
         super.onCleared()
@@ -116,31 +49,79 @@ class SearchViewModel(
     fun onEvent(event: SearchEvent) {
         when (event) {
             is SearchEvent.GetVacancies -> {
-                viewModelScope.launch {
-//            searchRepository.getVacanciesList().asResult()
-//            _uiState = SearchUIState.Loading
-//            _uiState = try {
-//                SearchUIState.Success(searchRepository.getVacanciesList())
-//            } catch (e: IOException) {
-//                SearchUIState.Error
-//            } catch (e: HttpException) {
-//                SearchUIState.Error
-//            }
+                db.getVacancies(
+                    search = _uiState.value.searchInput,
+                    filter = _uiState.value.currentFilter,
+                    onSuccessAction = { vacancies ->
+                        _uiState.update {
+                            it.copy(
+                                vacancies = vacancies
+                            )
+                        }
+                    },
+                    onFailureAction = {}
+                )
+            }
+
+            is SearchEvent.RespondToVacancy -> {}
+            is SearchEvent.SetFavourite -> {}
+            is SearchEvent.SetSearchInput -> {
+                _uiState.update {
+                    it.copy(
+                        searchInput = event.input
+                    )
                 }
             }
 
-            is SearchEvent.GetVacanciesBySearch -> {}//TODO имплементировать поиск вакансий
-            is SearchEvent.RespondToVacancy -> {}
-            is SearchEvent.Respond -> {}
-            is SearchEvent.SetFavourite -> {}
-            is SearchEvent.SetSearch -> {
+            is SearchEvent.SetFrom -> {
                 _uiState.update {
                     it.copy(
-                        currentSearch = event.input
+                        from = if (event.input != "") {
+                            event.input.toInt()
+                        } else {
+                            0
+                        }
+                    )
+                }
+            }
+
+            is SearchEvent.SetTo -> {
+                _uiState.update {
+                    it.copy(
+                        to = if (event.input != "") {
+                            event.input.toInt()
+                        } else {
+                            0
+                        }
+                    )
+                }
+            }
+
+            is SearchEvent.SetVacanciesFilter -> {
+                _uiState.update {
+                    it.copy(
+                        currentFilter = event.filter
+                    )
+                }
+            }
+
+            is SearchEvent.ShowFilterDialog -> {
+                _uiState.update {
+                    it.copy(
+                        showFilterDialog = !_uiState.value.showFilterDialog
                     )
                 }
             }
         }
+    }
+
+
+    init {
+        Log.i(
+            tag, "SearchViewModel initialized"
+        )
+        //ToDo добавить загрузочный экран
+        onEvent(SearchEvent.GetVacancies)
     }
 
     companion object {

@@ -8,10 +8,12 @@ import android.skills_market.ui.theme.md_theme_dark_inverseOnSurface
 import android.skills_market.view_model.MessengerUIState
 import android.skills_market.view_model.event.MessengerEvent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -51,18 +53,18 @@ fun MessengerScreen(
 ) {
     Scaffold(
         topBar = {
-            Column(modifier = Modifier.fillMaxWidth()){
+            Column(modifier = Modifier.fillMaxWidth()) {
                 TopAppBar(
                     title = {
                         Column() {
                             Text(
-                                text = "Sample Company Name",
+                                text = "Астон",
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 fontFamily = Inter,
                             )
                             Text(
-                                text = "Vacancy",
+                                text = "Системный аналитик",
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Medium,
                                 fontFamily = Inter,
@@ -82,7 +84,10 @@ fun MessengerScreen(
                         }
                     }
                 )
-                Divider(modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colorScheme.tertiaryContainer)
+                Divider(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.tertiaryContainer
+                )
             }
         },
         bottomBar = {
@@ -93,22 +98,19 @@ fun MessengerScreen(
                 )
         },
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(horizontal = 8.dp)
                 .padding(innerPadding),
+            reverseLayout = true,
+            verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                reverseLayout = true
-            ) {
-                items(
-                    listOfMessages
-                ) { item ->
-                    MessageBubble(item)
-                }
+            items(
+                listOfMessages.reversed()
+            ) { item ->
+                MessageBubble(item)
             }
         }
     }
@@ -181,60 +183,12 @@ private fun MessageBubble(message: MessageModel) {
 }
 
 private val listOfMessages = listOf(
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
+    MessageModel("Здравствуйте", senderId = "1", time = "1"),
+    MessageModel("Здравствуйте", senderId = "0", time = "1"),
+    MessageModel("Нас заинтересовало ваше резюме", senderId = "1", time = "1"),
+    MessageModel("Готов пройти стажировку у вас", senderId = "0", time = "1"),
     MessageModel(
         "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
-    MessageModel("Здравствуйте", User(id = "1")),
-    MessageModel("Здравствуйте", User(id = "0")),
-    MessageModel("Нас заинтересовало ваше резюме", User(id = "1")),
-    MessageModel("Готов пройти стажировку у вас", User(id = "0")),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        User(id = "1")
-    ),
+        senderId = "1", time = "1"
+    )
 )

@@ -1,5 +1,6 @@
 package android.skills_market.ui.screens
 
+import android.skills_market.data.constants.ResponseStatus
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.ResponseCard
 import android.skills_market.ui.screens.custom_composables.VacancyCard
@@ -73,7 +74,7 @@ fun ResponsesListScreen(
                 contentPadding = PaddingValues(4.dp)
             ) {
                 itemsIndexed(
-                    state.responses.vacancies
+                    state.responses
                 ) { _, item ->
                     ResponseCard(
                         vacancy = item,
@@ -83,7 +84,8 @@ fun ResponsesListScreen(
                                         "/${item.id}" +
                                         "/${item.position}" +
                                         "/${item.salary}" +
-                                        "/${item.companyName}" +
+                                        "/${item.company.id}" +
+                                        "/${item.company.name}" +
                                         "/${item.edArea}" +
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
@@ -97,7 +99,8 @@ fun ResponsesListScreen(
                         onChatButtonClick = {},
                         onDelete = {
                             onEvent(ResponsesEvent.DeleteResponse(item))
-                        }
+                        },
+                        status = ResponseStatus.APPROVED
                     )
                 }
             }

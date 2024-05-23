@@ -75,7 +75,7 @@ fun VacancyScreen(
                                 Toast.LENGTH_SHORT
                             ).show()
                             liked = !liked
-                            onEvent(VacancyEvent.Like(vacancyId = vacancy.id))
+                            onEvent(VacancyEvent.Like(vacancyId = vacancy.id.toInt()))
                         }
                     ) {
                         Icon(
@@ -109,7 +109,7 @@ fun VacancyScreen(
             }
             CustomText(heading = "Отрасль", content = vacancy.edArea)
             Spacer(modifier = Modifier.padding(8.dp))
-            CustomText(heading = "Компания", content = vacancy.companyName)
+            CustomText(heading = "Компания", content = vacancy.company.name)
             Spacer(modifier = Modifier.padding(8.dp))
             CustomText(heading = "Тип занятости", content = vacancy.formOfEmployment)
             Spacer(modifier = Modifier.padding(8.dp))
@@ -129,7 +129,7 @@ fun VacancyScreen(
                         "Work in progress vacancy id:${vacancy.id}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    onEvent(VacancyEvent.Respond(vacancyId = vacancy.id))
+                    onEvent(VacancyEvent.Respond(vacancyId = vacancy.id.toInt()))
                 }
             ) {
                 Text(text = "Откликнуться")

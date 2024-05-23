@@ -7,12 +7,24 @@ import retrofit2.Call
 import retrofit2.Response
 
 interface LoginRepository {
-    suspend fun login(authRequest: AuthRequest): Response<AuthResponse>
+    suspend fun login(
+        onSuccessAction: () -> Unit,
+        onFailureAction: () -> Unit,
+        login: String,
+        password: String
+    )
 }
 
 class NetworkLoginRepository(
-    private val authApiService: AuthApiService
 ) : LoginRepository {
-    override suspend fun login(authRequest: AuthRequest): Response<AuthResponse> =
-        authApiService.login(authRequest)
+    override suspend fun login(
+        onSuccessAction: () -> Unit,
+        onFailureAction: () -> Unit,
+        login: String,
+        password: String
+    ) {
+        TODO("Not yet implemented")
+    }
 }
+
+

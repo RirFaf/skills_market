@@ -85,6 +85,38 @@ fun EmailAndPasswordScreen(
                 isError = isLoginWrong
             )
             OutlinedTextField(
+                value = uiState.password1,
+                onValueChange = {
+                    isPasswordWrong = false
+                    onEvent(RegistrationEvent.SetPassword1(it))
+                },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text(text = stringResource(id = R.string.password)) },
+                singleLine = true,
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    autoCorrect = false,
+                    imeAction = ImeAction.Done
+                ),
+                isError = isPasswordWrong,
+                trailingIcon = {
+                    //Изменеие видимости пароля
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(
+                                id =
+                                if (passwordVisible)
+                                    R.drawable.visibility
+                                else
+                                    R.drawable.visibility_off
+                            ),
+                            contentDescription = "password visibility",
+                        )
+                    }
+                },
+                shape = MaterialTheme.shapes.medium,
+            )
+            OutlinedTextField(
                 value = uiState.password,
                 onValueChange = {
                     isPasswordWrong = false

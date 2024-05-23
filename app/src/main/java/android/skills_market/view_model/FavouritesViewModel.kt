@@ -1,7 +1,7 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.network.models.VacanciesModel
+import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.FavouritesEvent
 import android.util.Log
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 sealed interface FavouritesUIState {
     data class Success(
-        val favourites: VacanciesModel,
+        val favourites: List<VacancyModel>,
         val favouriteVacancy: VacancyModel
     ) : SearchUIState
 
@@ -27,46 +27,52 @@ sealed interface FavouritesUIState {
 class FavouritesViewModel(
 //    private val favouritesRepository: FavouritesRepository
 ) : ViewModel() {
-    private val vacancies = VacanciesModel(
-        listOf(
-            VacancyModel(
-                id = 0,
-                position = "Педиатр",
-                salary = 50000,
-                companyName = "Семейный доктор",
-                edArea = "Педиатрия",
-                formOfEmployment = "Полная",
-                requirements = "Диплом о законченом высшем образовании",
-                location = "Казань",
-                about = "",
-                liked = true
-            ),
-            VacancyModel(
-                position = "Секретарь",
-                salary = 20000,
-                companyName = "ИП Петров Игорь Михайлович",
-                edArea = "Юриспрюденция",
-                formOfEmployment = "Полная",
-                requirements = "Неполное высшее",
-                location = "Саратов",
-                about = " ",
-                liked = true
-            ),
-            VacancyModel(
-                position = "Врач-терапевт",
-                salary = 70000,
-                companyName = "АйБольно",
-                edArea = "Медицина",
-                formOfEmployment = "Неполная",
-                requirements = "Неполное высшее",
-                location = "Вознесенск",
-                about = " ",
-                liked = true
-            ),
+    private val vacancies = listOf(
+        VacancyModel(
+            id = "0",
+            position = "Педиатр",
+            salary = 50000,
+            company = CompanyModel("0", "Семейный доктор"),
+            edArea = "Педиатрия",
+            formOfEmployment = "Полная",
+            requirements = "Диплом о законченом высшем образовании",
+            location = "Казань",
+            about = "",
+            liked = true
+        ),
+        VacancyModel(
+            id = "1",
+            position = "Секретарь",
+            salary = 20000,
+            company = CompanyModel("1", "ИП Петров Игорь Михайлович"),
+            edArea = "Юриспрюденция",
+            formOfEmployment = "Полная",
+            requirements = "Неполное высшее",
+            location = "Саратов",
+            about = " ",
+            liked = true
+        ),
+        VacancyModel(
+            id = "2",
+            position = "Врач-терапевт",
+            salary = 70000,
+            company = CompanyModel("2", "АйБольно"),
+            edArea = "Медицина",
+            formOfEmployment = "Неполная",
+            requirements = "Неполное высшее",
+            location = "Вознесенск",
+            about = " ",
+            liked = true
+        ),
+    )
+
+    private val tag = "VMTAG"
+    private val _uiState = MutableStateFlow(
+        FavouritesUIState.Success(
+            vacancies,
+            favouriteVacancy = vacancies[0]
         )
     )
-    private val tag = "VMTAG"
-    private val _uiState = MutableStateFlow(FavouritesUIState.Success(vacancies, favouriteVacancy = vacancies.vacancies[0]))
     val uiState: StateFlow<FavouritesUIState.Success> = _uiState.asStateFlow()
 
     init {
@@ -75,12 +81,14 @@ class FavouritesViewModel(
         )
         onEvent(FavouritesEvent.GetVacancies)
     }
+
     override fun onCleared() {
         super.onCleared()
         Log.i(tag, "FavouritesViewModel is cleared")
     }
-    fun onEvent(event: FavouritesEvent){
-        when(event){
+
+    fun onEvent(event: FavouritesEvent) {
+        when (event) {
             FavouritesEvent.GetVacancies -> {}//TODO
             FavouritesEvent.RespondToVacancy -> {}//TODO
         }

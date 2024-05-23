@@ -1,10 +1,15 @@
 package android.skills_market.view_model.event
 
+import android.skills_market.data.network.models.VacancyFilter
+
 sealed interface SearchEvent {
-    data object RespondToVacancy : SearchEvent
     data object GetVacancies : SearchEvent
-    data class GetVacanciesBySearch(val input: String) : SearchEvent
+    data class SetVacanciesFilter(val filter: VacancyFilter) : SearchEvent
+    data class SetSearchInput(val input: String) : SearchEvent
+    data class SetFrom(val input: String) : SearchEvent
+    data class SetTo(val input: String) : SearchEvent
+    data object ShowFilterDialog : SearchEvent
+
+    data object RespondToVacancy : SearchEvent
     data object SetFavourite : SearchEvent
-    data class Respond(val url: String):SearchEvent
-    data class SetSearch(val input: String): SearchEvent
 }

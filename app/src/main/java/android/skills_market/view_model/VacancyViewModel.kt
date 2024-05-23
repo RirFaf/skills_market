@@ -2,6 +2,7 @@ package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.network.SessionManager
+import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.view_model.event.ResumeEvent
 import android.skills_market.view_model.event.VacancyEvent
@@ -18,7 +19,18 @@ import kotlinx.coroutines.flow.update
 
 sealed interface VacancyUIState {
     data class Success(
-        val vacancy: VacancyModel = VacancyModel(-1, "", -1, "", "", "", "", "", "", false)
+        val vacancy: VacancyModel = VacancyModel(
+            "-1",
+            CompanyModel("-1", ""),
+            "-1",
+            -1,
+            "",
+            "",
+            "",
+            "",
+            "",
+            false
+        )
     ) : ResumeUIState
 
     data object Error : ResumeUIState

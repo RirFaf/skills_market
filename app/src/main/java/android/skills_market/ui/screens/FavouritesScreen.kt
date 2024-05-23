@@ -71,7 +71,7 @@ fun FavouritesScreen(
                 contentPadding = PaddingValues(4.dp)
             ) {
                 itemsIndexed(
-                    state.favourites.vacancies
+                    state.favourites
                 ) { _, item ->
                     VacancyCard(
                         vacancy = item,
@@ -81,12 +81,13 @@ fun FavouritesScreen(
                                         "/${item.id}" +
                                         "/${item.position}" +
                                         "/${item.salary}" +
-                                        "/${item.companyName}" +
+                                        "/${item.company.id}" +
+                                        "/${item.company.name}" +
                                         "/${item.edArea}" +
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
                                         "/${item.location}" +
-                                        "/${if (item.about.isEmpty()) " " else item.about}"
+                                        "/${item.about.ifEmpty { " " }}"
                             ) {
                                 launchSingleTop = false
                                 restoreState = true

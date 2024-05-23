@@ -16,13 +16,13 @@ import kotlinx.coroutines.flow.update
 
 sealed interface ResumeUIState {
     data class Success(
-        val about: String = "",
-        val keySkills: String = "",
-        val course: String = "",
+        val about: String = "Отслужил в армии",
+        val keySkills: String = "Android разработчик",
+        val course: String = "Системный аналитик",
     ) : ResumeUIState
 
-    object Error : ResumeUIState
-    object Loading : ResumeUIState
+    data object Error : ResumeUIState
+    data object Loading : ResumeUIState
 }
 
 class ResumeViewModel(

@@ -60,36 +60,14 @@ fun ResumeScreen(
                 .padding(horizontal = 10.dp, vertical = 40.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(horizontal = 10.dp)
+            Column(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                verticalArrangement = Arrangement.Center
             ) {
-                Box(
-                    modifier = Modifier.size(100.dp),
-                    contentAlignment = Alignment.BottomEnd
-                ) {
-                    Icon(//TODO сменить на изображение
-                        imageVector = Icons.Outlined.Person,
-                        contentDescription = "worker",
-                        modifier = Modifier.fillMaxSize(),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                    FloatingActionButton(
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier.fillMaxSize(0.3f)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Edit,
-                            contentDescription = "Change profile picture"
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(modifier = Modifier.padding(8.dp)) {
-                    Text(text = "Иванов Иван", fontSize = 25.sp)
-                    Text(text = "+79123456789", fontSize = 18.sp)
-                }
+                Text(text = "Иванов Иван", fontSize = 25.sp)
+                Text(text = "+79123456789", fontSize = 18.sp)
             }
+
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.padding(top = 4.dp, bottom = 16.dp),
@@ -97,21 +75,16 @@ fun ResumeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Место учёбы",
+                    text = "Резюме",
                     fontWeight = FontWeight.Bold,
                     fontSize = 22.sp
                 )
             }
-            CustomText(heading = "Университет", content = "Казанский Федеральный Университет")
+            CustomText(heading = "Ключевые навыки", content = state.keySkills)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Институт", content = "ИВМиИТ")
+            CustomText(heading = "Желаемая специализация", content = state.course)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Направление", content = "Прикладная информатика")
-            Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Код направления", content = "09.03.03")
-            Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Курс", content = Courses.bachelors4)
-            Spacer(modifier = Modifier.height(16.dp))
+            CustomText(heading = "Обо мне, дополнительно", content = state.about)
         }
     }
 }

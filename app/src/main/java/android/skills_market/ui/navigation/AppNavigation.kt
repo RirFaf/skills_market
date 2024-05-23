@@ -1,5 +1,6 @@
 package android.skills_market.ui.navigation
 
+import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.ui.navigation.extensions.sharedViewModel
 import android.skills_market.ui.screens.messenger.ChatListScreen
@@ -19,7 +20,9 @@ import android.skills_market.view_model.ResponsesViewModel
 import android.skills_market.view_model.ResumeViewModel
 import android.skills_market.view_model.SearchViewModel
 import android.skills_market.view_model.VacancyViewModel
+import android.skills_market.view_model.event.MessengerEvent
 import android.skills_market.view_model.event.VacancyEvent
+import android.widget.Toast
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -29,6 +32,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -49,6 +53,7 @@ fun NavigationGraph(navController: NavHostController) {
         fadeOut(
             animationSpec = tween(150, easing = LinearEasing)
         )
+    val localContext = LocalContext.current
     NavHost(
         navController = navController,
         startDestination = Screen.SearchScreen.route
@@ -75,6 +80,7 @@ fun NavigationGraph(navController: NavHostController) {
                     "/{id}" +
                     "/{position}" +
                     "/{salary}" +
+                    "/{companyId}" +
                     "/{companyName}" +
                     "/{edArea}" +
                     "/{formOfEmployment}" +
@@ -83,13 +89,16 @@ fun NavigationGraph(navController: NavHostController) {
                     "/{about}",
             arguments = listOf(
                 navArgument(name = "id") {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 },
                 navArgument(name = "position") {
                     type = NavType.StringType
                 },
                 navArgument(name = "salary") {
                     type = NavType.IntType
+                },
+                navArgument(name = "companyId") {
+                    type = NavType.StringType
                 },
                 navArgument(name = "companyName") {
                     type = NavType.StringType
@@ -114,24 +123,29 @@ fun NavigationGraph(navController: NavHostController) {
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
-        ) {entry->
-            val vacancyViewModel = viewModel<VacancyViewModel> (
+        ) { entry ->
+            val vacancyViewModel = viewModel<VacancyViewModel>(
                 factory = VacancyViewModel.Factory
             )
             val state by vacancyViewModel.uiState.collectAsStateWithLifecycle()
-            vacancyViewModel.onEvent(VacancyEvent.SetVacancy(
-                VacancyModel(
-                    id = entry.arguments?.getInt("id")!!,
-                    position = entry.arguments?.getString("position")!!,
-                    salary = entry.arguments?.getInt("salary")!!,
-                    companyName = entry.arguments?.getString("companyName")!!,
-                    edArea = entry.arguments?.getString("edArea")!!,
-                    formOfEmployment = entry.arguments?.getString("formOfEmployment")!!,
-                    requirements = entry.arguments?.getString("requirements")!!,
-                    location = entry.arguments?.getString("location")!!,
-                    about = entry.arguments?.getString("about")!!
+            vacancyViewModel.onEvent(
+                VacancyEvent.SetVacancy(
+                    VacancyModel(
+                        id = entry.arguments?.getString("id")!!,
+                        position = entry.arguments?.getString("position")!!,
+                        salary = entry.arguments?.getInt("salary")!!,
+                        company = CompanyModel(
+                            entry.arguments?.getString("companyId")!!,
+                            entry.arguments?.getString("companyName")!!
+                        ),
+                        edArea = entry.arguments?.getString("edArea")!!,
+                        formOfEmployment = entry.arguments?.getString("formOfEmployment")!!,
+                        requirements = entry.arguments?.getString("requirements")!!,
+                        location = entry.arguments?.getString("location")!!,
+                        about = entry.arguments?.getString("about")!!
+                    )
                 )
-            ))
+            )
             VacancyScreen(
                 navController = navController,
                 state = state,
@@ -167,7 +181,49 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(
-            route = Screen.MessengerScreen.route,
+            route = Screen.MessengerScreen.route +
+                    "/{id}" +
+                    "/{position}" +
+                    "/{salary}" +
+                    "/{companyId}" +
+                    "/{companyName}" +
+                    "/{edArea}" +
+                    "/{formOfEmployment}" +
+                    "/{requirements}" +
+                    "/{location}" +
+                    "/{about}",
+            arguments = listOf(
+                navArgument(name = "id") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "position") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "salary") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "companyId") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "companyName") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "edArea") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "formOfEmployment") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "requirements") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "location") {
+                    type = NavType.StringType
+                },
+                navArgument(name = "about") {
+                    type = NavType.StringType
+                },
+            ),
             enterTransition = { customEnterTransition },
             exitTransition = {
                 fadeOut(
@@ -180,11 +236,22 @@ fun NavigationGraph(navController: NavHostController) {
                     animationSpec = tween(0, easing = LinearEasing)
                 )
             },
-        ) {
+        ) { entry ->
             val messengerViewModel = viewModel<MessengerViewModel>(
                 factory = MessengerViewModel.Factory
             )
             val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
+            messengerViewModel.onEvent(
+                MessengerEvent.GetMessages(
+                    receiverId = entry.arguments?.getString(
+                        "companyId"
+                    )!!,
+                    onFailureAction = {
+                        Toast.makeText(localContext, "Что-то пошло не так", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                )
+            )
             MessengerScreen(
                 navController = navController,
                 onEvent = messengerViewModel::onEvent,
@@ -199,7 +266,8 @@ fun NavigationGraph(navController: NavHostController) {
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
-            val responsesViewModel = viewModel<ResponsesViewModel>(factory = ResponsesViewModel.Factory)
+            val responsesViewModel =
+                viewModel<ResponsesViewModel>(factory = ResponsesViewModel.Factory)
             val state by responsesViewModel.uiState.collectAsStateWithLifecycle()
             ResponsesListScreen(
                 navController = navController,
@@ -214,7 +282,7 @@ fun NavigationGraph(navController: NavHostController) {
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
-        ) {entry ->
+        ) { entry ->
             val profileViewModel = entry.sharedViewModel<ProfileViewModel>(
                 factory = ProfileViewModel.Factory,
                 navController = navController

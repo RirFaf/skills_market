@@ -77,7 +77,7 @@ fun VacancyCard(
             )
             Spacer(modifier = Modifier.padding(2.dp))
             Text(
-                text = vacancy.companyName,
+                text = vacancy.company.name,
                 modifier = Modifier
                     .fillMaxWidth(),
                 fontSize = 14.sp
