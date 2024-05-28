@@ -1,11 +1,11 @@
 package android.skills_market.ui.screens
 
 import android.skills_market.R
-import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.ui.screens.custom_composables.CustomText
 import android.skills_market.ui.theme.Inter
 import android.skills_market.view_model.VacancyUIState
 import android.skills_market.view_model.event.VacancyEvent
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,8 +47,11 @@ fun VacancyScreen(
     state: VacancyUIState.Success
 ) {
     val localContext = LocalContext.current
-    var liked by remember { mutableStateOf(false) }
     val vacancy = state.vacancy
+    var liked by remember {
+        mutableStateOf(false)
+    }
+    liked = vacancy.liked
     Scaffold(
         modifier = Modifier,
         topBar = {
@@ -69,18 +72,13 @@ fun VacancyScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(
-                                localContext,
-                                "Work in progress vacancy id:${vacancy.id}",
-                                Toast.LENGTH_SHORT
-                            ).show()
                             liked = !liked
-                            onEvent(VacancyEvent.Like(vacancyId = vacancy.id.toInt()))
+                            onEvent(VacancyEvent.ChangeLiked(vacancyId = vacancy.id))
                         }
                     ) {
                         Icon(
                             imageVector = if (liked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                            contentDescription = "Show menu",
+                            contentDescription = "ChangeLiked",
                         )
                     }
                 }

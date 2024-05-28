@@ -98,8 +98,7 @@ fun VacancyCard(
                 }
                 IconButton(
                     onClick = {
-                        Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                            .show()
+                        onLike()
                         liked = !liked
                     }
                 ) {

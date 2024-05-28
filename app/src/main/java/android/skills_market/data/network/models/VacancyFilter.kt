@@ -8,3 +8,4 @@ sealed interface VacancyFilter {
 
     data object None : VacancyFilter
 }
+

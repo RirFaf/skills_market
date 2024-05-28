@@ -1,10 +1,10 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
+import android.skills_market.data.network.SMFirebase
 import android.skills_market.data.network.SessionManager
 import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
-import android.skills_market.view_model.event.ResumeEvent
 import android.skills_market.view_model.event.VacancyEvent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -19,18 +19,7 @@ import kotlinx.coroutines.flow.update
 
 sealed interface VacancyUIState {
     data class Success(
-        val vacancy: VacancyModel = VacancyModel(
-            "-1",
-            CompanyModel("-1", ""),
-            "-1",
-            -1,
-            "",
-            "",
-            "",
-            "",
-            "",
-            false
-        )
+        val vacancy: VacancyModel = VacancyModel()
     ) : ResumeUIState
 
     data object Error : ResumeUIState
@@ -46,6 +35,7 @@ class VacancyViewModel(
 
     private val _uiState = MutableStateFlow(VacancyUIState.Success())
     val uiState: StateFlow<VacancyUIState.Success> = _uiState.asStateFlow()
+    private val db = SMFirebase
 
     init {
         Log.i(tag, "VacancyViewModel initialized")
@@ -58,7 +48,9 @@ class VacancyViewModel(
 
     fun onEvent(event: VacancyEvent) {
         when (event) {
-            is VacancyEvent.Like -> {}
+            is VacancyEvent.ChangeLiked -> {
+                db.changeLiked(vacancyId = event.vacancyId, {}, {})
+            }
             is VacancyEvent.Respond -> {}
             is VacancyEvent.SetVacancy -> {
                 _uiState.update {

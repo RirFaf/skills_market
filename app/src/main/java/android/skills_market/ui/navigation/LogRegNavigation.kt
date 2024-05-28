@@ -288,7 +288,3 @@ fun RegGraph(
         }
     }
 }
-
-
-
-

@@ -112,6 +112,10 @@ class SearchViewModel(
                     )
                 }
             }
+
+            is SearchEvent.ChangeLiked -> {
+                db.changeLiked(vacancyId = event.vacancyId, {}, {})
+            }
         }
     }
 

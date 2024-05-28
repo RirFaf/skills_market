@@ -22,6 +22,7 @@ import android.skills_market.view_model.SearchViewModel
 import android.skills_market.view_model.VacancyViewModel
 import android.skills_market.view_model.event.MessengerEvent
 import android.skills_market.view_model.event.VacancyEvent
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -86,7 +87,8 @@ fun NavigationGraph(navController: NavHostController) {
                     "/{formOfEmployment}" +
                     "/{requirements}" +
                     "/{location}" +
-                    "/{about}",
+                    "/{about}" +
+                    "/{liked}",
             arguments = listOf(
                 navArgument(name = "id") {
                     type = NavType.StringType
@@ -118,6 +120,9 @@ fun NavigationGraph(navController: NavHostController) {
                 navArgument(name = "about") {
                     type = NavType.StringType
                 },
+                navArgument(name = "liked") {
+                    type = NavType.BoolType
+                },
             ),
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
@@ -142,7 +147,8 @@ fun NavigationGraph(navController: NavHostController) {
                         formOfEmployment = entry.arguments?.getString("formOfEmployment")!!,
                         requirements = entry.arguments?.getString("requirements")!!,
                         location = entry.arguments?.getString("location")!!,
-                        about = entry.arguments?.getString("about")!!
+                        about = entry.arguments?.getString("about")!!,
+                        liked = entry.arguments?.getBoolean("liked")!!
                     )
                 )
             )

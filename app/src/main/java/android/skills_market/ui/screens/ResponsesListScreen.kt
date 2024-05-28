@@ -90,7 +90,8 @@ fun ResponsesListScreen(
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
                                         "/${item.location}" +
-                                        "/${if (item.about.isEmpty()) " " else item.about}"
+                                        "/${item.about.ifEmpty { " " }}"+
+                                        "/${item.liked}"
                             ) {
                                 launchSingleTop = false
                                 restoreState = true

@@ -4,6 +4,7 @@ import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.VacancyCard
 import android.skills_market.view_model.FavouritesUIState
 import android.skills_market.view_model.event.FavouritesEvent
+import android.skills_market.view_model.event.SearchEvent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -87,14 +88,17 @@ fun FavouritesScreen(
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
                                         "/${item.location}" +
-                                        "/${item.about.ifEmpty { " " }}"
+                                        "/${item.about.ifEmpty { " " }}"+
+                                        "/${item.liked}"
                             ) {
                                 launchSingleTop = false
                                 restoreState = true
                             }
                         },
                         onRespond = {},
-                        onLike = {}
+                        onLike = {
+                            onEvent(FavouritesEvent.ChangeLiked(item.id))
+                        }
                     )
                 }
             }

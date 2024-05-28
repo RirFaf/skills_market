@@ -148,14 +148,17 @@ fun SearchScreen(
                                             "/${item.formOfEmployment}" +
                                             "/${item.requirements}" +
                                             "/${item.location}" +
-                                            "/${item.about.ifEmpty { " " }}"
+                                            "/${item.about.ifEmpty { " " }}"+
+                                            "/${item.liked}"
                                 ) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
                             },
                             onRespond = {},
-                            onLike = {}
+                            onLike = {
+                                onEvent(SearchEvent.ChangeLiked(item.id))
+                            }
                         )
                     }
                 }
@@ -175,6 +178,15 @@ fun SearchScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 4.dp, horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(text = "Выберите фильтр")
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp, horizontal = 8.dp),
                             horizontalArrangement = Arrangement.Start,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -189,7 +201,7 @@ fun SearchScreen(
                                 }
                             )
                             Text(
-                                text = "None",
+                                text = "Нет",
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -215,7 +227,7 @@ fun SearchScreen(
                                     }
                                 )
                                 Text(
-                                    text = "By salary",
+                                    text = "Зарплата",
                                     textAlign = TextAlign.Center
                                 )
                             }
@@ -232,6 +244,9 @@ fun SearchScreen(
                                             SearchEvent.SetFrom(it)
                                         )
                                     },
+                                    label = {
+                                            Text(text = "От")
+                                    },
                                     modifier = Modifier.fillMaxWidth(0.4f),
                                     enabled = state.currentFilter != VacancyFilter.None
                                 )
@@ -241,6 +256,9 @@ fun SearchScreen(
                                         onEvent(
                                             SearchEvent.SetTo(it)
                                         )
+                                    },
+                                    label = {
+                                        Text(text = "До")
                                     },
                                     modifier = Modifier.fillMaxWidth(0.8f),
                                     enabled = state.currentFilter != VacancyFilter.None
@@ -271,7 +289,7 @@ fun SearchScreen(
                             modifier = Modifier
                                 .padding(vertical = 8.dp, horizontal = 16.dp)
                         ) {
-                            Text(text = "done")
+                            Text(text = "Готово")
                         }
                     }
                 }
