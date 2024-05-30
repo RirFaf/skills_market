@@ -56,7 +56,6 @@ class LoginViewModel(
 
     fun onEvent(event: LoginEvent) {
         when (event) {
-
             is LoginEvent.SetLogin -> {
                 _uiState.update {
                     it.copy(
@@ -77,7 +76,7 @@ class LoginViewModel(
                 Log.d("MyTag", "LoginUser is called")
                 if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank()) {
                     viewModelScope.launch(){
-                        db.loginUser(
+                        loginRepository.login(
                             onSuccessAction = event.onSuccessAction,
                             onFailureAction = event.onFailureAction,
                             login = uiState.value.email,

@@ -333,22 +333,6 @@ object SMFirebase {
         }
     }
 
-    fun loginUser(
-        onSuccessAction: () -> Unit,
-        onFailureAction: () -> Unit,
-        login: String,
-        password: String
-    ) {
-        auth.signInWithEmailAndPassword(login, password)
-            .addOnSuccessListener {
-                onSuccessAction()
-            }
-            .addOnFailureListener {
-                Log.e(TAG.FIREBASE, it.toString())
-                onFailureAction()
-            }
-    }
-
     fun logoutUser(
         onLogoutAction: () -> Unit
     ) {
