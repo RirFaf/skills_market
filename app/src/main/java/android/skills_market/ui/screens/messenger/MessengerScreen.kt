@@ -96,11 +96,42 @@ fun MessengerScreen(
             }
         },
         bottomBar = {
-            MessengerTextField(
-                value = state.enteredText,
-                onValueChange = { onEvent(MessengerEvent.SetMessage(input = it)) },
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Spacer(modifier = Modifier.width(4.dp))
+                OutlinedTextField(
+                    value = state.enteredText,
+                    onValueChange = { onEvent(MessengerEvent.SetMessage(input = it)) },
+                    modifier = Modifier
+                        .fillMaxWidth(0.9f)
+                        .padding(4.dp),
+                    shape = RoundedCornerShape(48.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedBorderColor = Color.Transparent,
+                        focusedBorderColor = Color.Transparent,
+                        focusedTextColor = Color.White,
+                        unfocusedTextColor = Color.White,
+                    ),
+                    placeholder = {
+                        Text(text = "Сообщение")
+                    }
                 )
+                IconButton(
+                    onClick = {
+                        onEvent(MessengerEvent.SendMessage)
+                        onEvent(MessengerEvent.SetMessage(input = ""))
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Send,
+                        contentDescription = "Отправить"
+                    )
+                }
+                Spacer(modifier = Modifier.width(4.dp))
+            }
         },
     ) { innerPadding ->
         LazyColumn(
@@ -117,18 +148,15 @@ fun MessengerScreen(
             ) { index, item ->
                 Column {
                     if (index == state.messages.lastIndex ||
-                        state.messages.asReversed()[index].timestamp.subSequence(0,10) != state.messages.asReversed()[index + 1].timestamp.subSequence(0, 10)
+                        state.messages.asReversed()[index].timestamp.subSequence(0, 10) !=
+                        state.messages.asReversed()[index + 1].timestamp.subSequence(0, 10)
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Card(
-                                modifier = Modifier.wrapContentSize()
-                            ) {
-                                Text(text = item.timestamp.subSequence(0, 10).toString())
-                            }
+                            Text(text = item.timestamp.subSequence(0, 10).toString())
                         }
                     }
                     MessageBubble(message = item, isFromMe = item.senderId == state.currentUserid)
@@ -143,39 +171,10 @@ fun MessengerScreen(
 private fun MessengerTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSend: () -> Unit
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(md_theme_dark_inverseOnSurface)
-            .alpha(0.5f),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Spacer(modifier = Modifier.width(4.dp))
-        OutlinedTextField(
-            value = value,
-            onValueChange = { onValueChange(it) },
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .padding(4.dp),
-            shape = RoundedCornerShape(48.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color.Transparent,
-                focusedBorderColor = Color.Transparent
-            ),
-            placeholder = {
-                Text(text = "Сообщение")
-            }
-        )
-        IconButton(onClick = { /*TODO отправка сообщения*/ }) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.Send,
-                contentDescription = "Отправить"
-            )
-        }
-        Spacer(modifier = Modifier.width(4.dp))
-    }
+
 }
 
 @Composable

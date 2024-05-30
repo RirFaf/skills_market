@@ -167,13 +167,12 @@ class FirebaseMessengerRepository(
         onSuccessAction: (List<ChatModel>) -> Unit,
         onFailureAction: () -> Unit
     ) {
-        val chats = ArrayList<ChatModel>()
         val chatListRef =
             Firebase.database.getReference("messages1")
-        chatListRef
-            .get()
-            .addOnSuccessListener {
-                for (data in it.children) {
+        val chatsListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val chats = ArrayList<ChatModel>()
+                for (data in snapshot.children) {
                     if (data.child("studentId").value == Firebase.auth.currentUser!!.uid) {
                         val lastMessage = data.child("messages").children.last()
                         chats.add(
@@ -196,11 +195,15 @@ class FirebaseMessengerRepository(
                         )
                     }
                 }
-                onSuccessAction(chats)
+                onSuccessAction(chats.sortedBy { it.messages.last().timestamp }.reversed())
             }
-            .addOnFailureListener {
-                onFailureAction()
-                Log.e(TAG.FIREBASE, it.stackTraceToString())
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e(TAG.FIREBASE, error.toException().stackTraceToString())
             }
+        }
+
+        chatListRef
+            .addValueEventListener(chatsListener)
     }
 }

@@ -67,7 +67,12 @@ class MessengerViewModel(
     fun onEvent(event: MessengerEvent) {
         when (event) {
             is MessengerEvent.SendMessage -> {
-                //TODO
+                if(_uiState.value.enteredText.isNotBlank()){
+                    messengerRepository.sendMessage(
+                        message = _uiState.value.enteredText,
+                        currentChatId = _uiState.value.currentChatId
+                    )
+                }
             }
 
             is MessengerEvent.SetMessage -> {
@@ -86,7 +91,6 @@ class MessengerViewModel(
                         currentVacancyName = event.vacancyName,
                     )
                 }
-                Log.d("MyTag", "${_uiState.value.currentChatId} ${_uiState.value.currentCompanyName} ${_uiState.value.currentVacancyName}")
                 messengerRepository.getMessages(
                     currentChatId = _uiState.value.currentChatId,
                     onDataChanged = { messages ->

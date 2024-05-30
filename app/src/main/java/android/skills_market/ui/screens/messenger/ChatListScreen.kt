@@ -166,7 +166,7 @@ private fun ChatCard(
                 )
                 Spacer(modifier = Modifier.padding(2.dp))
                 Text(
-                    text = chatModel.messages.last().timestamp.substring(12, 16),
+                    text = chatModel.messages.last().timestamp.substring(11, 16),
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color.Transparent),
