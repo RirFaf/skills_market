@@ -4,6 +4,7 @@ import android.skills_market.app.DefaultApplication
 import android.skills_market.data.network.SMFirebase
 import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyModel
+import android.skills_market.data.repository.FavouritesRepository
 import android.skills_market.view_model.event.FavouritesEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -26,7 +27,7 @@ sealed interface FavouritesUIState {
 }
 
 class FavouritesViewModel(
-//    private val favouritesRepository: FavouritesRepository
+    private val favouritesRepository: FavouritesRepository
 ) : ViewModel() {
     private val tag = "VMTAG"
     private val _uiState = MutableStateFlow(
@@ -54,7 +55,7 @@ class FavouritesViewModel(
                 db.changeLiked(vacancyId = event.vacancyId, {})
             }
             FavouritesEvent.GetLikedVacancies -> {
-                db.getLikedVacancies(
+                favouritesRepository.getLikedVacancies(
                     onSuccessAction = { vacancies ->
                         _uiState.update {
                             it.copy(
@@ -72,10 +73,10 @@ class FavouritesViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
-//                val searchRepository = application.container.favouritesRepository
+                val favouritesRepository = application.container.favouritesRepository
 //                val sessionManager = application.sessionManager
                 FavouritesViewModel(
-//                    favouritesRepository = favouritesRepository
+                    favouritesRepository = favouritesRepository
                 )
             }
         }

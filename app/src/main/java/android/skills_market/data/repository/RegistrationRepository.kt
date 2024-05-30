@@ -9,7 +9,7 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 
 interface RegistrationRepository {
-    suspend fun register(
+    fun register(
         login: String,
         password: String,
         secondName: String,
@@ -29,7 +29,7 @@ interface RegistrationRepository {
 }
 
 class FirebaseRegistrationRepository() : RegistrationRepository {
-    override suspend fun register(
+    override fun register(
         login: String,
         password: String,
         secondName: String,
