@@ -43,7 +43,6 @@ class RegViewModel(
     private val registrationRepository: RegistrationRepository
 ) : ViewModel() {
     private val tag = "VMTAG"
-    private val db = SMFirebase
 
     private val _uiState = MutableStateFlow(RegUIState.Success())
     val uiState: StateFlow<RegUIState.Success> = _uiState.asStateFlow()
@@ -62,7 +61,7 @@ class RegViewModel(
             is RegistrationEvent.AddUser -> {
                 if (_uiState.value.email.isNotBlank() && _uiState.value.password.isNotBlank() && (_uiState.value.password == _uiState.value.password1)) {
                     viewModelScope.launch {
-                        db.addUser(
+                        registrationRepository.register(
                             login = _uiState.value.email,
                             password = _uiState.value.password,
                             firstName = _uiState.value.firstName,
@@ -93,82 +92,9 @@ class RegViewModel(
                 if (uiState.value.password.isBlank() || (_uiState.value.password != _uiState.value.password1)) {
                     event.onEmptyPasswordAction()
                     Log.d("FirebaseTag", "password empty")
-
                 }
             }
 
-            is RegistrationEvent.AddUserLocation -> {
-                if (_uiState.value.city.isNotBlank()
-                    && _uiState.value.university.isNotBlank()
-                    && _uiState.value.institute.isNotBlank()
-                    && _uiState.value.direction.isNotBlank()
-                ) {
-                    viewModelScope.launch {
-                        db.updateCurrentUserInfo(
-                            city = _uiState.value.city,
-                            university = _uiState.value.university,
-                            institute = _uiState.value.institute,
-                            direction = _uiState.value.direction,
-                            onSuccessAction = { event.onSuccessAction() },
-                            onFailureAction = { event.onFailureAction() }
-                        )
-                    }
-                }
-                if (_uiState.value.city.isBlank()) {
-                    event.onEmptyCityAction()
-                }
-                if (_uiState.value.university.isBlank()) {
-                    event.onEmptyUniversityAction()
-                }
-                if (_uiState.value.institute.isBlank()) {
-                    event.onEmptyInstituteAction()
-                }
-                if (_uiState.value.direction.isBlank()) {
-                    event.onEmptyDirectionAction()
-                }
-            }
-
-            is RegistrationEvent.AddUserPersonalInfo -> {
-                if (_uiState.value.firstName.isNotBlank()
-                    && _uiState.value.secondName.isNotBlank()
-                    && _uiState.value.patronymicName.isNotBlank()
-                    && _uiState.value.gender.isNotBlank()
-                    && _uiState.value.birthDate.isNotBlank()
-                ) {
-                    viewModelScope.launch {
-                        db.updateCurrentUserInfo(
-                            firstName = _uiState.value.firstName,
-                            secondName = _uiState.value.secondName,
-                            patronymicName = _uiState.value.patronymicName,
-                            gender = _uiState.value.gender,
-                            birthDate = _uiState.value.birthDate,
-                            aboutMe = _uiState.value.aboutMe,
-                            phoneNumber = if (_uiState.value.phoneNumber.length == 11) {
-                                "+${_uiState.value.phoneNumber}"
-                            } else {
-                                ""
-                            },
-                            onSuccessAction = { event.onSuccessAction() },
-                            onFailureAction = { event.onFailureAction() }
-                        )
-                    }
-                }
-                if (_uiState.value.firstName.isBlank()) {
-                    event.onEmptyNameAction()
-                }
-                if (_uiState.value.secondName.isBlank()) {
-                    event.onEmptySurnameAction()
-                }
-                if (_uiState.value.patronymicName.isBlank()) {
-                    event.onEmptyPatronymicAction()
-                }
-                if (_uiState.value.gender.isBlank()) {
-                    event.onEmptyGenderAction()
-                }
-                if (_uiState.value.birthDate.isBlank()) {
-                    event.onEmptyBirthDateAction()
-                }
-            }
             is RegistrationEvent.SetCity -> {
                 _uiState.update {
                     it.copy(
@@ -286,7 +212,7 @@ class RegViewModel(
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
                 val registrationRepository = application.container.registrationRepository // TODO:
-                val sessionManager = application.sessionManager
+//                val sessionManager = application.sessionManager
                 RegViewModel(registrationRepository = registrationRepository)
             }
         }

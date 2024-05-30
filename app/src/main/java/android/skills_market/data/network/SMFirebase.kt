@@ -238,53 +238,6 @@ object SMFirebase {
         }
     }
 
-    fun addUser(
-        login: String,
-        password: String,
-        secondName: String,
-        firstName: String,
-        patronymicName: String,
-        birthDate: String,
-        university: String,
-        institute: String,
-        phoneNumber: String = "",
-        aboutMe: String = "",
-        gender: String,
-        city: String,
-        direction: String,
-        onSuccessAction: () -> Unit,
-        onFailureAction: () -> Unit,
-    ) {
-        val rootRef = Firebase.firestore.collection("users")
-        auth.createUserWithEmailAndPassword(login, password)
-            .addOnSuccessListener {
-                auth.currentUser?.let { currentUser ->
-                    rootRef.add(
-                        StudentModel(
-                            userAuthData = UserAuthData(login, currentUser.uid),
-                            firstName = firstName,
-                            secondName = secondName,
-                            patronymicName = patronymicName,
-                            birthDate = birthDate,
-                            university = university,
-                            institute = institute,
-                            phoneNumber = phoneNumber,
-                            aboutMe = aboutMe,
-                            gender = gender,
-                            city = city,
-                            direction = direction,
-                            id = currentUser.uid
-                        )
-                    )
-                }
-                onSuccessAction()
-            }
-            .addOnFailureListener {
-                Log.e(TAG.FIREBASE, it.toString())
-                onFailureAction()
-            }
-    }
-
     fun updateCurrentUserInfo(
         secondName: String = "",
         firstName: String = "",

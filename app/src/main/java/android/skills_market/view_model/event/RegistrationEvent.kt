@@ -21,22 +21,5 @@ sealed interface RegistrationEvent {
         val onEmptyPasswordAction: () -> Unit,
         val onEmptyLoginAction: () -> Unit,
     ) : RegistrationEvent
-    data class AddUserPersonalInfo(
-        val onSuccessAction: () -> Unit,
-        val onFailureAction: () -> Unit,
-        val onEmptyNameAction: () -> Unit,
-        val onEmptySurnameAction: () -> Unit,
-        val onEmptyPatronymicAction: () -> Unit,
-        val onEmptyGenderAction: () -> Unit,
-        val onEmptyBirthDateAction: () -> Unit,
-    ) : RegistrationEvent
-    data class AddUserLocation(
-        val onSuccessAction: () -> Unit,
-        val onFailureAction: () -> Unit,
-        val onEmptyCityAction: () -> Unit,
-        val onEmptyUniversityAction: () -> Unit,
-        val onEmptyInstituteAction: () -> Unit,
-        val onEmptyDirectionAction: () -> Unit,
-    ) : RegistrationEvent
 }
 
