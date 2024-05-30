@@ -2,16 +2,19 @@ package android.skills_market.data
 
 import android.skills_market.data.constants.URLs
 import android.skills_market.data.repository.LoginRepository
-import android.skills_market.data.repository.NetworkLoginRepository
-import android.skills_market.data.repository.NetworkRegistrationRepository
+import android.skills_market.data.repository.FirebaseLoginRepository
+import android.skills_market.data.repository.FirebaseRegistrationRepository
 import android.skills_market.data.repository.RegistrationRepository
 import android.skills_market.data.network.AuthApiService
+import android.skills_market.data.repository.FirebaseSearchRepository
+import android.skills_market.data.repository.SearchRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 interface RepositoryContainer {
     val loginRepository: LoginRepository
     val registrationRepository: RegistrationRepository
+    val searchRepository: SearchRepository
 }
 
 class DefaultRepositoryContainer : RepositoryContainer {
@@ -27,10 +30,13 @@ class DefaultRepositoryContainer : RepositoryContainer {
         }
     }
     override val loginRepository: LoginRepository by lazy {
-        NetworkLoginRepository()
+        FirebaseLoginRepository()
     }
     override val registrationRepository: RegistrationRepository by lazy {
-        NetworkRegistrationRepository()
+        FirebaseRegistrationRepository()
+    }
+    override val searchRepository: SearchRepository by lazy {
+        FirebaseSearchRepository()
     }
 }
 

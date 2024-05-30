@@ -51,7 +51,7 @@ class FavouritesViewModel(
         when (event) {
             is FavouritesEvent.RespondToVacancy -> {}//TODO
             is FavouritesEvent.ChangeLiked -> {
-                db.changeLiked(vacancyId = event.vacancyId, {}, {})
+                db.changeLiked(vacancyId = event.vacancyId, {})
             }
             FavouritesEvent.GetLikedVacancies -> {
                 db.getLikedVacancies(

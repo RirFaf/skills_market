@@ -6,6 +6,7 @@ import android.skills_market.data.network.SMFirebase
 import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.data.network.models.VacancyModel
+import android.skills_market.data.repository.SearchRepository
 import android.skills_market.view_model.event.SearchEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -34,7 +35,7 @@ sealed interface SearchUIState {
 }
 
 class SearchViewModel(
-//    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository
 ) : ViewModel() {
     private val tag = "VMTAG"
     private val _uiState = MutableStateFlow(SearchUIState.Success())
@@ -49,7 +50,7 @@ class SearchViewModel(
     fun onEvent(event: SearchEvent) {
         when (event) {
             is SearchEvent.GetVacancies -> {
-                db.getVacancies(
+                searchRepository.getVacancies(
                     search = _uiState.value.searchInput,
                     filter = _uiState.value.currentFilter,
                     onSuccessAction = { vacancies ->
@@ -114,7 +115,7 @@ class SearchViewModel(
             }
 
             is SearchEvent.ChangeLiked -> {
-                db.changeLiked(vacancyId = event.vacancyId, {}, {})
+                searchRepository.changeLiked(vacancyId = event.vacancyId, {})
             }
         }
     }
@@ -132,10 +133,10 @@ class SearchViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
-//                val searchRepository = application.container.searchRepository
+                val searchRepository = application.container.searchRepository
 //                val sessionManager = application.sessionManager
                 SearchViewModel(
-//                    searchRepository = searchRepository
+                    searchRepository = searchRepository
                 )
             }
         }

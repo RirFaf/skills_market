@@ -49,7 +49,7 @@ class VacancyViewModel(
     fun onEvent(event: VacancyEvent) {
         when (event) {
             is VacancyEvent.ChangeLiked -> {
-                db.changeLiked(vacancyId = event.vacancyId, {}, {})
+                db.changeLiked(vacancyId = event.vacancyId, {})
             }
             is VacancyEvent.Respond -> {}
             is VacancyEvent.SetVacancy -> {
