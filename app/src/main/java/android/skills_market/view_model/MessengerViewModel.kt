@@ -3,7 +3,9 @@ package android.skills_market.view_model
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.network.SMFirebase
 import android.skills_market.data.network.SessionManager
+import android.skills_market.data.network.models.ChatModel
 import android.skills_market.data.network.models.MessageModel
+import android.skills_market.data.repository.MessengerRepository
 import android.skills_market.view_model.event.MessengerEvent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +25,12 @@ import kotlinx.coroutines.launch
 sealed interface MessengerUIState {
     data class Success(
         val enteredText: String = "",
-        val messages: List<MessageModel> = listOf()
+        val messages: List<MessageModel> = listOf(),
+        val currentChatId: String = "",
+        val chats: List<ChatModel> = listOf(),
+        val currentUserid: String = Firebase.auth.currentUser!!.uid,
+        val currentVacancyName: String = "",
+        val currentCompanyName: String = "",
     ) : MessengerUIState
 
     data object Error : MessengerUIState
@@ -31,19 +38,25 @@ sealed interface MessengerUIState {
 }
 
 class MessengerViewModel(
-//    private val messengerRepository: MessengerRepository
+    private val messengerRepository: MessengerRepository
 ) : ViewModel() {
-    private val sessionManager = MutableLiveData<SessionManager>().value
-    private val db = SMFirebase
     private val tag = "VMTAG"
 
     private val _uiState = MutableStateFlow(MessengerUIState.Success())
     val uiState: StateFlow<MessengerUIState.Success> = _uiState.asStateFlow()
 
     init {
-        Log.i(
-            tag, "MessengerViewModel initialized"
+        messengerRepository.getChats(
+            onSuccessAction = { chats ->
+                _uiState.update {
+                    it.copy(
+                        chats = chats
+                    )
+                }
+            },
+            onFailureAction = {}
         )
+        Log.i(tag, "MessengerViewModel initialized")
     }
 
     override fun onCleared() {
@@ -66,16 +79,24 @@ class MessengerViewModel(
             }
 
             is MessengerEvent.GetMessages -> {
-                viewModelScope.launch {
-                    _uiState.update {
-                        it.copy(
-                            messages = db.getMessages(
-                                receiverId = event.receiverId,
-                                onFailureAction = event.onFailureAction
-                            )
-                        )
-                    }
+                _uiState.update {
+                    it.copy(
+                        currentChatId = event.chatId,
+                        currentCompanyName = event.companyName,
+                        currentVacancyName = event.vacancyName,
+                    )
                 }
+                Log.d("MyTag", "${_uiState.value.currentChatId} ${_uiState.value.currentCompanyName} ${_uiState.value.currentVacancyName}")
+                messengerRepository.getMessages(
+                    currentChatId = _uiState.value.currentChatId,
+                    onDataChanged = { messages ->
+                        _uiState.update {
+                            it.copy(
+                                messages = messages
+                            )
+                        }
+                    }
+                )
             }
         }
     }
@@ -85,10 +106,9 @@ class MessengerViewModel(
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as DefaultApplication)
-//                val messengerRepository = application.container.messengerRepository
-                val sessionManager = application.sessionManager
+                val messengerRepository = application.container.messengerRepository
                 MessengerViewModel(
-//                    messengerRepository = messengerRepository
+                    messengerRepository = messengerRepository
                 )
             }
         }

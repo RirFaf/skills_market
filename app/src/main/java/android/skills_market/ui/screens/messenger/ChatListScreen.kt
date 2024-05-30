@@ -5,6 +5,8 @@ import android.skills_market.data.network.models.ChatModel
 import android.skills_market.data.network.models.MessageModel
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.view_model.MessengerUIState
+import android.skills_market.view_model.event.MessengerEvent
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,6 +19,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Notifications
@@ -49,7 +53,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChatListScreen(navController: NavController) {
+fun ChatListScreen(
+    navController: NavController,
+    state: MessengerUIState.Success,
+    onEvent: (MessengerEvent) -> Unit
+) {
     val localContext = LocalContext.current
     Scaffold(
         topBar = {
@@ -84,23 +92,35 @@ fun ChatListScreen(navController: NavController) {
             )
         }
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
         ) {
-//            ChatCard(
-//                navController = navController,
-//                chatModel =
-//            )
+            itemsIndexed(state.chats) { _, chat ->
+                ChatCard(
+                    onClick = {
+                        onEvent(
+                            MessengerEvent.GetMessages(
+                                chatId = chat.chatId,
+                                companyName = chat.companyName,
+                                vacancyName = chat.vacancyName,
+                                onFailureAction = {}
+                            )
+                        )
+                        navController.navigate(Screen.MessengerScreen.route)
+                    },
+                    chatModel = chat
+                )
+            }
         }
     }
 }
 
 @Composable
 private fun ChatCard(
-    navController: NavController,
-    chatModel: ChatModel
+    onClick: () -> Unit,
+    chatModel: ChatModel,
 ) {
     var chatHeight by remember {
         mutableStateOf(0.dp)
@@ -109,10 +129,7 @@ private fun ChatCard(
     Row(
         modifier = Modifier
             .clickable {
-                navController.navigate(Screen.MessengerScreen.route) {
-                    launchSingleTop = false
-                    restoreState = true
-                }
+                onClick()
             }
             .onGloballyPositioned { coordinates ->
                 chatHeight = with(localDensity) { coordinates.size.height.toDp() }
@@ -129,7 +146,7 @@ private fun ChatCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 4.dp,end = 8.dp, top = 8.dp),
+                .padding(start = 4.dp, end = 8.dp, top = 8.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
@@ -137,7 +154,7 @@ private fun ChatCard(
                 verticalAlignment = Alignment.Bottom
             ) {
                 Text(
-                    text = chatModel.vacancy.company.name,
+                    text = chatModel.companyName,
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .background(Color.Transparent),
@@ -149,7 +166,7 @@ private fun ChatCard(
                 )
                 Spacer(modifier = Modifier.padding(2.dp))
                 Text(
-                    text = chatModel.lastMessage.time,
+                    text = chatModel.messages.last().timestamp.substring(12, 16),
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color.Transparent),
@@ -160,7 +177,7 @@ private fun ChatCard(
                 )
             }
             Text(
-                text = chatModel.vacancy.position,
+                text = chatModel.vacancyName,
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
                     .background(Color.Transparent),
@@ -171,7 +188,7 @@ private fun ChatCard(
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = chatModel.lastMessage.text,
+                text = chatModel.messages.last().text,
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
                     .background(Color.Transparent),

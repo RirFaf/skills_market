@@ -27,7 +27,6 @@ sealed interface VacancyUIState {
 }
 
 class VacancyViewModel(
-//    vacancyRepository: VacancyRepository
 ) : ViewModel() {
     private val sessionManager = MutableLiveData<SessionManager>().value
 
@@ -67,10 +66,8 @@ class VacancyViewModel(
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as DefaultApplication)
-//                val vacancyRepository = application.container.vacancyRepository // TODO:
                 val sessionManager = application.sessionManager
                 VacancyViewModel(
-//    vacancyRepository: VacancyRepository
                 )
             }
         }

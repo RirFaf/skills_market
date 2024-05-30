@@ -17,13 +17,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -58,13 +63,13 @@ fun MessengerScreen(
                     title = {
                         Column() {
                             Text(
-                                text = "Астон",
+                                text = state.currentCompanyName,
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 fontFamily = Inter,
                             )
                             Text(
-                                text = "Системный аналитик",
+                                text = state.currentVacancyName,
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Medium,
                                 fontFamily = Inter,
@@ -84,7 +89,7 @@ fun MessengerScreen(
                         }
                     }
                 )
-                Divider(
+                HorizontalDivider(
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.tertiaryContainer
                 )
@@ -107,10 +112,27 @@ fun MessengerScreen(
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(
-                listOfMessages.reversed()
-            ) { item ->
-                MessageBubble(item)
+            itemsIndexed(
+                state.messages.asReversed()
+            ) { index, item ->
+                Column {
+                    if (index == state.messages.lastIndex ||
+                        state.messages.asReversed()[index].timestamp.subSequence(0,10) != state.messages.asReversed()[index + 1].timestamp.subSequence(0, 10)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Card(
+                                modifier = Modifier.wrapContentSize()
+                            ) {
+                                Text(text = item.timestamp.subSequence(0, 10).toString())
+                            }
+                        }
+                    }
+                    MessageBubble(message = item, isFromMe = item.senderId == state.currentUserid)
+                }
             }
         }
     }
@@ -148,7 +170,7 @@ private fun MessengerTextField(
         )
         IconButton(onClick = { /*TODO отправка сообщения*/ }) {
             Icon(
-                imageVector = Icons.Filled.Send,
+                imageVector = Icons.AutoMirrored.Filled.Send,
                 contentDescription = "Отправить"
             )
         }
@@ -157,12 +179,12 @@ private fun MessengerTextField(
 }
 
 @Composable
-private fun MessageBubble(message: MessageModel) {
+private fun MessageBubble(message: MessageModel, isFromMe: Boolean) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        contentAlignment = if (message.isFromMe) Alignment.CenterEnd else Alignment.CenterStart
+        contentAlignment = if (isFromMe) Alignment.CenterEnd else Alignment.CenterStart
     ) {
         Box(
             modifier = Modifier
@@ -170,25 +192,14 @@ private fun MessageBubble(message: MessageModel) {
                     RoundedCornerShape(
                         topStart = 48f,
                         topEnd = 48f,
-                        bottomStart = if (message.isFromMe) 48f else 0f,
-                        bottomEnd = if (message.isFromMe) 0f else 48f
+                        bottomStart = if (isFromMe) 48f else 0f,
+                        bottomEnd = if (isFromMe) 0f else 48f
                     )
                 )
-                .background(if (message.isFromMe) MaterialTheme.colorScheme.onSecondary else MaterialTheme.colorScheme.onTertiary)
+                .background(if (isFromMe) MaterialTheme.colorScheme.onSecondary else MaterialTheme.colorScheme.onTertiary)
                 .padding(12.dp),
         ) {
             Text(text = message.text)
         }
     }
 }
-
-private val listOfMessages = listOf(
-    MessageModel("Здравствуйте", senderId = "1", time = "1"),
-    MessageModel("Здравствуйте", senderId = "0", time = "1"),
-    MessageModel("Нас заинтересовало ваше резюме", senderId = "1", time = "1"),
-    MessageModel("Готов пройти стажировку у вас", senderId = "0", time = "1"),
-    MessageModel(
-        "Хорошо, для этого придётся пройти отбор, напишите нам в телеграм в любое время",
-        senderId = "1", time = "1"
-    )
-)

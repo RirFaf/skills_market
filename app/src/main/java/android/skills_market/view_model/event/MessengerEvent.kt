@@ -4,7 +4,9 @@ sealed interface MessengerEvent {
     data class SetMessage(val input: String) : MessengerEvent
 
     data class GetMessages(
-        val receiverId: String,
+        val chatId: String,
+        val companyName:String,
+        val vacancyName:String,
         val onFailureAction: () -> Unit
     ) : MessengerEvent
 

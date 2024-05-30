@@ -21,9 +21,8 @@ sealed interface ProfileUIState {
     object Loading : ProfileUIState
 }
 
-class ProfileViewModel : ViewModel() {
-    private val sessionManager = MutableLiveData<SessionManager>().value
-
+class ProfileViewModel(
+) : ViewModel() {
     private val tag = "VMTAG"
 
     private val _uiState = MutableStateFlow(ProfileUIState.Success())
@@ -53,9 +52,9 @@ class ProfileViewModel : ViewModel() {
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as DefaultApplication)
+                val application =
+                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as DefaultApplication)
 //                val resumeRepository = application.container.resumeRepository // TODO:
-                val sessionManager = application.sessionManager
                 ProfileViewModel(
 //                    resumeRepository = resumeRepository
                 )

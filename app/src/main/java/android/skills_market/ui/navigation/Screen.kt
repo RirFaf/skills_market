@@ -18,6 +18,7 @@ sealed class Screen(
     /***Messenger***/
     data object ChatListScreen : Screen("chat_list_screen")
     data object MessengerScreen : Screen("messenger_screen")
+    data object Messenger : Screen("messenger")
     /***Profile***/
     data object ProfileScreen : Screen("profile_screen")
     data object ProfileRedactorScreen : Screen("profile_redactor_screen")

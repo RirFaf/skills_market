@@ -41,6 +41,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.navigation
 
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -176,93 +177,53 @@ fun NavigationGraph(navController: NavHostController) {
                 state = state
             )
         }
-        composable(
-            route = Screen.ChatListScreen.route,
-            enterTransition = { customEnterTransition },
-            exitTransition = { customExitTransition },
-            popEnterTransition = { customEnterTransition },
-            popExitTransition = { customExitTransition },
-        ) {
-            ChatListScreen(navController = navController)
-        }
+        navigation(startDestination = Screen.ChatListScreen.route, route = Screen.Messenger.route) {
+            composable(
+                route = Screen.ChatListScreen.route,
+                enterTransition = { customEnterTransition },
+                exitTransition = { customExitTransition },
+                popEnterTransition = { customEnterTransition },
+                popExitTransition = { customExitTransition },
+            ) { entry ->
+                val messengerViewModel = entry.sharedViewModel<MessengerViewModel>(
+                    factory = MessengerViewModel.Factory,
+                    navController = navController
+                )
+                val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
 
-        composable(
-            route = Screen.MessengerScreen.route +
-                    "/{id}" +
-                    "/{position}" +
-                    "/{salary}" +
-                    "/{companyId}" +
-                    "/{companyName}" +
-                    "/{edArea}" +
-                    "/{formOfEmployment}" +
-                    "/{requirements}" +
-                    "/{location}" +
-                    "/{about}",
-            arguments = listOf(
-                navArgument(name = "id") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "position") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "salary") {
-                    type = NavType.IntType
-                },
-                navArgument(name = "companyId") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "companyName") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "edArea") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "formOfEmployment") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "requirements") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "location") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "about") {
-                    type = NavType.StringType
-                },
-            ),
-            enterTransition = { customEnterTransition },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(0, easing = LinearEasing)
+                ChatListScreen(
+                    navController = navController,
+                    onEvent = messengerViewModel::onEvent,
+                    state = state
                 )
-            },
-            popEnterTransition = { customEnterTransition },
-            popExitTransition = {
-                fadeOut(
-                    animationSpec = tween(0, easing = LinearEasing)
+            }
+
+            composable(
+                route = Screen.MessengerScreen.route,
+                enterTransition = { customEnterTransition },
+                exitTransition = {
+                    fadeOut(
+                        animationSpec = tween(0, easing = LinearEasing)
+                    )
+                },
+                popEnterTransition = { customEnterTransition },
+                popExitTransition = {
+                    fadeOut(
+                        animationSpec = tween(0, easing = LinearEasing)
+                    )
+                },
+            ) { entry ->
+                val messengerViewModel = entry.sharedViewModel<MessengerViewModel>(
+                    factory = MessengerViewModel.Factory,
+                    navController = navController
                 )
-            },
-        ) { entry ->
-            val messengerViewModel = viewModel<MessengerViewModel>(
-                factory = MessengerViewModel.Factory
-            )
-            val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
-            messengerViewModel.onEvent(
-                MessengerEvent.GetMessages(
-                    receiverId = entry.arguments?.getString(
-                        "companyId"
-                    )!!,
-                    onFailureAction = {
-                        Toast.makeText(localContext, "Что-то пошло не так", Toast.LENGTH_SHORT)
-                            .show()
-                    }
+                val state by messengerViewModel.uiState.collectAsStateWithLifecycle()
+                MessengerScreen(
+                    navController = navController,
+                    onEvent = messengerViewModel::onEvent,
+                    state = state
                 )
-            )
-            MessengerScreen(
-                navController = navController,
-                onEvent = messengerViewModel::onEvent,
-                state = state
-            )
+            }
         }
 
         composable(

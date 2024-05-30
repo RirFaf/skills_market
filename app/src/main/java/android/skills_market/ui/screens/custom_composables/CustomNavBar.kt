@@ -69,7 +69,7 @@ fun CustomNavBar(navController: NavController) {
         ),
         BottomNavItem(
             title = "Чаты",
-            route = Screen.ChatListScreen.route,
+            route = Screen.Messenger.route,
             selectedIcon = Icons.Filled.Email,
             unselectedIcon = Icons.Outlined.Email,
             hasNews = false,
