@@ -1,17 +1,13 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.network.SMFirebase
-import android.skills_market.data.network.SessionManager
 import android.skills_market.data.network.models.ChatModel
 import android.skills_market.data.network.models.MessageModel
 import android.skills_market.data.repository.MessengerRepository
 import android.skills_market.view_model.event.MessengerEvent
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.firebase.auth.ktx.auth
@@ -20,7 +16,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 sealed interface MessengerUIState {
     data class Success(
@@ -53,6 +48,23 @@ class MessengerViewModel(
                         chats = chats
                     )
                 }
+                _uiState.update {
+                    it.copy(
+                        currentChatId = _uiState.value.chats.last().chatId,
+                        currentCompanyName = _uiState.value.chats.last().companyName,
+                        currentVacancyName = _uiState.value.chats.last().vacancyName,
+                    )
+                }
+                messengerRepository.getMessages(
+                    currentChatId = _uiState.value.currentChatId,
+                    onDataChanged = { messages ->
+                        _uiState.update {
+                            it.copy(
+                                messages = messages
+                            )
+                        }
+                    }
+                )
             },
             onFailureAction = {}
         )

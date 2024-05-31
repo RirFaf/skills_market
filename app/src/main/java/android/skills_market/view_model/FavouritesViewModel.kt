@@ -1,8 +1,7 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.network.SMFirebase
-import android.skills_market.data.network.models.CompanyModel
+import android.skills_market.data.repository.SMFirebase
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.data.repository.FavouritesRepository
 import android.skills_market.view_model.event.FavouritesEvent

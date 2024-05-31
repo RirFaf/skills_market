@@ -2,7 +2,7 @@ package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.repository.LoginRepository
-import android.skills_market.data.network.SMFirebase
+import android.skills_market.data.repository.SMFirebase
 import android.skills_market.data.network.SessionManager
 import android.skills_market.view_model.event.LoginEvent
 import android.util.Log

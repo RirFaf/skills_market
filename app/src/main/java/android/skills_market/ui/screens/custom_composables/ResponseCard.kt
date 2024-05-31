@@ -48,15 +48,12 @@ fun ResponseCard(
     modifier: Modifier = Modifier,
     onCardClick: () -> Unit,
     onChatButtonClick: () -> Unit,
-    onDelete: () -> Unit,
     vacancy: VacancyModel,
     status: String
 ) {
     val localContext = LocalContext.current
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val deleteButtonColor =
-        if (isPressed) Color.Red else MaterialTheme.colorScheme.onPrimaryContainer
     OutlinedCard(
         modifier = modifier
             .clickable {
@@ -108,27 +105,13 @@ fun ResponseCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
+                    modifier = Modifier.fillMaxWidth(),
                     onClick = {
-                        Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                            .show()
                         onChatButtonClick()
                     },
+                    enabled = status == ResponseStatus.APPROVED
                 ) {
                     Text(text = "Перейти в чат")
-                }
-                IconButton(
-                    onClick = {
-                        Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                            .show()
-                        onDelete()
-                    },
-                    interactionSource = interactionSource,
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = deleteButtonColor)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete"
-                    )
                 }
             }
         }

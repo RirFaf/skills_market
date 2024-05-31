@@ -2,7 +2,6 @@ package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
 import android.skills_market.data.repository.RegistrationRepository
-import android.skills_market.data.network.SMFirebase
 import android.skills_market.view_model.event.RegistrationEvent
 import android.util.Log
 import androidx.lifecycle.ViewModel

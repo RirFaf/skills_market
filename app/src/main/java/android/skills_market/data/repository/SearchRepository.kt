@@ -1,7 +1,6 @@
 package android.skills_market.data.repository
 
 import android.skills_market.data.constants.TAG
-import android.skills_market.data.network.SMFirebase
 import android.skills_market.data.network.models.CompanyModel
 import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.data.network.models.VacancyModel
@@ -23,6 +22,11 @@ interface SearchRepository {
         onSuccessAction: (List<VacancyModel>) -> Unit,
         onFailureAction: () -> Unit
     )
+
+    fun respond(
+        vacancyId: String,
+        onFailureAction: () -> Unit
+    )
 }
 
 class FirebaseSearchRepository(
@@ -32,6 +36,13 @@ class FirebaseSearchRepository(
         onFailureAction: () -> Unit
     ) {
         SMFirebase.changeLiked(vacancyId, onFailureAction)
+    }
+
+    override fun respond(
+        vacancyId: String,
+        onFailureAction: () -> Unit
+    ) {
+        SMFirebase.respond(vacancyId, onFailureAction)
     }
 
     override fun getVacancies(

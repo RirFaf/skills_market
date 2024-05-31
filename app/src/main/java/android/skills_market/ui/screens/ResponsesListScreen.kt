@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 fun ResponsesListScreen(
     navController: NavController,
     state: ResponsesUIState.Success,
-    onEvent:(ResponsesEvent)->Unit
+    onEvent: (ResponsesEvent) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -90,18 +90,23 @@ fun ResponsesListScreen(
                                         "/${item.formOfEmployment}" +
                                         "/${item.requirements}" +
                                         "/${item.location}" +
-                                        "/${item.about.ifEmpty { " " }}"+
+                                        "/${item.about.ifEmpty { " " }}" +
                                         "/${item.liked}"
                             ) {
                                 launchSingleTop = false
                                 restoreState = true
                             }
                         },
-                        onChatButtonClick = {},
-                        onDelete = {
-                            onEvent(ResponsesEvent.DeleteResponse(item))
+                        onChatButtonClick = {
+                            onEvent(
+                                ResponsesEvent.AddChat(
+                                    companyId = item.company.id,
+                                    vacancyId = item.id
+                                )
+                            )
+                            navController.navigate(Screen.MessengerScreen.route)
                         },
-                        status = ResponseStatus.APPROVED
+                        status = item.responseStatus
                     )
                 }
             }

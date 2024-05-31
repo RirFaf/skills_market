@@ -5,7 +5,7 @@ import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.LogRegActivity
 import android.skills_market.data.constants.Courses
-import android.skills_market.data.network.SMFirebase
+import android.skills_market.data.repository.SMFirebase
 import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.screens.custom_composables.CustomText
 import android.skills_market.view_model.ProfileUIState

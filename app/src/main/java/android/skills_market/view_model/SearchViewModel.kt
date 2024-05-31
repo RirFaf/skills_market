@@ -1,9 +1,7 @@
 package android.skills_market.view_model
 
 import android.skills_market.app.DefaultApplication
-import android.skills_market.data.constants.TAG
-import android.skills_market.data.network.SMFirebase
-import android.skills_market.data.network.models.CompanyModel
+import android.skills_market.data.repository.SMFirebase
 import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.data.network.models.VacancyModel
 import android.skills_market.data.repository.SearchRepository
@@ -64,8 +62,10 @@ class SearchViewModel(
                 )
             }
 
-            is SearchEvent.RespondToVacancy -> {}
-            is SearchEvent.SetFavourite -> {}
+            is SearchEvent.RespondToVacancy -> {
+                searchRepository.respond(event.vacancyId, {})
+            }
+
             is SearchEvent.SetSearchInput -> {
                 _uiState.update {
                     it.copy(

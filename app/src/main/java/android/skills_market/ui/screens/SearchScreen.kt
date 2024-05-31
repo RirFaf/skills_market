@@ -3,12 +3,14 @@ package android.skills_market.ui.screens
 import android.skills_market.R
 import android.skills_market.data.network.models.VacancyFilter
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.navigation.extensions.noRippleClickable
 import android.skills_market.ui.screens.custom_composables.VacancyCard
 import android.skills_market.view_model.SearchUIState
 import android.skills_market.view_model.event.SearchEvent
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -148,14 +150,16 @@ fun SearchScreen(
                                             "/${item.formOfEmployment}" +
                                             "/${item.requirements}" +
                                             "/${item.location}" +
-                                            "/${item.about.ifEmpty { " " }}"+
+                                            "/${item.about.ifEmpty { " " }}" +
                                             "/${item.liked}"
                                 ) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
                             },
-                            onRespond = {},
+                            onRespond = {
+                                onEvent(SearchEvent.RespondToVacancy(item.id))
+                            },
                             onLike = {
                                 onEvent(SearchEvent.ChangeLiked(item.id))
                             }
@@ -167,12 +171,17 @@ fun SearchScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color(0xCD000000)),
+                        .background(Color(0xCD000000))
+                        .noRippleClickable {
+                            onEvent(SearchEvent.ShowFilterDialog)
+                        },
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Card(
-                        modifier = Modifier.padding(8.dp)
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .noRippleClickable { }
                     ) {
                         Row(
                             modifier = Modifier
@@ -245,7 +254,7 @@ fun SearchScreen(
                                         )
                                     },
                                     label = {
-                                            Text(text = "От")
+                                        Text(text = "От")
                                     },
                                     modifier = Modifier.fillMaxWidth(0.4f),
                                     enabled = state.currentFilter != VacancyFilter.None

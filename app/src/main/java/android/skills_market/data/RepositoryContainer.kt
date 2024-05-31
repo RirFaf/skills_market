@@ -9,8 +9,10 @@ import android.skills_market.data.network.AuthApiService
 import android.skills_market.data.repository.FavouritesRepository
 import android.skills_market.data.repository.FirebaseFavouritesRepository
 import android.skills_market.data.repository.FirebaseMessengerRepository
+import android.skills_market.data.repository.FirebaseResponsesRepository
 import android.skills_market.data.repository.FirebaseSearchRepository
 import android.skills_market.data.repository.MessengerRepository
+import android.skills_market.data.repository.ResponsesRepository
 import android.skills_market.data.repository.SearchRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,6 +23,7 @@ interface RepositoryContainer {
     val searchRepository: SearchRepository
     val favouritesRepository: FavouritesRepository
     val messengerRepository: MessengerRepository
+    val responsesRepository: ResponsesRepository
 }
 
 class DefaultRepositoryContainer : RepositoryContainer {
@@ -41,6 +44,9 @@ class DefaultRepositoryContainer : RepositoryContainer {
     }
     override val messengerRepository: MessengerRepository by lazy {
         FirebaseMessengerRepository()
+    }
+    override val responsesRepository: ResponsesRepository by lazy {
+        FirebaseResponsesRepository()
     }
 }
 

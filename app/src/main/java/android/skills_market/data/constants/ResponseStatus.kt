@@ -4,4 +4,5 @@ object ResponseStatus {
     const val APPROVED = "Одобрено"
     const val DENIED = "Отклонено"
     const val SENT = "Отправлено"
+    const val EMPTY = ""
 }

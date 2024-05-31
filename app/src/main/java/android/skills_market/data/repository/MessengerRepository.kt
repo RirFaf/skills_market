@@ -16,12 +16,6 @@ import java.util.Date
 import java.util.Locale
 
 interface MessengerRepository {
-    fun addChat(
-        vacancyId: String,
-        companyId: String,
-        studentId: String,
-    )
-
     fun getMessages(
         onDataChanged: (List<MessageModel>) -> Unit,
         currentChatId: String
@@ -48,54 +42,6 @@ class FirebaseMessengerRepository(
         } catch (e: Exception) {
             "date"
         }
-    }
-
-    override fun addChat(
-        vacancyId: String,
-        companyId: String,
-        studentId: String
-    ) {
-        val likesRef = Firebase.database.getReference("messages1")
-        val vacancyRef =
-            Firebase.firestore.collection("vacancy")
-                .whereEqualTo("id", vacancyId)
-        var alreadyAdded = false
-        likesRef
-            .get()
-            .addOnSuccessListener {
-                for (data in it.children) {
-                    if (data.child("chatId").value == studentId + companyId + vacancyId) {
-                        alreadyAdded = true
-                        break
-                    }
-                }
-                if (!alreadyAdded) {
-                    vacancyRef
-                        .get()
-                        .addOnSuccessListener { vacancySnapshot ->
-                            likesRef
-                                .push()
-                                .setValue(
-                                    ChatModel(
-                                        vacancyId = vacancyId,
-                                        vacancyName = vacancySnapshot.last().data["position"].toString(),
-                                        companyId = companyId,
-                                        companyName = vacancySnapshot.last().data["companyName"].toString(),
-                                        studentId = studentId,
-                                        messages = listOf(
-                                            MessageModel("один", Firebase.auth.currentUser!!.uid, "0"),
-                                            MessageModel("два", "debugCompanyId", "1"),
-                                            MessageModel("три", Firebase.auth.currentUser!!.uid, "2"),
-                                            MessageModel("четыре", "debugCompanyId", "3"),
-                                        )
-                                    )
-                                )
-                        }
-                }
-            }
-            .addOnFailureListener {
-                Log.e(TAG.FIREBASE, it.stackTraceToString())
-            }
     }
 
     override fun getMessages(

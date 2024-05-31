@@ -1,6 +1,7 @@
 package android.skills_market.data.network.models
 
 import android.os.Parcelable
+import android.skills_market.data.constants.ResponseStatus
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,5 +15,6 @@ data class VacancyModel(
     val requirements: String = "-1",
     val location: String = "-1",
     val about: String = "",
-    var liked: Boolean = false
+    var liked: Boolean = false,
+    val responseStatus:String = ResponseStatus.EMPTY
 ) : Parcelable
