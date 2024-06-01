@@ -30,6 +30,7 @@ interface RegistrationRepository {
 }
 
 class FirebaseRegistrationRepository() : RegistrationRepository {
+    val db = SMFirebase
     override fun register(
         login: String,
         password: String,
@@ -71,6 +72,7 @@ class FirebaseRegistrationRepository() : RegistrationRepository {
                         )
                     )
                 }
+                db.createResume()
                 onSuccessAction()
             }
             .addOnFailureListener {

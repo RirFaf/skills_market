@@ -283,41 +283,43 @@ fun NavigationGraph(navController: NavHostController) {
             }
         }
 
-        composable(
-            route = Screen.ResumeScreen.route,
-            enterTransition = { customEnterTransition },
-            exitTransition = { customExitTransition },
-            popEnterTransition = { customEnterTransition },
-            popExitTransition = { customExitTransition },
-        ) { entry ->
-            val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
-                navController = navController,
-                factory = ResumeViewModel.Factory
-            )
-            val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
-            ResumeScreen(
-                navController = navController,
-                state = state,
-                onEvent = resumeViewModel::onEvent
-            )
-        }
-        composable(
-            route = Screen.ResumeRedactorScreen.route,
-            enterTransition = { customEnterTransition },
-            exitTransition = { customExitTransition },
-            popEnterTransition = { customEnterTransition },
-            popExitTransition = { customExitTransition },
-        ) { entry ->
-            val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
-                navController = navController,
-                factory = ResumeViewModel.Factory
-            )
-            val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
-            ResumeRedactorScreen(
-                navController = navController,
-                state = state,
-                onEvent = resumeViewModel::onEvent
-            )
+        navigation(startDestination = Screen.ResumeScreen.route, route = Screen.Resume.route){
+            composable(
+                route = Screen.ResumeScreen.route,
+                enterTransition = { customEnterTransition },
+                exitTransition = { customExitTransition },
+                popEnterTransition = { customEnterTransition },
+                popExitTransition = { customExitTransition },
+            ) { entry ->
+                val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
+                    navController = navController,
+                    factory = ResumeViewModel.Factory
+                )
+                val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
+                ResumeScreen(
+                    navController = navController,
+                    state = state,
+                    onEvent = resumeViewModel::onEvent
+                )
+            }
+            composable(
+                route = Screen.ResumeRedactorScreen.route,
+                enterTransition = { customEnterTransition },
+                exitTransition = { customExitTransition },
+                popEnterTransition = { customEnterTransition },
+                popExitTransition = { customExitTransition },
+            ) { entry ->
+                val resumeViewModel = entry.sharedViewModel<ResumeViewModel>(
+                    navController = navController,
+                    factory = ResumeViewModel.Factory
+                )
+                val state by resumeViewModel.uiState.collectAsStateWithLifecycle()
+                ResumeRedactorScreen(
+                    navController = navController,
+                    state = state,
+                    onEvent = resumeViewModel::onEvent
+                )
+            }
         }
     }
 }

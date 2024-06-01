@@ -57,31 +57,24 @@ fun ResumeRedactorScreen(
         ) {
             CustomTextField(
                 heading = "Ключевые навыки",
-                value = state.keySkills,
+                value = state.resume.keySkills,
                 onValueChange = {
                     onEvent(ResumeEvent.SetKeySkills(it))
                 }
             )
             Spacer(modifier = Modifier.padding(8.dp))
             CustomTextField(
-                heading = "Курс",
-                value = state.course,
+                heading = "Ожидаемая зарплата",
+                value = state.resume.salary,
                 onValueChange = {
-                    onEvent(ResumeEvent.SetCourse(it))
-                }
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            CustomTextField(
-                heading = "Обо мне, дополнительно",
-                value = state.about,
-                onValueChange = {
-                    onEvent(ResumeEvent.SetAbout(it))
+                    onEvent(ResumeEvent.SetSalary(it))
                 }
             )
             Spacer(modifier = Modifier.padding(8.dp))
             Button(
                 onClick = {
                     navController.popBackStack()
+                    onEvent(ResumeEvent.UpdateResumeInfo)
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {

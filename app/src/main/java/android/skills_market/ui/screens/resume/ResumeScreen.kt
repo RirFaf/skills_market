@@ -30,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -60,15 +61,6 @@ fun ResumeScreen(
                 .padding(horizontal = 10.dp, vertical = 40.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Column(
-                modifier = Modifier.padding(horizontal = 10.dp),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(text = "Иванов Иван", fontSize = 25.sp)
-                Text(text = "+79123456789", fontSize = 18.sp)
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.padding(top = 4.dp, bottom = 16.dp),
                 horizontalArrangement = Arrangement.Start,
@@ -80,11 +72,17 @@ fun ResumeScreen(
                     fontSize = 22.sp
                 )
             }
-            CustomText(heading = "Ключевые навыки", content = state.keySkills)
+            CustomText(
+                heading = "Ключевые навыки",
+                content = state.resume.keySkills.ifBlank { "Пока ничего" },
+                color = if (state.resume.keySkills.isNotBlank()) Color.Unspecified else Color.Gray
+            )
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Желаемая специализация", content = state.course)
-            Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Обо мне, дополнительно", content = state.about)
+            CustomText(
+                heading = "Желаемая зарплата",
+                content = state.resume.salary.ifBlank { "Тут ничего :(" },
+                color = if (state.resume.salary.isNotBlank()) Color.Unspecified else Color.Gray
+            )
         }
     }
 }

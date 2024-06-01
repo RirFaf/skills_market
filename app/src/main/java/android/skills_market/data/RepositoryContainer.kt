@@ -11,10 +11,12 @@ import android.skills_market.data.repository.FirebaseFavouritesRepository
 import android.skills_market.data.repository.FirebaseMessengerRepository
 import android.skills_market.data.repository.FirebaseProfileRepository
 import android.skills_market.data.repository.FirebaseResponsesRepository
+import android.skills_market.data.repository.FirebaseResumeRepository
 import android.skills_market.data.repository.FirebaseSearchRepository
 import android.skills_market.data.repository.MessengerRepository
 import android.skills_market.data.repository.ProfileRepository
 import android.skills_market.data.repository.ResponsesRepository
+import android.skills_market.data.repository.ResumeRepository
 import android.skills_market.data.repository.SearchRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,6 +29,7 @@ interface RepositoryContainer {
     val messengerRepository: MessengerRepository
     val responsesRepository: ResponsesRepository
     val profileRepository: ProfileRepository
+    val resumeRepository: ResumeRepository
 }
 
 class DefaultRepositoryContainer : RepositoryContainer {
@@ -50,6 +53,9 @@ class DefaultRepositoryContainer : RepositoryContainer {
     }
     override val profileRepository: ProfileRepository by lazy {
         FirebaseProfileRepository()
+    }
+    override val resumeRepository: ResumeRepository by lazy {
+        FirebaseResumeRepository()
     }
 }
 
