@@ -72,6 +72,7 @@ fun ResponseCard(
             Text(
                 text = status,
                 color = when (status) {
+                    ResponseStatus.INVITE -> Color.Yellow
                     ResponseStatus.APPROVED -> Color.Green
                     ResponseStatus.DENIED -> Color.Red
                     ResponseStatus.SENT -> Color.Gray

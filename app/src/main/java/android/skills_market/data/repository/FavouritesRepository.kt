@@ -14,10 +14,36 @@ interface FavouritesRepository {
         onSuccessAction: (List<VacancyModel>) -> Unit,
         onFailureAction: () -> Unit
     )
+
+    fun respond(
+        vacancyId: String,
+        companyId:String,
+        onFailureAction: () -> Unit
+    )
+
+    fun changeLiked(
+        vacancyId: String,
+        onFailureAction: () -> Unit
+    )
 }
 
 class FirebaseFavouritesRepository(
 ):FavouritesRepository{
+    override fun changeLiked(
+        vacancyId: String,
+        onFailureAction: () -> Unit
+    ) {
+        SMFirebase.changeLiked(vacancyId, onFailureAction)
+    }
+
+    override fun respond(
+        vacancyId: String,
+        companyId:String,
+        onFailureAction: () -> Unit
+    ) {
+        SMFirebase.respond(vacancyId,companyId, onFailureAction)
+    }
+
     override fun getLikedVacancies(
         onSuccessAction: (List<VacancyModel>) -> Unit,
         onFailureAction: () -> Unit

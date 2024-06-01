@@ -11,5 +11,5 @@ sealed interface SearchEvent {
     data object ShowFilterDialog : SearchEvent
     data class ChangeLiked(val vacancyId: String) : SearchEvent
 
-    data class RespondToVacancy(val vacancyId: String) : SearchEvent
+    data class RespondToVacancy(val vacancyId: String, val companyId:String) : SearchEvent
 }

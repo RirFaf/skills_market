@@ -48,23 +48,25 @@ class MessengerViewModel(
                         chats = chats
                     )
                 }
-                _uiState.update {
-                    it.copy(
-                        currentChatId = _uiState.value.chats.last().chatId,
-                        currentCompanyName = _uiState.value.chats.last().companyName,
-                        currentVacancyName = _uiState.value.chats.last().vacancyName,
+                if (_uiState.value.messages.isEmpty()){
+                    _uiState.update {
+                        it.copy(
+                            currentChatId = _uiState.value.chats.last().chatId,
+                            currentCompanyName = _uiState.value.chats.last().companyName,
+                            currentVacancyName = _uiState.value.chats.last().vacancyName,
+                        )
+                    }
+                    messengerRepository.getMessages(
+                        currentChatId = _uiState.value.currentChatId,
+                        onDataChanged = { messages ->
+                            _uiState.update {
+                                it.copy(
+                                    messages = messages
+                                )
+                            }
+                        }
                     )
                 }
-                messengerRepository.getMessages(
-                    currentChatId = _uiState.value.currentChatId,
-                    onDataChanged = { messages ->
-                        _uiState.update {
-                            it.copy(
-                                messages = messages
-                            )
-                        }
-                    }
-                )
             },
             onFailureAction = {}
         )

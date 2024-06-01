@@ -17,23 +17,20 @@ import java.util.Locale
 
 interface MessengerRepository {
     fun getMessages(
-        onDataChanged: (List<MessageModel>) -> Unit,
-        currentChatId: String
+        onDataChanged: (List<MessageModel>) -> Unit, currentChatId: String
     )
 
     fun sendMessage(
-        message: String,
-        currentChatId: String
+        message: String, currentChatId: String
     )
 
     fun getChats(
-        onSuccessAction: (List<ChatModel>) -> Unit,
-        onFailureAction: () -> Unit
+        onDataChanged: (List<ChatModel>) -> Unit, onFailureAction: () -> Unit
     )
 }
 
 class FirebaseMessengerRepository(
-):MessengerRepository{
+) : MessengerRepository {
     fun getTimeDate(timestamp: Long): String {
         return try {
             val netDate = Date(timestamp)
@@ -78,8 +75,7 @@ class FirebaseMessengerRepository(
                 Log.e(TAG.FIREBASE, error.toException().stackTraceToString())
             }
         }
-        messagesRef
-            .addValueEventListener(messagesListener)
+        messagesRef.addValueEventListener(messagesListener)
     }
 
 
@@ -88,33 +84,26 @@ class FirebaseMessengerRepository(
         currentChatId: String
     ) {
         val messagesRef = Firebase.database.getReference("messages1")
-        messagesRef
-            .get()
-            .addOnSuccessListener {
-                for (chat in it.children) {
-                    if (chat.child("chatId").value == currentChatId) {
-                        messagesRef
-                            .child(chat.key.toString())
-                            .child("messages")
-                            .push()
-                            .setValue(
-                                MessageModel(
-                                    text = message,
-                                    senderId = Firebase.auth.currentUser!!.uid,
-                                    timestamp = System.currentTimeMillis().toString()
-                                )
-                            )
-                    }
+        messagesRef.get().addOnSuccessListener {
+            for (chat in it.children) {
+                if (chat.child("chatId").value == currentChatId) {
+                    messagesRef.child(chat.key.toString()).child("messages").push().setValue(
+                        MessageModel(
+                            text = message,
+                            senderId = Firebase.auth.currentUser!!.uid,
+                            timestamp = System.currentTimeMillis().toString()
+                        )
+                    )
                 }
             }
+        }
     }
 
     override fun getChats(
-        onSuccessAction: (List<ChatModel>) -> Unit,
+        onDataChanged: (List<ChatModel>) -> Unit,
         onFailureAction: () -> Unit
     ) {
-        val chatListRef =
-            Firebase.database.getReference("messages1")
+        val chatListRef = Firebase.database.getReference("messages1")
         val chatsListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val chats = ArrayList<ChatModel>()
@@ -141,15 +130,14 @@ class FirebaseMessengerRepository(
                         )
                     }
                 }
-                onSuccessAction(chats.sortedBy { it.messages.last().timestamp }.reversed())
+                onDataChanged(chats.sortedBy { it.messages.last().timestamp }.reversed())
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e(TAG.FIREBASE, error.toException().stackTraceToString())
+                onFailureAction()
             }
         }
-
-        chatListRef
-            .addValueEventListener(chatsListener)
+        chatListRef.addValueEventListener(chatsListener)
     }
 }

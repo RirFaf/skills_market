@@ -22,3 +22,4 @@ inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
         factory=factory
     )
 }
+

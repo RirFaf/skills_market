@@ -38,7 +38,6 @@ class SearchViewModel(
     private val tag = "VMTAG"
     private val _uiState = MutableStateFlow(SearchUIState.Success())
     val uiState: StateFlow<SearchUIState.Success> = _uiState.asStateFlow()
-    private val db = SMFirebase
 
     override fun onCleared() {
         super.onCleared()
@@ -63,7 +62,7 @@ class SearchViewModel(
             }
 
             is SearchEvent.RespondToVacancy -> {
-                searchRepository.respond(event.vacancyId, {})
+                searchRepository.respond(event.vacancyId,event.companyId, {})
             }
 
             is SearchEvent.SetSearchInput -> {

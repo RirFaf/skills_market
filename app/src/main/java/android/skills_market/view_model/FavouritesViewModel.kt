@@ -49,10 +49,14 @@ class FavouritesViewModel(
 
     fun onEvent(event: FavouritesEvent) {
         when (event) {
-            is FavouritesEvent.RespondToVacancy -> {}//TODO
+            is FavouritesEvent.RespondToVacancy -> {
+                db.respond(vacancyId = event.vacancyId, event.companyId, {})
+            }
+
             is FavouritesEvent.ChangeLiked -> {
                 db.changeLiked(vacancyId = event.vacancyId, {})
             }
+
             FavouritesEvent.GetLikedVacancies -> {
                 favouritesRepository.getLikedVacancies(
                     onSuccessAction = { vacancies ->

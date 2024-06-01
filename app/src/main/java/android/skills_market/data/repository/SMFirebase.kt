@@ -14,6 +14,7 @@ object SMFirebase {
 
     fun respond(
         vacancyId: String,
+        companyId: String,
         onFailureAction: () -> Unit
     ) {
         val responsesRef = Firebase.database.getReference("responses").child(Firebase.auth.currentUser!!.uid)
@@ -33,6 +34,7 @@ object SMFirebase {
                         .setValue(
                             mapOf(
                                 "vacancyId" to vacancyId,
+                                "companyId" to companyId,
                                 "status" to ResponseStatus.SENT
                             )
                         )

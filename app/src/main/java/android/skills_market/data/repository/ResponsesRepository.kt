@@ -60,17 +60,10 @@ class FirebaseResponsesRepository(
                                         studentId = studentId,
                                         messages = listOf(
                                             MessageModel(
-                                                "один",
+                                                "Здавстуйте!",
                                                 Firebase.auth.currentUser!!.uid,
                                                 "0"
                                             ),
-                                            MessageModel("два", "debugCompanyId", "1"),
-                                            MessageModel(
-                                                "три",
-                                                Firebase.auth.currentUser!!.uid,
-                                                "2"
-                                            ),
-                                            MessageModel("четыре", "debugCompanyId", "3"),
                                         )
                                     )
                                 )

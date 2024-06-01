@@ -25,6 +25,7 @@ interface SearchRepository {
 
     fun respond(
         vacancyId: String,
+        companyId:String,
         onFailureAction: () -> Unit
     )
 }
@@ -40,9 +41,10 @@ class FirebaseSearchRepository(
 
     override fun respond(
         vacancyId: String,
+        companyId:String,
         onFailureAction: () -> Unit
     ) {
-        SMFirebase.respond(vacancyId, onFailureAction)
+        SMFirebase.respond(vacancyId,companyId, onFailureAction)
     }
 
     override fun getVacancies(

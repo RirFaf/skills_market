@@ -158,7 +158,7 @@ fun SearchScreen(
                                 }
                             },
                             onRespond = {
-                                onEvent(SearchEvent.RespondToVacancy(item.id))
+                                onEvent(SearchEvent.RespondToVacancy(item.id, item.company.id))
                             },
                             onLike = {
                                 onEvent(SearchEvent.ChangeLiked(item.id))

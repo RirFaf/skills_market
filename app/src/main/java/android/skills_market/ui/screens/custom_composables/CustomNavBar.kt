@@ -94,7 +94,7 @@ fun CustomNavBar(navController: NavController) {
                 icon = {
                     Icon(
                         imageVector =
-                        //вся эта хрень для правильного отображения выбранного элемента
+                        //TODO переделать
                         if ((currentIndex == index) && navBackStackEntry?.destination?.route == element.route) {
                             element.selectedIcon
                         } else {

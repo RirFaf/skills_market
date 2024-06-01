@@ -41,9 +41,6 @@ fun VacancyCard(
     modifier: Modifier = Modifier
 ) {
     val localContext = LocalContext.current
-    var enabled by remember {
-        mutableStateOf(true)
-    }
     var liked by remember {
         mutableStateOf(vacancy.liked)
     }
@@ -89,9 +86,7 @@ fun VacancyCard(
             ) {
                 Button(
                     onClick = {
-                        Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                            .show()
-                        enabled = false
+                        onRespond()
                     },
                 ) {
                     Text(text = stringResource(id = R.string.respond))
