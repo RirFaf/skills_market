@@ -9,9 +9,11 @@ import android.skills_market.data.network.AuthApiService
 import android.skills_market.data.repository.FavouritesRepository
 import android.skills_market.data.repository.FirebaseFavouritesRepository
 import android.skills_market.data.repository.FirebaseMessengerRepository
+import android.skills_market.data.repository.FirebaseProfileRepository
 import android.skills_market.data.repository.FirebaseResponsesRepository
 import android.skills_market.data.repository.FirebaseSearchRepository
 import android.skills_market.data.repository.MessengerRepository
+import android.skills_market.data.repository.ProfileRepository
 import android.skills_market.data.repository.ResponsesRepository
 import android.skills_market.data.repository.SearchRepository
 import retrofit2.Retrofit
@@ -24,12 +26,10 @@ interface RepositoryContainer {
     val favouritesRepository: FavouritesRepository
     val messengerRepository: MessengerRepository
     val responsesRepository: ResponsesRepository
+    val profileRepository: ProfileRepository
 }
 
 class DefaultRepositoryContainer : RepositoryContainer {
-    private lateinit var authApiService: AuthApiService
-    init{
-    }
     override val loginRepository: LoginRepository by lazy {
         FirebaseLoginRepository()
     }
@@ -47,6 +47,9 @@ class DefaultRepositoryContainer : RepositoryContainer {
     }
     override val responsesRepository: ResponsesRepository by lazy {
         FirebaseResponsesRepository()
+    }
+    override val profileRepository: ProfileRepository by lazy {
+        FirebaseProfileRepository()
     }
 }
 

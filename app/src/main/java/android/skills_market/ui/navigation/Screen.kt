@@ -20,9 +20,11 @@ sealed class Screen(
     data object MessengerScreen : Screen("messenger_screen")
     data object Messenger : Screen("messenger")
     /***Profile***/
+    data object Profile: Screen("profile")
     data object ProfileScreen : Screen("profile_screen")
     data object ProfileRedactorScreen : Screen("profile_redactor_screen")
     /***Resume***/
+    data object Resume: Screen("resume")
     data object ResumeScreen: Screen("resume_screen")
     data object ResumeRedactorScreen: Screen("resume_redactor_screen")
 }

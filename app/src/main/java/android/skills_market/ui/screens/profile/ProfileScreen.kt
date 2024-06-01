@@ -39,6 +39,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,7 +75,6 @@ fun ProfileScreen(
                     }
                     IconButton(
                         onClick = {
-                            //TODO засунусть в обработчик событий
                             database.logoutUser(
                                 onLogoutAction = {
                                     (localContext as Activity).finish()
@@ -115,7 +115,7 @@ fun ProfileScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(horizontal = 10.dp)
             ) {
-                Icon(//TODO сменить на изображение
+                Icon(
                     imageVector = Icons.Outlined.Person,
                     contentDescription = "worker",
                     modifier = Modifier.size(100.dp),
@@ -123,8 +123,15 @@ fun ProfileScreen(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.padding(8.dp)) {
-                    Text(text = "Иванов Иван", fontSize = 25.sp)
-                    Text(text = "+79123456789", fontSize = 18.sp)
+                    Text(
+                        text = "${state.student.secondName} ${state.student.firstName}",
+                        fontSize = 25.sp
+                    )
+                    Text(
+                        text = if (state.student.phoneNumber.isNotBlank()) "+${state.student.phoneNumber}" else "Нет номера телефона",
+                        fontSize = 18.sp,
+                        color = if (state.student.phoneNumber.isNotBlank()) Color.Unspecified else Color.Gray
+                    )
                 }
             }
             Button(
@@ -151,15 +158,19 @@ fun ProfileScreen(
                     fontSize = 22.sp
                 )
             }
-            CustomText(heading = "Университет", content = "Казанский Федеральный Университет")
+            CustomText(heading = "Университет", content = state.student.university)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Институт", content = "ИВМиИТ")
+            CustomText(heading = "Институт", content = state.student.institute)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Направление", content = "Прикладная информатика")
+            CustomText(heading = "Направление", content = state.student.direction)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Код направления", content = "09.03.03")
+            CustomText(heading = "Курс", content = state.student.course)
             Spacer(modifier = Modifier.height(16.dp))
-            CustomText(heading = "Курс", content = Courses.bachelors4)
+            CustomText(
+                heading = "Обо мне",
+                content = state.student.aboutMe.ifBlank { "Нет информации" },
+                color = if (state.student.aboutMe.isNotBlank()) Color.Unspecified else Color.Gray
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }

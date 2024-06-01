@@ -80,7 +80,8 @@ class FirebaseSearchRepository(
                 }
             }
 
-        filterRef.get()
+        filterRef
+            .get()
             .addOnSuccessListener { documents ->
                 for (doc in documents) {
                     vacancies.add(

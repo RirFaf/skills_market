@@ -9,6 +9,7 @@ data class StudentModel(
     var birthDate: String,
     var university: String,
     var institute: String,
+    var course: String,
     var phoneNumber: String,
     var aboutMe: String,
     var gender: String,

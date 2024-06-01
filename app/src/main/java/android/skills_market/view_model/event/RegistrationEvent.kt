@@ -12,6 +12,7 @@ sealed interface RegistrationEvent {
     data class SetUniversity(val input: String) : RegistrationEvent
     data class SetInstitute(val input: String) : RegistrationEvent
     data class SetDirection(val input: String) : RegistrationEvent
+    data class SetCourse(val input: String) : RegistrationEvent
     data class SetEmail(val input: String) : RegistrationEvent
     data class SetPassword(val input: String) : RegistrationEvent
     data class SetPassword1(val input: String) : RegistrationEvent

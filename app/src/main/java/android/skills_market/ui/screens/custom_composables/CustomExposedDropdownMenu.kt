@@ -1,11 +1,9 @@
 package android.skills_market.ui.screens.custom_composables
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenuItem
@@ -32,6 +30,7 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomExposedDropdownMenuBox(
+    initialValue:String ="",
     listOfOptions: List<String>,
     onOptionChoice: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -49,6 +48,7 @@ fun CustomExposedDropdownMenuBox(
     var selectedOption by remember {
         mutableStateOf("")
     }
+    selectedOption = initialValue
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = {

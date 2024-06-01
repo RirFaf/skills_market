@@ -42,7 +42,7 @@ class MessengerViewModel(
 
     init {
         messengerRepository.getChats(
-            onSuccessAction = { chats ->
+            onDataChanged = { chats ->
                 _uiState.update {
                     it.copy(
                         chats = chats

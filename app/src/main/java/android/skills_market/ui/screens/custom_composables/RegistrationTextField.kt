@@ -21,7 +21,7 @@ fun RegistrationTextField(
     onValueChange: (String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(),
     keyboardActions: KeyboardActions = KeyboardActions(),
-    label: String,
+    label: String="",
     visualTransformation: VisualTransformation = VisualTransformation.None,
     placeholder: @Composable () -> Unit = {},
     isError: Boolean = false

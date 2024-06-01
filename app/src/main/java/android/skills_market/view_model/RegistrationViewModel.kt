@@ -32,6 +32,7 @@ sealed interface RegUIState {
         var gender: String = "",
         var city: String = "",
         var direction: String = "",
+        var course: String = "",
     ) : RegUIState
 
     data object Error : RegUIState
@@ -74,6 +75,7 @@ class RegViewModel(
                             university = _uiState.value.university,
                             aboutMe = _uiState.value.aboutMe,
                             phoneNumber = _uiState.value.phoneNumber,
+                            course = _uiState.value.course,
                             onFailureAction = {
                                 event.onFailureAction()
                             },
@@ -203,6 +205,14 @@ class RegViewModel(
                     )
                 }
             }
+
+            is RegistrationEvent.SetCourse -> {
+                _uiState.update {
+                    it.copy(
+                        course = event.input
+                    )
+                }
+            }
         }
     }
 
@@ -210,8 +220,7 @@ class RegViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as DefaultApplication)
-                val registrationRepository = application.container.registrationRepository // TODO:
-//                val sessionManager = application.sessionManager
+                val registrationRepository = application.container.registrationRepository
                 RegViewModel(registrationRepository = registrationRepository)
             }
         }

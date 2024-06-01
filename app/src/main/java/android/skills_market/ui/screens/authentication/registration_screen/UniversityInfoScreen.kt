@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.skills_market.R
 import android.skills_market.activities.AppActivity
+import android.skills_market.data.constants.Courses
 import android.skills_market.ui.navigation.Screen
+import android.skills_market.ui.screens.custom_composables.CustomExposedDropdownMenuBox
 import android.skills_market.ui.screens.custom_composables.RegistrationTextField
 import android.skills_market.view_model.RegUIState
 import android.skills_market.view_model.event.RegistrationEvent
@@ -56,6 +58,9 @@ fun UniversityInfoScreen(
     var isDirectionWrong by remember {
         mutableStateOf(false)
     }
+    var isCourseWrong by remember {
+        mutableStateOf(false)
+    }
     OutlinedCard(
         modifier = Modifier
             .wrapContentSize()
@@ -103,6 +108,22 @@ fun UniversityInfoScreen(
                     imeAction = ImeAction.Next
                 )
             )
+            CustomExposedDropdownMenuBox(
+                listOfOptions = listOf(
+                    Courses.bachelors1,
+                    Courses.bachelors2,
+                    Courses.bachelors3,
+                    Courses.bachelors4,
+                    Courses.masters1,
+                    Courses.masters2,
+                ),
+                onOptionChoice = {
+                    isCourseWrong = false
+                    onEvent(RegistrationEvent.SetCourse(it))
+                },
+                isError = isCourseWrong,
+                placeholderText = "Курс"
+            )
             RegistrationTextField(
                 value = uiState.direction,
                 onValueChange = {
@@ -116,16 +137,14 @@ fun UniversityInfoScreen(
                     keyboardType = KeyboardType.Number
                 )
             )
-            Log.d("MyTag", uiState.birthDate)
-
             Button(
                 onClick = {
                     if (
-                        uiState.firstName.isNotBlank() &&
-                        uiState.secondName.isNotBlank() &&
-                        uiState.patronymicName.isNotBlank() &&
-                        uiState.gender.isNotBlank() &&
-                        uiState.birthDate.isNotBlank()
+                        uiState.city.isNotBlank() &&
+                        uiState.university.isNotBlank() &&
+                        uiState.institute.isNotBlank() &&
+                        uiState.direction.isNotBlank() &&
+                        uiState.course.isNotBlank()
                     ) {
                         navController.navigate(Screen.EmailAndPasswordScreen.route)
                     }
@@ -140,6 +159,9 @@ fun UniversityInfoScreen(
                     }
                     if (uiState.direction.isBlank()) {
                         isDirectionWrong = true
+                    }
+                    if (uiState.course.isBlank()) {
+                        isCourseWrong = true
                     }
                 },
                 modifier = Modifier.fillMaxWidth()

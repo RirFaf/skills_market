@@ -23,6 +23,7 @@ interface RegistrationRepository {
         gender: String,
         city: String,
         direction: String,
+        course:String,
         onSuccessAction: () -> Unit,
         onFailureAction: () -> Unit,
     )
@@ -43,14 +44,15 @@ class FirebaseRegistrationRepository() : RegistrationRepository {
         gender: String,
         city: String,
         direction: String,
+        course:String,
         onSuccessAction: () -> Unit,
         onFailureAction: () -> Unit,
     ) {
-        val rootRef = Firebase.firestore.collection("users")
+        val usersDocRef = Firebase.firestore.collection("users")
         Firebase.auth.createUserWithEmailAndPassword(login, password)
             .addOnSuccessListener {
                 Firebase.auth.currentUser?.let { currentUser ->
-                    rootRef.add(
+                    usersDocRef.add(
                         StudentModel(
                             userAuthData = UserAuthData(login, currentUser.uid),
                             firstName = firstName,
@@ -64,6 +66,7 @@ class FirebaseRegistrationRepository() : RegistrationRepository {
                             gender = gender,
                             city = city,
                             direction = direction,
+                            course = course,
                             id = currentUser.uid
                         )
                     )
