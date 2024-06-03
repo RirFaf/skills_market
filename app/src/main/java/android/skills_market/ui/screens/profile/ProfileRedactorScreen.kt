@@ -28,6 +28,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -76,7 +77,7 @@ fun ProfileRedactorScreen(
                     fontSize = 16.sp
                 )
                 RegistrationTextField(
-                    value = state.student.phoneNumber.ifBlank { "Отсутствует" },
+                    value = state.student.phoneNumber,
                     onValueChange = {
                         if (it.length <= 11) {
                             onEvent(ProfileEvent.SetPhoneNumber(it))
@@ -99,7 +100,7 @@ fun ProfileRedactorScreen(
                 value = state.student.university,
                 onValueChange = {
                     onEvent(ProfileEvent.SetUniversity(it))
-                }
+                },
             )
             Spacer(modifier = Modifier.padding(8.dp))
             CustomTextField(

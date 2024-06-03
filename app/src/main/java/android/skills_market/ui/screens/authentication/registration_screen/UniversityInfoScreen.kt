@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -81,7 +82,8 @@ fun UniversityInfoScreen(
                 label = "Город проживания",
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
                 )
             )
             RegistrationTextField(
@@ -93,7 +95,8 @@ fun UniversityInfoScreen(
                 label = "Университет",
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
                 )
             )
             RegistrationTextField(
@@ -105,7 +108,8 @@ fun UniversityInfoScreen(
                 label = "Институт",
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
                 )
             )
             CustomExposedDropdownMenuBox(
@@ -133,8 +137,36 @@ fun UniversityInfoScreen(
                 label = "Направление",
                 keyboardOptions = KeyboardOptions(
                     autoCorrect = false,
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Number
+                    imeAction = ImeAction.Done,
+                    capitalization = KeyboardCapitalization.Words
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        if (
+                            uiState.city.isNotBlank() &&
+                            uiState.university.isNotBlank() &&
+                            uiState.institute.isNotBlank() &&
+                            uiState.direction.isNotBlank() &&
+                            uiState.course.isNotBlank()
+                        ) {
+                            navController.navigate(Screen.EmailAndPasswordScreen.route)
+                        }
+                        if (uiState.city.isBlank()) {
+                            isCityWrong = true
+                        }
+                        if (uiState.university.isBlank()) {
+                            isUniversityWrong = true
+                        }
+                        if (uiState.institute.isBlank()) {
+                            isInstituteWrong = true
+                        }
+                        if (uiState.direction.isBlank()) {
+                            isDirectionWrong = true
+                        }
+                        if (uiState.course.isBlank()) {
+                            isCourseWrong = true
+                        }
+                    }
                 )
             )
             Button(
