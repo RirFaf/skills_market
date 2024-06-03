@@ -23,8 +23,8 @@ sealed interface LoginUIState {
     data class Success(
         val isPasswordCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
         val isLoginCorrect: Boolean = false,//TODO переместить обработку ошибок в Error
-        val email: String = "android@mail.ru",
-        val password: String = "123456",
+        val email: String = "",
+        val password: String = "",
     ) : LoginUIState
 
     data object Error : LoginUIState

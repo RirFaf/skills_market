@@ -48,7 +48,7 @@ class MessengerViewModel(
                         chats = chats
                     )
                 }
-                if (_uiState.value.messages.isEmpty()){
+                if (_uiState.value.messages.isEmpty()&&_uiState.value.chats.isNotEmpty()){
                     _uiState.update {
                         it.copy(
                             currentChatId = _uiState.value.chats.last().chatId,

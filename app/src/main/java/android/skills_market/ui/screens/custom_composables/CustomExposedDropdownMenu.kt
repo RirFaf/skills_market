@@ -30,10 +30,10 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomExposedDropdownMenuBox(
+    modifier: Modifier = Modifier,
     initialValue:String ="",
     listOfOptions: List<String>,
     onOptionChoice: (String) -> Unit,
-    modifier: Modifier = Modifier,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     placeholderText: String = "",
     isError:Boolean = false
@@ -46,9 +46,8 @@ fun CustomExposedDropdownMenuBox(
         mutableStateOf(0.dp)
     }
     var selectedOption by remember {
-        mutableStateOf("")
+        mutableStateOf(initialValue)
     }
-    selectedOption = initialValue
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = {

@@ -18,9 +18,9 @@ import kotlinx.coroutines.launch
 
 sealed interface RegUIState {
     data class Success(
-        val email: String = "android@mail.ru",
-        val password: String = "123456",
-        val password1: String = "123456",
+        val email: String = "",
+        val password: String = "",
+        val password1: String = "",
         val patronymicName: String = "",
         val firstName: String = "",
         val secondName: String = "",
