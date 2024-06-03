@@ -42,6 +42,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import androidx.navigation.toRoute
 
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -58,15 +59,15 @@ fun NavigationGraph(navController: NavHostController) {
     val localContext = LocalContext.current
     NavHost(
         navController = navController,
-        startDestination = Screen.SearchScreen.route
+        startDestination = Screen.SearchScreen
     ) {
-        composable(
-            route = Screen.SearchScreen.route,
+        composable<Screen.SearchScreen>(
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) {
+//            Log.d("MyTag","${it.destination.route}\n${it.destination.id}\n${it.destination.navigatorName}\n${it.destination.label}")
             val searchViewModel = viewModel<SearchViewModel>(
                 factory = SearchViewModel.Factory
             )
@@ -77,59 +78,13 @@ fun NavigationGraph(navController: NavHostController) {
                 state = state
             )
         }
-        composable(
-            route = Screen.VacancyScreen.route +
-                    "/{id}" +
-                    "/{position}" +
-                    "/{salary}" +
-                    "/{companyId}" +
-                    "/{companyName}" +
-                    "/{edArea}" +
-                    "/{formOfEmployment}" +
-                    "/{requirements}" +
-                    "/{location}" +
-                    "/{about}" +
-                    "/{liked}",
-            arguments = listOf(
-                navArgument(name = "id") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "position") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "salary") {
-                    type = NavType.IntType
-                },
-                navArgument(name = "companyId") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "companyName") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "edArea") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "formOfEmployment") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "requirements") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "location") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "about") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "liked") {
-                    type = NavType.BoolType
-                },
-            ),
+        composable<Screen.VacancyScreen>(
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
             popExitTransition = { customExitTransition },
         ) { entry ->
+            val args = entry.toRoute<Screen.VacancyScreen>()
             val vacancyViewModel = viewModel<VacancyViewModel>(
                 factory = VacancyViewModel.Factory
             )
@@ -137,19 +92,19 @@ fun NavigationGraph(navController: NavHostController) {
             vacancyViewModel.onEvent(
                 VacancyEvent.SetVacancy(
                     VacancyModel(
-                        id = entry.arguments?.getString("id")!!,
-                        position = entry.arguments?.getString("position")!!,
-                        salary = entry.arguments?.getInt("salary")!!,
+                        id = args.id,
+                        position = args.position,
+                        salary = args.salary,
                         company = CompanyModel(
-                            entry.arguments?.getString("companyId")!!,
-                            entry.arguments?.getString("companyName")!!
+                            args.companyId,
+                            args.companyName
                         ),
-                        edArea = entry.arguments?.getString("edArea")!!,
-                        formOfEmployment = entry.arguments?.getString("formOfEmployment")!!,
-                        requirements = entry.arguments?.getString("requirements")!!,
-                        location = entry.arguments?.getString("location")!!,
-                        about = entry.arguments?.getString("about")!!,
-                        liked = entry.arguments?.getBoolean("liked")!!
+                        edArea = args.edArea,
+                        formOfEmployment = args.formOfEmployment,
+                        requirements = args.requirements,
+                        location = args.location,
+                        about = args.about,
+                        liked = args.liked
                     )
                 )
             )
@@ -160,8 +115,7 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
 
-        composable(
-            route = Screen.FavouritesScreen.route,
+        composable<Screen.FavouritesScreen>(
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
@@ -177,9 +131,8 @@ fun NavigationGraph(navController: NavHostController) {
                 state = state
             )
         }
-        navigation(startDestination = Screen.ChatListScreen.route, route = Screen.Messenger.route) {
-            composable(
-                route = Screen.ChatListScreen.route,
+        navigation<Screen.Messenger>(startDestination = Screen.ChatListScreen) {
+            composable<Screen.ChatListScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = { customExitTransition },
                 popEnterTransition = { customEnterTransition },
@@ -198,8 +151,7 @@ fun NavigationGraph(navController: NavHostController) {
                 )
             }
 
-            composable(
-                route = Screen.MessengerScreen.route,
+            composable<Screen.MessengerScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = {
                     fadeOut(
@@ -226,8 +178,7 @@ fun NavigationGraph(navController: NavHostController) {
             }
         }
 
-        composable(
-            route = Screen.ResponsesListScreen.route,
+        composable<Screen.ResponsesListScreen>(
             enterTransition = { customEnterTransition },
             exitTransition = { customExitTransition },
             popEnterTransition = { customEnterTransition },
@@ -243,9 +194,8 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
 
-        navigation(startDestination = Screen.ProfileScreen.route, route = Screen.Profile.route) {
-            composable(
-                route = Screen.ProfileScreen.route,
+        navigation<Screen.Profile>(startDestination = Screen.ProfileScreen) {
+            composable<Screen.ProfileScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = { customExitTransition },
                 popEnterTransition = { customEnterTransition },
@@ -263,8 +213,7 @@ fun NavigationGraph(navController: NavHostController) {
                 )
             }
 
-            composable(
-                route = Screen.ProfileRedactorScreen.route,
+            composable<Screen.ProfileRedactorScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = { customExitTransition },
                 popEnterTransition = { customEnterTransition },
@@ -283,9 +232,8 @@ fun NavigationGraph(navController: NavHostController) {
             }
         }
 
-        navigation(startDestination = Screen.ResumeScreen.route, route = Screen.Resume.route){
-            composable(
-                route = Screen.ResumeScreen.route,
+        navigation<Screen.Resume>(startDestination = Screen.ResumeScreen,) {
+            composable<Screen.ResumeScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = { customExitTransition },
                 popEnterTransition = { customEnterTransition },
@@ -302,8 +250,7 @@ fun NavigationGraph(navController: NavHostController) {
                     onEvent = resumeViewModel::onEvent
                 )
             }
-            composable(
-                route = Screen.ResumeRedactorScreen.route,
+            composable<Screen.ResumeRedactorScreen>(
                 enterTransition = { customEnterTransition },
                 exitTransition = { customExitTransition },
                 popEnterTransition = { customEnterTransition },

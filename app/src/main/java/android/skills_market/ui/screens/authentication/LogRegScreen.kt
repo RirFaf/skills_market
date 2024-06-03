@@ -52,7 +52,7 @@ fun LogRegScreen(navController: NavController) {
         Spacer(modifier = Modifier.padding(20.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.LoginScreen.route)
+                navController.navigate(Screen.LoginScreen)
             },
             modifier = Modifier
                 .fillMaxWidth(),
@@ -69,7 +69,7 @@ fun LogRegScreen(navController: NavController) {
         Spacer(modifier = Modifier.padding(6.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.RegistrationScreen.route)
+                navController.navigate(Screen.RegistrationScreen)
             },
             modifier = Modifier
                 .fillMaxWidth(),

@@ -175,7 +175,7 @@ fun PersonalDataScreen(
                             uiState.birthDate.isNotBlank() &&
                             uiState.birthDate.length == 8
                         ) {
-                            navController.navigate(Screen.UniversityInfoScreen.route)
+                            navController.navigate(Screen.UniversityInfoScreen)
                         }
                         if (uiState.firstName.isBlank()) {
                             isNameWrong = true
@@ -209,7 +209,7 @@ fun PersonalDataScreen(
                         uiState.gender.isNotBlank() &&
                         uiState.birthDate.isNotBlank()
                     ) {
-                        navController.navigate(Screen.UniversityInfoScreen.route)
+                        navController.navigate(Screen.UniversityInfoScreen)
                     }
                     if (uiState.firstName.isBlank()) {
                         isNameWrong = true

@@ -108,7 +108,7 @@ fun ChatListScreen(
                                 onFailureAction = {}
                             )
                         )
-                        navController.navigate(Screen.MessengerScreen.route)
+                        navController.navigate(Screen.MessengerScreen)
                     },
                     chatModel = chat
                 )

@@ -80,18 +80,18 @@ fun ResponsesListScreen(
                         vacancy = item,
                         onCardClick = {
                             navController.navigate(
-                                route = Screen.VacancyScreen.route +
-                                        "/${item.id}" +
-                                        "/${item.position}" +
-                                        "/${item.salary}" +
-                                        "/${item.company.id}" +
-                                        "/${item.company.name}" +
-                                        "/${item.edArea}" +
-                                        "/${item.formOfEmployment}" +
-                                        "/${item.requirements}" +
-                                        "/${item.location}" +
-                                        "/${item.about.ifEmpty { " " }}" +
-                                        "/${item.liked}"
+                                route = Screen.VacancyScreen(
+                                    id = item.id,
+                                    companyId = item.company.id,
+                                    companyName = item.company.name,
+                                    position = item.position,
+                                    salary = item.salary,
+                                    edArea = item.edArea,
+                                    formOfEmployment = item.formOfEmployment,
+                                    requirements = item.requirements,
+                                    location = item.location,
+                                    about = item.about,
+                                )
                             ) {
                                 launchSingleTop = false
                                 restoreState = true
@@ -104,7 +104,7 @@ fun ResponsesListScreen(
                                     vacancyId = item.id
                                 )
                             )
-                            navController.navigate(Screen.MessengerScreen.route)
+                            navController.navigate(Screen.MessengerScreen)
                         },
                         status = item.responseStatus
                     )

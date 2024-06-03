@@ -99,9 +99,3 @@ object SMFirebase {
         return Firebase.auth.currentUser != null
     }
 }
-
-
-
-
-
-

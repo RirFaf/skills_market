@@ -3,6 +3,7 @@ package android.skills_market.activities
 import android.os.Bundle
 import android.skills_market.ui.screens.custom_composables.CustomNavBar
 import android.skills_market.ui.navigation.NavigationGraph
+import android.skills_market.ui.navigation.Screen
 import android.skills_market.ui.theme.SkillsMarketTheme
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,29 +32,13 @@ class AppActivity : ComponentActivity() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             //Убираем нижнюю навигацию, когда заходим в переписку
-            when (navBackStackEntry?.destination?.route) {
-                "search_screen" -> {
-                    showBottomBar = true
+            showBottomBar = when (navBackStackEntry?.destination?.route?.split(".")?.last()) {
+                "MessengerScreen" -> {
+                    false
                 }
 
-                "vacancy_screen" -> {
-                    showBottomBar = true
-                }
-
-                "favourites_screen" -> {
-                    showBottomBar = true
-                }
-
-                "responses_list_screen" -> {
-                    showBottomBar = true
-                }
-
-                "chat_list_screen" -> {
-                    showBottomBar = true
-                }
-
-                "messenger_screen" -> {
-                    showBottomBar = false
+                else -> {
+                    true
                 }
             }
             SkillsMarketTheme {

@@ -149,7 +149,7 @@ fun UniversityInfoScreen(
                             uiState.direction.isNotBlank() &&
                             uiState.course.isNotBlank()
                         ) {
-                            navController.navigate(Screen.EmailAndPasswordScreen.route)
+                            navController.navigate(Screen.EmailAndPasswordScreen)
                         }
                         if (uiState.city.isBlank()) {
                             isCityWrong = true
@@ -178,7 +178,7 @@ fun UniversityInfoScreen(
                         uiState.direction.isNotBlank() &&
                         uiState.course.isNotBlank()
                     ) {
-                        navController.navigate(Screen.EmailAndPasswordScreen.route)
+                        navController.navigate(Screen.EmailAndPasswordScreen)
                     }
                     if (uiState.city.isBlank()) {
                         isCityWrong = true

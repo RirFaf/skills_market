@@ -48,7 +48,7 @@ fun ResumeScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(Screen.ResumeRedactorScreen.route) },
+                onClick = { navController.navigate(Screen.ResumeRedactorScreen) },
                 shape = CircleShape
             ) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit resume")

@@ -78,18 +78,19 @@ fun FavouritesScreen(
                         vacancy = item,
                         onClick = {
                             navController.navigate(
-                                route = Screen.VacancyScreen.route +
-                                        "/${item.id}" +
-                                        "/${item.position}" +
-                                        "/${item.salary}" +
-                                        "/${item.company.id}" +
-                                        "/${item.company.name}" +
-                                        "/${item.edArea}" +
-                                        "/${item.formOfEmployment}" +
-                                        "/${item.requirements}" +
-                                        "/${item.location}" +
-                                        "/${item.about.ifEmpty { " " }}"+
-                                        "/${item.liked}"
+                                route = Screen.VacancyScreen(
+                                    id = item.id,
+                                    companyId = item.company.id,
+                                    companyName = item.company.name,
+                                    position = item.position,
+                                    salary = item.salary,
+                                    edArea = item.edArea,
+                                    formOfEmployment = item.formOfEmployment,
+                                    requirements = item.requirements,
+                                    location = item.location,
+                                    about = item.about,
+                                    liked = true
+                                )
                             ) {
                                 launchSingleTop = false
                                 restoreState = true

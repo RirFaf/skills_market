@@ -1,33 +1,65 @@
 package android.skills_market.ui.navigation
 
+import android.skills_market.data.constants.ResponseStatus
+import android.skills_market.data.network.models.CompanyModel
+import kotlinx.serialization.Serializable
+
 sealed class Screen(
-    val route: String
 ) {
     /***Authentication***/
-    data object LogRegScreen : Screen("log_reg_screen")
-    data object RegistrationScreen : Screen("registration_screen")
-    data object PersonalDataScreen : Screen("personal_data_screen")
-    data object UniversityInfoScreen : Screen("university_info_screen")
-    data object EmailAndPasswordScreen : Screen("email_and_password_screen")
-    data object LoginScreen : Screen("login_screen")
+    @Serializable
+    data object LogRegScreen:Screen()
+    @Serializable
+    data object RegistrationScreen:Screen()
+    @Serializable
+    data object PersonalDataScreen:Screen()
+    @Serializable
+    data object UniversityInfoScreen:Screen()
+    @Serializable
+    data object EmailAndPasswordScreen:Screen()
+    @Serializable
+    data object LoginScreen:Screen()
     /***Main app***/
-    data object SearchScreen : Screen("search_screen")
-    data object VacancyScreen : Screen("vacancy_screen")
-    data object FavouritesScreen : Screen("favourites_screen")
-    data object ResponsesListScreen : Screen("responses_list_screen")
+    @Serializable
+    data object SearchScreen:Screen()
+    @Serializable
+    data class VacancyScreen(
+        val id: String,
+        val companyId: String,
+        val companyName: String,
+        val position: String,
+        val salary: Int,
+        val edArea: String,
+        val formOfEmployment: String,
+        val requirements: String,
+        val location: String,
+        val about: String,
+        var liked: Boolean = false,
+        val responseStatus:String = ResponseStatus.EMPTY
+    ):Screen()
+    @Serializable
+    data object FavouritesScreen:Screen()
+    @Serializable
+    data object ResponsesListScreen:Screen()
     /***Messenger***/
-    data object ChatListScreen : Screen("chat_list_screen")
-    data object MessengerScreen : Screen("messenger_screen")
-    data object Messenger : Screen("messenger")
+    @Serializable
+    data object ChatListScreen:Screen()
+    @Serializable
+    data object MessengerScreen:Screen()
+    @Serializable
+    data object Messenger:Screen()
     /***Profile***/
-    data object Profile: Screen("profile")
-    data object ProfileScreen : Screen("profile_screen")
-    data object ProfileRedactorScreen : Screen("profile_redactor_screen")
+    @Serializable
+    data object Profile:Screen()
+    @Serializable
+    data object ProfileScreen:Screen()
+    @Serializable
+    data object ProfileRedactorScreen:Screen()
     /***Resume***/
-    data object Resume: Screen("resume")
-    data object ResumeScreen: Screen("resume_screen")
-    data object ResumeRedactorScreen: Screen("resume_redactor_screen")
+    @Serializable
+    data object Resume:Screen()
+    @Serializable
+    data object ResumeScreen:Screen()
+    @Serializable
+    data object ResumeRedactorScreen:Screen()
 }
-
-
-
