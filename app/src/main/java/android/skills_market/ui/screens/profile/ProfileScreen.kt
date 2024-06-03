@@ -24,6 +24,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ExitToApp
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Person
@@ -61,21 +62,20 @@ fun ProfileScreen(
             TopAppBar(
                 title = { Text(text = "Профиль") },
                 actions = {
-                    val database = SMFirebase
+//                    IconButton(
+//                        onClick = {
+//                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
+//                                .show()
+//                        },
+//                    ) {
+//                        Icon(
+//                            painter = painterResource(id = R.drawable.notifications_none),
+//                            contentDescription = "Show menu",
+//                        )
+//                    }
                     IconButton(
                         onClick = {
-                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                                .show()
-                        },
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.notifications_none),
-                            contentDescription = "Show menu",
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-                            database.logoutUser(
+                            SMFirebase.logoutUser(
                                 onLogoutAction = {
                                     (localContext as Activity).finish()
                                     localContext.startActivity(
@@ -89,7 +89,7 @@ fun ProfileScreen(
                         }
                     ) {
                         Icon(
-                            imageVector = Icons.Outlined.ExitToApp,
+                            imageVector = Icons.AutoMirrored.Outlined.ExitToApp,
                             contentDescription = "Logout",
                         )
                     }

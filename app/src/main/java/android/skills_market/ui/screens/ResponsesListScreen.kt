@@ -40,24 +40,24 @@ fun ResponsesListScreen(
         topBar = {
             TopAppBar(
                 title = { Text(text = "Отклики") },
-                actions = {
-                    IconButton(
-                        onClick = {}
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Notifications,
-                            contentDescription = "Show menu",
-                        )
-                    }
-                    IconButton(
-                        onClick = { }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Menu,
-                            contentDescription = "Show menu",
-                        )
-                    }
-                }
+//                actions = {
+//                    IconButton(
+//                        onClick = {}
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Outlined.Notifications,
+//                            contentDescription = "Show menu",
+//                        )
+//                    }
+//                    IconButton(
+//                        onClick = { }
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Default.Menu,
+//                            contentDescription = "Show menu",
+//                        )
+//                    }
+//                }
             )
         },
     ) { innerPadding ->

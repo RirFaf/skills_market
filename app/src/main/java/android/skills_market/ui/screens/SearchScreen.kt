@@ -115,18 +115,18 @@ fun SearchScreen(
                             contentDescription = "filter",
                         )
                     }
-                    IconButton(
-                        onClick = {
-                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                                .show()
-                        },
-                        modifier = Modifier
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.sort),
-                            contentDescription = "sort",
-                        )
-                    }
+//                    IconButton(
+//                        onClick = {
+//                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
+//                                .show()
+//                        },
+//                        modifier = Modifier
+//                    ) {
+//                        Icon(
+//                            painter = painterResource(id = R.drawable.sort),
+//                            contentDescription = "sort",
+//                        )
+//                    }
                 },
                 modifier = Modifier.padding(vertical = 8.dp),
             )

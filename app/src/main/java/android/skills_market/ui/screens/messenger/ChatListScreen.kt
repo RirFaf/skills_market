@@ -65,30 +65,30 @@ fun ChatListScreen(
                 title = {
                     Text(text = "Чаты")
                 },
-                actions = {
-                    IconButton(
-                        onClick = {
-                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Notifications,
-                            contentDescription = "Show menu",
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Menu,
-                            contentDescription = "Show menu",
-                        )
-                    }
-                }
+//                actions = {
+//                    IconButton(
+//                        onClick = {
+//                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
+//                                .show()
+//                        }
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Outlined.Notifications,
+//                            contentDescription = "Show menu",
+//                        )
+//                    }
+//                    IconButton(
+//                        onClick = {
+//                            Toast.makeText(localContext, "Work in progress", Toast.LENGTH_SHORT)
+//                                .show()
+//                        }
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Default.Menu,
+//                            contentDescription = "Show menu",
+//                        )
+//                    }
+//                }
             )
         }
     ) { innerPadding ->

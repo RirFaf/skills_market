@@ -62,7 +62,7 @@ class FirebaseResponsesRepository(
                                             MessageModel(
                                                 "Здавстуйте!",
                                                 Firebase.auth.currentUser!!.uid,
-                                                "0"
+                                                System.currentTimeMillis().toString()
                                             ),
                                         )
                                     )
